@@ -25,8 +25,8 @@
             <div class="sub-banner">
                 <div class="container">
                     <div class="text text-center">
-                        <h2>RESERVATION</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing</p>
+                        <h2>Đặt phòng</h2>
+                        <p>Page đặt phòng King The Land</p>
                     </div>
                 </div>
 
@@ -109,7 +109,7 @@
                                         <div class="reservation-room-seleted_item">
 
                                             <h6>{{ $room->number }}</h6> <span
-                                                class="reservation-option">{{ $room->capacity }} people</span>
+                                                class="reservation-option">{{ $room->capacity }} người</span>
 
                                             <div class="reservation-room-seleted_name has-package">
                                                 <h2><a href="#">{{ $room->type->name }}</a></h2>

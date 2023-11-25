@@ -49,7 +49,7 @@
             <nav class="header_menu" style="float: left; padding-left: 60px;">
                 <ul class="menu">
                     <li class="current-menu-item">
-                        <a href="{{ route('home') }}">Home </a>
+                        <a href="{{ route('home') }}">Trang chủ </a>
                     </li>
                     <li>
                         <a href="{{ route('event') }}">Sự Kiện </a>

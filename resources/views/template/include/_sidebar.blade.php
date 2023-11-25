@@ -38,10 +38,8 @@
                         <li><a class="dropdown-item" href="{{ route('room.index') }}">Homestay</a></li>
                         <li><a class="dropdown-item" href="{{ route('type.index') }}">Quận/Huyện</a></li>
                         <li><a class="dropdown-item" href="{{ route('roomstatus.index') }}">Trạng thái</a></li>
-                        <li><a class="dropdown-item" href="{{ route('facility.index') }}">Cơ sở</a></li>
-                        <li><a class="dropdown-item" href="{{ route('facility_room.index') }}">Cơ sở vật chất phòng</a>
-                        </li>
-                        <li><a class="dropdown-item" href="{{ route('coupon.index') }}">Phiếu mua hàng</a></li>
+                        <li><a class="dropdown-item" href="{{ route('facility.index') }}">Tất cả dịch vụ</a></li>
+                        <li><a class="dropdown-item" href="{{ route('coupon.index') }}">Mã giảm giá</a></li>
                     </ul>
                 </li>
                 <li class="mb-2 bg-white rounded cursor-pointer">

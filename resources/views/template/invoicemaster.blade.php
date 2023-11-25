@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Invoice</title>
+    <title>Hóa Đơn</title>
 
     {{-- Icon --}}
     <link rel="icon" href="{{ asset('img/logo/sip.png') }}">

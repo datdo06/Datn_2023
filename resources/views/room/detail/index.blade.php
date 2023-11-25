@@ -95,7 +95,7 @@
                                     value="{{ Helper::getDateDifference($_GET['checkin'], $_GET['checkout']) }}"
                                     name="total_day">
                                 <input type="hidden" value="{{ $_GET['person'] }}" name="person">
-                                <button class="awe-btn awe-btn-13" type="submit">Book Now</button>
+                                <button class="awe-btn awe-btn-13" type="submit">Đặt ngay</button>
                                 </form>
 
                                 <?php } else { ?>
@@ -108,10 +108,10 @@
                                             method="GET">
                                 @endif
                                 @csrf
-                                <label>Arrive</label>
+                                <label>Đến</label>
                                 <input type="text" class="awe-calendar from" placeholder="Ngày đến" id="check_in"
                                     name="checkin" value="{{ old('checkin') }}" required>
-                                <label>Depature</label>
+                                <label>Khởi hành</label>
 
                                 <input type="text" class="awe-calendar to" placeholder="Ngày đi" id="check_out"
                                     name="checkout" value="{{ old('checkout') }}" required>
@@ -119,8 +119,8 @@
                                 <label>Số người</label>
                                 <input type="text" class="awe-input" placeholder="Số người" id="count_person"
                                     name="person" value="{{ old('person') }}" required>
-                                <label>Address: {{ $detailRoom->type->name }}</label>
-                                <button class="awe-btn awe-btn-13" type="submit">Book Now</button>
+                                <label>Địa chỉ: {{ $detailRoom->type->name }}</label>
+                                <button class="awe-btn awe-btn-13" type="submit">Đặt ngay</button>
                                 </form>
                                 <?php }?>
                             </div>
@@ -141,7 +141,6 @@
                         <ul class="room-detail_tab-header">
                             <li><a href="#overview" data-toggle="tab">Tổng Quan</a></li>
                             <li class="active"><a href="#amenities" data-toggle="tab">Tiện nghi</a></li>
-                            <li><a href="#package" data-toggle="tab">Combo</a></li>
                             <li><a href="#rates" data-toggle="tab">Giá theo mùa</a></li>
                             <li><a href="#calendar" data-toggle="tab">Lịch</a></li>
                         </ul>
@@ -253,72 +252,6 @@
                             </div>
                             <!-- END / AMENITIES -->
 
-                            <!-- PACKAGE -->
-                            <div class="tab-pane fade" id="package">
-
-                                <div class="room-detail_package">
-
-                                    <!-- ITEM package -->
-                                    <div class="room-package_item">
-
-                                        <div class="text">
-                                            <h4><a href="#">package standar</a></h4>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                Lorem Ipsum has been the industry's standard dummy text ever since the
-                                                1500s, when an unknown printer took a galley of type and scrambled</p>
-
-                                            <div class="room-package_price">
-                                                <p class="price">
-                                                    <span class="amout">$260</span> / Package
-                                                </p>
-                                                <a href="#" class="awe-btn awe-btn-default">Book package</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END / ITEM package -->
-
-                                    <!-- ITEM package -->
-                                    <div class="room-package_item">
-
-                                        <div class="text">
-                                            <h4><a href="#">package standar</a></h4>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                Lorem Ipsum has been the industry's standard dummy text ever since the
-                                                1500s, when an unknown printer took a galley of type and scrambled</p>
-
-                                            <div class="room-package_price">
-                                                <p class="price">
-                                                    <span class="amout">$260</span> / Package
-                                                </p>
-                                                <a href="#" class="awe-btn awe-btn-default">Book package</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END / ITEM package -->
-
-                                    <!-- ITEM package -->
-                                    <div class="room-package_item">
-
-                                        <div class="text">
-                                            <h4><a href="#">package standar</a></h4>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                Lorem Ipsum has been the industry's standard dummy text ever since the
-                                                1500s, when an unknown printer took a galley of type and scrambled</p>
-
-                                            <div class="room-package_price">
-                                                <p class="price">
-                                                    <span class="amout">$260</span> / Package
-                                                </p>
-                                                <a href="#" class="awe-btn awe-btn-default">Book package</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END / ITEM package -->
-                                </div>
-
-                            </div>
-                            <!-- END / PACKAGE -->
-
                             <!-- RATES -->
                             <div class="tab-pane fade" id="rates">
 
@@ -326,12 +259,12 @@
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th>Rate Period</th>
-                                                <th>Nightly</th>
-                                                <th>Weekend Night</th>
-                                                <th>Weekly</th>
-                                                <th>Monthly</th>
-                                                <th>Event</th>
+                                                <th>Khoảng thời gian tính giá</th>
+                                                <th>Hàng đêm</th>
+                                                <th>Đêm cuối tuần</th>
+                                                <th>Hàng tuần</th>
+                                                <th>Hàng tháng</th>
+                                                <th>Sự kiện</th>
                                             </tr>
                                         </thead>
                                         <tr>
@@ -360,10 +293,10 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <h6>Summer/Fall Season</h6>
+                                                <h6>Mùa Hè/Mùa Thu</h6>
                                                 <ul>
-                                                    <li>Jun 1 - Aug 31</li>
-                                                    <li>3 night minimum stay</li>
+                                                    <li>1 tháng 6 - 31 tháng 8</li>
+                                                    <li>Lưu trú tối thiểu 3 đêm</li>
                                                 </ul>
                                             </td>
                                             <td>
@@ -384,10 +317,10 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <h6>Christmas Season</h6>
+                                                <h6>Mùa Giáng sinh</h6>
                                                 <ul>
-                                                    <li>Jun 1 - Aug 31</li>
-                                                    <li>3 night minimum stay</li>
+                                                    <li>24 tháng 12 - 5 tháng 1</li>
+                                                    <li>Thời gian tối thiểu 3 đêm</li>
                                                 </ul>
                                             </td>
                                             <td>
@@ -422,8 +355,8 @@
                                         <div class="calendar_custom">
 
                                             <div class="calendar_title">
-                                                <span class="calendar_month">JUNE</span>
-                                                <span class="calendar_year">2015</span>
+                                                <span class="calendar_month">THÁNG 7</span>
+                                                <span class="calendar_year">2023</span>
 
                                                 <a href="#" class="calendar_prev calendar_corner"><i
                                                         class="lotus-icon-left-arrow"></i></a>
@@ -433,13 +366,13 @@
 
                                                 <thead>
                                                     <tr>
-                                                        <th>Su</th>
-                                                        <th>Mo</th>
-                                                        <th>Tu</th>
-                                                        <th>We</th>
-                                                        <th>Th</th>
-                                                        <th>Fr</th>
-                                                        <th>Sa</th>
+                                                        <th>Chủ Nhật</th>
+                                                        <th>Thứ 2</th>
+                                                        <th>Thứ 3</th>
+                                                        <th>Thứ 4</th>
+                                                        <th>Thứ 5</th>
+                                                        <th>Thứ 6</th>
+                                                        <th>Thứ 7</th>
                                                     </tr>
                                                 </thead>
 
@@ -509,8 +442,8 @@
                                         <div class="calendar_custom">
 
                                             <div class="calendar_title">
-                                                <span class="calendar_month">JUNE</span>
-                                                <span class="calendar_year">2015</span>
+                                                <span class="calendar_month">Tháng 8</span>
+                                                <span class="calendar_year">2023</span>
 
                                                 <a href="#" class="calendar_next calendar_corner"><i
                                                         class="lotus-icon-right-arrow"></i></a>
@@ -520,13 +453,13 @@
 
                                                 <thead>
                                                     <tr>
-                                                        <th>Su</th>
-                                                        <th>Mo</th>
-                                                        <th>Tu</th>
-                                                        <th>We</th>
-                                                        <th>Th</th>
-                                                        <th>Fr</th>
-                                                        <th>Sa</th>
+                                                        <th>Chủ Nhật</th>
+                                                        <th>Thứ 2</th>
+                                                        <th>Thứ 3</th>
+                                                        <th>Thứ 4</th>
+                                                        <th>Thứ 5</th>
+                                                        <th>Thứ 6</th>
+                                                        <th>Thứ 7</th>
                                                     </tr>
                                                 </thead>
 
@@ -591,8 +524,8 @@
                                     </div>
 
                                     <div class="calendar_status text-center col-sm-12">
-                                        <span>Available</span>
-                                        <span class="not-available">Not Available</span>
+                                        <span>Có sẵn</span>
+                                        <span class="not-available">Không có sẵn</span>
                                     </div>
                                 </div>
 
@@ -661,9 +594,7 @@
                                     <div class="text">
                                         <h2><a href="#">{{ $other_location->number }}</a></h2>
                                         <ul>
-                                            <li><i class="lotus-icon-person"></i>2 người</li>
-                                            <li><i class="lotus-icon-bed"></i> Giường đôi</li>
-                                            <li><i class="lotus-icon-view"></i> Nhìn ra thành phố</li>
+                                            <li><i class="lotus-icon-view"></i> {{ $other_location->location }}</li>
                                         </ul>
                                         <a href="{{ route('homestayDetail', $other_location->id) }}"
                                             class="awe-btn awe-btn-default">Xem chi tiết</a>

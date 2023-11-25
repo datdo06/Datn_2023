@@ -17,7 +17,7 @@
                                 <span
                                     class="position-absolute mt-1 top-0 start-100 translate-middle badge rounded-pill bg-secondary">
                                     {{ auth()->user()->unreadNotifications->count() }}
-                                    <span class="visually-hidden">unread messages</span>
+                                    <span class="visually-hidden">Tin nhắn chưa đọc</span>
                                 </span>
                             @endif
                         </i>

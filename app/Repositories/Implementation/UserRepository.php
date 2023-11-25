@@ -13,6 +13,7 @@ class UserRepository implements UserRepositoryInterface
         $user = new User();
         $user->name = $userData->name;
         $user->email = $userData->email;
+        $user->phone = $userData->phone;
         $user->password = bcrypt($userData->password);
         $user->role = $userData->role;
         $user->random_key = Str::random(60);

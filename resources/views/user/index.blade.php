@@ -37,6 +37,7 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Họ tên</th>
                                             <th scope="col">Email</th>
+                                            <th>Số điện thoại</th>
                                             <th scope="col">Vai trò</th>
                                             <th scope="col">Hành động</th>
                                         </tr>
@@ -49,6 +50,7 @@
                                                 </td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
+                                                <td>{{$user->phone}}</td>
                                                 <td>{{ $user->role }}</td>
                                                 <td>
                                                     <a class="btn btn-light btn-sm rounded shadow-sm border p-0 m-0"
@@ -140,6 +142,7 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Họ tên</th>
                                             <th scope="col">Email</th>
+                                            <th>Số điện thoại</th>
                                             <th scope="col">Vai trò</th>
                                             <th scope="col">Hành động</th>
                                         </tr>
@@ -152,6 +155,7 @@
                                                 </td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
+                                                <td>{{$user->phone}}</td>
                                                 <td>{{ $user->role }}</td>
                                                 <td>
                                                     <a class="btn btn-light btn-sm rounded shadow-sm border p-0 m-0"

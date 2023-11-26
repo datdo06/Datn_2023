@@ -50,7 +50,7 @@
 
                                 <!-- END / HEADING -->
 
-                                <h6 class="check_availability_title" style="padding-top: 15px;">your stay dates</h6>
+                                <h6 class="check_availability_title" style="padding-top: 15px;">Ngày bạn ở</h6>
                                 <form action="chooseRoom" method="GET">
                                     <input type="text" hidden name="count_person"
                                            value="{{ request()->input('count_person') }}">
@@ -174,12 +174,13 @@
                                                             </button>
                                                         </div>
                                                     </form>
+
                                     </div>
 
 
                             </div>
                             @empty
-                                <h3>Theres no available room for {{ request()->input('count_person') }} or more
+                                <h3>Không có homestay trống cho {{ request()->input('count_person') }} người hoặc nhiều người hơn
                                     person
                                 </h3>
                             @endforelse

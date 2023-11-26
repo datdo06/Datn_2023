@@ -101,6 +101,7 @@ import Pusher from "pusher-js";
         import("./pages/facility"),
         // import('./pages/Chart.min'),
         import("./pages/chart"),
+        import("./pages/user")
 
     ])
 })();

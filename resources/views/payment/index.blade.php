@@ -31,7 +31,7 @@
                         </tr>
                     @empty
                         <tr class="text-center">
-                            <td colspan="6">Theres no payment found on database</td>
+                            <td colspan="6">Không tìm thấy khoản thanh toán nào trên cơ sở dữ liệu</td>
                         </tr>
                     @endforelse
                 </tbody>

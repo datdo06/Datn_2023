@@ -15,6 +15,7 @@ class Room extends Model
         'capacity',
         'price',
         'view',
+        'location',
     ];
 
     public function type()

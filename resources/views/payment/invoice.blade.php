@@ -32,8 +32,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="d-flex flex-row p-2"><img src="{{ asset('img/logo/sip.png') }}" width="48">
-                        <div class="d-flex flex-column"><span class="font-weight-bold">Invoice</span>
-                            <small>INV-{{ $transaction->id }}</small>
+                        <div class="d-flex flex-column"><span class="font-weight-bold">Hóa đơn</span>
+                            <small>Hóa đơn-{{ $transaction->id }}</small>
                         </div>
                     </div>
                     <hr>
@@ -60,7 +60,7 @@
                                 <tr class="add">
                                     <td>Mô tả</td>
                                     <td>Tổng số người</td>
-                                    <td class="text-center">Room Price / Day</td>
+                                    <td class="text-center">Giá homestay / ngày</td>
                                     <td class="text-center">Tổng giá</td>
                                 </tr>
                                 <tr class="content">

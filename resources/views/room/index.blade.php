@@ -41,20 +41,22 @@
                                             @forelse ($roomStatuses as $roomStatus)
                                                 <option value="{{ $roomStatus->id }}">{{ $roomStatus->name }}</option>
                                             @empty
-                                                <option value="">No room status</option>
+                                                <option value="">Không có trạng thái phòng</option>
                                             @endforelse
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="mb-3">
-                                        <label for="type" class="form-label">District</label>
+
+                                        <label for="type" class="form-label">Quận / Huyện</label>
                                         <select id="type" class="form-select" aria-label="Choose type">
                                             <option selected>All</option>
                                             @forelse ($types as $type)
                                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                                             @empty
-                                                <option value="">No district</option>
+
+                                                <option value="">Không quận / huyện</option>
                                             @endforelse
                                         </select>
                                     </div>
@@ -69,12 +71,13 @@
                                 <table id="room-table" class="table table-sm table-hover" style="width: 100%;">
                                     <thead>
                                     <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">District</th>
-                                        <th scope="col">Capacity</th>
-                                        <th scope="col">Price / Day</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Tên</th>
+                                        <th scope="col">Quận /  Huyện</th>
+                                        <th scope="col">Số người</th>
+                                        <th scope="col">Giá / ngày</th>
+                                        <th scope="col">Trạng thái</th>
+                                        <th scope="col">Địa chỉ</th>
+                                        <th scope="col">Thao tác</th>
                                     </tr>
                                     </thead>
                                     <tbody>

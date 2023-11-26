@@ -115,7 +115,7 @@
         @endphp
         <li><strong>Tiền homestay: </strong>{{App\Helpers\Helper::convertToRupiah($price)}}</li>
         @foreach($transactionFacility as $tF)
-            <li><strong>Tiền dich vụ {{$tF->Facility->name}}: </strong>{{\App\Helpers\Helper::convertToRupiah($tF->Facility->price)}}</li>
+            <li><strong>Tiền dich vụ {{$tF->Facility->name}} x {{$tF->quantity}}: </strong>{{\App\Helpers\Helper::convertToRupiah($tF->Facility->price * $tF->quantity)}}</li>
         @endforeach
         @if(!empty($transactionCoupon))
             <li><strong>Bạn đã sử dụng mã giảm giá: </strong>{{$transactionCoupon->Coupon->coupon_name}}</li>

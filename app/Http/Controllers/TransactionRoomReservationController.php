@@ -141,10 +141,11 @@ class TransactionRoomReservationController extends Controller
         if (!empty($request->cus)) {
             if (!empty($request->facility)) {
                 $facility_id = $request->facility;
+                $quantity = $request->quantity;
                 foreach ($facility_id as $key => $value) {
                     $facilities [] = Facility::where('id', $value)->first();
                 }
-                return view('payment.confirm', compact('data', 'room', 'minimumDownPayment', 'facilities'));
+                return view('payment.confirm', compact('data', 'room', 'minimumDownPayment', 'facilities', 'quantity'));
             } else {
                 return view('payment.confirm', compact('data', 'room', 'minimumDownPayment'));
             }
@@ -156,7 +157,6 @@ class TransactionRoomReservationController extends Controller
 
     public function pay(Request $request)
     {
-
         error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         if (session()->has('request')) {
@@ -255,11 +255,18 @@ class TransactionRoomReservationController extends Controller
                 'sum_money' => $request['sum_money'],
             ]);
             if (isset($request['facility'])) {
+
                 $facility = $request['facility'];
+                $quantities = $request['quantity'];
                 foreach ($facility as $key => $value) {
+                    $quantity = $quantities[$key];
+                    if(empty($quantity)){
+                        $quantity = $quantities[$key + 1];
+                    }
                     $facility_room = TransactionFacility::create([
                         'transanction_id' => $transaction->id,
-                        'facility_id' => $value
+                        'facility_id' => $value,
+                        'quantity'=>$quantity,
                     ]);
                 }
             }
@@ -296,9 +303,9 @@ class TransactionRoomReservationController extends Controller
                     return view('transaction.success', compact('user', 'transaction', 'transactionCoupon', 'transactionFacility'));
                 }else{
                     $transactionCoupon = TransactionCoupon::query()->find(0);
-                    $mail = new SuccessHomestayMail($user, $transaction, $transactionCoupon);
+                    $mail = new SuccessHomestayMail($user, $transaction, $transactionCoupon, $transactionFacility);
                     SendSuccessMail::dispatch($user, $mail);
-                    return view('transaction.success', compact('user', 'transaction'));
+                    return view('transaction.success', compact('user', 'transaction', 'transactionFacility'));
                 }
 
 
@@ -393,8 +400,10 @@ class TransactionRoomReservationController extends Controller
         $hoan = $request->hoan;
         $user = User::query()->findOrFail($transaction->user_id);
         $mail = new CancelHomestayMail($user, $transaction,$hoan);
+        $transactionFacility = TransactionFacility::query()->where('transanction_id', $transaction->id)->get();
+        $transactionCoupon = TransactionCoupon::query()->where('transanction_id', $transaction->id)->first();
         SendWelcomeEmail::dispatch($user, $mail);
         $transaction->delete();
-        return view('cancelHomestay', compact('transaction'));
+        return view('cancelHomestay', compact('transaction', 'hoan', 'transactionCoupon', 'transactionFacility'));
     }
 }

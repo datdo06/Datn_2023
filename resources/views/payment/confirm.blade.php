@@ -7,8 +7,8 @@
 
         <!-- MENU BAR -->
         <span class="menu-bars">
-                        <span></span>
-                    </span>
+            <span></span>
+        </span>
         <!-- END / MENU BAR -->
 
 
@@ -68,14 +68,15 @@
                                     <!-- ITEM -->
                                     <div class="reservation-room-seleted_item">
 
-                                        <h6>{{$room->number}}</h6> <span class="reservation-option">{{$room->capacity}} people</span>
+                                        <h6>{{ $room->number }}</h6> <span class="reservation-option">{{ $room->capacity }}
+                                            people</span>
 
                                         <div class="reservation-room-seleted_name has-package">
-                                            <h2><a href="#">{{$room->type->name}}</a></h2>
+                                            <h2><a href="#">{{ $room->type->name }}</a></h2>
                                         </div>
 
                                         <div class="reservation-room-seleted_package">
-                                            <h6>Space Price</h6>
+                                            <h6>Giá</h6>
                                             <ul>
                                                 <li>
                                                     <span>Price/Day</span>
@@ -84,20 +85,23 @@
 
                                             </ul>
                                         </div>
-                                        @if(!empty($facilities))
+                                        @if (!empty($facilities))
                                             <div class="reservation-room-seleted_package">
-                                                <h6>Facility</h6>
+                                                <h6>Cơ sở</h6>
                                                 <ul>
-                                                    @foreach($facilities as $key => $facility)
-                                                        @if(empty($quantity[$key]))
+                                                    @foreach ($facilities as $key => $facility)
+                                                        @if (empty($quantity[$key]))
                                                             <li>
-                                                                <span>{{$facility->name}} x {{$quantity[$key]+1}}</span>
-                                                                <span> {{ Helper::convertToRupiah($facility->price * ($quantity[$key]+1)) }}</span>
+                                                                <span>{{ $facility->name }} x
+                                                                    {{ $quantity[$key] + 1 }}</span>
+                                                                <span>
+                                                                    {{ Helper::convertToRupiah($facility->price * ($quantity[$key] + 1)) }}</span>
                                                             </li>
                                                         @else
                                                             <li>
-                                                                <span>{{$facility->name}} x {{$quantity[$key]}}</span>
-                                                                <span> {{ Helper::convertToRupiah($facility->price * $quantity[$key]) }}</span>
+                                                                <span>{{ $facility->name }} x {{ $quantity[$key] }}</span>
+                                                                <span>
+                                                                    {{ Helper::convertToRupiah($facility->price * $quantity[$key]) }}</span>
                                                             </li>
                                                         @endif
                                                     @endforeach
@@ -106,32 +110,32 @@
                                             </div>
                                         @endif
                                         <div class="reservation-room-seleted_total-room">
-                                            TOTAL DAY
-                                            <span
-                                                class="reservation-amout">{{ $data['total_day'] }} {{ Helper::plural('Day', $data['total_day']) }}</span>
+                                            Tổng ngày
+                                            <span class="reservation-amout">{{ $data['total_day'] }}
+                                                {{ Helper::plural('Day', $data['total_day']) }}</span>
                                         </div>
 
 
                                         <div class="reservation-room-seleted_total-room">
-                                            TOTAL
+                                            Tổng
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($data['sum_money']) }}</span>
                                         </div>
                                         <div class="reservation-room-seleted_total-room">
-                                            Mini DownPaymment
+                                            Khoản thanh toán nhỏ
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($minimumDownPayment) }}</span>
                                         </div>
-                                        <form action="{{route('transaction.reservation.pay')}}" method="post">
+                                        <form action="{{ route('transaction.reservation.pay') }}" method="post">
                                             @csrf
                                             <div class="reservation-room-seleted_total-room">
-                                                PAYMENT
+                                                Phương thức thanh toán
                                                 <span class="reservation-amout"><input style="margin-bottom: 50px"
-                                                                                       type="text"
-                                                                                       name="downPayment"></span>
+                                                        type="text" name="downPayment"></span>
                                             </div>
                                             <div style="margin-top: 50px">
-                                                <button type="submit" name="redirect" class="awe-btn awe-btn-13 ">XÁC NHẬN THANH TOÁN
+                                                <button type="submit" name="redirect" class="awe-btn awe-btn-13 ">XÁC NHẬN
+                                                    THANH TOÁN
                                                 </button>
                                             </div>
                                         </form>

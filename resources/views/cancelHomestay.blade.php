@@ -78,6 +78,40 @@
         <p><strong>Tên homestay: </strong> {{$transaction->room->number}} </p>
         <p><strong>Ngày nhận phòng:</strong> {{\App\Helpers\Helper::dateFormat($transaction->check_in)}}</p>
         <p><strong>Ngày trả phòng:</strong> {{\App\Helpers\Helper::dateFormat($transaction->check_out)}}</p>
+        @foreach($transactionFacility as $tF)
+            <p><strong>Tiền dich vụ {{$tF->Facility->name}} x {{$tF->quantity}}: </strong>{{\App\Helpers\Helper::convertToRupiah($tF->Facility->price * $tF->quantity)}}</p>
+        @endforeach
+        @if(!empty($transactionCoupon))
+            <p><strong>Bạn đã sử dụng mã giảm giá: </strong>{{$transactionCoupon->Coupon->coupon_name}}</p>
+            @if($transactionCoupon->Coupon->coupon_condition == 2)
+                <p><strong>Bạn được giảm: </strong>{{\App\Helpers\Helper::convertToRupiah($transactionCoupon->Coupon->coupon_number)}}</p>
+            @else
+                <p><strong>Bạn được giảm: </strong>{{\App\Helpers\Helper::convertToRupiah(($price*$transactionCoupon->Coupon->coupon_number/100))}}</p>
+            @endif
+        @endif
+        <p><strong>Số tiền bạn đã cọc: </strong>{{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment())}}</p>
+        <div>
+            @if($hoan == 0)
+                <div>
+                    <p>Quý khách đã hủy đặt homestay trước 3 ngày nên sẽ được hoàn lại 100% phí đã đặt cọc</p>
+                    <p>Quý khách được
+                        hoàn {{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment())}}</p>
+                </div>
+            @elseif($hoan == 15)
+                <div>
+                    <p>Quý khách đã hủy đặt homestay từ 3 đến 7 ngày nên sẽ được hoàn lại 15% phí đã đặt cọc</p>
+                    <p>Quý khách được
+                        hoàn {{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment() - ($transaction->getTotalPayment() * $hoan /100))}}</p>
+                </div>
+            @elseif($hoan == 100)
+                <div>
+                    <div>
+                        <p>Quý khách đã hủy đặt homestay sau 7 ngày nên sẽ bị mất 100% phí đã đặt cọc</p>
+                        <p>Quý khách được hoàn {{\App\Helpers\Helper::convertToRupiah(0)}}</p>
+                    </div>
+                </div>
+            @endif
+        </div>
         <p><strong>Tổng số tiền: </strong>{{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</p>
     </div>
     <div class="button-container">

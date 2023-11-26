@@ -58,7 +58,7 @@ $(function () {
                             id="delete-room-form-${roomId}"
                             action="/room/${roomId}">
                             <a class="btn btn-light btn-sm rounded shadow-sm border delete"
-                                href="#" room-id="${roomId}" room-role="room" data-bs-toggle="tooltip"
+                                href="#" room-id="${roomId}" room-name =  room-role="room" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Delete room">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
@@ -122,12 +122,12 @@ $(function () {
 
             swalWithBootstrapButtons
                 .fire({
-                    title: "Are you sure?",
-                    text: "Room will be deleted, You won't be able to revert this!",
-                    icon: "warning",
+                    title: 'Bạn có chắc chắn?',
+                    text:  "Homestay sẽ bị xóa , Bạn không thể hoàn lại được!",
+                    icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: "Yes, delete it!",
-                    cancelButtonText: "No, cancel! ",
+                    confirmButtonText: 'Có, xóa nó!',
+                    cancelButtonText: 'Không, hủy bỏ! ',
                     reverseButtons: true,
                 })
                 .then((result) => {

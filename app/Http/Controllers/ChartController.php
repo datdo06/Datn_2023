@@ -64,6 +64,30 @@ class ChartController extends Controller
 
         return $sum_money;
     }
+    public function sumMoneyPerWeek($month, $day, $year){
+        $day2 = $day-7;
+        $today =  Carbon::now()->format('d');
+        $monthd = Carbon::now()->format('m');
+        $yeard = Carbon::now()->format('Y');
+        $timed =  strtotime($monthd . '/' . $today. '/' . $yeard);
+        $dated = date('Y-m-d', $timed);
+        if($day<=7){
+            $m = $month - 1;
+            $dayInMonth = cal_days_in_month(CAL_GREGORIAN, $m, $year);
+            $day2 = $day2 + $dayInMonth;
+            $time1 = strtotime($m . '/' . $day2 . '/' . $year);
+            $time2 = strtotime($month . '/' . $day . '/' . $year);
+            $date1 = date('Y-m-d', $time1);
+            $date2 = date('Y-m-d', $time2);
+        }else{
+            $time1 = strtotime($month . '/' . $day2 . '/' . $year);
+            $time2 = strtotime($month . '/' . $day . '/' . $year);
+            $date1 = date('Y-m-d', $time1);
+            $date2 = date('Y-m-d', $time2);
+        }
+        $sum_money = Transaction::where('check_in', '<=', $date2)->where('check_in', '>=', $date1)->where('check_out', '<=', $dated)->sum('sum_money');
+        return $sum_money;
+    }
     public function sumMoneyPerMonth($year, $month)
     {
         $day = cal_days_in_month(CAL_GREGORIAN, $month, $year);
@@ -90,7 +114,7 @@ class ChartController extends Controller
 
     public function dailyMoneysPerMonth(Request $request)
     {
-
+        $day = Carbon::now()->format('d');
         $year = Carbon::now()->format('Y');
         $month = Carbon::now()->format('m');
         $days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
@@ -178,7 +202,26 @@ class ChartController extends Controller
                     array_unshift($sum_money, $this->sumMoneyPerMonth($year, $m));
                     $m= $m - 1;
                 }
-            }else{
+            }elseif ($filterType == 3){
+                for ($i = 4; $i>=1; $i--){
+                    if($day<=7){
+                        $month2 = $month - 1;
+                        $day2 = $day - 7;
+                        if($day2<=0){
+                            $day2 = $day2 + cal_days_in_month(CAL_GREGORIAN, $month2, $year);
+                        }
+                        array_unshift($day_array, 'Tuần '.$i.'('.$day2.'/'.$month2.' đến '.$day.'/'.$month.')' );
+                        array_unshift($sum_money, $this->sumMoneyPerWeek($month,$day, $year));
+                        $day = $day - 7;
+                    }else{
+                        array_unshift($day_array, 'Tuần '.$i.'('.($day-7).'/'.$month.'đến'.$day.'/'.$month.')' );
+                        array_unshift($sum_money, $this->sumMoneyPerWeek($month,$day, $year));
+                        $day = $day - 7;
+                    }
+
+                }
+            }
+            else{
                 for ($i = 1; $i <= $days_in_month; $i++) {
                     array_push($day_array, $i);
                     array_push($sum_money, $this->sumMoneyPerDay($year, $month, $i));

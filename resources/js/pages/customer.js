@@ -13,12 +13,12 @@ $(function () {
         })
         e.preventDefault();
         swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "District will be deleted, You won't be able to revert this!",
+            title: 'Bạn có chắc chắn?',
+            text: "Người dùng sẽ bị xóa , Bạn không thể hoàn lại được!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel! ',
+            confirmButtonText: 'Có, xóa nó!',
+            cancelButtonText: 'Không, hủy bỏ! ',
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {

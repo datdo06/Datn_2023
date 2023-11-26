@@ -79,12 +79,12 @@ $(function() {
         })
 
         swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "District will be deleted, You won't be able to revert this!",
+            title: 'Bạn có chắc chắn?',
+            text: "Dịch vụ  sẽ bị xóa , Bạn không thể hoàn lại được!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel! ',
+            confirmButtonText: 'Có, xóa nó!',
+            cancelButtonText: 'Không, hủy bỏ! ',
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
@@ -99,7 +99,7 @@ $(function() {
         const response = await $.get(`/facility/create`);
         if (!response) return
 
-        $('#main-modal .modal-title').text('Create new facility')
+        $('#main-modal .modal-title').text('Thêm mới dịch vụ')
         $('#main-modal .modal-body').html(response.view)
         $('.select2').select2();
     }).on('click', '#btn-modal-save', function() {
@@ -155,7 +155,7 @@ $(function() {
         const response = await $.get(`/facility/${facilityId}/edit`);
         if (!response) return
 
-        $('#main-modal .modal-title').text('Edit district')
+        $('#main-modal .modal-title').text('Chỉnh sửa dịch vụ')
         $('#main-modal .modal-body').html(response.view)
         $('.select2').select2();
     }).on('submit', '.delete-facility', async function(e) {

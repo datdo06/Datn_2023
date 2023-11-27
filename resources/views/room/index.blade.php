@@ -37,7 +37,7 @@
                                     <div class="mb-3">
                                         <label for="status" class="form-label">Status</label>
                                         <select id="status" class="form-select" aria-label="Choose status">
-                                            <option selected>All</option>
+                                            <option selected>Tất cả</option>
                                             @forelse ($roomStatuses as $roomStatus)
                                                 <option value="{{ $roomStatus->id }}">{{ $roomStatus->name }}</option>
                                             @empty
@@ -51,12 +51,12 @@
 
                                         <label for="type" class="form-label">Quận / Huyện</label>
                                         <select id="type" class="form-select" aria-label="Choose type">
-                                            <option selected>All</option>
+                                            <option selected>Tất cả</option>
                                             @forelse ($types as $type)
                                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                                             @empty
 
-                                                <option value="">Không quận / huyện</option>
+                                                <option value="">Không có quận / huyện</option>
                                             @endforelse
                                         </select>
                                     </div>
@@ -77,7 +77,7 @@
                                         <th scope="col">Giá / ngày</th>
                                         <th scope="col">Trạng thái</th>
                                         <th scope="col">Địa chỉ</th>
-                                        <th scope="col">Thao tác</th>
+                                        <th scope="col">Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>

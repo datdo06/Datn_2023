@@ -45,11 +45,11 @@
                                             <i class="fa  fa-map-marker"></i>
                                         </div>
                                         <div class="text">
-                                            <address> 
+                                            <address>
                                                 734 Đường Láng, Trung Hòa, Đống Đa, Hà Nội</address>
                                             <p>
                                                 Tel: (+84) 989999999  <br>
-                                                
+
                                             </p>
                                         </div>
                                     </div>
@@ -65,7 +65,7 @@
                                             <address>47 Đường Nguyễn Phong Sắc, Dịch Vọng Hậu, Cầu Giấy, Hà Nội</address>
                                             <p>
                                                 Tel: (+84) 989999999 <br>
-                                                
+
                                             </p>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@
 
                     <div class="col-md-6 col-lg-6 col-lg-offset-1">
                         <div class="contact-form">
-                            <form action="https://landing.engotheme.com/html/lotus/demo/send_mail_contact.php" method="post">
+                            <form action="{{ route('thank') }}" method="GET">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <input type="text" class="field-text"  name="name" placeholder="Họ và tên">

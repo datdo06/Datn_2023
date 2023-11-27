@@ -61,6 +61,7 @@ $(function () {
                         <form class="btn btn-sm delete-room" method="POST"
                             id="delete-room-form-${roomId}"
                             action="/room/${roomId}">
+                            <input type="hidden" name="_method" value="DELETE">
                             <a class="btn btn-light btn-sm rounded shadow-sm border delete"
                                 href="#" room-id="${roomId}" room-name =  room-role="room" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Delete room">

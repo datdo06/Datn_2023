@@ -1,5 +1,5 @@
 $(function() {
-    $(document).on('click', '.delete', function(){
+    $(document).on('click', '.delete-user', function(){
         var user_id = $(this).attr('user-id');
         var user_name = $(this).attr('user-name');
         var user_role = $(this).attr('user-role');
@@ -13,7 +13,7 @@ $(function() {
 
         swalWithBootstrapButtons.fire({
             title: 'Bạn có chắc chắn?',
-            text: user_name + " sẽ bị xóa , Bạn không thể hoàn lại được!",
+            text:  " sẽ bị xóa , Bạn không thể hoàn lại được!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Có, xóa nó!',

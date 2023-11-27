@@ -72,7 +72,7 @@
                                                     action="{{ route('customer.destroy', ['customer' => $customer->id]) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a class="dropdown-item delete" href="" customer-id="{{ $customer->id }}"
+                                                    <a class="dropdown-item delete-customer" href="" customer-id="{{ $customer->id }}"
 
                                                         customer-role="Customer" customer-name="{{ $customer->name }}">
                                                         Delete

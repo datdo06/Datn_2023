@@ -255,7 +255,6 @@ class TransactionRoomReservationController extends Controller
                 'sum_money' => $request['sum_money'],
             ]);
             if (isset($request['facility'])) {
-
                 $facility = $request['facility'];
                 $quantities = $request['quantity'];
                 foreach ($facility as $key => $value) {
@@ -264,7 +263,7 @@ class TransactionRoomReservationController extends Controller
                         $quantity = $quantities[$key + 1];
                     }
                     $facility_room = TransactionFacility::create([
-                        'transanction_id' => $transaction->id,
+                        'transaction_id' => $transaction->id,
                         'facility_id' => $value,
                         'quantity'=>$quantity,
                     ]);
@@ -289,7 +288,7 @@ class TransactionRoomReservationController extends Controller
             }
 
             event(new RefreshDashboardEvent("Someone reserved a room"));
-            $transactionFacility = TransactionFacility::query()->where('transanction_id', $transaction->id)->get();
+            $transactionFacility = TransactionFacility::query()->where('transaction_id', $transaction->id)->get();
 
             if (isset($request['cus'])) {
                 $user = User::query()->findOrFail($transaction->user_id);
@@ -400,8 +399,8 @@ class TransactionRoomReservationController extends Controller
         $hoan = $request->hoan;
         $user = User::query()->findOrFail($transaction->user_id);
         $mail = new CancelHomestayMail($user, $transaction,$hoan);
-        $transactionFacility = TransactionFacility::query()->where('transanction_id', $transaction->id)->get();
-        $transactionCoupon = TransactionCoupon::query()->where('transanction_id', $transaction->id)->first();
+        $transactionFacility = TransactionFacility::query()->where('transaction_id', $transaction->id)->get();
+        $transactionCoupon = TransactionCoupon::query()->where('transaction_id', $transaction->id)->first();
         SendWelcomeEmail::dispatch($user, $mail);
         $transaction->delete();
         return view('cancelHomestay', compact('transaction', 'hoan', 'transactionCoupon', 'transactionFacility'));

@@ -184,7 +184,7 @@
          <div class="portfolio-menu mt-2 mb-4">
             <ul>
                <li class="btn btn-outline-dark active" data-filter="*">All</li>
-               <li class="btn btn-outline-dark" data-filter=".homestay">Homestay</li>
+               <li class="btn btn-outline-dark" data-filter=".homestay">Khu nghỉ dưỡng</li>
                <li class="btn btn-outline-dark" data-filter=".guest">Bởi khách hàng</li>
                <li class="btn btn-outline-dark text" data-filter=".other">Khác</li>
             </ul>

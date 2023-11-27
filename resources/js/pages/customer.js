@@ -1,5 +1,5 @@
 $(function () {
-    $(document).on('click', '.delete', function (e) {
+    $(document).on('click', '.delete-customer', function (e) {
 
         var customer_id = $(this).attr('customer-id');
         var customer_name = $(this).attr('customer-name');

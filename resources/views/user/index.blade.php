@@ -173,7 +173,7 @@
                                                         action="{{ route('user.destroy', ['user' => $user->id]) }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <a class="btn btn-light btn-sm rounded shadow-sm border p-0 m-0 delete"
+                                                        <a class="btn btn-light btn-sm rounded shadow-sm border p-0 m-0 delete-user"
                                                             href="#" user-id="{{ $user->id }}" user-role="Customer"
                                                             user-name="{{ $user->name }}" data-bs-toggle="tooltip"
                                                             data-bs-placement="top" title="Delete User">

@@ -6,7 +6,8 @@
             <div class="rd-navbar-top-panel rd-navbar-collapse">
                 <div class="rd-navbar-top-panel-inner">
                     <div class="left-side">
-                        <div class="group"><span class="text-italic">Follow Us:</span>
+                        <div class="group"><span class="text-italic">
+                                Theo dõi chúng tôi:</span>
                             <ul class="list-inline">
                                 <li><a class="icon icon-sm icon-secondary-5 fa fa-instagram" href="#"></a></li>
                                 <li><a class="icon icon-sm icon-secondary-5 fa fa-facebook" href="#"></a></li>
@@ -16,7 +17,7 @@
                     </div>
                     <div class="center-side">
                         <!-- RD Navbar Brand-->
-                        <div class="rd-navbar-brand fullwidth-brand"><a class="brand-name" href="index.html"><img src="site/images/logo-default-314x48.png" alt="" width="314" height="48"/></a></div>
+                        <div class="rd-navbar-brand fullwidth-brand"><a class="brand-name" href="index.html"><img src="site/images/logo-default-314x48.png" alt="" width="314" height="48" /></a></div>
                     </div>
                     <div class="right-side">
                         <!-- Contact Info-->
@@ -37,19 +38,19 @@
                     <!-- RD Navbar collapse toggle-->
                     <button class="rd-navbar-collapse-toggle" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></button>
                     <!-- RD Navbar Brand-->
-                    <div class="rd-navbar-brand mobile-brand"><a class="brand-name" href="index.html"><img src="site/logo-default-314x48.png" alt="" width="314" height="48"/></a></div>
+                    <div class="rd-navbar-brand mobile-brand"><a class="brand-name" href="index.html"><img src="site/logo-default-314x48.png" alt="" width="314" height="48" /></a></div>
                 </div>
                 <div class="rd-navbar-aside-right">
                     <div class="rd-navbar-nav-wrap">
                         <div class="rd-navbar-nav-scroll-holder">
                             <ul class="rd-navbar-nav">
-                                <li class="active"><a href="{{route('home')}}">Home</a>
+                                <li class="active"><a href="{{route('home')}}">Trang Chủ</a>
                                 </li>
-                                <li><a href="{{route('about')}}">About Us</a>
+                                <li><a href="{{route('about')}}">Về chúng tôi</a>
                                 </li>
-                                <li><a href="{{route('contacts')}}">Contacts</a>
+                                <li><a href="{{route('contacts')}}">Liên hệ</a>
                                 </li>
-                                <li><a href="{{route('typography')}}">Typography</a>
+                                <li><a href="{{route('typography')}}">Kiểu chữ</a>
                                 </li>
                             </ul>
                         </div>

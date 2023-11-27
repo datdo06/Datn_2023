@@ -10,6 +10,8 @@ class Facility extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'detail'
+        'detail',
+        'status',
+        'price'
     ];
 }

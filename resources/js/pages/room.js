@@ -55,7 +55,7 @@ $(function () {
                     return `
                         <button class="btn btn-light btn-sm rounded shadow-sm border"
                             data-action="edit-room" data-room-id="${roomId}"
-                            data-bs-toggle="tooltip" data-bs-placement="top" title="Edit room">
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Edit homestay">
                             <i class="fas fa-edit"></i>
                         </button>
                         <form class="btn btn-sm delete-room" method="POST"
@@ -63,8 +63,8 @@ $(function () {
                             action="/room/${roomId}">
                             <input type="hidden" name="_method" value="DELETE">
                             <a class="btn btn-light btn-sm rounded shadow-sm border delete"
-                                href="#" room-id="${roomId}" room-name =  room-role="room" data-bs-toggle="tooltip"
-                                data-bs-placement="top" title="Delete room">
+                                href="#" room-id="${roomId}" room-role="room" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Delete homestay">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                         </form>
@@ -98,13 +98,6 @@ $(function () {
         console.log(response);
         datatable.ajax.reload()
     })
-
-
-
-
-
-
-
 
     const modal = new bootstrap.Modal($("#main-modal"), {
         backdrop: true,

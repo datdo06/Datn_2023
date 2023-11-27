@@ -146,3 +146,4 @@ Route::get('/forget-password',[\App\Http\Controllers\Auth\ResetPasswordControlle
 Route::post('/forget-password',[\App\Http\Controllers\Auth\ResetPasswordController::class, "forgetPasswordPost"])->name('forget.password.post');
 Route::get('/reset-password/{token}', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'resetPassword'])->name('reset.password');
 Route::post('/reset-password', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'resetPasswordPost'])->name('reset.password.post');
+Route::get('/thank-you',[RoomController::class, 'thankYou'])->name('thank');

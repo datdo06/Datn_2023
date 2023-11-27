@@ -35,6 +35,7 @@ class RoomRepository implements RoomRepositoryInterface
             3 => 'rooms.price',
             4 => 'room_statuses.name',
             5 => 'types.id',
+            6 => 'rooms.location',
         );
 
         $limit = $request->input('length');
@@ -49,11 +50,12 @@ class RoomRepository implements RoomRepositoryInterface
             'rooms.capacity',
             'rooms.price',
             'room_statuses.name as status',
+            'rooms.location'
         )
-            ->when($request->status !== 'All', function ($query) use ($request) {
+            ->when($request->status !== 'Tất cả', function ($query) use ($request) {
                 $query->where('room_status_id', $request->status);
             })
-            ->when($request->type !== 'All', function ($query) use ($request) {
+            ->when($request->type !== 'Tất cả', function ($query) use ($request) {
                 $query->where('type_id', $request->type);
             })
             ->leftJoin("types", "rooms.type_id", "=", "types.id")
@@ -66,10 +68,6 @@ class RoomRepository implements RoomRepositoryInterface
             $main_query->where('types.id', $filterType);
             // Xử lý giá trị `filterType` ở đây
         }
-
-//        }
-
-
 
         // Filter global column
         if ($request->input('search.value')) {
@@ -86,10 +84,6 @@ class RoomRepository implements RoomRepositoryInterface
                 }
             });
         }
-
-
-
-
 
         $totalFiltered = $main_query->count();
 
@@ -109,6 +103,7 @@ class RoomRepository implements RoomRepositoryInterface
                     "price" => $model->price,
                     "capacity" => $model->capacity,
                     "status" => $model->status,
+                    'location' => $model->location,
                 );
             }
         }

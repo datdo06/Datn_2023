@@ -20,13 +20,13 @@
         <div id="error_room_status_id" class="text-danger error"></div>
     </div>
     <div class="col-md-12">
-        <label for="number" class="form-label">Số phòng</label>
+        <label for="number" class="form-label">Tên Homestay</label>
         <input room="text" class="form-control @error('number') is-invalid @enderror" id="number" name="number"
             value="{{ old('number') }}" placeholder="ex: 1A">
         <div id="error_number" class="text-danger error"></div>
     </div>
     <div class="col-md-12">
-        <label for="capacity" class="form-label">Diện tích</label>
+        <label for="capacity" class="form-label">Số người ở</label>
         <input room="text" class="form-control @error('capacity') is-invalid @enderror" id="capacity"
             name="capacity" value="{{ old('capacity') }}" placeholder="ex: 4">
         <div id="error_capacity" class="text-danger error"></div>
@@ -36,6 +36,12 @@
         <input room="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
             value="{{ old('price') }}" placeholder="ex: 500000">
         <div id="error_price" class="text-danger error"></div>
+    </div>
+    <div class="col-md-12">
+        <label for="price" class="form-label">Địa chỉ</label>
+        <input room="text" class="form-control @error('location') is-invalid @enderror" id="location" name="location"
+               value="{{ old('location') }}" placeholder=".........">
+        <div id="error_location" class="text-danger error"></div>
     </div>
     <div class="col-md-12">
         <label for="view" class="form-label">View</label>

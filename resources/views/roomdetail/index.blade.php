@@ -293,14 +293,14 @@
                     </div>
                 </div>
                 <div class="card mt-2">
-                    <h6>Reviews</h6>
+                    <h6>Đánh giá</h6>
                     <div class="d-flex flex-row">
                         <div class="stars"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
                                 class="fa fa-star"></i> <i class="fa fa-star"></i> </div> <span
                             class="ml-1 font-weight-bold">4.6</span>
                     </div>
                     <hr>
-                    <div class="badges"> <span class="badge bg-dark ">All (230)</span> <span class="badge bg-dark "> <i
+                    <div class="badges"> <span class="badge bg-dark ">Tất cả (230)</span> <span class="badge bg-dark "> <i
                                 class="fa fa-image"></i> 23 </span> <span class="badge bg-dark "> <i
                                 class="fa fa-comments-o"></i> 23 </span> <span class="badge bg-warning"> <i
                                 class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
@@ -315,10 +315,10 @@
                                 <div class="d-flex flex-column ml-1 comment-profile">
                                     <div class="comment-ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                    </div> <span class="username">Lori Benneth</span>
+                                    </div> <span class="username">Đoàn Quang Huy</span>
                                 </div>
                             </div>
-                            <div class="date"> <span class="text-muted">2 May</span> </div>
+                            <div class="date"> <span class="text-muted">2 tháng 7</span> </div>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between align-items-center">
@@ -327,10 +327,10 @@
                                 <div class="d-flex flex-column ml-1 comment-profile">
                                     <div class="comment-ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                    </div> <span class="username">Timona Simaung</span>
+                                    </div> <span class="username">Đỗ Tiến Đạt</span>
                                 </div>
                             </div>
-                            <div class="date"> <span class="text-muted">12 May</span> </div>
+                            <div class="date"> <span class="text-muted">12 tháng 7</span> </div>
                         </div>
                     </div>
                 </div>
@@ -348,7 +348,7 @@
                         </div>
                         <div class="buttons"> <button class="btn btn-outline-warning btn-long cart">Đặt trước
                                 phòng</button>
-                            <button class="btn btn-warning btn-long buy">Thanh Toán</button>  
+                            <button class="btn btn-warning btn-long buy">Thanh Toán</button>
                         </div>
                         <hr>
                         <div class="product-description">
@@ -369,7 +369,7 @@
 
                             <select class="awe-select @error('type_id') is-invalid @enderror" name="type_id"
                                 id="type_id" required>
-                                 
+
                             </select>
 
                         </form>
@@ -472,7 +472,7 @@
                     Là “ngôi nhà xa xứ,” các phòng khách sạn cung cấp tv màn hình phẳng, quầy bar mini và tủ lạnh, và
                     kết nối mạng thật dễ dàng, với wifi miễn phí sẵn có.
 
-                    Khách có thể dùng nhân viên hỗ trợ khách và dịch vụ phòng khi nghỉ tại KingTheLand Homestay. 
+                    Khách có thể dùng nhân viên hỗ trợ khách và dịch vụ phòng khi nghỉ tại KingTheLand Homestay.
                     <span id="dots">...</span><span id="more">
                     Ngoài ra, KingTheLand còn có bể bơi và bữa sáng, sẽ làm cho kì nghỉ của bạn ở Hà Nội trở nên tuyệt vời hơn nữa. Thuận tiện hơn nữa, còn có đỗ
                     xe miễn phí có sẵn cho khách.
@@ -484,7 +484,7 @@
                     </span>
                     <a onclick="myFunction()" id="myBtn">Xem thêm</a>
                 </p>
-                
+
             </div>
             <div class=" col-sm-7 ">
                 <h5 class="sub-heading"> Tiện nghi của khách sạn</h5> <br>
@@ -657,7 +657,7 @@
                                 <p class="price">
                                     <span class="amout">2.100.000</span> / Ngày
                                 </p>
-                                <a href="#" class="awe-btn awe-btn-default">VIEW DETAIL</a>
+                                <a href="#" class="awe-btn awe-btn-default">Chi tiết</a>
                             </div>
                         </div>
                     </div>
@@ -682,7 +682,7 @@
                                 <p class="price">
                                     <span class="amout">2.800.000</span> / Ngày
                                 </p>
-                                <a href="#" class="awe-btn awe-btn-default">VIEW DETAIL</a>
+                                <a href="#" class="awe-btn awe-btn-default">Chi tiết</a>
                             </div>
                         </div>
                     </div>
@@ -709,11 +709,11 @@ function myFunction() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "Read more"; 
+    btnText.innerHTML = "Read more";
     moreText.style.display = "none";
   } else {
     dots.style.display = "none";
-    btnText.innerHTML = "Rút gọn"; 
+    btnText.innerHTML = "Rút gọn";
     moreText.style.display = "inline";
   }
 }

@@ -127,7 +127,8 @@ class RoomController extends Controller
         ->select('rooms.id','users.id as uid', 'users.name', 'users.avatar', 'comments.com_content','comments.com_subject', 'comments.created_at')
         ->where('rooms.id', $id)
         ->get();
-        $other_locations = Room::whereNotIn('id', $transactions)->get();
+        $other_locations = Room::latest()->limit(6)
+        ->whereNotIn('id', $transactions)->get();
         return view('room.detail.index', compact('detailRoom', 'image','room_type', 'other_locations','comment','results'));
     }
 

@@ -25,8 +25,8 @@
             <div class="sub-banner">
                 <div class="container">
                     <div class="text text-center">
-                        <h2>RESERVATION</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing</p>
+                        <h2>ĐẶT PHÒNG</h2>
+                        <p>Page đặt phòng King The Land</p>
                     </div>
                 </div>
 

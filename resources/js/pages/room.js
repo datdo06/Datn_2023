@@ -45,6 +45,10 @@ $(function () {
                 data: "status",
             },
             {
+                name: "location",
+                data: "location",
+            },
+            {
                 name: "id",
                 data: "id",
                 render: function (roomId) {
@@ -66,7 +70,7 @@ $(function () {
                         <a class="btn btn-light btn-sm rounded shadow-sm border"
                             href="/room/${roomId}"
                             data-bs-toggle="tooltip" data-bs-placement="top"
-                            title="Room detail">
+                            title="Homestay detail">
                             <i class="fas fa-info-circle"></i>
                         </a>
 
@@ -122,9 +126,11 @@ $(function () {
 
             swalWithBootstrapButtons
                 .fire({
+
                     title: 'Bạn có chắc chắn?',
                     text:  "Homestay sẽ bị xóa , Bạn không thể hoàn lại được!",
                     icon: 'warning',
+
                     showCancelButton: true,
                     confirmButtonText: 'Có, xóa nó!',
                     cancelButtonText: 'Không, hủy bỏ! ',
@@ -144,7 +150,7 @@ $(function () {
             const response = await $.get(`/room/create`);
             if (!response) return;
 
-            $("#main-modal .modal-title").text("Create new room");
+            $("#main-modal .modal-title").text("Create new homestay");
             $("#main-modal .modal-body").html(response.view);
             $(".select2").select2();
         })
@@ -203,7 +209,7 @@ $(function () {
             const response = await $.get(`/room/${roomId}/edit`);
             if (!response) return;
 
-            $("#main-modal .modal-title").text("Edit room");
+            $("#main-modal .modal-title").text("Edit homestay");
             $("#main-modal .modal-body").html(response.view);
             $(".select2").select2();
         })

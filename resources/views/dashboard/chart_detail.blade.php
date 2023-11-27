@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h3 class="p-3 text-center">
-                Occupied room at {{ Helper::dateFormat($date) }}
+                Khách đang lưu {{ Helper::dateFormat($date) }}
             </h3>
         </div>
     </div>
@@ -30,7 +30,7 @@
                                 {{ Helper::dateFormat($transaction->check_in) }} -
                                 {{ Helper::dateFormat($transaction->check_out) }}
                             </div>
-                            <p class="card-text mb-auto">Room Status: {{ $transaction->room->roomStatus->name }}</p>
+                            <p class="card-text mb-auto">Trạng thái phòng : {{ $transaction->room->roomStatus->name }}</p>
                         </div>
                     </div>
                     <div class="col-auto d-none d-lg-block">

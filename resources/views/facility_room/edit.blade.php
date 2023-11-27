@@ -2,7 +2,7 @@
     @csrf
     @method('PUT')
     <div class="col-md-12">
-        <label for="name" class="form-label">Name</label>
+        <label for="name" class="form-label">Tên cơ sở</label>
         <select class="form-control @error('room_id') is-invalid @enderror" id="room_id" name="room_id">
             <option value="">Chọn homestay</option>
             @foreach($homestays as $homestay)
@@ -22,7 +22,7 @@
         <div id="error_name" class="text-danger error"></div>
     </div>
     <div class="col-md-12">
-        <label for="information" class="form-label">Detail</label>
+        <label for="information" class="form-label">Thông tin chi tiết</label>
         <select class="form-control @error('facility_id') is-invalid @enderror" id="facility_id" name="facility_id">
             @foreach($facilities as $facility)
                 @if($facility->id == $facilityRoom->facility_id )

@@ -544,7 +544,8 @@ blockquote p {
     color: #444444;
     font-weight: 600;
     font-style: italic;
-    line-height: 1.428em
+    line-height: 1.428em;
+    font-family: 'Calibri';
 }
 
 blockquote p:before {

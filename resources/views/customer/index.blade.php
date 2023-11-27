@@ -41,7 +41,7 @@
                     <form class="d-flex" method="GET" action="{{ route('customer.index') }}">
                         <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" id="search"
                             name="search" value="{{ request()->input('search') }}">
-                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                        <button class="btn btn-outline-dark" type="submit">Tìm kiếm</button>
                     </form>
                 </div>
             </div>
@@ -62,20 +62,20 @@
 
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <li><a class="dropdown-item"
-                                                    href="{{ route('customer.show', ['customer' => $customer->id]) }}">Details</a>
+                                                    href="{{ route('customer.show', ['customer' => $customer->id]) }}">Thông tin chi tiết</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                    href="{{ route('customer.edit', ['customer' => $customer->id]) }}">Edit</a>
+                                                    href="{{ route('customer.edit', ['customer' => $customer->id]) }}">Chỉnh sửa thông tin</a>
                                             </li>
                                             <li>
                                                 <form class="delete-cus" method="POST" id="delete-customer-form-{{ $customer->id }}"
                                                     action="{{ route('customer.destroy', ['customer' => $customer->id]) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a class="dropdown-item delete" href="" customer-id="{{ $customer->id }}"
+                                                    <a class="dropdown-item delete-customer" href="" customer-id="{{ $customer->id }}"
 
                                                         customer-role="Customer" customer-name="{{ $customer->name }}">
-                                                        Delete
+                                                        Xóa khách hàng
                                                     </a>
                                                 </form>
                                             </li>
@@ -123,7 +123,7 @@
                                                                 <td><i class="fas fa-phone"></i></td>
                                                                 <td>
                                                                     <span>
-                                                                        +6281233808395
+                                                                        {{ $customer->User->phone }}
                                                                     </span>
                                                                 </td>
                                                             </tr>
@@ -146,7 +146,7 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-center">There's no customer found on database</p>
+                    <p class="text-center">Không có dữ liệu khách hàng</p>
                 @endforelse
             </div>
             <div class="row justify-content-md-center mt-3">

@@ -269,10 +269,9 @@
                                         </thead>
                                         <tr>
                                             <td>
-                                                <h6>Spring/Summer Season</h6>
+                                                <h6>Mùa Đông / Mùa Xuân</h6>
                                                 <ul>
-                                                    <li>Jun 1 - Aug 31</li>
-                                                    <li>3 night minimum stay</li>
+                                                    <li> 22 tháng 12- 21 tháng 3</li>
                                                 </ul>
                                             </td>
                                             <td>
@@ -293,26 +292,25 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <h6>Mùa Hè/Mùa Thu</h6>
+                                                <h6>Mùa Hè / Mùa Thu</h6>
                                                 <ul>
                                                     <li>1 tháng 6 - 31 tháng 8</li>
-                                                    <li>Lưu trú tối thiểu 3 đêm</li>
                                                 </ul>
                                             </td>
                                             <td>
-                                                <p class="price"><span class="amout">$320</span></p>
+                                                <p class="price"><span class="amout">$500</span></p>
                                             </td>
                                             <td>
-                                                <p class="price"><span class="amout">$23</span></p>
+                                                <p class="price"><span class="amout">$30</span></p>
                                             </td>
                                             <td>
-                                                <p class="price"><span class="amout">$120</span></p>
+                                                <p class="price"><span class="amout">$140</span></p>
+                                            </td>
+                                            <td>
+                                                <p class="price"><span class="amout">$150</span></p>
                                             </td>
                                             <td>
                                                 <p class="price"><span class="amout">$100</span></p>
-                                            </td>
-                                            <td>
-                                                <p class="price"><span class="amout">$89</span></p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -320,23 +318,22 @@
                                                 <h6>Mùa Giáng sinh</h6>
                                                 <ul>
                                                     <li>24 tháng 12 - 5 tháng 1</li>
-                                                    <li>Thời gian tối thiểu 3 đêm</li>
                                                 </ul>
                                             </td>
                                             <td>
-                                                <p class="price"><span class="amout">$320</span></p>
+                                                <p class="price"><span class="amout">$250</span></p>
                                             </td>
                                             <td>
-                                                <p class="price"><span class="amout">$23</span></p>
-                                            </td>
-                                            <td>
-                                                <p class="price"><span class="amout">$120</span></p>
+                                                <p class="price"><span class="amout">$20</span></p>
                                             </td>
                                             <td>
                                                 <p class="price"><span class="amout">$100</span></p>
                                             </td>
                                             <td>
-                                                <p class="price"><span class="amout">$89</span></p>
+                                                <p class="price"><span class="amout">$95</span></p>
+                                            </td>
+                                            <td>
+                                                <p class="price"><span class="amout">$79</span></p>
                                             </td>
                                         </tr>
                                     </table>

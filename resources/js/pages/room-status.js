@@ -75,12 +75,12 @@ $(function() {
         })
 
         swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "Type will be deleted, You won't be able to revert this!",
+            title: 'Bạn có chắc chắn?',
+            text: "Trạng thái homestay sẽ bị xóa , Bạn không thể hoàn lại được!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel! ',
+            confirmButtonText: 'Có, xóa nó!',
+            cancelButtonText: 'Không, hủy bỏ! ',
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {

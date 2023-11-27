@@ -87,7 +87,7 @@
                                 @empty
                                     <tr>
                                         <td colspan="15" class="text-center">
-                                            There's no data in this table
+                                            Không có dữ liệu gì trong bảng
                                         </td>
                                     </tr>
                                 @endforelse

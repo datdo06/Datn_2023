@@ -35,9 +35,9 @@
                             <div class="row">
                                 <div class="col-12 col-md-4">
                                     <div class="mb-3">
-                                        <label for="status" class="form-label">Trạng thái</label>
+                                        <label for="status" class="form-label">Status</label>
                                         <select id="status" class="form-select" aria-label="Choose status">
-                                            <option selected>Tất cả</option>
+                                            <option selected>All</option>
                                             @forelse ($roomStatuses as $roomStatus)
                                                 <option value="{{ $roomStatus->id }}">{{ $roomStatus->name }}</option>
                                             @empty
@@ -48,12 +48,14 @@
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="mb-3">
+
                                         <label for="type" class="form-label">Quận / Huyện</label>
                                         <select id="type" class="form-select" aria-label="Choose type">
-                                            <option selected>Tất cả</option>
+                                            <option selected>All</option>
                                             @forelse ($types as $type)
                                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                                             @empty
+
                                                 <option value="">Không quận / huyện</option>
                                             @endforelse
                                         </select>

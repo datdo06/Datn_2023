@@ -90,6 +90,8 @@ class FacilityRepository implements FacilityRepositoryInterface{
         $facilities = new Facility();
         $facilities->name = $facilityData->name;
         $facilities->detail = $facilityData->detail;
+        $facilities->status = $facilityData->status;
+        $facilities->price = $facilityData->price;
         $facilities->save();
 
         return $facilities;

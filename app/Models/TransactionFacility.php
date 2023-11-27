@@ -10,7 +10,7 @@ class TransactionFacility extends Model
 
     use HasFactory;
     protected $fillable = [
-        'transanction_id',
+        'transaction_id',
         'facility_id',
         'quantity'
     ]

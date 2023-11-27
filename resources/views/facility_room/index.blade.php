@@ -36,9 +36,9 @@
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Homestay</th>
-                                        <th scope="col">Facility</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Tên khu nghỉ dưỡng</th>
+                                        <th scope="col">Cơ sở</th>
+                                        <th scope="col"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <h3>Homestay</h3>
+                            <h3>Khu nghỉ dưỡng</h3>
                         </div>
                     </div>
                 </div>

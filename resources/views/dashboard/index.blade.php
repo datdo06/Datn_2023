@@ -22,7 +22,7 @@
                     <div class="col-lg-6">
                         <div class="card shadow-sm border" style="border-radius: 0.5rem">
                             <div class="card-body text-center">
-                                <h5>Dashboard</h5>
+                                <h5>Bảng điều khiển</h5>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -96,7 +96,7 @@
                                                     </span>
                                                 @if (Helper::getDateDifference(now(), $transaction->check_out) < 1)
                                                     <span class="justify-content-center badge bg-danger">
-                                                            must finish payment
+                                                            số tiền phải thanh toán
                                                         </span>
                                                 @endif
                                             </td>
@@ -104,7 +104,7 @@
                                     @empty
                                         <tr>
                                             <td colspan="10" class="text-center">
-                                                There's no data in this table
+                                                Không có dữ liệu
                                             </td>
                                         </tr>
                                     @endforelse

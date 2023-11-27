@@ -93,6 +93,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
     });
     Route::get('/formComment/{room_id}', [HomeController::class, 'formComment'])->name('formComment');
     Route::post('/comment/{id}', [HomeController::class, 'postComment'])->name('postComment');
+    Route::get('/comment/del/{id}', [HomeController::class, 'delComment'])->name('delComment');
     Route::view('/notification', 'notification.index')->name('notification.index');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

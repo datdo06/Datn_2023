@@ -100,14 +100,13 @@ class HomeController extends Controller
         $room = Room::find($id);
         $checkUser = DB::table('comments')
         ->join('rooms', 'rooms.id', '=', 'comments.com_room_id')
-        ->select('rooms.id','comments.com_user_id as cui')
+        ->select('comments.com_user_id as cui','rooms.id')
         ->where('rooms.id', $id)
-        ->first();
-
+        ->get();
         $comment = DB::table('comments')
         ->join('rooms', 'rooms.id', '=', 'comments.com_room_id')
         ->join('users', 'users.id', '=', 'comments.com_user_id')
-        ->select('rooms.id','users.id as uid', 'users.name', 'users.avatar', 'comments.com_content','comments.com_subject','comments.star', 'comments.created_at')
+        ->select('rooms.id','users.id as uid', 'users.name', 'users.avatar', 'comments.com_content','comments.com_subject','comments.star','comments.id as cd', 'comments.created_at')
         ->where('rooms.id', $id)
         ->get();
         $results = Comment::select('com_room_id', DB::raw('COUNT(*) as comment_count'))
@@ -126,6 +125,11 @@ class HomeController extends Controller
         $comment->star = $request->star;
         $comment->com_subject = $request->com_subject;
         $comment->save();
+        return redirect()->back();
+    }
+    public function delComment($id)
+    {
+        Comment::where('id', $id)->delete();
         return redirect()->back();
     }
 }

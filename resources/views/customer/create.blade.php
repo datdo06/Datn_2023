@@ -32,6 +32,16 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
+                                   name="phone" value="{{ old('phone') }}">
+                            @error('phone')
+                            <div class="text-danger mt-1">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
                             <label for="birthdate" class="form-label">Ngày sinh</label>
                             <input type="date" class="form-control @error('birthdate') is-invalid @enderror" id="birthdate"
                                 name="birthdate" value="{{ old('birthdate') }}">

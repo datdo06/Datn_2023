@@ -238,7 +238,6 @@ class TransactionRoomReservationController extends Controller
             $request = session()->get('request');
             $customer = session()->get('customer');
             $downPayment = $_GET['vnp_Amount'] / 100;
-
             $room = session()->get('room');
             $checkin = date_create($request['check_in']);
             $checkout = date_create($request['check_out']);

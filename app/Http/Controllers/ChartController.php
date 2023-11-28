@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -54,14 +55,28 @@ class ChartController extends Controller
 
         return view('dashboard.chart_detail', compact('transactions', 'date'));
     }
+    public function sumMoneyPerDay($day)
+    {
+        $today =  Carbon::now()->format('d');
+        $monthd = Carbon::now()->format('m');
+        $yeard = Carbon::now()->format('Y');
+        $timed =  strtotime($monthd . '/' . $today. '/' . $yeard);
+        $dated = date('Y-m-d', $timed);
+        $sum_money = Transaction::where('check_in', '=', $day)->where('check_out', '<=', $dated)->sum('sum_money');
 
-    public function sumMoneyPerDay($year, $month, $day)
+        return $sum_money;
+    }
+
+    public function sumMoneyPerDays($year, $month, $day)
     {
         $time = strtotime($month . '/' . $day . '/' . $year);
         $date = date('Y-m-d', $time);
-
-        $sum_money = Transaction::where('check_in', '=', $date)->sum('sum_money');
-
+        $today =  Carbon::now()->format('d');
+        $monthd = Carbon::now()->format('m');
+        $yeard = Carbon::now()->format('Y');
+        $timed =  strtotime($monthd . '/' . $today. '/' . $yeard);
+        $dated = date('Y-m-d', $timed);
+        $sum_money = Transaction::where('check_in', '=', $date)->where('check_out', '<=', $dated)->sum('sum_money');
         return $sum_money;
     }
     public function sumMoneyPerWeek($month, $day, $year){
@@ -88,15 +103,14 @@ class ChartController extends Controller
         $sum_money = Transaction::where('check_in', '<=', $date2)->where('check_in', '>=', $date1)->where('check_out', '<=', $dated)->sum('sum_money');
         return $sum_money;
     }
-    public function sumMoneyPerMonth($year, $month)
+    public function sumMoneyPerMonth($date)
     {
-        $day = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-        $time1 = strtotime($month . '/' . 1 . '/' . $year);
-        $time2 = strtotime($month . '/' . $day . '/' . $year);
-        $date1 = date('Y-m-d', $time1);
-        $date2 = date('Y-m-d', $time2);
-
-        $sum_money = Transaction::where('check_in', '<=', $date2)->where('check_in', '>=', $date1)->sum('sum_money');
+        list($Year, $Month) = explode('-', $date);
+        $startDate = Carbon::createFromDate($Year, $Month, 1);
+        $startDate = $startDate->format('Y-m-d');// Ngày đầu tiên của tháng
+        $endDate = Carbon::createFromDate($Year, $Month, 1)->endOfMonth();
+        $endDate = $endDate->format('Y-m-d');
+        $sum_money = Transaction::where('check_in', '<=', $endDate)->where('check_in', '>=', $startDate)->sum('sum_money');
         return $sum_money;
     }
     public function sumMoneyPerQuy($year, $month1, $month2)
@@ -120,10 +134,63 @@ class ChartController extends Controller
         $days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
         $day_array = array();
         $sum_money = array();
-        if($request->has('filter_type')){
+        if($request->has('den')&&$request->has('tu')&&$request->has('filter_type')){
+            $filterType = $request->input('filter_type');
+            $start = $request->input('tu');
+            $end = $request->input('den');
+            if($filterType == 1){
+                $dateList = Helper::getDatesBetweenRange($start, $end);
+                foreach ($dateList as $date){
+                    $d = strtotime($date);
+                    $datefm = date('d/m/Y', $d);
+                    array_push($day_array, $datefm);
+                    array_push($sum_money, $this->sumMoneyPerDay($date));
+                }
+            }elseif($filterType == 2){
+                $dateList = Helper::getMonthsBetweenRange($start, $end);
+                foreach ($dateList as $date){
+                    $d = strtotime($date);
+                    $datefm = date('m/Y', $d);
+                    array_push($day_array, $datefm);
+                    array_push($sum_money, $this->sumMoneyPerMonth($date));
+                }
+            }
+            else{
+                for ($i = 1; $i <= $days_in_month; $i++) {
+                    array_push($day_array, $i);
+                    array_push($sum_money, $this->sumMoneyPerDays($year, $month, $i));
+                }
+            }
+            $sumMoneyPerMonth = array(
+                'day' => $day_array,
+                'sum_money_data' => $sum_money,
+            );
+            return response()->json($sumMoneyPerMonth);
+        }else{
+            for ($i = 1; $i <= $days_in_month; $i++) {
+                array_push($day_array, $i);
+                array_push($sum_money, $this->sumMoneyPerDays($year, $month, $i));
+            }
+            $sumMoneyPerMonth = array(
+                'day' => $day_array,
+                'sum_money_data' => $sum_money,
+            );
+        }
+        return response()->json($sumMoneyPerMonth);
+    }
+
+    public function dailyMoneysPerMonthb(Request $request)
+    {
+        $day = Carbon::now()->format('d');
+        $year = Carbon::now()->format('Y');
+        $month = Carbon::now()->format('m');
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        $day_array = array();
+        $sum_money = array();
+        if($request->has('den')){
             $filterType = $request->input('filter_type');
             if($filterType == 1){
-                $monthQuy = 0;
+                 $monthQuy = 0;
                 switch ($month){
                     case 1 :
                     case 2:

@@ -175,12 +175,18 @@
                             <div class="card-header border-0">
                                 <div class="d-flex justify-content-between ">
                                     <h3 class="card-title ">Doanh thu <của></của> homestay</h3>
-                                    <select style="width: 700px" name="" id="filter" class="form-control">
-                                        <option value="">Theo từng ngày trong tháng</option>
-                                        <option value="3">Theo từng tuần trong tháng </option>
-                                        <option value="1">Theo Quý gần nhất</option>
-                                        <option value="2">Theo tháng gần nhất</option>
+                                    <select style="width: 500px" name="" id="filter" class="form-control">
+                                        <option value="">Tháng hiện tại</option>
+                                        <option value="1">Theo từng ngày</option>
+                                        <option value="2">Theo từng tháng</option>
                                     </select>
+                                    <div class="d-flex justify-content-between ">
+                                        <label style="margin: 5px 5px 0 0" for=""> Từ</label>
+                                        <input type="date" style="width: 150px; height: 35px" id="tu" class="form-control" >
+                                        <label style="margin: 5px 5px 0 5px" for="">Đến</label>
+                                        <input type="date" id="den" style="width: 150px; height: 35px" class="form-control" >
+                                        <button type="button" id="xem" style="color: white" class="btn btn-success">Xem</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body">

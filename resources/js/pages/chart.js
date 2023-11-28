@@ -137,15 +137,35 @@ $(function (){
         console.log(data);
         handleData(data);
     });
-    $(document).on('change','#filter', async function (){
+    $(document).on('change', '#filter', function (){
+        var selectedType = $("#filter").val();
+        var tu = document.getElementById('tu');
+        var den = document.getElementById('den');
 
-        var selectedType = $(this).val();
-        console.log(selectedType);
+        if(selectedType == 2){
+            if (tu.type === 'date' && den.type === 'date' ) {
+                tu.type = 'month';
+                den.type = 'month';
+            } else {
+                tu.type = 'date' ;
+                den.type = 'date';
+            }
+        }else{
+            tu.type = 'date' ;
+            den.type = 'date';
+        }
+    });
+    $(document).on('click','#xem', async function (){
+
+        var selectedType = $("#filter").val();
+
+        var tu  = $("#tu").val();
+        var den = $("#den").val();
         // Gửi giá trị đã chọn lên server bằng AJAX
         const response = await $.ajax({
             url: '/money', // Điều này cần được thay thế bằng địa chỉ endpoint của bạn
             method: 'GET',
-            data: { filter_type: selectedType },
+            data: { filter_type: selectedType, tu, den },
             success: function(data) {
                 // Xử lý dữ liệu trả về từ server và cập nhật bảng DataTables (nếu cần)
             },

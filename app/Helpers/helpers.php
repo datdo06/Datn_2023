@@ -86,4 +86,34 @@ class Helper
     {
         return $day * $price;
     }
+    public static function getDatesBetweenRange($startDate, $endDate)
+    {
+        $start = Carbon::parse($startDate);
+        $end = Carbon::parse($endDate);
+        $dateRange = [];
+
+        while ($start->lte($end)) {
+            $dateRange[] = $start->format('Y-m-d');
+            $start->addDay(); // Thêm 1 ngày
+        }
+
+        return $dateRange;
+    }
+    public static function getMonthsBetweenRange($start, $end)
+    {
+        list($startYear, $startMonth) = explode('-', $start);
+        list($endYear, $endMonth) = explode('-', $end);
+
+        $startDate = Carbon::createFromDate($startYear, $startMonth, 1); // Ngày đầu tiên của tháng
+        $endDate = Carbon::createFromDate($endYear, $endMonth, 1)->endOfMonth(); // Ngày cuối cùng của tháng
+
+        $monthRange = [];
+
+        while ($startDate->lte($endDate)) {
+            $monthRange[] = $startDate->format('Y-m');
+            $startDate->addMonths(1); // Thêm 1 tháng
+        }
+
+        return $monthRange;
+    }
 }

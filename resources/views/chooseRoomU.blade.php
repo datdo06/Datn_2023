@@ -180,8 +180,7 @@
 
                             </div>
                             @empty
-                                <h3>Không có homestay trống cho {{ request()->input('count_person') }} người hoặc nhiều người hơn
-                                    person
+                                <h3>Không có homestay trống cho {{ request()->input('count_person') }} người hoặc homestay đã hết
                                 </h3>
                             @endforelse
                             <!-- END / ITEM -->

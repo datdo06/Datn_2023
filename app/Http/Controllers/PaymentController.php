@@ -46,6 +46,7 @@ class PaymentController extends Controller
     {
         $transaction = Transaction::query()->findOrFail($id);
         $transaction_facilities = TransactionFacility::where('transaction_id', $transaction->id)->get();
+
         $transactionCoupon = TransactionCoupon::query()->where('transaction_id', $transaction->id)->first();
         return view('payment.invoice', compact('transaction', 'transaction_facilities', 'transactionCoupon' ));
     }

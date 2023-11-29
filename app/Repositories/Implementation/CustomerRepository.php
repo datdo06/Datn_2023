@@ -11,7 +11,7 @@ class CustomerRepository implements CustomerRepositoryInterface
 {
     public function get($request)
     {
-        $customers = Customer::with('user')->orderBy('id', 'DESC');
+        $customers = User::query()->where('role', 'Customer')->orderBy('id', 'DESC');
 
         if (!empty($request->q)) {
             $customers = $customers->where('name', 'Like', '%' . $request->q . '%')
@@ -38,7 +38,7 @@ class CustomerRepository implements CustomerRepositoryInterface
 
     public static function store($request)
     {
-        $user = User::create([
+        $customer = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone'=>$request->phone,
@@ -48,7 +48,7 @@ class CustomerRepository implements CustomerRepositoryInterface
         ]);
 
         if ($request->hasFile('avatar')) {
-            $path = 'img/user/' . $user->name . '-' . $user->id;
+            $path = 'img/user/' . $customer->name . '-' . $customer->id;
             $path = public_path($path);
             $file = $request->file('avatar');
 
@@ -56,19 +56,11 @@ class CustomerRepository implements CustomerRepositoryInterface
 
             $imageRepository->uploadImage($path, $file);
 
-            $user->avatar = $file->getClientOriginalName();
-            $user->save();
+            $customer->avatar = $file->getClientOriginalName();
+            $customer->save();
         }
 
-        $customer = Customer::create([
-            'name' => $user->name,
-            'address' => $request->address,
-            'job' => $request->job,
-            'birthdate' => $request->birthdate,
-            'gender' => $request->gender,
-            'description' => $request->description,
-            'user_id' => $user->id
-        ]);
+
 
         return $customer;
     }

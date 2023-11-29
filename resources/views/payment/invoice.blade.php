@@ -163,10 +163,7 @@
                             </tr>
                             <tr class="content">
                                 <td>
-                                    Tên khách hàng : {{ $transaction->customer->name }}
-                                    <br> Công việc: {{ $transaction->customer->job }}
-                                    <br> Địa chỉ : {{ $transaction->customer->address }}
-                                    <br>
+                                    Tên khách hàng : {{ $transaction->user->name }}
                                 </td>
                             </tr>
                             </tbody>

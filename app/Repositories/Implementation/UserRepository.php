@@ -8,6 +8,18 @@ use Illuminate\Support\Str;
 
 class UserRepository implements UserRepositoryInterface
 {
+    public function get($request)
+    {
+        $users = User::query()->where('role', 'Customer')->orderBy('id', 'DESC');
+        if (!empty($request->q)) {
+            $users = $users->where('name', 'Like', '%' . $request->q . '%')
+                ->orWhere('id', 'Like', '%' . $request->q . '%');
+        }
+
+        $users = $users->paginate(8);
+        $users->appends($request->all());
+        return $users;
+    }
     public function store($userData)
     {
         $user = new User();
@@ -40,5 +52,17 @@ class UserRepository implements UserRepositoryInterface
             })
             ->paginate(5, ['*'], 'customers')
             ->appends($request->all());
+    }
+    public function count($request)
+    {
+        $usersCount = User::query()->where('role', 'Customer')->orderBy('id', 'DESC');
+
+        if (!empty($request->q)) {
+            $usersCount = $usersCount->where('name', 'Like', '%' . $request->q . '%')
+                ->orWhere('id', 'Like', '%' . $request->q . '%');
+        }
+
+        $usersCount = $usersCount->count();
+        return $usersCount;
     }
 }

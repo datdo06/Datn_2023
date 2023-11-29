@@ -13,7 +13,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <form class="row g-3" method="GET"
-                                    action="{{ route('transaction.reservation.chooseRoom', ['customer' => $customer->id]) }}">
+                                    action="{{ route('transaction.reservation.chooseRoom', ['user'=> $user->id]) }}">
                                     <div class="col-md-12">
                                         <label for="count_person" class="form-label">
                                             Nhập số người ở
@@ -78,49 +78,16 @@
             </div>
             <div class="col-md-4 mt-2">
                 <div class="card shadow-sm">
-                    <img src="{{ $customer->user->getAvatar() }}"
-                        style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem">
+                    <img src="{{ $user->getAvatar() }}"
+                        style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem"; height="330px">
                     <div class="card-body">
                         <table>
                             <tr>
-                                <td style="text-align: center; width:50px">
-                                    <span>
-                                        <i class="fas {{ $customer->gender == 'Male' ? 'fa-male' : 'fa-female' }}">
-                                        </i>
-                                    </span>
-                                </td>
                                 <td>
-                                    {{ $customer->name }}
+                                    {{ $user->name }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-user-md"></i>
-                                    </span>
-                                </td>
-                                <td>{{ $customer->job }}</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-birthday-cake"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    {{ $customer->birthdate }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    {{ $customer->address }}
-                                </td>
-                            </tr>
+
                         </table>
                     </div>
                 </div>

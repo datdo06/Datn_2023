@@ -105,7 +105,7 @@
                                 </div>
                             @endif
                             <form method="POST"
-                                  action="{{route('transaction.reservation.payOnlinePayment', ['customer' => $customer->id, 'room' => $room->id])}}">
+                                  action="{{route('transaction.reservation.payOnlinePayment', ['user' => $user->id, 'room' => $room->id])}}">
                                 @csrf
                                 <div class="reservation-sidebar">
                                     <!-- RESERVATION DATE -->

@@ -25,10 +25,7 @@ class StoreCustomerRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'address' => 'required|max:255',
-            'job' => 'required',
-            'birthdate' => 'required|date',
-            'gender' => 'required|in:Male,Female',
+            'phone'=>'required',
             'email' => 'required|unique:users,email',
             'avatar' => 'mimes:png,jpg',
         ];

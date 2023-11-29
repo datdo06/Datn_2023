@@ -14,7 +14,6 @@ class TransactionRepository implements TransactionRepositoryInterface
     {
         return Transaction::create([
             'user_id' => auth()->user()->id,
-            'customer_id' => $customer->id,
             'room_id' => $room->id,
             'check_in' => $request->check_in,
             'check_out' => $request->check_out,
@@ -24,7 +23,7 @@ class TransactionRepository implements TransactionRepositoryInterface
 
     public function getTransaction($request)
     {
-        return Transaction::with('user', 'room', 'customer')
+        return Transaction::with('user', 'room')
             ->where('check_out', '>=', Carbon::now())
             ->when(!empty($request->search), function ($query) use ($request) {
                 $query->where('id', '=', $request->search);
@@ -35,7 +34,7 @@ class TransactionRepository implements TransactionRepositoryInterface
 
     public function getTransactionExpired($request)
     {
-        return Transaction::with('user', 'room', 'customer')->where('check_out', '<', Carbon::now())
+        return Transaction::with('user', 'room')->where('check_out', '<', Carbon::now())
             ->when(!empty($request->search), function ($query) use ($request) {
                 $query->where('id', '=', $request->search);
             })

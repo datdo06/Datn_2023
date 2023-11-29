@@ -28,12 +28,22 @@
                             </div>
                             <div class="col-md-12">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror"  id=" email"
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"  id="email"
                                     name="email" value="{{ old('email') }}">
                                 @error('email')
                                     <div class="text-danger mt-1">
                                         {{ $message }}
                                     </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12">
+                                <label for="gender" class="form-label">Số điện thoại</label>
+                                <input type="text" class="form-control @error('phone') is-invalid @enderror"  id="phone"
+                                       name="phone" value="{{ old('phone') }}">
+                                @error('phone')
+                                <div class="text-danger mt-1">
+                                    {{ $message }}
+                                </div>
                                 @enderror
                             </div>
                             <div class="col-md-12">
@@ -50,7 +60,7 @@
                                 <label for="gender" class="form-label">Giới tính</label>
                                 <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender" aria-label="Default select example">
                                     {{-- <option selected hidden>Select</option> --}}
-                                    <option value="Male">Name</option>
+                                    <option value="Male">Nam</option>
                                     <option value="Female">Nữ</option>
                                 </select>
                                 @error('gender')
@@ -77,6 +87,15 @@
                                     <div class="text-danger mt-1">
                                         {{ $message }}
                                     </div>
+                                @enderror
+                            </div><div class="col-md-12">
+                                <label for="address" class="form-label">Miêu tả</label>
+                                <textarea class="form-control" id="description" name="description"
+                                          rows="3">{{ old('description') }}</textarea>
+                                @error('description')
+                                <div class="text-danger mt-1">
+                                    {{ $message }}
+                                </div>
                                 @enderror
                             </div>
                             <div class="col-mg-12">

@@ -25,8 +25,8 @@
             <div class="sub-banner">
                 <div class="container">
                     <div class="text text-center">
-                        <h2>ĐẶT PHÒNG</h2>
-                        <p>Page đặt phòng King The Land</p>
+                        <h2>ĐẶT Homestay</h2>
+                        <p>Page đặt homestay King The Land</p>
                     </div>
                 </div>
 

@@ -38,7 +38,7 @@
                         <li><a class="dropdown-item" href="{{ route('room.index') }}">Homestay</a></li>
                         <li><a class="dropdown-item" href="{{ route('type.index') }}">Quận/Huyện</a></li>
                         <li><a class="dropdown-item" href="{{ route('roomstatus.index') }}">Trạng thái</a></li>
-                        <li><a class="dropdown-item" href="{{ route('facility.index') }}">Tất cả dịch vụ</a></li>
+                        <li><a class="dropdown-item" href="{{ route('facility.index') }}">Dịch vụ</a></li>
                         <li><a class="dropdown-item" href="{{ route('coupon.index') }}">Mã giảm giá</a></li>
                     </ul>
                 </li>

@@ -163,7 +163,7 @@
 
                                     <div class="row">
                                         <div class="col-xs-6 col-md-4">
-                                            <h6>Thông tin phòng</h6>
+                                            <h6>Thông tin Homestay</h6>
                                             <ul>
                                                 <li> 2 người lớn & 1 trẻ em</li>
                                                 <li>Diện tích : 35 m2 </li>
@@ -175,7 +175,7 @@
                                             <h6>Dịch vụ kèm theo</h6>
                                             <ul>
                                                 <li>Bữa sáng</li>
-                                                <li>Dọn phòng hàng ngày</li>
+                                                <li>Dọn Homestay hàng ngày</li>
                                                 <li>Dịch vụ giặt là</li>
                                             </ul>
                                         </div>
@@ -190,7 +190,7 @@
                             <div class="tab-pane fade active in" id="amenities">
 
                                 <div class="room-detail_amenities">
-                                    <p> Khách có thể dùng nhân viên hỗ trợ khách và dịch vụ phòng khi nghỉ tại KingTheLand
+                                    <p> Khách có thể dùng nhân viên hỗ trợ khách và dịch vụ Homestay khi nghỉ tại KingTheLand
                                         Homestay.</p>
 
                                     <div class="row">

@@ -180,7 +180,7 @@
                                         onclick="if(confirm('Bạn có muốn hủy')){
                                 document.getElementById('#form').submit();
                             }">Hủy
-                                    phòng
+                                    Homestay
                                 </button>
                             </form>
                         @elseif(Helper::getDateDifference($transaction->check_in, now()) > 0 &&

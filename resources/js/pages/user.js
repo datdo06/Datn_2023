@@ -13,7 +13,7 @@ $(function() {
 
         swalWithBootstrapButtons.fire({
             title: 'Bạn có chắc chắn?',
-            text:  " sẽ bị xóa , Bạn không thể hoàn lại được!",
+            text: user_name +" sẽ bị xóa , Bạn không thể hoàn lại được!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Có, xóa nó!',

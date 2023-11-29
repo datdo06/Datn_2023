@@ -45,7 +45,7 @@
                             <hr>
                             <div class="col-sm-12 mt-2">
                                 <form method="POST"
-                                    action="{{ route('transaction.reservation.payOnlinePayment', ['customer' => $customer->id, 'room' => $room->id]) }}">
+                                    action="{{ route('transaction.reservation.payOnlinePayment', ['user' => $user->id, 'room' => $room->id]) }}">
                                     @csrf
                                     <div class="row mb-3">
                                         <label for="check_in" class="col-sm-2 col-form-label">Ngày đến</label>
@@ -68,6 +68,15 @@
                                                 placeholder="col-form-label"
                                                 value="{{ $dayDifference }} {{ Helper::plural('Day', $dayDifference) }} "
                                                 readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="how_long" class="col-sm-2 col-form-label">Tổng số người ở</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="how_long" name="how_long"
+                                                   placeholder="col-form-label"
+                                                   value="{{ $person }} người "
+                                                   readonly>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -105,6 +114,9 @@
                                         <div class="col-sm-2"></div>
                                         <div class="col-sm-10" id="showPaymentType"></div>
                                     </div>
+                                    <input type="hidden" value="{{Helper::getTotalPayment($dayDifference, $room->price)}}" name="sum_money">
+                                    <input type="hidden" value="{{$person}}" name="person" >
+                                    <input type="hidden" value="{{$dayDifference}}" name="total_day">
                                     <button type="submit" class="btn btn-primary float-end" >Thanh toán</button>
                                 </form>
                             </div>
@@ -114,49 +126,17 @@
             </div>
             <div class="col-md-4 mt-2">
                 <div class="card shadow-sm">
-                    <img src="{{ $customer->user->getAvatar() }}"
+                    <img src="{{ $user->getAvatar() }}"
                         style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem">
                     <div class="card-body">
                         <table>
                             <tr>
-                                <td style="text-align: center; width:50px">
-                                    <span>
-                                        <i class="fas {{ $customer->gender == 'Male' ? 'fa-male' : 'fa-female' }}">
-                                        </i>
-                                    </span>
-                                </td>
                                 <td>
-                                    {{ $customer->name }}
+                                    {{ $user->name }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-user-md"></i>
-                                    </span>
-                                </td>
-                                <td>{{ $customer->job }}</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-birthday-cake"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    {{ $customer->birthdate }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    {{ $customer->address }}
-                                </td>
-                            </tr>
+
+
                         </table>
                     </div>
                 </div>

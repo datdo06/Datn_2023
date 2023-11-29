@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::with('user', 'room', 'customer')
+        $transactions = Transaction::with('user', 'room')
             ->where([['check_in', '<=', Carbon::now()], ['check_out', '>=', Carbon::now()]])
             ->orderBy('check_out', 'ASC')
             ->orderBy('id', 'DESC')->get();

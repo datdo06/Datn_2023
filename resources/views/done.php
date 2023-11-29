@@ -110,48 +110,21 @@
 </body>
 </html>
 <?php
-//$date = '2023-11-1';
-//$date1 = '2023-9-10';
-//$date1 =strtotime($date1);
-//$d1 = date('d', $date1);
-//$c = $m = $date('m', $date1);
-//$y = date('Y', $date1);
-//$daya = cal_days_in_month(CAL_GREGORIAN, $m, $y);
-//$date = strtotime($date);
-//$t = $date - $date1;
-//$kc = ceil($t/(60*60*24));
-//echo ceil($t/(60*60*24));
-//$day = $d1;
-//for($i = $d1; $i<($d1+$kc) ; $i++){
-//    if ($m - $c == 0){
-//        if ($day > $daya){
-//            $day = 1;
-//            $m = $m + 1;
-//            $d = cal_days_in_month(CAL_GREGORIAN, $m, $y);
-//            echo $day.'/'.$m.'<br>';
-//            $day+= 1;
-//            if($day>$d){
-//                $m += 1;
-//            }
-//        }else{
-//            echo $day.'/'.$m.'<br>';
-//            $day += 1 ;
-//        }
-//    }elseif ($m - $c > 1){
-//
-//    }
-//}
-//$month = date('m', $date);
-//echo $month;
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
+$currentTime = time();
+$currentDayOfWeek = date('w', $currentTime);
+$firstDayOfWeek = strtotime("-$currentDayOfWeek days", $currentTime);
+$lastDayOfWeek = strtotime("+" . (6 - $currentDayOfWeek) . " days", $currentTime);
 
-$date = '2023-9';
-list($Year, $Month) = explode('-', $date);
-$startDate = Carbon::createFromDate($Year, $Month, 1);
-$startDate = $startDate->format('Y-m-d');// Ngày đầu tiên của tháng
-$endDate = Carbon::createFromDate($Year, $Month, 1)->endOfMonth();
-$endDate = $endDate->format('Y-m-d');
+echo "Thời gian bắt đầu của tuần: " . date('Y-m-d', $firstDayOfWeek) . "<br>";
+echo "Thời gian kết thúc của tuần: " . date('Y-m-d', $lastDayOfWeek) . "<br>";
 
-echo $startDate;
-echo  $endDate;
+// In ra từng ngày trong tuần
+echo "Các ngày trong tuần:<br>";
+for ($day = $firstDayOfWeek; $day <= $lastDayOfWeek; $day += 86400) { // 86400 giây trong một ngày
+    echo date('Y-m-d', $day) . "<br>";
+}
+?>
+
 

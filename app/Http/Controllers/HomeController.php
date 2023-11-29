@@ -89,8 +89,7 @@ class HomeController extends Controller
 
         $rooms = Room::whereNotIn('id', $transactions)->get();
 
-        $users = Customer::query()
-            ->join('users', 'customers.user_id', '=', 'users.id')
+        $users = User::query()
             ->where('role', '=', 'super')
             ->get();
 

@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="{{ $customer->user->getAvatar() }}"
+                            <img src="{{ $customer->getAvatar() }}"
                                 style="object-fit: cover; height:350px; border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem;">
                             <div class="card-body">
                                 <div class="card-text">
@@ -99,23 +99,7 @@
                                                                 <td><i class="fas fa-envelope"></i></td>
                                                                 <td>
                                                                     <span>
-                                                                        {{ $customer->user->email }}
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><i class="fas fa-user-md"></i></td>
-                                                                <td>
-                                                                    <span>
-                                                                        {{ $customer->job }}
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><i class="fas fa-map-marker-alt"></i></td>
-                                                                <td style="white-space:nowrap" class="overflow-hidden">
-                                                                    <span>
-                                                                        {{ $customer->address }}
+                                                                        {{ $customer->email }}
                                                                     </span>
                                                                 </td>
                                                             </tr>
@@ -123,15 +107,7 @@
                                                                 <td><i class="fas fa-phone"></i></td>
                                                                 <td>
                                                                     <span>
-                                                                        {{ $customer->User->phone }}
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><i class="fas fa-birthday-cake"></i></td>
-                                                                <td>
-                                                                    <span>
-                                                                        {{ $customer->birthdate }}
+                                                                        {{ $customer->phone }}
                                                                     </span>
                                                                 </td>
                                                             </tr>

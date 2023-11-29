@@ -49,10 +49,10 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin']], function () {
         Route::get('/createIdentity', [TransactionRoomReservationController::class, 'createIdentity'])->name('createIdentity');
         Route::get('/pickFromCustomer', [TransactionRoomReservationController::class, 'pickFromCustomer'])->name('pickFromCustomer');
         Route::post('/storeCustomer', [TransactionRoomReservationController::class, 'storeCustomer'])->name('storeCustomer');
-        Route::get('/{customer}/viewCountPerson', [TransactionRoomReservationController::class, 'viewCountPerson'])->name('viewCountPerson');
-        Route::get('/{customer}/chooseRoom', [TransactionRoomReservationController::class, 'chooseRoom'])->name('chooseRoom');
-        Route::get('/{customer}/{room}/{from}/{to}/confirmation', [TransactionRoomReservationController::class, 'confirmation'])->name('confirmation');
-        Route::post('/{customer}/{room}/payDownPayment', [TransactionRoomReservationController::class, 'payDownPayment'])->name('payDownPayment');
+        Route::get('/{user}/viewCountPerson', [TransactionRoomReservationController::class, 'viewCountPerson'])->name('viewCountPerson');
+        Route::get('/{user}/chooseRoom', [TransactionRoomReservationController::class, 'chooseRoom'])->name('chooseRoom');
+        Route::get('/{user}/{room}/{from}/{to}/{person}/confirmation', [TransactionRoomReservationController::class, 'confirmation'])->name('confirmation');
+        Route::post('/{user}/{room}/payDownPayment', [TransactionRoomReservationController::class, 'payDownPayment'])->name('payDownPayment');
     });
 
     Route::resource('customer', CustomerController::class);
@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
     Route::get('/payment/{transaction}/invoice', [PaymentController::class, 'invoice'])->name('payment.invoice');
     Route::post('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
     Route::name('transaction.reservation.')->group(function () {
-        Route::post('/{customer}/{room}/payOnlinePayment', [TransactionRoomReservationController::class, 'payOnlinePayment'])->name('payOnlinePayment');
+        Route::post('/{user}/{room}/payOnlinePayment', [TransactionRoomReservationController::class, 'payOnlinePayment'])->name('payOnlinePayment');
         Route::get('/payOnlinePayment', [TransactionRoomReservationController::class, 'vnpay'])->name('vnpay');
         Route::post('/pay', [TransactionRoomReservationController::class, 'pay'])->name('pay');
     });
@@ -122,7 +122,7 @@ Route::get('/', [HomeController::class, 'show'])->name('home');
 Route::get('/chooseRoom', [HomeController::class, 'chooseRoomU'])->name('chooseRoomU');
 Route::view('/login', 'client.login')->name('login');
 Route::view('/register', 'client.register')->name('register');
-Route::post('/addCustomer', [CustomerController::class, 'add'])->name('customer.add');
+Route::post('/addCustomer', [UserController::class, 'store'])->name('customer.add');
 
 Route::get('/oke', [TransactionRoomReservationController::class, 'oke']);
 Route::get('/sendEvent', function () {

@@ -50,7 +50,7 @@
 
                                 <!-- END / HEADING -->
 
-                                <h6 class="check_availability_title" style="padding-top: 15px;">Ngày bạn ở</h6>
+                                <h6 class="check_availability_title" style="padding-top: 15px;">Tùy chọn:</h6>
                                 <form action="chooseRoom" method="GET">
                                     <input type="text" hidden name="count_person"
                                            value="{{ request()->input('count_person') }}">
@@ -61,14 +61,14 @@
                                     <div class="check_availability-field">
                                         <select class="awe-select" id="sort_name" name="sort_name">
                                             <option value="Price"
-                                                    @if (request()->input('sort_name') == 'Price') selected @endif>Price
+                                                    @if (request()->input('sort_name') == 'Price') selected @endif>Giá
                                             </option>
                                             <option value="Number"
-                                                    @if (request()->input('sort_name') == 'Number') selected @endif>Name
+                                                    @if (request()->input('sort_name') == 'Number') selected @endif>Tên
                                             </option>
                                             <option value="Capacity"
                                                     @if (request()->input('sort_name') == 'Capacity') selected @endif>
-                                                Capacity
+                                                Số người
                                             </option>
                                         </select>
                                     </div>
@@ -87,15 +87,15 @@
 
                                             <option value="ASC"
                                                     @if (request()->input('sort_type') == 'ASC') selected @endif>
-                                                Ascending
+                                                Tăng dần
                                             </option>
                                             <option value="DESC"
                                                     @if (request()->input('sort_type') == 'DESC') selected @endif>
-                                                Descending
+                                                Giảm dần
                                             </option>
                                         </select>
                                     </div>
-                                    <button class="awe-btn awe-btn-13" type="submit">CHECK AVAILABLE</button>
+                                    <button class="awe-btn awe-btn-13" type="submit">Tìm </button>
 
                                 </form>
 
@@ -150,27 +150,31 @@
                                                             <div class="reservation-room_desc">
                                                                 <p>{{ $room->view }}</p>
                                                                 <ul>
-                                                                    <li>1 King Bed</li>
-                                                                    <li>Free Wi-Fi in all guest rooms</li>
-                                                                    <li>Separate sitting area</li>
+                                                                    <li>{{ $room->location }}</li>
+                                                                    <li>{{$room->capacity}} người</li>
+                                                                    @foreach ($roomstatus as $st)
+                                                                    @if ($room->room_status_id == $st->id)
+                                                                    <li>{{$st->name}}</li>
+                                                                    @endif
+                                                                   
+                                                                    @endforeach
+                                                                   
 
                                                                 </ul>
                                                             </div>
 
                                                             <a href="homestay-detail/{{$room->id}}?checkin={{$stayFrom}}&checkout={{$stayUntil}}&person={{request()->input('count_person')}}"
-                                                               class="reservation-room_view-more">View More
-                                                                Infomation</a>
+                                                               class="reservation-room_view-more">Chi tiết</a>
 
                                                             <div class="clear"></div>
 
                                                             <p class="reservation-room_price">
                                                 <span
                                                     class="reservation-room_amout">{{ Helper::convertToRupiah($room->price) }}</span>
-                                                                / days
+                                                                / ngày
                                                             </p>
 
-                                                            <button type="submit" class="awe-btn awe-btn-default">BOOK
-                                                                ROOM
+                                                            <button type="submit" class="awe-btn awe-btn-default">Đặt ngay
                                                             </button>
                                                         </div>
                                                     </form>

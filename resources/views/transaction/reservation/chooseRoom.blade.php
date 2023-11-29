@@ -24,12 +24,12 @@
                     <div class="card-body p-3">
                         <h2>{{ $roomsCount }} Homestay có sẵn cho:</h2>
                         <p>{{ request()->input('count_person') }}
-                            {{ Helper::plural('Người', request()->input('count_person')) }} trong ngày
+                            {{ Helper::plural('', request()->input('count_person')) }} Người trong ngày
                             {{ Helper::dateFormat(request()->input('check_in')) }} đến ngày
                             {{ Helper::dateFormat(request()->input('check_out')) }}</p>
                         <hr>
                         <form method="GET"
-                            action="{{ route('transaction.reservation.chooseRoom', ['customer' => $customer->id]) }}">
+                            action="{{ route('transaction.reservation.chooseRoom', ['user' => $user->id]) }}">
                             <div class="row mb-2">
                                 <input type="text" hidden name="count_person"
                                     value="{{ request()->input('count_person') }}">
@@ -41,7 +41,7 @@
                                         aria-label="Default select example">
                                         <option value="Price" @if (request()->input('sort_name') == 'Giá tiền') selected @endif>Giá tiền
                                         </option>
-                                       
+
                                         <option value="Capacity" @if (request()->input('sort_name') == 'Số người') selected @endif>Số người
                                         </option>
                                     </select>
@@ -85,7 +85,7 @@
                                             <div class="wrapper">
                                                 <p class="card-text mb-auto demo-1">{{ $room->view }}</p>
                                             </div>
-                                            <a href="{{ route('transaction.reservation.confirmation', ['customer' => $customer->id, 'room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out')]) }}"
+                                            <a href="{{ route('transaction.reservation.confirmation', ['user' => $user->id, 'room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out'), 'person'=>request()->input('count_person')]) }}"
                                                 class="btn myBtn shadow-sm border w-100 m-2">Chọn</a>
                                         </div>
                                         <div class="col-auto d-none d-lg-block">
@@ -116,47 +116,13 @@
             </div>
             <div class="col-md-4 mt-2">
                 <div class="card shadow-sm">
-                    <img src="{{ $customer->user->getAvatar() }}"
+                    <img src="{{ $user->getAvatar() }}"
                         style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem">
                     <div class="card-body">
                         <table>
                             <tr>
-                                <td style="text-align: center; width:50px">
-                                    <span>
-                                        <i class="fas {{ $customer->gender == 'Male' ? 'fa-male' : 'fa-female' }}">
-                                        </i>
-                                    </span>
-                                </td>
                                 <td>
-                                    {{ $customer->name }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-user-md"></i>
-                                    </span>
-                                </td>
-                                <td>{{ $customer->job }}</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-birthday-cake"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    {{ $customer->birthdate }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    {{ $customer->address }}
+                                    {{ $user->name }}
                                 </td>
                             </tr>
                         </table>

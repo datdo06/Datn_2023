@@ -23,10 +23,10 @@ use App\Models\TransactionFacility;
 use App\Models\Type;
 use App\Models\User;
 use App\Notifications\NewRoomReservationDownPayment;
-use App\Repositories\Interface\CustomerRepositoryInterface;
 use App\Repositories\Interface\ReservationRepositoryInterface;
 use App\Repositories\Interface\PaymentRepositoryInterface;
 use App\Repositories\Interface\TransactionRepositoryInterface;
+use App\Repositories\Interface\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -45,11 +45,11 @@ class TransactionRoomReservationController extends Controller
         $this->reservationRepository = $reservationRepository;
     }
 
-    public function pickFromCustomer(Request $request, CustomerRepositoryInterface $customerRepository)
+    public function pickFromCustomer(Request $request, UserRepositoryInterface $userRepository)
     {
-        $customers = $customerRepository->get($request);
-        $customersCount = $customerRepository->count($request);
-        return view('transaction.reservation.pickFromCustomer', compact('customers', 'customersCount'));
+        $users = $userRepository->get($request);
+        $usersCount = $userRepository->count($request);
+        return view('transaction.reservation.pickFromCustomer', compact('users', 'usersCount'));
     }
 
     public function createIdentity()
@@ -57,21 +57,21 @@ class TransactionRoomReservationController extends Controller
         return view('transaction.reservation.createIdentity');
     }
 
-    public function storeCustomer(StoreCustomerRequest $request, CustomerRepositoryInterface $customerRepository)
+    public function storeCustomer(StoreCustomerRequest $request, UserRepositoryInterface $userRepository)
     {
-        $customer = $customerRepository->store($request);
+        $user = $userRepository->store($request);
         return redirect()
-            ->route('transaction.reservation.viewCountPerson', ['customer' => $customer->id])
-            ->with('success', 'Customer ' . $customer->name . ' created!');
+            ->route('transaction.reservation.viewCountPerson', ['user' => $user->id])
+            ->with('success', 'Tài khoản người dùng ' . $user->name . ' đã được tạo!');
     }
 
-    public function viewCountPerson(Customer $customer)
+    public function viewCountPerson(User $user)
     {
         $room_type = Type::query()->get();
-        return view('transaction.reservation.viewCountPerson', compact('customer', 'room_type'));
+        return view('transaction.reservation.viewCountPerson', compact('user', 'room_type'));
     }
 
-    public function chooseRoom(ChooseRoomRequest $request, Customer $customer)
+    public function chooseRoom(ChooseRoomRequest $request, User $user)
     {
         $stayFrom = $request->check_in;
         $stayUntil = $request->check_out;
@@ -86,7 +86,7 @@ class TransactionRoomReservationController extends Controller
         $roomsCount = $this->reservationRepository->countUnocuppiedroom($request, $occupiedRoomId);
 
         return view('transaction.reservation.chooseRoom', compact(
-            'customer',
+            'user',
             'rooms',
             'stayFrom',
             'stayUntil',
@@ -95,28 +95,30 @@ class TransactionRoomReservationController extends Controller
         ));
     }
 
-    public function confirmation(Customer $customer, Room $room, $stayFrom, $stayUntil)
+    public function confirmation(User $user, Room $room, $stayFrom, $stayUntil, $person)
     {
 
         $price = $room->price;
         $dayDifference = Helper::getDateDifference($stayFrom, $stayUntil);
         $downPayment = ($price * $dayDifference) * 0.15;
         return view('transaction.reservation.confirmation', compact(
-            'customer',
+            'user',
             'room',
             'stayFrom',
             'stayUntil',
+            'person',
             'downPayment',
             'dayDifference'
         ));
     }
 
     public function payOnlinePayment(
-        Customer $customer,
+        User $user,
         Room     $room,
         Request  $request,
     )
     {
+
         $dayDifference = Helper::getDateDifference($request->check_in, $request->check_out);
         $minimumDownPayment = $request->sum_money * 0.15;
         if (empty($request->cus)) {
@@ -132,7 +134,7 @@ class TransactionRoomReservationController extends Controller
         }
 
 
-        session(['customer' => $customer]);
+        session(['user' => $user]);
         session(['room' => $room]);
         session(['request' => $request->all()]);
         $data = $request->all();
@@ -234,9 +236,9 @@ class TransactionRoomReservationController extends Controller
 
     public function vnpay()
     {
-        if (session()->has('request') && session()->has('customer') && session()->has('room') && $_GET['vnp_ResponseCode'] == "00") {
+        if (session()->has('request') && session()->has('user') && session()->has('room') && $_GET['vnp_ResponseCode'] == "00") {
             $request = session()->get('request');
-            $customer = session()->get('customer');
+            $user = session()->get('user');
             $downPayment = $_GET['vnp_Amount'] / 100;
             $room = session()->get('room');
             $checkin = date_create($request['check_in']);
@@ -244,8 +246,7 @@ class TransactionRoomReservationController extends Controller
             $request['check_in'] = date_format($checkin, "Y-m-d");
             $request['check_out'] = date_format($checkout, "Y-m-d");
             $transaction = Transaction::create([
-                'user_id' => auth()->user()->id,
-                'customer_id' => $customer->id,
+                'user_id' => $user->id,
                 'room_id' => $room->id,
                 'check_in' => $request['check_in'],
                 'check_out' => $request['check_out'],
@@ -281,7 +282,7 @@ class TransactionRoomReservationController extends Controller
             $superAdmins = User::where('role', 'Super')->get();
 
             foreach ($superAdmins as $superAdmin) {
-                $message = 'Reservation added by ' . $customer->name;
+                $message = 'Reservation added by ' . $user->name;
                 event(new NewReservationEvent($message, $superAdmin));
                 $superAdmin->notify(new NewRoomReservationDownPayment($transaction, $payment));
             }
@@ -309,7 +310,7 @@ class TransactionRoomReservationController extends Controller
 
             } else {
                 return redirect()->route('transaction.index')
-                    ->with('success', 'Room ' . $room->number . ' has been reservated by ' . $customer->name);
+                    ->with('success', 'Room ' . $room->number . ' has been reservated by ' . $user->name);
             }
         } else {
             return 'Giao dịch không thành công';
@@ -317,7 +318,7 @@ class TransactionRoomReservationController extends Controller
     }
 
     public function payDownPayment(
-        Customer                       $customer,
+        User                       $user,
         Room                           $room,
         Request                        $request,
         TransactionRepositoryInterface $transactionRepository,
@@ -338,14 +339,14 @@ class TransactionRoomReservationController extends Controller
             return redirect()->back()->with('failed', 'Sorry, room ' . $room->number . ' already occupied');
         }
 
-        $transaction = $transactionRepository->store($request, $customer, $room);
+        $transaction = $transactionRepository->store($request, $user, $room);
         $status = 'Down Payment';
         $payment = $paymentRepository->store($request, $transaction, $status);
 
         $superAdmins = User::where('role', 'Super')->get();
 
         foreach ($superAdmins as $superAdmin) {
-            $message = 'Reservation added by ' . $customer->name;
+            $message = 'Reservation added by ' . $user->name;
             event(new NewReservationEvent($message, $superAdmin));
             $superAdmin->notify(new NewRoomReservationDownPayment($transaction, $payment));
         }
@@ -353,7 +354,7 @@ class TransactionRoomReservationController extends Controller
         event(new RefreshDashboardEvent("Someone reserved a room"));
 
         return redirect()->route('transaction.index')
-            ->with('success', 'Room ' . $room->number . ' has been reservated by ' . $customer->name);
+            ->with('success', 'Room ' . $room->number . ' has been reservated by ' . $user->name);
     }
 
     private function getOccupiedRoomID($stayFrom, $stayUntil)
@@ -367,7 +368,6 @@ class TransactionRoomReservationController extends Controller
     public function confirm(User $user, Room $room, Request $request)
     {
 
-        $customer = Customer::whereUserId($user->id)->first();
         $checkin = date_create($request->checkin);
         $checkout = date_create($request->checkout);
         $request->checkin = date_format($checkin, "Y-m-d");
@@ -383,7 +383,7 @@ class TransactionRoomReservationController extends Controller
             'person' => $request->person,
             'total_day' => $request->total_day,
         ];
-        return view('payment.pay', compact('data', 'customer', 'room', 'facilities'));
+        return view('payment.pay', compact('data', 'user', 'room', 'facilities'));
     }
 
     public function TransactionHometay(User $user)

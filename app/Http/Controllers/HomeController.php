@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Models\Room;
 use App\Models\Transaction;
 use App\Models\Comment;
+use App\Models\RoomStatus;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
@@ -55,7 +56,7 @@ class HomeController extends Controller
         $stayFrom = date_format($checkin,"Y-m-d");
         $stayUntil = date_format($checkout,"Y-m-d");
         $occupiedRoomId = $this->getOccupiedRoomID($stayFrom, $stayUntil);
-
+        $roomstatus = RoomStatus::all();
         $rooms = $this->reservationRepository->getUnocuppiedroom($request, $occupiedRoomId);
         $roomsCount = $this->reservationRepository->countUnocuppiedroom($request, $occupiedRoomId);
 
@@ -65,6 +66,7 @@ class HomeController extends Controller
             'stayUntil',
             'roomsCount',
             'type',
+            'roomstatus'
         ));
     }
     private function getOccupiedRoomID($stayFrom, $stayUntil)
@@ -89,8 +91,7 @@ class HomeController extends Controller
 
         $rooms = Room::whereNotIn('id', $transactions)->get();
 
-        $users = Customer::query()
-            ->join('users', 'customers.user_id', '=', 'users.id')
+        $users = User::query()
             ->where('role', '=', 'super')
             ->get();
 

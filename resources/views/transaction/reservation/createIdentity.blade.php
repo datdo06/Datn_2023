@@ -37,8 +37,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-12">
-                                <label for="gender" class="form-label">Số điện thoại</label>
-                                <input type="text" class="form-control @error('phone') is-invalid @enderror"  id="phone"
+                                <label for="phone" class="form-label">Số điện thoại</label>
+                                <input type="text" class="form-control @error('phone') is-invalid @enderror"  id=" phone"
                                        name="phone" value="{{ old('phone') }}">
                                 @error('phone')
                                 <div class="text-danger mt-1">
@@ -80,10 +80,10 @@
                                 @enderror
                             </div>
                             <div class="col-md-12">
-                                <label for="address" class="form-label">Địa chỉ</label>
-                                <textarea class="form-control" id="address" name="address"
-                                    rows="3">{{ old('address') }}</textarea>
-                                @error('address')
+                                <label for="password" class="form-label">Mật khẩu</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    id="password" name="password" value="{{ old('password') }}">
+                                @error('password')
                                     <div class="text-danger mt-1">
                                         {{ $message }}
                                     </div>
@@ -107,6 +107,7 @@
                                     </div>
                                 @enderror
                             </div>
+                            <input type="hidden" value="Customer" name="role">
                             <div class="col-12">
                                 <button type="submit" class="btn myBtn shadow-sm border float-end">Lưu</button>
                             </div>

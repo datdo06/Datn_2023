@@ -98,9 +98,9 @@ class CustomerController extends Controller
             $user = User::find($customer->user->id);
 
             $avatar_path = public_path('img/user/' . $user->name . '-' . $user->id);
-
-            $customer->delete();
             $user->delete();
+            $customer->delete();
+
 
             if (is_dir($avatar_path)) {
                 $imageRepository->destroy($avatar_path);

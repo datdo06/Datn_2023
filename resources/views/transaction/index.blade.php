@@ -57,7 +57,7 @@
                                         <th>{{ ($transactions->currentpage() - 1) * $transactions->perpage() + $loop->index + 1 }}
                                         </th>
                                         <td>{{ $transaction->id }}</td>
-                                        <td>{{ $transaction->customer->name }}</td>
+                                        <td>{{ $transaction->user->name }}</td>
                                         <td>{{ $transaction->room->number }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
@@ -131,7 +131,7 @@
                                     <th>{{ ($transactions->currentpage() - 1) * $transactions->perpage() + $loop->index + 1 }}
                                     </th>
                                     <td>{{ $transaction->id }}</td>
-                                    <td>{{ $transaction->customer->name }}</td>
+                                    <td>{{ $transaction->user->name }}</td>
                                     <td>{{ $transaction->room->number }}</td>
                                     <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
                                     <td>{{ Helper::dateFormat($transaction->check_out) }}</td>

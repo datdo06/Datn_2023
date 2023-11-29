@@ -155,8 +155,8 @@
         <p>
             <h2 class="heading">Đánh giá</h2>
         </p>
-
     </div>
+
 </div>
 <!-- END HEADING GUEST -->
 
@@ -177,11 +177,9 @@
                         @foreach($users as $user)
                             <div class="guestbook-item_1">
                                 <div class="img">
-                                    <img src="{{ $user -> user -> getAvatar() }}" alt="">
-                                    <span><strong>{{ $user -> name }} </strong>{{ $user -> address }}, {{ $user -> job
-                                    }}</span>
+                                    <img src="{{ $user ->getAvatar() }}" alt="">
+                                    <span><strong>{{ $user -> name }} </strong></span>
                                 </div>
-
                                 <div class="text">
                                     <p> {{ $user -> description }}</p>
                                 </div>

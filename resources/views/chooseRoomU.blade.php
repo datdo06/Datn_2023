@@ -7,7 +7,7 @@
         <div class="sub-banner">
             <div class="container">
                 <div class="text text-center">
-                    <h2>Đặt phòng</h2>
+                    <h2>Chọn Homestay</h2>
                     <p></p>
                 </div>
             </div>
@@ -25,13 +25,13 @@
                         <div class="reservation-sidebar">
                             <div class="reservation-room-selected bg-gray">
                                 <!-- HEADING -->
-                                <h2 class="reservation-heading">{{ $roomsCount }} Homestay dành cho:</h2>
+                                <h2 class="reservation-heading">{{ $roomsCount }} Homestay còn trống cho:</h2>
                                 <!-- END / HEADING -->
 
                                 <!-- CURRENT -->
                                 <div class="reservation-room-seleted_current bg-blue">
                                     <h6><label>{{ request()->input('count_person') }}
-                                            {{ Helper::plural('People', request()->input('count_person')) }}</label>
+                                            {{ Helper::plural('', request()->input('count_person')) }} Người</label>
                                     </h6>
                                 </div>
                                 <!-- CURRENT -->
@@ -39,7 +39,7 @@
                                 <!-- ITEM -->
                                 <div class="reservation-room-seleted_item reservation_disable">
                                     <span class="reservation-option"> {{ Helper::dateFormat(request()->input('check_in')) }}
-                                        to
+                                        đến
                                         {{ Helper::dateFormat(request()->input('check_out')) }}</span>
                                 </div>
                                 <!-- END / ITEM -->
@@ -152,7 +152,13 @@
                                                                 <ul>
                                                                     <li>{{ $room->location }}</li>
                                                                     <li>{{$room->capacity}} người</li>
-                                                                    <li>{{$room->room_status_id}}</li>
+                                                                    @foreach ($roomstatus as $st)
+                                                                    @if ($room->room_status_id == $st->id)
+                                                                    <li>{{$st->name}}</li>
+                                                                    @endif
+                                                                   
+                                                                    @endforeach
+                                                                   
 
                                                                 </ul>
                                                             </div>

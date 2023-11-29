@@ -26,8 +26,9 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|unique:users,email',
+            'phone'=>'required|unique:users,phone',
             'password' => 'required',
-            'role' => 'required|in:Super,Admin'
+            'role' => 'required'
         ];
     }
 }

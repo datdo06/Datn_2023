@@ -121,17 +121,24 @@
                                             Mini DownPaymment
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($minimumDownPayment) }}</span>
+                                            <input type="hidden" id="minimum" value="{{$minimumDownPayment}}">
                                         </div>
-                                        <form action="{{route('transaction.reservation.pay')}}" method="post">
+                                        <form action="{{route('transaction.reservation.pay')}}" method="post"
+                                              id="formBook">
                                             @csrf
                                             <div class="reservation-room-seleted_total-room">
                                                 PAYMENT
-                                                <span class="reservation-amout"><input style="margin-bottom: 50px"
+                                                <span class="reservation-amout"><input style="margin-bottom: 70px"
                                                                                        type="text"
-                                                                                       name="downPayment"></span>
+                                                                                       name="downPayment"
+                                                                                       id="downPayment">
+                                                </span>
                                             </div>
+                                            <input type="hidden" id="sum_money" value="{{$data['sum_money']}}">
                                             <div style="margin-top: 50px">
-                                                <button type="submit" name="redirect" class="awe-btn awe-btn-13 ">XÁC NHẬN THANH TOÁN
+                                                <input type="hidden" name="redirect">
+                                                <button type="button"  class="awe-btn awe-btn-13 "
+                                                        id="btn">XÁC NHẬN THANH TOÁN
                                                 </button>
                                             </div>
                                         </form>
@@ -162,4 +169,30 @@
 
         <!-- FOOTER -->
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
+    <script>
+        $(document).on('click', '#btn', function () {
+            var minimum = $('#minimum').val();
+            console.log(minimum);
+            minimum = parseFloat(minimum);
+            var downPayment = $('#downPayment').val();
+            if (downPayment == "") {
+                downPayment = 0;
+            }
+            downPayment = parseFloat(downPayment);
+            console.log(downPayment);
+            var sum_money = $('#sum_money').val();
+            sum_money = parseFloat(sum_money);
+            console.log(sum_money);
+            if (downPayment < minimum) {
+                alert('Số tiền không được nhỏ hơn số tiền tối thiểu');
+            } else if (downPayment > sum_money) {
+                alert('Số tiền không được lớn hơn tổng số tiền cần thanh toán');
+            } else {
+                $('#formBook').submit();
+            }
+        });
+    </script>
 @endsection

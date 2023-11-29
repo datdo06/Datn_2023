@@ -68,7 +68,7 @@
                                                         action="{{ route('user.destroy', ['user' => $user ->id]) }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <div class="btn btn-light btn-sm rounded shadow-sm border p-0 m-0 delete"
+                                                        <div class="btn btn-light btn-sm rounded shadow-sm border p-0 m-0 delete-user"
                                                             user-id="{{ $user->id }}" user-name="{{ $user->name }}"
                                                             data-bs-toggle="tooltip" user-role="Admin" data-bs-placement="top"
                                                             title="Delete User">
@@ -80,7 +80,7 @@
                                                             </svg>
                                                         </div>
                                                     </form>
-                                                    <a class="btn btn-light btn-sm rounded shadow-sm border p-0 m-0"
+                                                    <a class="btn btn-light btn-sm rounded shadow-sm border p-0 m-0 "
                                                         href="{{ route('user.show', ['user' => $user->id]) }}"
                                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Detail User">
                                                         <svg width="25" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"

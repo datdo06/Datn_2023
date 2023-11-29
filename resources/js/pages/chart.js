@@ -137,27 +137,25 @@ $(function (){
         console.log(data);
         handleData(data);
     });
-    $(document).on('change', '#filter', function (){
+    $(document).on('change', '#filter',async function (){
         var selectedType = $("#filter").val();
-        var tu = document.getElementById('tu');
-        var den = document.getElementById('den');
-
-        if(selectedType == 2){
-            if (tu.type === 'date' && den.type === 'date' ) {
-                tu.type = 'month';
-                den.type = 'month';
-            } else {
-                tu.type = 'date' ;
-                den.type = 'date';
+        const response = await $.ajax({
+            url: '/money', // Điều này cần được thay thế bằng địa chỉ endpoint của bạn
+            method: 'GET',
+            data: { filter_type: selectedType},
+            success: function(data) {
+                // Xử lý dữ liệu trả về từ server và cập nhật bảng DataTables (nếu cần)
+            },
+            error: function(xhr, status, error) {
+                // Xử lý lỗi nếu cần
             }
-        }else{
-            tu.type = 'date' ;
-            den.type = 'date';
-        }
+        }).then(data =>{
+            console.log(data);
+            handleData(data);
+        });
+
     });
     $(document).on('click','#xem', async function (){
-
-        var selectedType = $("#filter").val();
 
         var tu  = $("#tu").val();
         var den = $("#den").val();
@@ -165,7 +163,7 @@ $(function (){
         const response = await $.ajax({
             url: '/money', // Điều này cần được thay thế bằng địa chỉ endpoint của bạn
             method: 'GET',
-            data: { filter_type: selectedType, tu, den },
+            data: { tu: tu, den: den },
             success: function(data) {
                 // Xử lý dữ liệu trả về từ server và cập nhật bảng DataTables (nếu cần)
             },

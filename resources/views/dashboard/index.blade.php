@@ -65,14 +65,14 @@
                                     @forelse ($transactions as $transaction)
                                         <tr>
                                             <td>
-                                                <img src="{{ $transaction->customer->user->getAvatar() }}"
+                                                <img src="{{ $transaction->user->getAvatar() }}"
                                                      class="rounded-circle img-thumbnail" width="40" height="40"
                                                      alt="">
                                             </td>
                                             <td>
                                                 <a
-                                                    href="{{ route('customer.show', ['customer' => $transaction->customer->id]) }}">
-                                                    {{ $transaction->customer->name }}
+                                                    href="{{ route('customer.show', ['customer' => $transaction->user->id]) }}">
+                                                    {{ $transaction->user->name }}
                                                 </a>
                                             </td>
                                             <td>
@@ -177,8 +177,8 @@
                                     <h3 class="card-title ">Doanh thu <của></của> homestay</h3>
                                     <select style="width: 500px" name="" id="filter" class="form-control">
                                         <option value="">Tháng hiện tại</option>
-                                        <option value="1">Theo từng ngày</option>
-                                        <option value="2">Theo từng tháng</option>
+                                        <option value="1">Hôm nay</option>
+                                        <option value="2">Tuần này</option>
                                     </select>
                                     <div class="d-flex justify-content-between ">
                                         <label style="margin: 5px 5px 0 0" for=""> Từ</label>

@@ -47,7 +47,7 @@
                                     <th>Số ngày</th>
                                     <th>Tổng tiền</th>
                                     <th>Đã trả</th>
-                                    <th>Nợ</th>
+                                    <th>Chưa trả</th>
                                     <th>Hành động</th>
                                 </tr>
                             </thead>
@@ -121,7 +121,7 @@
                                     <th>Số ngày</th>
                                     <th>Tổng tiền</th>
                                     <th>Đã trả</th>
-                                    <th>Nợ</th>
+                                    <th>Chưa trả</th>
                                     <th>Hành động</th>
                                 </tr>
                             </thead>

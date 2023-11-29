@@ -60,8 +60,8 @@
             <div class="sub-banner">
                 <div class="container">
                     <div class="text text-center">
-                        <h2>Đặt phòng</h2>
-                        <p>Page đặt phòng King The Land</p>
+                        <h2>Đặt Homestay</h2>
+                        <p>Page đặt Homestay King The Land</p>
                     </div>
                 </div>
 

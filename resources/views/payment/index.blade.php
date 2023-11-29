@@ -8,7 +8,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Phòng</th>
+                        <th scope="col">Homestay</th>
                         <th scope="col">Trả hết</th>
                         <th scope="col">Trạng thái</th>
                         <th scope="col">Tại</th>

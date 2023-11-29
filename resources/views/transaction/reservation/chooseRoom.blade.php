@@ -24,7 +24,7 @@
                     <div class="card-body p-3">
                         <h2>{{ $roomsCount }} Homestay có sẵn cho:</h2>
                         <p>{{ request()->input('count_person') }}
-                            {{ Helper::plural('Người', request()->input('count_person')) }} trong ngày
+                            {{ Helper::plural('', request()->input('count_person')) }} Người trong ngày
                             {{ Helper::dateFormat(request()->input('check_in')) }} đến ngày
                             {{ Helper::dateFormat(request()->input('check_out')) }}</p>
                         <hr>

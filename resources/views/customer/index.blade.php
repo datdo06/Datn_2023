@@ -69,7 +69,7 @@
                                             </li>
                                             <li>
                                                 <form class="delete-cus" method="POST" id="delete-customer-form-{{ $customer->id }}"
-                                                    action="{{ route('customer.destroy', ['customer' => $customer->id]) }}">
+                                                    action="{{ route('user.destroy', ['user' => $customer->id]) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <a class="dropdown-item delete-customer" href="" customer-id="{{ $customer->id }}"

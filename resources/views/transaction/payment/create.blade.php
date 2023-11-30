@@ -1,5 +1,5 @@
 @extends('template.master')
-@section('title', $transaction->customer->name . ' Pay Reservation')
+@section('title', $transaction->user->name . ' Pay Reservation')
 @section('content')
     <div class="container">
         <div class="row">

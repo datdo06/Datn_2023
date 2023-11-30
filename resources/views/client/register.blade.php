@@ -26,7 +26,27 @@
                             @enderror
                         </div>
                         <div class="field-form" style="text-align: left">
-                            <input type="text" class="field-text" placeholder="Phone" name="phone" value="{{old('phone')}}">
+                            <select name="gender" class="field-text" id="">
+                                <option value="">Giới tính</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                            @error('gender')
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color: red;" >{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="field-form" style="text-align: left">
+                            <input type="text" class="field-text" placeholder="Địa chỉ" name="location" value="{{old('location')}}">
+                            @error('location')
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color: red;" >{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="field-form" style="text-align: left">
+                            <input type="text" class="field-text" placeholder="Điện thoại" name="phone" value="{{old('phone')}}">
                             @error('phone')
                             <span class="invalid-feedback" role="alert">
                                 <strong style="color: red;" >{{ $message }}</strong>

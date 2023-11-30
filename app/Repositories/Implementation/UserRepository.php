@@ -26,11 +26,12 @@ class UserRepository implements UserRepositoryInterface
         $user->name = $userData->name;
         $user->email = $userData->email;
         $user->phone = $userData->phone;
+        $user->gender = $userData->gender;
+        $user->location = $userData->location;
         $user->password = bcrypt($userData->password);
         $user->role = $userData->role;
         $user->random_key = Str::random(60);
         $user->save();
-
         return $user;
     }
 

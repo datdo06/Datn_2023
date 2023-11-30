@@ -30,17 +30,19 @@
             <div class="row mt-2 mb-2">
                 <div class="col-lg-6 mb-2">
                     <a href="{{ route('customer.create') }}" class="btn btn-sm shadow-sm myBtn border rounded">
-                        <svg width="25" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="black">
+                        <svg width="25" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="black">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                         </svg>
                     </a>
                 </div>
                 <div class="col-lg-6 mb-2">
                     <form class="d-flex" method="GET" action="{{ route('customer.index') }}">
-                        <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" id="search"
-                            name="search" value="{{ request()->input('search') }}">
+                        <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search"
+                               id="search"
+                               name="search" value="{{ request()->input('search') }}">
                         <button class="btn btn-outline-dark" type="submit">Tìm kiếm</button>
                     </form>
                 </div>
@@ -55,26 +57,31 @@
                                         {{ ($customers->currentpage() - 1) * $customers->perpage() + $loop->index + 1 }}
                                     </h5>
                                     <div class="dropdown ms-auto mt-2" style="">
-                                        <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
+                                        <a class="" href="#" role="button" id="dropdownMenuLink"
+                                           data-bs-toggle="dropdown"
+                                           aria-expanded="false">
                                             <i class="fa fa-ellipsis-v icon"></i>
                                         </a>
 
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <li><a class="dropdown-item"
-                                                    href="{{ route('customer.show', ['customer' => $customer->id]) }}">Thông tin chi tiết</a>
+                                                   href="{{ route('customer.show', ['customer' => $customer->id]) }}">Thông
+                                                    tin chi tiết</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                    href="{{ route('customer.edit', ['customer' => $customer->id]) }}">Chỉnh sửa thông tin</a>
+                                                   href="{{ route('customer.edit', ['customer' => $customer->id]) }}">Chỉnh
+                                                    sửa thông tin</a>
                                             </li>
                                             <li>
-                                                <form class="delete-cus" method="POST" id="delete-customer-form-{{ $customer->id }}"
-                                                    action="{{ route('user.destroy', ['user' => $customer->id]) }}">
+                                                <form class="delete-cus" method="POST"
+                                                      id="delete-customer-form-{{ $customer->id }}"
+                                                      action="{{ route('user.destroy', ['user' => $customer->id]) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a class="dropdown-item delete-customer" href="" customer-id="{{ $customer->id }}"
+                                                    <a class="dropdown-item delete-customer" href=""
+                                                       customer-id="{{ $customer->id }}"
 
-                                                        customer-role="Customer" customer-name="{{ $customer->name }}">
+                                                       customer-role="Customer" customer-name="{{ $customer->name }}">
                                                         Xóa khách hàng
                                                     </a>
                                                 </form>
@@ -84,7 +91,7 @@
                                 </div>
                             </div>
                             <img src="{{ $customer->getAvatar() }}"
-                                style="object-fit: cover; height:350px; border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem;">
+                                 style="object-fit: cover; height:350px; border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem;">
                             <div class="card-body">
                                 <div class="card-text">
                                     <div class="row">
@@ -109,6 +116,21 @@
                                                                     <span>
                                                                         {{ $customer->phone }}
                                                                     </span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><i class="fas {{ $customer->gender == 'Nam' ? 'fa-male' : 'fa-female' }}"></i>
+
+                                                                </td>
+                                                                <td>{{$customer->gender}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <span><i class="fas fa-map-marker-alt"></i>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    {{ $customer->location }}
                                                                 </td>
                                                             </tr>
                                                         </table>

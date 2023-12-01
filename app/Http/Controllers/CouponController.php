@@ -78,9 +78,9 @@ class CouponController extends Controller
         $coupon = Coupon::where('coupon_code', $data['coupon'])
             ->first();
 
-        if (session('coupon')) {
-            session()->forget('coupon');
-        }
+//        if (session('coupon')) {
+//            session()->forget('coupon');
+//        }
 
         if ($coupon && $coupon->coupon_time > 0 && !$coupon->expired && $currentDate->between($coupon->start_time, $coupon->end_time)) {
             // Mã giảm giá hợp lệ

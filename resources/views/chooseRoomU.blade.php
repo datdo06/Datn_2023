@@ -156,10 +156,7 @@
                                                                     @if ($room->room_status_id == $st->id)
                                                                     <li>{{$st->name}}</li>
                                                                     @endif
-                                                                   
                                                                     @endforeach
-                                                                   
-
                                                                 </ul>
                                                             </div>
 

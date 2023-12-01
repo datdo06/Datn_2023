@@ -1,5 +1,5 @@
 @extends('template.master')
-@section('title', $transaction->customer->name . ' Pay Reservation')
+@section('title', $transaction->user->name . ' Pay Reservation')
 @section('content')
     <div class="container">
         <div class="row">
@@ -94,7 +94,7 @@
             </div>
             <div class="col-lg-3 mt-2">
                 <div class="card shadow-sm">
-                    <img src="{{ $transaction->customer->user->getAvatar() }}"
+                    <img src="{{ $transaction->user->getAvatar() }}"
                         style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem">
                     <div class="card-body">
                         <table>
@@ -102,7 +102,7 @@
                                 <td style="text-align: center; width:50px">
                                     <span>
                                         <i
-                                            class="fas {{ $transaction->customer->gender == 'Male' ? 'fa-male' : 'fa-female' }}">
+                                            class="fas {{ $transaction->gender == 'Male' ? 'fa-male' : 'fa-female' }}">
                                         </i>
                                     </span>
                                 </td>

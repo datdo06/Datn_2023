@@ -5,12 +5,12 @@
         <div class="container">
             <div class="login-register">
                 <div class="text text-center">
-                    <h2>REGISTER FORM</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing</p>
+                    <h2>Đăng ký</h2>
+                  
                     <form action="{{route('customer.add')}}" class="account_form" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="field-form" style="text-align: left">
-                            <input type="text" class="field-text" placeholder="Name" name="name" value="{{old('name')}}">
+                            <input type="text" class="field-text" placeholder="Họ và tên" name="name" value="{{old('name')}}">
                             @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong style="color: red">{{ $message }}</strong>
@@ -26,7 +26,7 @@
                             @enderror
                         </div>
                         <div class="field-form" style="text-align: left">
-                            <input type="text" class="field-text" placeholder="Phone" name="phone" value="{{old('phone')}}">
+                            <input type="text" class="field-text" placeholder="Số điện thoại" name="phone" value="{{old('phone')}}">
                             @error('phone')
                             <span class="invalid-feedback" role="alert">
                                 <strong style="color: red;" >{{ $message }}</strong>
@@ -34,7 +34,7 @@
                             @enderror
                         </div>
                         <div class="field-form" style="text-align: left">
-                            <input type="password" class="field-text" placeholder="Password" name="password">
+                            <input type="password" class="field-text" placeholder="Mật khẩu" name="password">
                             <span class="view-pass"><i class="lotus-icon-view"></i></span>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="field-form">
-                            <input type="file" class="field-text"  name="avatar">
+                            <input type="file" class="field-text"  name="Ảnh đại diện">
                             @error('avatar')
                             <span class="invalid-feedback" role="alert">
                                 <strong style="color: red">{{ $message }}</strong>
@@ -54,9 +54,9 @@
                         <input type="hidden" value="Customer" name="role">
 
                         <div class="field-form field-submit">
-                            <button class="awe-btn awe-btn-13" type="submit">Create</button>
+                            <button class="awe-btn awe-btn-13" type="submit">Đăng ký</button>
                         </div>
-                        <span class="account-desc">I don’t have an account  -  <a href="#">Forgot Password</a></span>
+                       
                     </form>
                 </div>
             </div>

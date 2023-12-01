@@ -102,30 +102,12 @@
                                 <td style="text-align: center; width:50px">
                                     <span>
                                         <i
-                                            class="fas {{ $transaction->gender == 'Male' ? 'fa-male' : 'fa-female' }}">
+                                            class="fas {{ $transaction->user->gender == 'Male' ? 'fa-male' : 'fa-female' }}">
                                         </i>
                                     </span>
                                 </td>
                                 <td>
-                                    {{ $transaction->customer->name }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-user-md"></i>
-                                    </span>
-                                </td>
-                                <td>{{ $transaction->customer->job }}</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center; ">
-                                    <span>
-                                        <i class="fas fa-birthday-cake"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    {{ $transaction->customer->birthdate }}
+                                    {{ $transaction->user->name }}
                                 </td>
                             </tr>
                             <tr>
@@ -135,7 +117,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    {{ $transaction->customer->address }}
+                                    {{ $transaction->user->location }}
                                 </td>
                             </tr>
                         </table>

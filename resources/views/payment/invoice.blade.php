@@ -89,7 +89,7 @@
                                     @if($transactionCoupon->Coupon->coupon_condition == 2)
                                         <td>{{\App\Helpers\Helper::convertToRupiah($transactionCoupon->Coupon->coupon_number)}}</td>
                                     @else
-                                        <td>{{\App\Helpers\Helper::convertToRupiah(($price*$transactionCoupon->Coupon->coupon_number/100))}}</td>
+                                        <td>{{\App\Helpers\Helper::convertToRupiah(($transaction->getTotalPrice()*$transactionCoupon->Coupon->coupon_number/100))}}</td>
                                     @endif
                                 </tr>
                                 </tbody>

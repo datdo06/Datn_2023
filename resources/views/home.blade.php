@@ -181,7 +181,10 @@
                                     <span><strong>{{ $user -> name }} </strong></span>
                                 </div>
                                 <div class="text">
-                                    <p> {{ $user -> description }}</p>
+                                    <ul>
+                                        <li>{{ $user -> phone }}</li>
+                                        <li>{{ $user -> email }}</li>
+                                    </ul>
                                 </div>
                             </div>
                         @endforeach

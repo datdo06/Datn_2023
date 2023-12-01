@@ -82,10 +82,8 @@
                             <table class="table table-borderless">
                                 <tbody>
                                 <tr class="add">
-
                                     <td>Mã giảm giá sử dụng</td>
                                     <td>Bạn đươc giảm</td>
-
                                 </tr>
                                 <tr>
                                     @if($transactionCoupon->Coupon->coupon_condition == 2)
@@ -93,10 +91,7 @@
                                     @else
                                         <td>{{\App\Helpers\Helper::convertToRupiah(($transaction->getTotalPrice()*$transactionCoupon->Coupon->coupon_number/100))}}</td>
                                     @endif
-
                                 </tr>
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -122,8 +117,6 @@
 
                                     </tr>
                                 @endforeach
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -133,22 +126,15 @@
                         <table class="table table-borderless">
                             <tbody>
                             <tr class="add">
-
                                 <td>Khoản trả trước tối thiểu</td>
                                 <td>Trả hết</td>
-                                <td>
-                                    Thanh toán không đủ
-                                </td>
+                                <td>Thanh toán không đủ</td>
                                 <td>Tổng thanh toán</td>
                             </tr>
                             <tr class="content">
-
-                                <td>
-                                    {{ Helper::convertToRupiah($transaction->getMinimumDownPayment()) }}</td>
+                                <td>{{ Helper::convertToRupiah($transaction->getMinimumDownPayment()) }}</td>
                                 <td>{{ Helper::convertToRupiah($transaction->getTotalPayment()) }}</td>
-                                <td>
-                                    {{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}
-                                </td>
+                                <td>{{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}</td>
                                 <td>{{ Helper::convertToRupiah($transaction->sum_money) }} </td>
                             </tr>
                             </tbody>

@@ -86,13 +86,12 @@
 
                         <!-- SIDEBAR -->
                         <div class=" col-md-8 col-lg-8">
-
                             <form action="{{ route('check-coupon') }}" method="POST">
+
                                 @csrf
                                 <input type="text" name="coupon" placeholder="Nhập mã giảm giá">
                                 <input type="submit" class="btn btn-success" name="check_coupon" value="Tinh ma giam gia">
                             </form>
-
                             @if(session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
@@ -217,6 +216,7 @@
                                         <!-- TOTAL -->
                                         <div class="reservation-room-seleted_total bg-blue">
                                             <label>TOTAL</label>
+
                                             @if(session('coupon'))
                                                 @if(session('coupon') -> coupon_condition == 0)
                                                     @php

@@ -65,11 +65,11 @@
 
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <li><a class="dropdown-item"
-                                                   href="{{ route('customer.show', ['customer' => $customer->id]) }}">Thông
+                                                   href="{{ route('customer.show', ['user' => $customer->id]) }}">Thông
                                                     tin chi tiết</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="{{ route('customer.edit', ['customer' => $customer->id]) }}">Chỉnh
+                                                   href="{{ route('customer.edit', ['user' => $customer->id]) }}">Chỉnh
                                                     sửa thông tin</a>
                                             </li>
                                             <li>

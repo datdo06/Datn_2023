@@ -9,13 +9,13 @@
                 </div>
                 <div class="card-body p-3">
                     <form class="row g-3" method="POST" enctype="multipart/form-data"
-                        action="{{ route('customer.update',  $customer->id) }}">
+                        action="{{ route('customer.update',  $user->id) }}">
                         @method('PUT')
                         @csrf
                         <div class="col-md-12">
                             <label for="name" class="form-label">Tên khách hàng</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" value="{{ $customer->name }}">
+                                name="name" value="{{ $user->name }}">
                             @error('name')
                                 <div class="text-danger mt-1">
                                     {{ $message }}
@@ -25,7 +25,7 @@
                         <div class="col-md-12">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" id=" email"
-                                name="email" value="{{ $customer->user->email }}" >
+                                name="email" value="{{ $user->email }}" >
                             @error('email')
                                 <div class="text-danger mt-1">
                                     {{ $message }}
@@ -33,47 +33,37 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
-                            <label for="birthdate" class="form-label">Ngày sinh</label>
-                            <input type="date" class="form-control @error('birthdate') is-invalid @enderror" id="birthdate"
-                                name="birthdate" value="{{ $customer->birthdate }}">
-                            @error('birthdate')
-                                <div class="text-danger mt-1">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-12">
-                            <label for="birthdate" class="form-label">Giới tính </label>
-                            <select name="gender" id="" class="form-control">
-                                @if($customer->gender === 'Male')
-                                    <option value="Male" selected >Giới tính Nam</option>
-                                    <option value="Female" >Giới tính Nữ</option>
-                                @else
-                                    <option value="Male" >Giới tính Nữ</option>
-                                    <option value="Female"selected >Giới tính Nam</option>
-                                @endif
-                            </select>
-                            @error('birthdate')
+                            <label for="email" class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
+                                   name="phone" value="{{ $user->phone }}" >
+                            @error('email')
                             <div class="text-danger mt-1">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                         <div class="col-md-12">
-                            <label for="job" class="form-label">Nghề nghiệp</label>
-                            <input type="text" class="form-control @error('job') is-invalid @enderror" id="job" name="job"
-                                value="{{ $customer->job }}">
-                            @error('job')
-                                <div class="text-danger mt-1">
-                                    {{ $message }}
-                                </div>
+                            <label for="birthdate" class="form-label">Giới tính </label>
+                            <select name="gender" id="" class="form-control">
+                                @if($user->gender === 'Nam')
+                                    <option value="Nam" selected >Giới tính Nam</option>
+                                    <option value="Nữ" >Giới tính Nữ</option>
+                                @else
+                                    <option value="Nữ" >Giới tính Nữ</option>
+                                    <option value="Nam"selected >Giới tính Nam</option>
+                                @endif
+                            </select>
+                            @error('gender')
+                            <div class="text-danger mt-1">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="col-md-12">
                             <label for="address" class="form-label">Địa chỉ</label>
-                            <textarea class="form-control" id="address" name="address"
-                                rows="3">{{ $customer->address }}</textarea>
-                            @error('address')
+                            <textarea class="form-control" id="location" name="location"
+                                rows="3">{{ $user->location }}</textarea>
+                            @error('location')
                                 <div class="text-danger mt-1">
                                     {{ $message }}
                                 </div>

@@ -456,7 +456,7 @@
             <div class="container">
                 <div class="text text-center">
                     <h2>Sự kiện</h2>
-                    <p> </p>
+                    <p>KING THE LAND</p>
                 </div>
             </div>
 
@@ -491,6 +491,7 @@
                             <div class="title-text">
                                 <br><br>
                                 <h1>Các sự kiện sắp tới</h1>
+
                             </div>
 
                         </div>

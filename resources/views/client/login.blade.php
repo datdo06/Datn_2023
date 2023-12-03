@@ -30,7 +30,7 @@
                             <button class="awe-btn awe-btn-13" type="submit">Đăng nhập</button>
                         </div>
                 
-                        <span class="account-desc">Tôi không có tài khoản  -  <a href="{{ route('register') }}">Đăng kí</a></span> <a href="{{ route('forget.password') }}">Quên mật khẩu</a></span>
+                        <span class="account-desc">Tôi không có tài khoản - <a href="{{ route('register') }}">Đăng kí</a></span> <a href="{{ route('forget.password') }}">Quên mật khẩu</a></span>
                     </form>
                 </div>
             </div>

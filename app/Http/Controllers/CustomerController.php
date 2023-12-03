@@ -11,6 +11,7 @@ use App\Repositories\Interface\CustomerRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use function Symfony\Component\String\u;
 
 class CustomerController extends Controller
 {
@@ -50,23 +51,22 @@ class CustomerController extends Controller
         return redirect()->route('login');
     }
 
-    public function show(Customer $customer)
+    public function show(User $user)
     {
-        return view('customer.show', compact('customer'));
+        return view('customer.show', compact('user'));
     }
 
-    public function edit(Customer $customer)
+    public function edit(User $user)
     {
-        return view('customer.edit', ['customer' => $customer]);
+        return view('customer.edit', compact('user'));
     }
 
-    public function update(Customer $customer, StoreCustomerRequest $request)
+    public function update(User $user, StoreCustomerRequest $request)
     {
-        $user = User::where('id', $customer->user_id)->get();
-        $img = $customer->User->avatar;
-        $img = public_path('img/user/' . $request->name . '-' . $customer->user_id.$img);
+        $img = $user->avatar;
+        $img = public_path('img/user/' . $request->name . '-' . $user->id.$img);
         if ($request->hasFile('avatar')) {
-            $path = 'img/user/' . $request->name . '-' . $customer->user_id;
+            $path = 'img/user/' . $request->name . '-' . $user->id;
             $path = public_path($path);
             $file = $request->file('avatar');
 
@@ -75,44 +75,30 @@ class CustomerController extends Controller
             $imageRepository->uploadImage($path, $file);
 
             $user->avatar = $file->getClientOriginalName();
-            DB::update('update users set name = ?, email = ?, avatar = ?, role = ? where id = ? ',[$request->name, $request->email, $user->avatar, 'Customer', $customer->user_id]);
+            DB::update('update users set name = ?, email = ?, phone = ?, location =? , avatar = ?, role = ? where id = ? ',[$request->name, $request->email,$request->phone, $request->location,$user->avatar, 'Customer', $user->id]);
             $imageRepository->destroy($img);
         }else{
-            DB::update('update users set name = ?, email = ?, role = ? where id = ? ',[$request->name, $request->email, 'Customer', $customer->user_id]);
+            DB::update('update users set name = ?, email = ?,phone = ?,location =? , role = ? where id = ? ',[$request->name, $request->email, $request->phone,$request->location, 'Customer', $user->id]);
         }
-
-        $customer->update([
-            'name' => $request->name,
-            'address' => $request->address,
-            'job' => $request->job,
-            'birthdate' => $request->birthdate,
-            'gender' => $request->gender,
-            'user_id' => $customer->user_id
-        ]);
-        return redirect()->route('customer.index')->with('success', 'customer ' . $customer->name . ' udpated!');
+        return redirect()->route('customer.index')->with('success', 'customer ' . $user->name . ' udpated!');
     }
 
-    public function destroy(Customer $customer, ImageRepositoryInterface $imageRepository)
+    public function destroy(User $user, ImageRepositoryInterface $imageRepository)
     {
         try {
-            $user = User::find($customer->user->id);
-
             $avatar_path = public_path('img/user/' . $user->name . '-' . $user->id);
             $user->delete();
-            $customer->delete();
-
-
             if (is_dir($avatar_path)) {
                 $imageRepository->destroy($avatar_path);
             }
 
-            return redirect('customer')->with('success', 'Customer ' . $customer->name . ' deleted!');
+            return redirect('customer')->with('success', 'Customer ' . $user->name . ' deleted!');
         } catch (Exception $e) {
             $errorMessage = "";
             if ($e->errorInfo[0] == "23000") {
                 $errorMessage = "Data still connected to other tables";
             }
-            return redirect('customer')->with('failed', 'Customer ' . $customer->name . ' cannot be deleted! ' . $errorMessage);
+            return redirect('customer')->with('failed', 'Customer ' . $user->name . ' cannot be deleted! ' . $errorMessage);
         }
     }
 }

@@ -55,7 +55,13 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin']], function () {
         Route::post('/{user}/{room}/payDownPayment', [TransactionRoomReservationController::class, 'payDownPayment'])->name('payDownPayment');
     });
 
-    Route::resource('customer', CustomerController::class);
+    Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
+    Route::get('customer/show/{user}',[CustomerController::class, 'show'])->name('customer.show');
+    Route::get('/customer/{user}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+    Route::post('/customer', [CustomerController::class, 'store'])->name('customer.store');
+    Route::put('/customer/{user}/update', [CustomerController::class, 'update'])->name('customer.update');
+    Route::delete('/customer/{user}/destroy', [CustomerController::class, 'destroy'])->name('customer.destroy');
     Route::resource('type', TypeController::class);
     Route::resource('room', RoomController::class);
     Route::resource('roomstatus', RoomStatusController::class);

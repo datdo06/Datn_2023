@@ -9,20 +9,20 @@
                     <p>Đăng nhập King The Land</p>
                     <form action="{{route('postlogin')}}" class="account_form" method="post">
                         @csrf
-                        <div class="field-form">
+                        <div class="field-form" style="text-align: left">
                             <input type="text" class="field-text" placeholder="Email" name="email">
                             @error('email')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong style="color: red">{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                        <div class="field-form">
-                            <input type="password" class="field-text" placeholder="Password" name="password">
+                        <div class="field-form" style="text-align: left">
+                            <input type="password" class="field-text" placeholder="Mật khẩu" name="password">
                             <span class="view-pass"><i class="lotus-icon-view"></i></span>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong style="color: red">{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>

@@ -26,14 +26,6 @@
                             @enderror
                         </div>
                         <div class="field-form" style="text-align: left">
-                            <input type="text" class="field-text" placeholder="Số điện thoại" name="phone" value="{{old('phone')}}">
-                            @error('phone')
-                            <span class="invalid-feedback" role="alert">
-                                <strong style="color: red;" >{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="field-form" style="text-align: left">
                             <input type="password" class="field-text" placeholder="Mật khẩu" name="password">
                             <span class="view-pass"><i class="lotus-icon-view"></i></span>
                             @error('password')
@@ -42,6 +34,35 @@
                             </span>
                             @enderror
                         </div>
+                        <div class="field-form" style="text-align: left">
+                            <select name="gender" class="field-text" id="">
+                                <option value="">Giới tính</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                            @error('gender')
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color: red;" >{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="field-form" style="text-align: left">
+                            <input type="text" class="field-text" placeholder="Địa chỉ" name="location" value="{{old('location')}}">
+                            @error('location')
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color: red;" >{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="field-form" style="text-align: left">
+                            <input type="text" class="field-text" placeholder="Điện thoại" name="phone" value="{{old('phone')}}">
+                            @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color: red;" >{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                     
 
                         <div class="field-form">
                             <input type="file" class="field-text"  name="Ảnh đại diện">

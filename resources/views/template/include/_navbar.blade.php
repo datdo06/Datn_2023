@@ -83,8 +83,6 @@
                     <li><a class="dropdown-item" href="{{ route('user.show', ['user' => auth()->user()->id]) }}">Hồ
                             sơ</a>
                     </li>
-                    <li><a class="dropdown-item" href="#">Hoạt động</a></li>
-                    <li><a class="dropdown-item" href="#">Cài đặt</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

@@ -18,8 +18,8 @@
         <div class="row justify-content-md-center">
             <div class="col-lg-12">
                 @if (!empty(request()->input('q')))
-                    <h4>Result for "{{ request()->input('q') }}"</h4>
-                    <h4>Total Data: {{ $usersCount }}</h4>
+                    <h4>Kết quả cho "{{ request()->input('q') }}"</h4>
+                    <h4>Tổng số dữ liệu: {{ $usersCount }}</h4>
                 @endif
             </div>
         </div>

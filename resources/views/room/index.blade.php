@@ -28,7 +28,6 @@
                 </div>
             </div>
             <div class="row">
-
                 <div class="col-lg-12">
                     <div class="card shadow-sm border">
                         <div class="card-body">

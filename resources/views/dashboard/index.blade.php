@@ -15,7 +15,7 @@
                     <div class="col-lg-6">
                         <div class="card shadow-sm border" style="border-radius: 0.5rem">
                             <div class="card-body">
-                                <h5>{{ count($transactions) }} khách hôm nay</h5>
+                                <h5>{{ count($transactions) }} Khách hôm nay</h5>
                             </div>
                         </div>
                     </div>
@@ -36,14 +36,6 @@
                                 <div class="row ">
                                     <div class="col-lg-12 d-flex justify-content-between">
                                         <h3>Khách đang thuê hôm nay</h3>
-                                        <div>
-                                            <a href="#" class="btn btn-tool btn-sm">
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-tool btn-sm">
-                                                <i class="fas fa-bars"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

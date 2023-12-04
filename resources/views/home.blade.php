@@ -3,7 +3,7 @@
 
 <!-- BANNER SLIDER -->
 <section class="section-slider">
-    <h1 class="element-invisible">Slider</h1>
+    <h1 class="element-invisible">Ảnh slider</h1>
     <div id="slider-revolution">
         <ul>
             <li data-transition="fade">
@@ -14,17 +14,12 @@
                     data-speed="700" data-start="1500" data-easing="easeOutBack">
                     <img src="img/slider/hom1-slide1.png" alt="icons">
                 </div>
-
                 <div class="tp-caption sft fadeout slider-caption-sub slider-caption-1" data-x="center" data-y="240"
                     data-speed="700" data-start="1500" data-easing="easeOutBack">
-                    WELCOME TO
+                    Chào mừng đến với
                 </div>
-
                 <div class="tp-caption sfb fadeout slider-caption slider-caption-sub-1" data-x="center" data-y="280"
                     data-speed="700" data-easing="easeOutBack" data-start="2000">KING THE LAND</div>
-
-                <a href="#" class="tp-caption sfb fadeout awe-btn awe-btn-12 awe-btn-slider" data-x="center"
-                    data-y="380" data-easing="easeOutBack" data-speed="700" data-start="2200">ĐẶT HOMESTAY NGAY</a>
             </li>
 
             <li data-transition="fade">

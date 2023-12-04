@@ -29,12 +29,6 @@ class PostLoginRequest extends FormRequest
             ],
             'password' => [
                 'required',
-                'string',
-                'min:6',          
-                'regex:/[a-z]/',    
-                'regex:/[A-Z]/',
-                'regex:/[0-9]/',     
-                'regex:/[@$!%*#?&]/', 
             ]
         ];
     }
@@ -43,9 +37,6 @@ class PostLoginRequest extends FormRequest
         return [
             'email.required' => 'Email không được để trống',
             'email.email' => 'Email không đúng định dạng',
-            'password.required' => 'Mật khẩu không được để trống',
-            'password.min' => 'Mật khẩu phải dài trên 6 kí tự',
-            'password.regex' => 'Mật khẩu phải có ít nhất 1 số, 1 chữ viết hoa và 1 kí tự đặc biệt ',
         ];
     }
 }

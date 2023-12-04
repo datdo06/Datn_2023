@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="text text-center">
                     <h2>Chọn Homestay</h2>
-                    <p></p>
+                    <p>King The Land</p>
                 </div>
             </div>
 

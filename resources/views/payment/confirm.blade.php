@@ -1,27 +1,11 @@
 @extends('client.layout.master')
 @section('content')
     <div class="container">
-        <!-- HEADER MENU -->
-
-        <!-- END / HEADER MENU -->
-
-        <!-- MENU BAR -->
         <span class="menu-bars">
                         <span></span>
                     </span>
-        <!-- END / MENU BAR -->
-
-
-        <!-- END / HEADER LOGO & MENU -->
-
-
-        <!-- END / HEADER -->
-
-        <!-- SUB BANNER -->
         <section class="section-sub-banner awe-parallax bg-16">
-
             <div class="awe-overlay"></div>
-
             <div class="sub-banner">
                 <div class="container">
                     <div class="text text-center">
@@ -29,51 +13,23 @@
                         <p>Page đặt homestay King The Land</p>
                     </div>
                 </div>
-
             </div>
-
         </section>
-        <!-- END / SUB BANNER -->
-
-        <!-- RESERVATION -->
         <section class="section-reservation-page bg-white">
-
             <div class="container">
                 <div class="reservation-page">
-
-                    <!-- STEP -->
-
-                    <!-- END / STEP -->
-
                     <div class="row">
                         <div class="col-md-2 col-lg-2 ">
                         </div>
-
-                        <!-- SIDEBAR -->
                         <div class=" col-md-8 col-lg-8">
-
-
                             <div class="reservation-sidebar">
-
-                                <!-- RESERVATION DATE -->
-                                <!-- END / RESERVATION DATE -->
-
-                                <!-- ROOM SELECT -->
                                 <div class="reservation-room-selected bg-gray">
-
-                                    <!-- HEADING -->
                                     <h2 class="reservation-heading">Xác nhận thông tin </h2>
-                                    <!-- END / HEADING -->
-
-                                    <!-- ITEM -->
                                     <div class="reservation-room-seleted_item">
-
                                         <h6>{{$room->number}}</h6> <span class="reservation-option">{{$room->capacity}} people</span>
-
                                         <div class="reservation-room-seleted_name has-package">
                                             <h2><a href="#">{{$room->type->name}}</a></h2>
                                         </div>
-
                                         <div class="reservation-room-seleted_package">
                                             <h6>Space Price</h6>
                                             <ul>
@@ -81,7 +37,6 @@
                                                     <span>Price/Day</span>
                                                     <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
-
                                             </ul>
                                         </div>
                                         @if(!empty($facilities))

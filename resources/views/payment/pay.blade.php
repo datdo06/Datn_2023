@@ -36,23 +36,9 @@
         }
     </style>
     <div class="container">
-        <!-- HEADER MENU -->
-
-        <!-- END / HEADER MENU -->
-
-        <!-- MENU BAR -->
         <span class="menu-bars">
                         <span></span>
                     </span>
-        <!-- END / MENU BAR -->
-
-
-        <!-- END / HEADER LOGO & MENU -->
-
-
-        <!-- END / HEADER -->
-
-        <!-- SUB BANNER -->
         <section class="section-sub-banner awe-parallax bg-16">
 
             <div class="awe-overlay"></div>
@@ -75,19 +61,11 @@
 
             <div class="container">
                 <div class="reservation-page">
-
-                    <!-- STEP -->
-
-                    <!-- END / STEP -->
-
                     <div class="row">
                         <div class="col-md-2 col-lg-2 ">
                         </div>
-
-                        <!-- SIDEBAR -->
                         <div class=" col-md-8 col-lg-8">
                             <form action="{{ route('check-coupon') }}" method="POST">
-
                                 @csrf
                                 <input type="text" name="coupon" placeholder="Nhập mã giảm giá">
                                 <input type="submit" class="btn btn-success" name="check_coupon" value="Tinh ma giam gia">

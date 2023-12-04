@@ -43,7 +43,7 @@
                         <div class=" col-md-12">
                             <label for="role" class="form-label">Vai trò</label>
                             <select id="role" name="role" class="form-select @error('password') is-invalid @enderror">
-                                <option selected disabled hidden>Choose...</option>
+                                <option selected disabled hidden>Chọn...</option>
                                 @if (in_array($user->role, ['Super', 'Admin']))
                                     <option value="Super" @if ($user->role == 'Super') selected @endif>Quản lý</option>
                                     <option value="Admin" @if ($user->role == 'Admin') selected @endif>Nhân viên</option>

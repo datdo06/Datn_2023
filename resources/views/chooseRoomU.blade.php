@@ -150,11 +150,11 @@
                                                             <div class="reservation-room_desc">
                                                                 <p>{{ $room->view }}</p>
                                                                 <ul>
-                                                                    <li>{{ $room->location }}</li>
-                                                                    <li>{{$room->capacity}} người</li>
+                                                                    <li>Địa điểm: {{ $room->location }}</li>
+                                                                    <li>Số người: {{$room->capacity}}</li>
                                                                     @foreach ($roomstatus as $st)
                                                                     @if ($room->room_status_id == $st->id)
-                                                                    <li>{{$st->name}}</li>
+                                                                    <li>Tình trạng: {{$st->name}}</li>
                                                                     @endif
                                                                     @endforeach
                                                                 </ul>

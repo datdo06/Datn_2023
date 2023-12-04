@@ -6,7 +6,7 @@
             <div class="login-register">
                 <div class="text text-center">
                     <h2>Đăng ký</h2>
-                  
+                    <p>Đăng kí King The Land</p>
                     <form action="{{route('customer.add')}}" class="account_form" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="field-form" style="text-align: left">

@@ -71,7 +71,7 @@
                                             </td>
                                             <td>
                                                 <a
-                                                    href="{{ route('customer.show', ['customer' => $transaction->user->id]) }}">
+                                                    href="{{ route('customer.show', ['user' => $transaction->user->id]) }}">
                                                     {{ $transaction->user->name }}
                                                 </a>
                                             </td>

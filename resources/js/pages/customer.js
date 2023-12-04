@@ -1,6 +1,5 @@
 $(function () {
     $(document).on('click', '.delete-customer', function (e) {
-
         var customer_id = $(this).attr('customer-id');
         var customer_name = $(this).attr('customer-name');
         var customer_url = $(this).attr('customer-url');

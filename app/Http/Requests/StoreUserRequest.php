@@ -53,6 +53,7 @@ class StoreUserRequest extends FormRequest
             'password.required' => 'Mật khẩu không được để trống',
             'password.min' => 'Mật khẩu phải dài trên 6 kí tự',
             'password.regex' => 'Mật khẩu phải có ít nhất 1 số, 1 chữ viết hoa và 1 kí tự đặc biệt ',
+            'role.required' => 'Chọn vai trò'
         ];
     }
 }

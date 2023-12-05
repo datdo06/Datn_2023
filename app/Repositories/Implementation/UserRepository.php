@@ -29,7 +29,7 @@ class UserRepository implements UserRepositoryInterface
             'gender'=>$userData->gender,
             'location'=>$userData->location,
             'password' => bcrypt($userData->password),
-            'role' => 'Customer',
+            'role' => $userData->role,
             'random_key' => Str::random(60)
         ]);
         if ($userData->hasFile('avatar')) {

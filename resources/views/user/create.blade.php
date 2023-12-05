@@ -52,6 +52,7 @@
                                 </div>
                             @enderror
                         </div>
+                        
                         <div class=" col-md-6">
                             <label for="role" class="form-label">Vai trò</label>
                             <select id="role" name="role"
@@ -63,6 +64,29 @@
                                 </option>
                             </select>
                             @error('role')
+                                <div class="text-danger mt-1">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="location" class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" id="location" name="location"
+                                rows="3">{{ old('location') }}
+                            @error('location')
+                                <div class="text-danger mt-1">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="gender" class="form-label">Giới tính</label>
+                            <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender"
+                                aria-label="Default select example">
+                                <option value="Nam">Giới tính Nam</option>
+                                <option value="Nữ">Giới tính Nữ</option>
+                            </select>
+                            @error('gender')
                                 <div class="text-danger mt-1">
                                     {{ $message }}
                                 </div>

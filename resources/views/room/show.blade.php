@@ -83,7 +83,7 @@
                             <h3>{{ $room->number }} </h3>
                             <button type="button" class="btn btn-sm shadow-sm myBtn border rounded" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
-                                Upload Image
+                                Thêm ảnh
                             </button>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <p>
-                                                Capacity: {{ $room->capacity }}
+                                                Số người: {{ $room->capacity }}
                                             </p>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit"
-                                                class="btn btn-sm shadow-sm myBtn border rounded">Delete</button>
+                                                class="btn btn-sm shadow-sm myBtn border rounded">Xóa</button>
                                         </form>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4>Theres no image for this room</h4>
+                            <h4>Không có hình ảnh cho homestay này</h4>
                         </div>
                     </div>
                 </div>

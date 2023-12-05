@@ -40,7 +40,7 @@
                                         <th scope="col">Thông tin chi tiết</th>
                                         <th scope="col">Trạng thái</th>
                                         <th scope="col">Giá tiền</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>

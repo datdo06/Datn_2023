@@ -36,7 +36,7 @@
                             <label for="email" class="form-label">Số điện thoại</label>
                             <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
                                    name="phone" value="{{ $user->phone }}" >
-                            @error('email')
+                            @error('phone')
                             <div class="text-danger mt-1">
                                 {{ $message }}
                             </div>

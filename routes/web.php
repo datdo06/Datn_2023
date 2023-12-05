@@ -54,7 +54,6 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin']], function () {
         Route::get('/{user}/{room}/{from}/{to}/{person}/confirmation', [TransactionRoomReservationController::class, 'confirmation'])->name('confirmation');
         Route::post('/{user}/{room}/payDownPayment', [TransactionRoomReservationController::class, 'payDownPayment'])->name('payDownPayment');
     });
-
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
     Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
     Route::get('customer/show/{user}',[CustomerController::class, 'show'])->name('customer.show');
@@ -68,16 +67,11 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin']], function () {
     Route::resource('transaction', TransactionController::class);
     Route::resource('facility', FacilityController::class);
     Route::resource('facility_room', FacilityRoomController::class);
-
     Route::resource('coupon', CouponController::class);
-
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
-
     Route::get('/transaction/{transaction}/payment/create', [PaymentController::class, 'create'])->name('transaction.payment.create');
     Route::post('/transaction/{transaction}/payment/store', [PaymentController::class, 'store'])->name('transaction.payment.store');
-
     Route::get('/get-dialy-guest-chart-data', [ChartController::class, 'dialyGuestPerMonth']);
     Route::get('/get-dialy-guest/{year}/{month}/{day}', [ChartController::class, 'dialyGuest'])->name('chart.dialyGuest');
 });
@@ -101,12 +95,8 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
     Route::post('/comment/{id}', [HomeController::class, 'postComment'])->name('postComment');
     Route::get('/comment/del/{id}', [HomeController::class, 'delComment'])->name('delComment');
     Route::view('/notification', 'notification.index')->name('notification.index');
-
-
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
     Route::get('/mark-all-as-read', [NotificationsController::class, 'markAllAsRead'])->name('notification.markAllAsRead');
-
     Route::get('/notification-to/{id}', [NotificationsController::class, 'routeTo'])->name('notification.routeTo');
 });
 

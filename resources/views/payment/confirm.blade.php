@@ -10,7 +10,7 @@
                 <div class="container">
                     <div class="text text-center">
                         <h2>ĐẶT Homestay</h2>
-                        <p>Page đặt homestay King The Land</p>
+                        <p>King The Land</p>
                     </div>
                 </div>
             </div>
@@ -26,22 +26,22 @@
                                 <div class="reservation-room-selected bg-gray">
                                     <h2 class="reservation-heading">Xác nhận thông tin </h2>
                                     <div class="reservation-room-seleted_item">
-                                        <h6>{{$room->number}}</h6> <span class="reservation-option">{{$room->capacity}} people</span>
+                                        <h6>{{$room->number}}</h6> <span class="reservation-option">{{$room->capacity}} người</span>
                                         <div class="reservation-room-seleted_name has-package">
                                             <h2><a href="#">{{$room->type->name}}</a></h2>
                                         </div>
                                         <div class="reservation-room-seleted_package">
-                                            <h6>Space Price</h6>
+                                            <h6>Giá không gian</h6>
                                             <ul>
                                                 <li>
-                                                    <span>Price/Day</span>
+                                                    <span>Giá / ngày</span>
                                                     <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
                                             </ul>
                                         </div>
                                         @if(!empty($facilities))
                                             <div class="reservation-room-seleted_package">
-                                                <h6>Facility</h6>
+                                                <h6>Dịch vụ</h6>
                                                 <ul>
                                                     @foreach($facilities as $key => $facility)
                                                         @if(empty($quantity[$key]))
@@ -61,19 +61,19 @@
                                             </div>
                                         @endif
                                         <div class="reservation-room-seleted_total-room">
-                                            TOTAL DAY
+                                            Tổng số ngày
                                             <span
                                                 class="reservation-amout">{{ $data['total_day'] }} {{ Helper::plural('Day', $data['total_day']) }}</span>
                                         </div>
 
 
                                         <div class="reservation-room-seleted_total-room">
-                                            TOTAL
+                                            Tổng
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($data['sum_money']) }}</span>
                                         </div>
                                         <div class="reservation-room-seleted_total-room">
-                                            Mini DownPaymment
+                                            Khoản thanh toán nhỏ
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($minimumDownPayment) }}</span>
                                             <input type="hidden" id="minimum" value="{{$minimumDownPayment}}">
@@ -82,7 +82,7 @@
                                               id="formBook">
                                             @csrf
                                             <div class="reservation-room-seleted_total-room">
-                                                PAYMENT
+                                                Thanh toán
                                                 <span class="reservation-amout"><input style="margin-bottom: 70px"
                                                                                        type="text"
                                                                                        name="downPayment"

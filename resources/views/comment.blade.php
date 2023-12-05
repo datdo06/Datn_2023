@@ -40,7 +40,6 @@
         <div class="container">
             <div class="blog">
                 <div class="row">
-
                     <div class="col-md-8 col-md-offset-2">
                         <div class="blog-content">
                             <div id="comments">

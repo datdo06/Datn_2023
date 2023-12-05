@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" " id=" email"
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
                                 name="email" value="{{ old('email') }}">
                             @error('email')
                                 <div class="text-danger mt-1">
@@ -32,8 +32,10 @@
                         </div>
                         <div class=" col-md-6">
                             <label for="password" class="form-label">Mật khẩu</label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="
-                                password" name="password" value="{{ old('password') }}">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                id="
+                                password" name="password"
+                                value="{{ old('password') }}">
                             @error('password')
                                 <div class="text-danger mt-1">
                                     {{ $message }}
@@ -43,20 +45,22 @@
                         <div class="col-md-6">
                             <label for="email" class="form-label">Số điện thoại</label>
                             <input type="phone" class="form-control @error('phone') is-invalid @enderror" id="phone"
-                            name="phone" value="{{ old('phone') }}">
+                                name="phone" value="{{ old('phone') }}">
                             @error('phone')
-                            <div class="text-danger mt-1">
-                                {{ $message }}
-                            </div>
+                                <div class="text-danger mt-1">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
                         <div class=" col-md-6">
                             <label for="role" class="form-label">Vai trò</label>
-                            <select id="role" name="role" class="form-select @error('password') is-invalid @enderror">
+                            <select id="role" name="role"
+                                class="form-select @error('password') is-invalid @enderror">
                                 <option selected disabled hidden>Chọn...</option>
                                 <option value="Super" @if (old('role') == 'Super') selected @endif>Quản lý</option>
                                 <option value="Admin" @if (old('role') == 'Admin') selected @endif>Nhân viên</option>
-                                <option value="Customer" @if (old('role') == 'Customer') selected @endif>Khách hàng</option>
+                                <option value="Customer" @if (old('role') == 'Customer') selected @endif>Khách hàng
+                                </option>
                             </select>
                             @error('role')
                                 <div class="text-danger mt-1">

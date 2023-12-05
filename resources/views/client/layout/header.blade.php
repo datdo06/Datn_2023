@@ -14,13 +14,21 @@
                     <div class="dropdown currency">
                         <span>{{auth()->user()->name}}</span>
                         <ul>
+                            @if( auth()->user()->role  == 'Customer')
+                            <li></li>
+                            @else
+                            <li><a href="{{route('dashboard.index')}}">Đăng nhập Admin</a></li>
+                            @endif
+                            @if( auth()->user()->role  == 'Customer')
+                            <li><a href="{{route('userProfile', ['id'=>auth()->user()->id])}}">Hồ sơ</a></li>
+                            @endif
+                            <li><a href="{{route('order', ['user'=>auth()->user()->id])}}">Lịch sử</a></li>
                             <li>
                                 <form action="{{route('logout')}}" method="POST" id="logout">
                                     @csrf
                                     <a onclick="document.getElementById('logout').submit();">Đăng Xuất</a>
                                 </form>
                             </li>
-                            <li><a href="{{route('order', ['user'=>auth()->user()->id])}}">Lịch sử</a></li>
                         </ul>
                     </div>
                 @else

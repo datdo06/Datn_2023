@@ -33,6 +33,7 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
+        
         $user = $this->userRepository->store($request);
         return redirect()->route('user.index')->with('success', 'User ' . $user->name . ' created');
     }

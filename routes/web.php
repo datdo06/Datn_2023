@@ -40,7 +40,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth', 'checkRole:Super']], function () {
     Route::resource('user', UserController::class);
 });
-
+Route::get('/profile/{id}', [HomeController::class, 'userProfile'])->name('userProfile');
+Route::get('/profile/{user}/edit', [HomeController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/{user}/update', [HomeController::class, 'update'])->name('profile.update');
 Route::group(['middleware' => ['auth', 'checkRole:Super,Admin']], function () {
     Route::post('/room/{room}/image/upload', [ImageController::class, 'store'])->name('image.store');
     Route::delete('/image/{image}', [ImageController::class, 'destroy'])->name('image.destroy');
@@ -110,7 +112,6 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
     Route::get('/notification-to/{id}', [NotificationsController::class, 'routeTo'])->name('notification.routeTo');
 });
 
-
 Route::view('/admin/login', 'auth.login')->name('admin.login');
 Route::post('/postLogin', [AuthController::class, 'postLogin'])->name('postlogin');
 Route::view('/register', 'auth.register')->name('register');
@@ -126,6 +127,7 @@ Route::get('/', [HomeController::class, 'show'])->name('home');
 
 
 Route::get('/chooseRoom', [HomeController::class, 'chooseRoomU'])->name('chooseRoomU');
+
 Route::view('/login', 'client.login')->name('login');
 Route::view('/register', 'client.register')->name('register');
 Route::post('/addCustomer', [UserController::class, 'store'])->name('customer.add');

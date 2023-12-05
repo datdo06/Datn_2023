@@ -1,8 +1,17 @@
-a, input, textarea, button, select {
+a,
+input,
+textarea,
+button,
+select {
     outline: none
 }
 
-a:hover, a:focus, input:focus, textarea:focus, button:focus, select:focus {
+a:hover,
+a:focus,
+input:focus,
+textarea:focus,
+button:focus,
+select:focus {
     outline: none !important;
     text-decoration: none
 }
@@ -16,6 +25,16 @@ body {
     margin: 0;
     letter-spacing: .014em
 }
+.editpro{
+   padding-left: 200px;
+}
+.col-md-12{
+    margin-top: 10px;
+}
+.card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 p {
     line-height: 1.7em;
@@ -23,13 +42,20 @@ p {
     font-size: 15px
 }
 
-input, textarea {
+input,
+textarea {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0
 }
 
-input[type="search"], input[type="text"], input[type="url"], input[type="number"], input[type="password"], input[type="email"], input[type="file"] {
+input[type="search"],
+input[type="text"],
+input[type="url"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="file"] {
     background: none;
     border: 1px solid #d4d4d4;
     background-color: #fff;
@@ -44,7 +70,8 @@ input[type="search"], input[type="text"], input[type="url"], input[type="number"
     font-family: 'Montserrat'
 }
 
-input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0
 }
@@ -107,7 +134,10 @@ a {
     color: #232323
 }
 
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
     font-size: inherit
 }
 
@@ -410,7 +440,18 @@ section {
     vertical-align: middle
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
     font-weight: normal;
     line-height: 1.5em;
     color: #232323;
@@ -418,33 +459,50 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     margin: 0
 }
 
-h1 a, .h1 a, h2 a, .h2 a, h3 a, .h3 a, h4 a, .h4 a, h5 a, .h5 a, h6 a, .h6 a {
+h1 a,
+.h1 a,
+h2 a,
+.h2 a,
+h3 a,
+.h3 a,
+h4 a,
+.h4 a,
+h5 a,
+.h5 a,
+h6 a,
+.h6 a {
     color: inherit
 }
 
-h1, .h1 {
+h1,
+.h1 {
     font-size: 36px;
     font-weight: bold
 }
 
-h2, .h2 {
+h2,
+.h2 {
     font-size: 28px
 }
 
-h3, .h3 {
+h3,
+.h3 {
     font-size: 24px
 }
 
-h4, .h4 {
+h4,
+.h4 {
     font-size: 21px
 }
 
-h5, .h5 {
+h5,
+.h5 {
     font-size: 18.15px;
     font-weight: bold
 }
 
-h6, .h6 {
+h6,
+.h6 {
     font-size: 14.12px
 }
 
@@ -453,7 +511,8 @@ abbr {
     border-width: 2px
 }
 
-mark, .mark {
+mark,
+.mark {
     background-color: #232323
 }
 
@@ -475,7 +534,8 @@ mark, .mark {
     width: 100%
 }
 
-.hr:after, .hr:before {
+.hr:after,
+.hr:before {
     width: 50%;
     content: '';
     height: 1px
@@ -614,7 +674,8 @@ blockquote p:after {
     font-family: 'Hind'
 }
 
-.tabs .ui-tabs-nav li:hover a, .tabs .ui-tabs-nav li.ui-tabs-active a {
+.tabs .ui-tabs-nav li:hover a,
+.tabs .ui-tabs-nav li.ui-tabs-active a {
     color: #e1bd85 !important
 }
 
@@ -702,6 +763,7 @@ blockquote p:after {
     height: 40px;
     line-height: 36px
 }
+
 .awe-input {
     padding: 0 30px 0 10px;
     background-color: transparent;
@@ -975,11 +1037,15 @@ blockquote p:after {
     background: #e1bd85
 }
 
-.ui-datepicker .ui-state-disabled, .ui-datepicker .ui-widget-content .ui-state-disabled, .ui-datepicker .ui-widget-header .ui-state-disabled {
+.ui-datepicker .ui-state-disabled,
+.ui-datepicker .ui-widget-content .ui-state-disabled,
+.ui-datepicker .ui-widget-header .ui-state-disabled {
     opacity: .8
 }
 
-.ui-datepicker .ui-state-default, .ui-datepicker .ui-widget-content .ui-state-default, .ui-datepicker .ui-widget-header .ui-state-default {
+.ui-datepicker .ui-state-default,
+.ui-datepicker .ui-widget-content .ui-state-default,
+.ui-datepicker .ui-widget-header .ui-state-default {
     background: none;
     color: #333;
     border: 1px solid #f1f1f1;
@@ -1023,7 +1089,8 @@ blockquote p:after {
     line-height: 30px
 }
 
-.ui-datepicker .ui-datepicker-calendar td a.ui-state-active, .ui-datepicker .ui-datepicker-calendar td a:hover {
+.ui-datepicker .ui-datepicker-calendar td a.ui-state-active,
+.ui-datepicker .ui-datepicker-calendar td a:hover {
     border: 1px solid #e1bd85
 }
 
@@ -1033,7 +1100,8 @@ blockquote p:after {
     border-color: #e1bd85
 }
 
-.owl-controls .owl-prev, .owl-controls .owl-next {
+.owl-controls .owl-prev,
+.owl-controls .owl-next {
     color: #fff;
     font-size: 24px;
     position: absolute;
@@ -1058,7 +1126,8 @@ blockquote p:after {
     -o-transition: all .2s ease
 }
 
-.owl-controls .owl-prev:hover, .owl-controls .owl-next:hover {
+.owl-controls .owl-prev:hover,
+.owl-controls .owl-next:hover {
     color: #e1bd85;
     border-color: #e1bd85
 }
@@ -1131,7 +1200,8 @@ blockquote p:after {
     -o-transition: all .3s ease
 }
 
-.awe-popup-overlay:before, .awe-popup-overlay:after {
+.awe-popup-overlay:before,
+.awe-popup-overlay:after {
     content: ''
 }
 
@@ -1180,7 +1250,8 @@ blockquote p:after {
     height: 20px
 }
 
-.awe-popup-wrap .awe-popup-close:after, .awe-popup-wrap .awe-popup-close:before {
+.awe-popup-wrap .awe-popup-close:after,
+.awe-popup-wrap .awe-popup-close:before {
     content: '';
     height: 2px;
     width: 20px;
@@ -1382,7 +1453,8 @@ blockquote p:after {
     -o-transition: all .3s ease
 }
 
-.header_top .header_right .login-register a:hover, .header_top .header_right .login-register a.active {
+.header_top .header_right .login-register a:hover,
+.header_top .header_right .login-register a.active {
     background-color: #fff;
     color: #333
 }
@@ -1508,12 +1580,12 @@ blockquote p:after {
     padding: 0
 }
 
-.header_content .menu > li {
+.header_content .menu>li {
     float: left;
     position: relative
 }
 
-.header_content .menu > li > a {
+.header_content .menu>li>a {
     display: block;
     padding: 0 20px;
     line-height: 84px;
@@ -1527,17 +1599,17 @@ blockquote p:after {
     -o-transition: all .2s ease
 }
 
-.header_content .menu > li.current-menu-item > a {
+.header_content .menu>li.current-menu-item>a {
     background-color: #e1bd85;
     color: #fff
 }
 
-.header_content .menu > li:hover > a {
+.header_content .menu>li:hover>a {
     background-color: #e1bd85;
     color: #fff
 }
 
-.header_content .menu > li:hover > .sub-menu {
+.header_content .menu>li:hover>.sub-menu {
     visibility: visible;
     opacity: 1;
     -webkit-transform: translate(0, 0);
@@ -1546,13 +1618,13 @@ blockquote p:after {
     -o-transform: translate(0, 0)
 }
 
-.header_content .menu > li > .sub-menu {
+.header_content .menu>li>.sub-menu {
     left: 0;
     right: 0;
     margin: auto
 }
 
-.header_content .menu > li .sub-menu {
+.header_content .menu>li .sub-menu {
     width: 180px;
     position: absolute;
     left: 0;
@@ -1573,12 +1645,12 @@ blockquote p:after {
     -o-transition: all .3s ease
 }
 
-.header_content .menu > li .sub-menu li {
+.header_content .menu>li .sub-menu li {
     float: none;
     position: relative
 }
 
-.header_content .menu > li .sub-menu li a {
+.header_content .menu>li .sub-menu li a {
     display: block;
     padding: 7px 20px;
     color: #232323;
@@ -1589,23 +1661,23 @@ blockquote p:after {
     -o-transition: all .2s ease
 }
 
-.header_content .menu > li .sub-menu li a span {
+.header_content .menu>li .sub-menu li a span {
     float: right;
     position: relative;
     top: 2px
 }
 
-.header_content .menu > li .sub-menu li.current-menu-item > a {
+.header_content .menu>li .sub-menu li.current-menu-item>a {
     background-color: #e1bd85;
     color: #fff
 }
 
-.header_content .menu > li .sub-menu li:hover > a {
+.header_content .menu>li .sub-menu li:hover>a {
     background-color: #e1bd85;
     color: #fff
 }
 
-.header_content .menu > li .sub-menu li:hover > .sub-menu {
+.header_content .menu>li .sub-menu li:hover>.sub-menu {
     visibility: visible;
     opacity: 1;
     -webkit-transform: translate(0, 0);
@@ -1614,7 +1686,7 @@ blockquote p:after {
     -o-transform: translate(0, 0)
 }
 
-.header_content .menu > li .sub-menu li .sub-menu {
+.header_content .menu>li .sub-menu li .sub-menu {
     left: 100%;
     top: 0;
     padding: 0
@@ -1665,7 +1737,8 @@ blockquote p:after {
     -o-transition: all .3s ease
 }
 
-.menu-bars span:before, .menu-bars span:after {
+.menu-bars span:before,
+.menu-bars span:after {
     position: absolute;
     content: '';
     height: 2px;
@@ -1825,7 +1898,7 @@ blockquote p:after {
     color: #232323
 }
 
-.header_mobile .header_menu ul li.current-menu-item > a {
+.header_mobile .header_menu ul li.current-menu-item>a {
     background-color: #fff;
     color: #232323
 }
@@ -1835,19 +1908,19 @@ blockquote p:after {
     display: none
 }
 
-.header_mobile .header_menu ul li > .sub-menu > li > a {
+.header_mobile .header_menu ul li>.sub-menu>li>a {
     padding-left: 35px
 }
 
-.header_mobile .header_menu ul li > .sub-menu > li > .sub-menu > li > a {
+.header_mobile .header_menu ul li>.sub-menu>li>.sub-menu>li>a {
     padding-left: 55px
 }
 
-.header_mobile .header_menu ul li > .sub-menu > li > .sub-menu > li > .sub-menu > li > a {
+.header_mobile .header_menu ul li>.sub-menu>li>.sub-menu>li>.sub-menu>li>a {
     padding-left: 75px
 }
 
-.header_mobile .header_menu ul li > .sub-menu > li > .sub-menu > li > .sub-menu > .sub-menu > li > a {
+.header_mobile .header_menu ul li>.sub-menu>li>.sub-menu>li>.sub-menu>.sub-menu>li>a {
     padding-left: 100px
 }
 
@@ -1892,7 +1965,8 @@ blockquote p:after {
     margin-top: 30px
 }
 
-.banner-slider .owl-prev, .banner-slider .owl-next {
+.banner-slider .owl-prev,
+.banner-slider .owl-next {
     height: 38px;
     line-height: 38px;
     width: 38px
@@ -2013,6 +2087,7 @@ blockquote p:after {
     0% {
         border-width: 2px
     }
+
     100% {
         border-width: 50px;
         opacity: 0
@@ -2023,6 +2098,7 @@ blockquote p:after {
     0% {
         border-width: 2px
     }
+
     100% {
         border-width: 50px;
         opacity: 0
@@ -2033,6 +2109,7 @@ blockquote p:after {
     0% {
         border-width: 2px
     }
+
     100% {
         border-width: 50px;
         opacity: 0
@@ -2043,6 +2120,7 @@ blockquote p:after {
     0% {
         border-width: 2px
     }
+
     100% {
         border-width: 50px;
         opacity: 0
@@ -2053,6 +2131,7 @@ blockquote p:after {
     0% {
         border-width: 2px
     }
+
     100% {
         border-width: 50px;
         opacity: 0
@@ -2103,7 +2182,8 @@ blockquote p:after {
     margin-top: 30px
 }
 
-.accomd-modations-content.owl-single .owl-next, .accomd-modations-content.owl-single .owl-prev {
+.accomd-modations-content.owl-single .owl-next,
+.accomd-modations-content.owl-single .owl-prev {
     display: none
 }
 
@@ -2400,18 +2480,19 @@ blockquote p:after {
     border-radius: 100%
 }
 
-.check-availability .availability-form  {
+.check-availability .availability-form {
     font-size: 0;
     text-align: right;
     margin-top: 5px;
     position: relative
 }
 
-.check-availability .availability-form .awe-calendar-wrapper{
+.check-availability .availability-form .awe-calendar-wrapper {
     width: 150px;
     margin-right: 20px
 }
-.check-availability .availability-form .awe-input{
+
+.check-availability .availability-form .awe-input {
     padding: 0 25px 8px 12px;
     width: 100px;
     height: 40px;
@@ -2419,11 +2500,12 @@ blockquote p:after {
     margin-right: 20px;
 }
 
-.check-availability .availability-form .awe-calendar-wrapper  .awe-calendar{
+.check-availability .availability-form .awe-calendar-wrapper .awe-calendar {
     border-color: #fff;
     color: #fff
 }
-.check-availability .availability-form .awe-input  {
+
+.check-availability .availability-form .awe-input {
     border-color: #fff;
     color: #fff
 }
@@ -2789,7 +2871,8 @@ blockquote p:after {
     margin-top: 40px
 }
 
-.event .event-slide .owl-prev, .event .event-slide .owl-next {
+.event .event-slide .owl-prev,
+.event .event-slide .owl-next {
     display: none
 }
 
@@ -2889,7 +2972,8 @@ blockquote p:after {
     margin-top: 60px
 }
 
-.guestbook-event .guestbook-content_1 .owl-prev, .guestbook-event .guestbook-content_1 .owl-next {
+.guestbook-event .guestbook-content_1 .owl-prev,
+.guestbook-event .guestbook-content_1 .owl-next {
     display: none
 }
 
@@ -2909,7 +2993,8 @@ blockquote p:after {
     margin-top: 40px
 }
 
-.guestbook-event .event-slide .owl-prev, .guestbook-event .event-slide .owl-next {
+.guestbook-event .event-slide .owl-prev,
+.guestbook-event .event-slide .owl-next {
     display: none
 }
 
@@ -3150,11 +3235,13 @@ blockquote p:after {
     margin-top: 0
 }
 
-.gallery-isotope.col-3 .item-isotope, .gallery-isotope.col-3 .item-size {
+.gallery-isotope.col-3 .item-isotope,
+.gallery-isotope.col-3 .item-size {
     width: 33.333333%
 }
 
-.gallery-isotope.col-4 .item-isotope, .gallery-isotope.col-4 .item-size {
+.gallery-isotope.col-4 .item-isotope,
+.gallery-isotope.col-4 .item-size {
     width: 25%
 }
 
@@ -3162,7 +3249,8 @@ blockquote p:after {
     width: 50%
 }
 
-.gallery-isotope.col-6 .item-isotope, .gallery-isotope.col-6 .item-size {
+.gallery-isotope.col-6 .item-isotope,
+.gallery-isotope.col-6 .item-size {
     width: 16.66666667%
 }
 
@@ -3187,7 +3275,8 @@ blockquote p:after {
     -o-transition: all .2s ease
 }
 
-.gallery-cat ul li:hover a, .gallery-cat ul li.active a {
+.gallery-cat ul li:hover a,
+.gallery-cat ul li.active a {
     background-color: #e1bd85;
     color: #fff
 }
@@ -3399,7 +3488,8 @@ blockquote p:after {
     line-height: 30px
 }
 
-.sidebar .widget.widget_check_availability .check_availability .check_availability-field .bootstrap-select.btn-group.awe-select .dropdown-toggle .filter-option, .sidebar .widget.widget_check_availability .check_availability .check_availability-field .bootstrap-select.btn-group.awe-select .dropdown-toggle .caret {
+.sidebar .widget.widget_check_availability .check_availability .check_availability-field .bootstrap-select.btn-group.awe-select .dropdown-toggle .filter-option,
+.sidebar .widget.widget_check_availability .check_availability .check_availability-field .bootstrap-select.btn-group.awe-select .dropdown-toggle .caret {
     color: #333
 }
 
@@ -3532,7 +3622,8 @@ blockquote p:after {
     -o-transition: all .2s ease
 }
 
-.sidebar .widget.widget_categories ul li:hover > a, .sidebar .widget.widget_categories ul li.current-cat > a {
+.sidebar .widget.widget_categories ul li:hover>a,
+.sidebar .widget.widget_categories ul li.current-cat>a {
     color: #e1bd85
 }
 
@@ -3907,7 +3998,8 @@ blockquote p:after {
     display: none
 }
 
-.post .entry-meta .entry-categories:before, .post .entry-meta .entry-comments-link:before {
+.post .entry-meta .entry-categories:before,
+.post .entry-meta .entry-comments-link:before {
     content: '-';
     padding: 0 2px
 }
@@ -3983,7 +4075,12 @@ blockquote p:after {
     font-size: 15px
 }
 
-.post.post-single .entry-content h1, .post.post-single .entry-content h2, .post.post-single .entry-content h3, .post.post-single .entry-content h4, .post.post-single .entry-content h5, .post.post-single .entry-content h6 {
+.post.post-single .entry-content h1,
+.post.post-single .entry-content h2,
+.post.post-single .entry-content h3,
+.post.post-single .entry-content h4,
+.post.post-single .entry-content h5,
+.post.post-single .entry-content h6 {
     text-transform: uppercase;
     margin-bottom: 10px
 }
@@ -4044,7 +4141,8 @@ blockquote p:after {
     color: #e1bd85
 }
 
-.page-navigation li.first a, .page-navigation li.last a {
+.page-navigation li.first a,
+.page-navigation li.last a {
     font-size: 13px;
     display: block;
     border: 2px solid #232323;
@@ -4057,7 +4155,8 @@ blockquote p:after {
     border-radius: 100%
 }
 
-.page-navigation li.first a:hover, .page-navigation li.last a:hover {
+.page-navigation li.first a:hover,
+.page-navigation li.last a:hover {
     border-color: #e1bd85
 }
 
@@ -4082,7 +4181,8 @@ blockquote p:after {
     margin-top: 60px
 }
 
-.blog-content #comments, .blog-content .comment-respond {
+.blog-content #comments,
+.blog-content .comment-respond {
     margin-left: 100px
 }
 
@@ -4219,7 +4319,8 @@ blockquote p:after {
     padding-right: 10px
 }
 
-.comment-respond .comment-form .field-text, .comment-respond .comment-form .field-textarea {
+.comment-respond .comment-form .field-text,
+.comment-respond .comment-form .field-textarea {
     width: 100%;
     color: #232323;
     border: 2px solid #232323;
@@ -4231,23 +4332,28 @@ blockquote p:after {
     -o-transition: all .3s ease
 }
 
-.comment-respond .comment-form .field-text::-webkit-input-placeholder, .comment-respond .comment-form .field-textarea::-webkit-input-placeholder {
+.comment-respond .comment-form .field-text::-webkit-input-placeholder,
+.comment-respond .comment-form .field-textarea::-webkit-input-placeholder {
     color: #232323
 }
 
-.comment-respond .comment-form .field-text:-moz-placeholder, .comment-respond .comment-form .field-textarea:-moz-placeholder {
+.comment-respond .comment-form .field-text:-moz-placeholder,
+.comment-respond .comment-form .field-textarea:-moz-placeholder {
     color: #232323
 }
 
-.comment-respond .comment-form .field-text::-moz-placeholder, .comment-respond .comment-form .field-textarea::-moz-placeholder {
+.comment-respond .comment-form .field-text::-moz-placeholder,
+.comment-respond .comment-form .field-textarea::-moz-placeholder {
     color: #232323
 }
 
-.comment-respond .comment-form .field-text:-ms-input-placeholder, .comment-respond .comment-form .field-textarea:-ms-input-placeholder {
+.comment-respond .comment-form .field-text:-ms-input-placeholder,
+.comment-respond .comment-form .field-textarea:-ms-input-placeholder {
     color: #232323
 }
 
-.comment-respond .comment-form .field-text:focus, .comment-respond .comment-form .field-textarea:focus {
+.comment-respond .comment-form .field-text:focus,
+.comment-respond .comment-form .field-textarea:focus {
     border-color: #e1bd85
 }
 
@@ -4283,7 +4389,8 @@ blockquote p:after {
     position: relative
 }
 
-.restaurant_item .img a:before, .restaurant_item .img a:after {
+.restaurant_item .img a:before,
+.restaurant_item .img a:after {
     content: '';
     display: block;
     position: absolute;
@@ -4460,7 +4567,8 @@ blockquote p:after {
     right: 10px
 }
 
-.restaurant_item:hover .img a:before, .restaurant_item:hover .img a:after {
+.restaurant_item:hover .img a:before,
+.restaurant_item:hover .img a:after {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
@@ -4600,11 +4708,13 @@ blockquote p:after {
     margin-top: 5px
 }
 
-.tabs-restaurant .ui-tabs-nav li:hover a, .tabs-restaurant .ui-tabs-nav li.ui-state-active a {
+.tabs-restaurant .ui-tabs-nav li:hover a,
+.tabs-restaurant .ui-tabs-nav li.ui-state-active a {
     color: #e1bd85
 }
 
-.tabs-restaurant .ui-tabs-nav li:hover:before, .tabs-restaurant .ui-tabs-nav li.ui-state-active:before {
+.tabs-restaurant .ui-tabs-nav li:hover:before,
+.tabs-restaurant .ui-tabs-nav li.ui-state-active:before {
     width: 100%
 }
 
@@ -4683,17 +4793,21 @@ blockquote p:after {
 .reservation .reservation_form .awe-calendar-wrapper i {
     color: #fff
 }
+
 .check-availability .availability-form .awe-input::-webkit-input-placeholder {
     color: #fff
 }
+
 .check-availability .availability-form .awe-input {
     border: 2px solid #fff;
     background-color: transparent;
     color: #fff
 }
+
 .check-availability .availability-form .awe-input:-ms-input-placeholder {
     color: #fff
 }
+
 .reservation .reservation_form .awe-input {
     margin-top: 20px;
     border: 2px solid #fff;
@@ -5194,7 +5308,8 @@ blockquote p:after {
     width: 100%
 }
 
-.room_item-3 .text-thumbs .thumbs:before, .room_item-3 .text-thumbs .thumbs:after {
+.room_item-3 .text-thumbs .thumbs:before,
+.room_item-3 .text-thumbs .thumbs:after {
     content: '';
     display: block;
     position: absolute;
@@ -5292,7 +5407,8 @@ blockquote p:after {
     top: 0
 }
 
-.room_item-3:hover .text-thumbs .thumbs:before, .room_item-3:hover .text-thumbs .thumbs:after {
+.room_item-3:hover .text-thumbs .thumbs:before,
+.room_item-3:hover .text-thumbs .thumbs:after {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
@@ -5400,7 +5516,8 @@ blockquote p:after {
     width: 100%
 }
 
-.room_item-4 .thumbs:before, .room_item-4 .thumbs:after {
+.room_item-4 .thumbs:before,
+.room_item-4 .thumbs:after {
     content: '';
     display: block;
     position: absolute;
@@ -5475,7 +5592,8 @@ blockquote p:after {
     top: 0
 }
 
-.room_item-4:hover .thumbs:before, .room_item-4:hover .thumbs:after {
+.room_item-4:hover .thumbs:before,
+.room_item-4:hover .thumbs:after {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
@@ -5909,7 +6027,8 @@ blockquote p:after {
     width: 100%
 }
 
-.room-detail_thumbs .owl-prev, .room-detail_thumbs .owl-next {
+.room-detail_thumbs .owl-prev,
+.room-detail_thumbs .owl-next {
     width: 26px;
     text-align: center;
     background-color: #232323;
@@ -5926,12 +6045,14 @@ blockquote p:after {
     -o-transform: translate(0, 0)
 }
 
-.room-detail_thumbs .owl-prev:hover, .room-detail_thumbs .owl-next:hover {
+.room-detail_thumbs .owl-prev:hover,
+.room-detail_thumbs .owl-next:hover {
     background-color: #e1bd85;
     color: #fff
 }
 
-.room-detail_thumbs .owl-prev .fa, .room-detail_thumbs .owl-next .fa {
+.room-detail_thumbs .owl-prev .fa,
+.room-detail_thumbs .owl-next .fa {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -6009,6 +6130,7 @@ blockquote p:after {
     color: #898989;
     font-weight: 500
 }
+
 .room-detail_book .room-detail_form .awe-input {
     border-width: 0;
     background-color: #fff;
@@ -6030,7 +6152,8 @@ blockquote p:after {
     line-height: 30px
 }
 
-.room-detail_book .room-detail_form .bootstrap-select.btn-group.awe-select .dropdown-toggle .filter-option, .room-detail_book .room-detail_form .bootstrap-select.btn-group.awe-select .dropdown-toggle .caret {
+.room-detail_book .room-detail_form .bootstrap-select.btn-group.awe-select .dropdown-toggle .filter-option,
+.room-detail_book .room-detail_form .bootstrap-select.btn-group.awe-select .dropdown-toggle .caret {
     color: #333
 }
 
@@ -6092,11 +6215,13 @@ blockquote p:after {
     -o-transition: all .3s ease
 }
 
-.room-detail_tab-header li.active a, .room-detail_tab-header li:hover a {
+.room-detail_tab-header li.active a,
+.room-detail_tab-header li:hover a {
     color: #e1bd85
 }
 
-.room-detail_tab-header li.active a:before, .room-detail_tab-header li:hover a:before {
+.room-detail_tab-header li.active a:before,
+.room-detail_tab-header li:hover a:before {
     width: 100%
 }
 
@@ -6114,23 +6239,27 @@ blockquote p:after {
     bottom: 0
 }
 
-.room-detail_amenities, .room-detail_overview {
+.room-detail_amenities,
+.room-detail_overview {
     color: #232323;
     font-size: 14px;
     font-weight: 500
 }
 
-.room-detail_amenities h5, .room-detail_overview h5 {
+.room-detail_amenities h5,
+.room-detail_overview h5 {
     font-family: 'Hind';
     font-weight: bold
 }
 
-.room-detail_amenities p, .room-detail_overview p {
+.room-detail_amenities p,
+.room-detail_overview p {
     font-size: 14px;
     margin-bottom: 0
 }
 
-.room-detail_amenities h6, .room-detail_overview h6 {
+.room-detail_amenities h6,
+.room-detail_overview h6 {
     text-transform: uppercase;
     color: #232323;
     font-weight: bold;
@@ -6139,13 +6268,15 @@ blockquote p:after {
     margin-top: 25px
 }
 
-.room-detail_amenities ul, .room-detail_overview ul {
+.room-detail_amenities ul,
+.room-detail_overview ul {
     padding-left: 17px;
     margin-bottom: 0;
     margin-top: 5px
 }
 
-.room-detail_amenities ul li, .room-detail_overview ul li {
+.room-detail_amenities ul li,
+.room-detail_overview ul li {
     padding: 4px 0
 }
 
@@ -6458,9 +6589,7 @@ blockquote p:after {
 
 }
 
-.room-compare_item {
-
-}
+.room-compare_item {}
 
 .room-compare_item .img {
     flex-basis: 20%;
@@ -6616,7 +6745,12 @@ blockquote p:after {
     font-weight: 500
 }
 
-.term-condition h1, .term-condition h2, .term-condition h3, .term-condition h4, .term-condition h5, .term-condition h6 {
+.term-condition h1,
+.term-condition h2,
+.term-condition h3,
+.term-condition h4,
+.term-condition h5,
+.term-condition h6 {
     font-weight: bold
 }
 
@@ -7078,7 +7212,8 @@ blockquote p:after {
     background-color: #fff
 }
 
-.attraction_sidebar .attraction_sidebar-content .bootstrap-select.attraction_select.awe-select .btn .filter-option, .attraction_sidebar .attraction_sidebar-content .bootstrap-select.attraction_select.awe-select .btn .caret {
+.attraction_sidebar .attraction_sidebar-content .bootstrap-select.attraction_select.awe-select .btn .filter-option,
+.attraction_sidebar .attraction_sidebar-content .bootstrap-select.attraction_select.awe-select .btn .caret {
     color: #898989
 }
 
@@ -7535,7 +7670,8 @@ blockquote p:after {
     position: relative
 }
 
-.guest-book_item:before, .guest-book_item:after {
+.guest-book_item:before,
+.guest-book_item:after {
     content: '';
     display: block;
     position: absolute;
@@ -7579,7 +7715,8 @@ blockquote p:after {
     margin-top: 20px
 }
 
-.guest-book_item.guest-book_item-2:before, .guest-book_item.guest-book_item-2:after {
+.guest-book_item.guest-book_item-2:before,
+.guest-book_item.guest-book_item-2:after {
     top: 0;
     right: 0;
     bottom: 0;
@@ -7656,7 +7793,8 @@ blockquote p:after {
     color: #444444
 }
 
-.guest-book_item:hover:before, .guest-book_item:hover:after {
+.guest-book_item:hover:before,
+.guest-book_item:hover:after {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
@@ -7803,7 +7941,7 @@ blockquote p:after {
     position: relative
 }
 
-.comingsoon .countdown .item + .item:before {
+.comingsoon .countdown .item+.item:before {
     content: ':';
     position: absolute;
     left: 0;
@@ -8236,7 +8374,8 @@ blockquote p:after {
     font-size: 14px
 }
 
-.contact .contact-form .field-text, .contact .contact-form .field-textarea {
+.contact .contact-form .field-text,
+.contact .contact-form .field-textarea {
     border: 2px solid #232323;
     width: 100%;
     margin-top: 20px;
@@ -8247,23 +8386,28 @@ blockquote p:after {
     -o-transition: all .3s ease
 }
 
-.contact .contact-form .field-text::-webkit-input-placeholder, .contact .contact-form .field-textarea::-webkit-input-placeholder {
+.contact .contact-form .field-text::-webkit-input-placeholder,
+.contact .contact-form .field-textarea::-webkit-input-placeholder {
     color: #232323
 }
 
-.contact .contact-form .field-text:-moz-placeholder, .contact .contact-form .field-textarea:-moz-placeholder {
+.contact .contact-form .field-text:-moz-placeholder,
+.contact .contact-form .field-textarea:-moz-placeholder {
     color: #232323
 }
 
-.contact .contact-form .field-text::-moz-placeholder, .contact .contact-form .field-textarea::-moz-placeholder {
+.contact .contact-form .field-text::-moz-placeholder,
+.contact .contact-form .field-textarea::-moz-placeholder {
     color: #232323
 }
 
-.contact .contact-form .field-text:-ms-input-placeholder, .contact .contact-form .field-textarea:-ms-input-placeholder {
+.contact .contact-form .field-text:-ms-input-placeholder,
+.contact .contact-form .field-textarea:-ms-input-placeholder {
     color: #232323
 }
 
-.contact .contact-form .field-text:focus, .contact .contact-form .field-textarea:focus {
+.contact .contact-form .field-text:focus,
+.contact .contact-form .field-textarea:focus {
     border-color: #e1bd85
 }
 
@@ -8315,13 +8459,15 @@ blockquote p:after {
     margin-top: 30px
 }
 
-.shortcode .shortcode-ordered-list ul, .shortcode .shortcode-ordered-list ol {
+.shortcode .shortcode-ordered-list ul,
+.shortcode .shortcode-ordered-list ol {
     margin-top: 20px;
     padding-left: 15px;
     margin-bottom: 0
 }
 
-.shortcode .shortcode-ordered-list ul li, .shortcode .shortcode-ordered-list ol li {
+.shortcode .shortcode-ordered-list ul li,
+.shortcode .shortcode-ordered-list ol li {
     color: #232323;
     padding: 5px 0
 }
@@ -8378,27 +8524,34 @@ blockquote p:after {
     margin-top: 40px
 }
 
-.shortcode .shortcode-calendar-drop .shortcode-calendar, .shortcode .shortcode-calendar-drop .shortcode-select {
+.shortcode .shortcode-calendar-drop .shortcode-calendar,
+.shortcode .shortcode-calendar-drop .shortcode-select {
     display: inline-block;
     vertical-align: middle;
     margin-right: 30px;
     margin-top: 30px
 }
 
-.shortcode .shortcode-calendar-drop .shortcode-calendar .awe-calendar-wrapper, .shortcode .shortcode-calendar-drop .shortcode-select .awe-calendar-wrapper {
+.shortcode .shortcode-calendar-drop .shortcode-calendar .awe-calendar-wrapper,
+.shortcode .shortcode-calendar-drop .shortcode-select .awe-calendar-wrapper {
     width: 150px;
     margin-right: 10px
 }
 
-.shortcode .shortcode-calendar-drop .shortcode-calendar .btn-group.bootstrap-select.awe-select, .shortcode .shortcode-calendar-drop .shortcode-select .btn-group.bootstrap-select.awe-select {
+.shortcode .shortcode-calendar-drop .shortcode-calendar .btn-group.bootstrap-select.awe-select,
+.shortcode .shortcode-calendar-drop .shortcode-select .btn-group.bootstrap-select.awe-select {
     width: 150px
 }
 
-.shortcode .shortcode-calendar-drop .shortcode-calendar .btn-group.bootstrap-select.awe-select .btn, .shortcode .shortcode-calendar-drop .shortcode-select .btn-group.bootstrap-select.awe-select .btn {
+.shortcode .shortcode-calendar-drop .shortcode-calendar .btn-group.bootstrap-select.awe-select .btn,
+.shortcode .shortcode-calendar-drop .shortcode-select .btn-group.bootstrap-select.awe-select .btn {
     border: 2px solid #232323
 }
 
-.shortcode .shortcode-calendar-drop .shortcode-calendar .btn-group.bootstrap-select.awe-select .filter-option, .shortcode .shortcode-calendar-drop .shortcode-select .btn-group.bootstrap-select.awe-select .filter-option, .shortcode .shortcode-calendar-drop .shortcode-calendar .btn-group.bootstrap-select.awe-select .caret, .shortcode .shortcode-calendar-drop .shortcode-select .btn-group.bootstrap-select.awe-select .caret {
+.shortcode .shortcode-calendar-drop .shortcode-calendar .btn-group.bootstrap-select.awe-select .filter-option,
+.shortcode .shortcode-calendar-drop .shortcode-select .btn-group.bootstrap-select.awe-select .filter-option,
+.shortcode .shortcode-calendar-drop .shortcode-calendar .btn-group.bootstrap-select.awe-select .caret,
+.shortcode .shortcode-calendar-drop .shortcode-select .btn-group.bootstrap-select.awe-select .caret {
     color: #232323
 }
 
@@ -8457,7 +8610,8 @@ blockquote p:after {
     margin-right: 5px
 }
 
-.reservation_step ul li.active:before, .reservation_step ul li:hover:before {
+.reservation_step ul li.active:before,
+.reservation_step ul li:hover:before {
     background-color: #e1bd85
 }
 
@@ -8605,7 +8759,7 @@ blockquote p:after {
     text-transform: uppercase
 }
 
-.reservation-room-selected .reservation-room-seleted_item .reservation-room-seleted_package ul + ul {
+.reservation-room-selected .reservation-room-seleted_item .reservation-room-seleted_package ul+ul {
     border-top: 1px solid #e4e4e4;
     padding-top: 8px
 }
@@ -8773,7 +8927,8 @@ blockquote p:after {
     line-height: 30px
 }
 
-.reservation-sidebar_availability .check_availability-field .bootstrap-select.btn-group.awe-select .dropdown-toggle .filter-option, .reservation-sidebar_availability .check_availability-field .bootstrap-select.btn-group.awe-select .dropdown-toggle .caret {
+.reservation-sidebar_availability .check_availability-field .bootstrap-select.btn-group.awe-select .dropdown-toggle .filter-option,
+.reservation-sidebar_availability .check_availability-field .bootstrap-select.btn-group.awe-select .dropdown-toggle .caret {
     color: #898989;
     font-weight: 500
 }
@@ -8828,7 +8983,8 @@ blockquote p:after {
     margin-top: 40px
 }
 
-.reservation_content:before, .reservation_content:after {
+.reservation_content:before,
+.reservation_content:after {
     content: '';
     display: table;
     clear: both
@@ -9188,7 +9344,8 @@ blockquote p:after {
     font-weight: 700
 }
 
-.reservation-package_item:hover, .reservation-package_item.current-select {
+.reservation-package_item:hover,
+.reservation-package_item.current-select {
     background-color: #f1f1f1
 }
 
@@ -9286,11 +9443,13 @@ blockquote p:after {
     font-weight: 500
 }
 
-.reservation-billing-detail .bootstrap-select.awe-select.btn-group .btn .filter-option, .reservation-billing-detail .bootstrap-select.awe-select.btn-group .btn .caret {
+.reservation-billing-detail .bootstrap-select.awe-select.btn-group .btn .filter-option,
+.reservation-billing-detail .bootstrap-select.awe-select.btn-group .btn .caret {
     color: #333
 }
 
-.reservation-billing-detail .input-text, .reservation-billing-detail .input-textarea {
+.reservation-billing-detail .input-text,
+.reservation-billing-detail .input-textarea {
     border: 2px solid #e4e4e4;
     width: 100%;
     font-size: 14px;
@@ -9542,7 +9701,7 @@ blockquote p:after {
     margin-bottom: 20px
 }
 
-#footer .footer_center .widget > ul {
+#footer .footer_center .widget>ul {
     margin-top: -5px
 }
 
@@ -9744,11 +9903,14 @@ blockquote p:after {
         float: none
     }
 
-    .gallery-isotope.col-6 .item-isotope, .gallery-isotope.col-6 .item-size {
+    .gallery-isotope.col-6 .item-isotope,
+    .gallery-isotope.col-6 .item-size {
         width: 25%
     }
 
-    .gallery-isotope.col-4 .item-isotope, .gallery-isotope.col-4 .item-size, .gallery-isotope.col-4 .item-isotope.larger {
+    .gallery-isotope.col-4 .item-isotope,
+    .gallery-isotope.col-4 .item-size,
+    .gallery-isotope.col-4 .item-isotope.larger {
         width: 33.33333%
     }
 
@@ -9819,7 +9981,8 @@ blockquote p:after {
         margin-bottom: 40px
     }
 
-    .accomd-modations .accomd-modations-header .heading, .accomd-modations .accomd-modations-header p {
+    .accomd-modations .accomd-modations-header .heading,
+    .accomd-modations .accomd-modations-header p {
         color: #333
     }
 
@@ -9856,7 +10019,8 @@ blockquote p:after {
         text-align: center
     }
 
-    .home-guestbook .guestbook-header .heading, .home-guestbook .guestbook-header p {
+    .home-guestbook .guestbook-header .heading,
+    .home-guestbook .guestbook-header p {
         color: #fff
     }
 
@@ -9906,7 +10070,8 @@ blockquote p:after {
         padding-bottom: 50px
     }
 
-    .about .about-item .img, .about .about-item .text {
+    .about .about-item .img,
+    .about .about-item .text {
         width: 100%
     }
 
@@ -10167,7 +10332,8 @@ blockquote p:after {
         margin-left: 0
     }
 
-    .gallery-isotope.col-6 .item-isotope, .gallery-isotope.col-6 .item-size {
+    .gallery-isotope.col-6 .item-isotope,
+    .gallery-isotope.col-6 .item-size {
         width: 33.33333%
     }
 
@@ -10203,7 +10369,8 @@ blockquote p:after {
         font-size: 18px
     }
 
-    .banner-slider .slider-caption-sub.slider-caption-sub-1, .banner-slider .slider-caption-sub.slider-caption-sub-3 {
+    .banner-slider .slider-caption-sub.slider-caption-sub-1,
+    .banner-slider .slider-caption-sub.slider-caption-sub-3 {
         font-size: 20px
     }
 
@@ -10232,7 +10399,8 @@ blockquote p:after {
         font-size: 16px
     }
 
-    #header .header_top .header_left, #header .header_top .header_right {
+    #header .header_top .header_left,
+    #header .header_top .header_right {
         text-align: center;
         float: none;
         width: 100%
@@ -10253,19 +10421,24 @@ blockquote p:after {
         clear: both
     }
 
-    .check-availability .availability-form .awe-calendar-wrapper, .check-availability .availability-form .bootstrap-select.btn-group.awe-select, .check-availability .availability-form .vailability-submit {
+    .check-availability .availability-form .awe-calendar-wrapper,
+    .check-availability .availability-form .bootstrap-select.btn-group.awe-select,
+    .check-availability .availability-form .vailability-submit {
         padding-left: 15px;
         padding-right: 15px;
         float: left
     }
+
     .check-availability .availability-form .awe-input {
         padding-left: 15px;
         padding-right: 15px;
     }
+
     .check-availability .availability-form .awe-calendar-wrapper {
         width: 50%;
         margin: 0
     }
+
     .check-availability .availability-form .awe-input {
         width: 45.5%;
         margin-right: 15px;
@@ -10313,11 +10486,17 @@ blockquote p:after {
         padding: 50px 0
     }
 
-    .gallery-isotope.col-6 .item-isotope, .gallery-isotope.col-6 .item-size {
+    .gallery-isotope.col-6 .item-isotope,
+    .gallery-isotope.col-6 .item-size {
         width: 50%
     }
 
-    .gallery-isotope.col-4 .item-isotope, .gallery-isotope.col-3 .item-isotope, .gallery-isotope.col-4 .item-size, .gallery-isotope.col-3 .item-size, .gallery-isotope.col-4 .item-isotope.larger, .gallery-isotope.col-3 .item-isotope.larger {
+    .gallery-isotope.col-4 .item-isotope,
+    .gallery-isotope.col-3 .item-isotope,
+    .gallery-isotope.col-4 .item-size,
+    .gallery-isotope.col-3 .item-size,
+    .gallery-isotope.col-4 .item-isotope.larger,
+    .gallery-isotope.col-3 .item-isotope.larger {
         width: 50%
     }
 
@@ -10474,7 +10653,8 @@ blockquote p:after {
         font-size: 18px
     }
 
-    .guest-book .guest-book_head .text p, .guest-book .guest-book_head .text .awe-btn {
+    .guest-book .guest-book_head .text p,
+    .guest-book .guest-book_head .text .awe-btn {
         font-size: 14px
     }
 
@@ -10538,7 +10718,8 @@ blockquote p:after {
         margin-top: 20px
     }
 
-    .room_item-4.img-right .img, .room_item-4.img-right .text-thumbs {
+    .room_item-4.img-right .img,
+    .room_item-4.img-right .text-thumbs {
         left: auto;
         right: auto
     }
@@ -10622,7 +10803,8 @@ blockquote p:after {
         padding-right: 20px
     }
 
-    .banner-slider .owl-next, .banner-slider .owl-prev {
+    .banner-slider .owl-next,
+    .banner-slider .owl-prev {
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
         border-radius: 0;
@@ -10731,7 +10913,15 @@ blockquote p:after {
         font-size: 20px
     }
 
-    .gallery-isotope.col-6 .item-isotope, .gallery-isotope.col-4 .item-isotope, .gallery-isotope.col-3 .item-isotope, .gallery-isotope.col-6 .item-size, .gallery-isotope.col-4 .item-size, .gallery-isotope.col-3 .item-size, .gallery-isotope.col-6 .item-isotope.larger, .gallery-isotope.col-4 .item-isotope.larger, .gallery-isotope.col-3 .item-isotope.larger {
+    .gallery-isotope.col-6 .item-isotope,
+    .gallery-isotope.col-4 .item-isotope,
+    .gallery-isotope.col-3 .item-isotope,
+    .gallery-isotope.col-6 .item-size,
+    .gallery-isotope.col-4 .item-size,
+    .gallery-isotope.col-3 .item-size,
+    .gallery-isotope.col-6 .item-isotope.larger,
+    .gallery-isotope.col-4 .item-isotope.larger,
+    .gallery-isotope.col-3 .item-isotope.larger {
         width: 100%
     }
 
@@ -10829,7 +11019,9 @@ blockquote p:after {
         font-size: 10px
     }
 
-    .post .entry-header, .post .entry-content, .post .entry-footer {
+    .post .entry-header,
+    .post .entry-content,
+    .post .entry-footer {
         padding-left: 0
     }
 
@@ -10837,7 +11029,8 @@ blockquote p:after {
         font-size: 16px
     }
 
-    .blog-content #comments, .blog-content .comment-respond {
+    .blog-content #comments,
+    .blog-content .comment-respond {
         margin-left: 0
     }
 
@@ -10918,7 +11111,9 @@ blockquote p:after {
         font-size: 30px
     }
 
-    .contact .contact-location .btn-collapse, .contact .contact-location .location-group h6, .contact .text h2 {
+    .contact .contact-location .btn-collapse,
+    .contact .contact-location .location-group h6,
+    .contact .text h2 {
         font-size: 16px
     }
 
@@ -10991,7 +11186,8 @@ blockquote p:after {
         margin-top: 30px
     }
 
-    .restaurant_item.lager-thumbs .text, .restaurant_item.lager-thumbs .img {
+    .restaurant_item.lager-thumbs .text,
+    .restaurant_item.lager-thumbs .img {
         width: 100%
     }
 
@@ -11200,7 +11396,8 @@ blockquote p:after {
         padding: 5px 20px
     }
 
-    .tab-price table caption h2, .tab-price table caption a {
+    .tab-price table caption h2,
+    .tab-price table caption a {
         font-size: 14px
     }
 
@@ -11365,7 +11562,7 @@ blockquote p:after {
         font-size: 10px
     }
 
-    .comingsoon .countdown .item + .item:before {
+    .comingsoon .countdown .item+.item:before {
         font-size: 20px
     }
 
@@ -11428,7 +11625,8 @@ blockquote p:after {
         margin-top: 20px
     }
 
-    .room_item-2 .text p, .room_item-2 .text .price {
+    .room_item-2 .text p,
+    .room_item-2 .text .price {
         font-size: 13px
     }
 
@@ -11444,7 +11642,8 @@ blockquote p:after {
         font-size: 20px
     }
 
-    .room_item-3 .text-thumbs .text p, .room_item-3 .text-thumbs .text .price {
+    .room_item-3 .text-thumbs .text p,
+    .room_item-3 .text-thumbs .text .price {
         font-size: 13px
     }
 
@@ -11457,7 +11656,8 @@ blockquote p:after {
         font-size: 20px
     }
 
-    .room_item-4 .text-thumbs .text p, .room_item-4 .text-thumbs .text .price {
+    .room_item-4 .text-thumbs .text p,
+    .room_item-4 .text-thumbs .text .price {
         font-size: 13px
     }
 
@@ -11474,7 +11674,9 @@ blockquote p:after {
         font-size: 20px
     }
 
-    .room_item-6 .text p, .room_item-6 .text .price, .room_item-6 .text ul li {
+    .room_item-6 .text p,
+    .room_item-6 .text .price,
+    .room_item-6 .text ul li {
         font-size: 13px
     }
 

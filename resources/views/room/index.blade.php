@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-12 col-md-4">
                                     <div class="mb-3">
-                                        <label for="status" class="form-label">Status</label>
+                                        <label for="status" class="form-label">Trạng thái</label>
                                         <select id="status" class="form-select" aria-label="Choose status">
                                             <option selected>Tất cả</option>
                                             @forelse ($roomStatuses as $roomStatus)

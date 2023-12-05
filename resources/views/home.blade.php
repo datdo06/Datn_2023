@@ -296,7 +296,7 @@
                             Với bề dày lịch sử lâu đời, Hà Nội có rất nhiều món ăn đặc trưng và hấp dẫn, mang đậm dấu ấn văn hóa của người dân địa phương.
                             Hãy cùng tìm hiểu những món ngon Hà Nội nổi tiếng nhất và đừng bỏ lỡ cơ hội thưởng thức khi đến thăm thủ đô nha.</p>
                             <!-- https://bloghomestay.vn/kham-pha-nhung-mon-ngon-ha-noi-dac-trung-va-hap-dan-tuyet-chieu-lua-chon-dia-diem-am-thuc-tuyet-voi-tai-ha-noi/ -->
-                        <a href="{{ route('about') }}" class="awe-btn awe-btn-default">READ MORE</a>
+                        <a href="{{ route('about') }}" class="awe-btn awe-btn-default">Đọc thêm</a>
                     </div>
                 </div>
             </div>
@@ -346,7 +346,7 @@
 
                 <div class="col-md-6 col-md-pull-6 ">
                     <div class="text">
-                        <h2 class="heading">Our Best</h2>
+                        <h2 class="heading">Điều tốt nhất của chúng tôi</h2>
                         <p>KingTheLand sẽ mang đến cho bạn quãng thời gian lưu trú thư giãn và dễ chịu nhất có thể.
                             Đây cũng là lý do tại sao nhiều khách du lịch tiếp tục quay trở lại khách sạn sau nhiều năm..</p>
                         <ul>

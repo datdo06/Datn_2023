@@ -14,6 +14,9 @@
                     <div class="col-md-8 p-4 ps-md-0">
                         <h5 class="mt-0">{{ $user->email }}</h5>
                         <p> {{ $user->role }} </p>
+                        <p> {{ $user->phone }} </p>
+                        <p> {{ $user->location }} </p>
+                        <p> {{ $user->gender }} </p>
                     </div>
                 </div>
             </div>

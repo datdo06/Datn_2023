@@ -47,7 +47,7 @@
                 <div class="container">
                     <div class="text text-center">
                         <h2>Đặt Homestay</h2>
-                        <p>Page đặt Homestay King The Land</p>
+                        <p>Xác nhận thông tin</p>
                     </div>
                 </div>
 
@@ -88,23 +88,23 @@
                                     <!-- RESERVATION DATE -->
                                     <div class="reservation-date bg-gray">
                                         <!-- HEADING -->
-                                        <h2 class="reservation-heading">Dates</h2>
+                                        <h2 class="reservation-heading">Thời gian</h2>
                                         <!-- END / HEADING -->
                                         <ul>
                                             <li>
-                                                <span>Check-In</span>
+                                                <span>Ngày đến</span>
                                                 <span>{{Helper::dateFormat($data['checkin'])}}</span>
                                             </li>
                                             <li>
-                                                <span>Check-Out</span>
+                                                <span>Ngày đi</span>
                                                 <span>{{Helper::dateFormat($data['checkout'])}}</span>
                                             </li>
                                             <li>
-                                                <span>Total Day</span>
+                                                <span>Tổng số ngày</span>
                                                 <span>{{$data['total_day']}}</span>
                                             </li>
                                             <li>
-                                                <span>Total Guests</span>
+                                                <span>Tổng số người</span>
                                                 <span>{{$data['person']}}</span>
                                             </li>
                                         </ul>
@@ -114,7 +114,7 @@
                                     <!-- ROOM SELECT -->
                                     <div class="reservation-room-selected bg-gray">
                                         <!-- HEADING -->
-                                        <h2 class="reservation-heading">Select Homestay</h2>
+                                        <h2 class="reservation-heading">Thông tin Homestay</h2>
                                         <!-- END / HEADING -->
 
                                         <!-- ITEM -->
@@ -129,24 +129,24 @@
                                             </div>
 
                                             <div class="reservation-room-seleted_package">
-                                                <h6>Space Price</h6>
+                                                <h6>Giá tiền</h6>
                                                 <ul>
                                                     <li>
-                                                        <span>Price/Day</span>
+                                                        <span>Tiền/ Đêm</span>
                                                         <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                     </li>
 
                                                 </ul>
                                             </div>
                                             <div class="reservation-room-seleted_total-room">
-                                                TOTAL DAY
+                                                Tổng số ngày
                                                 <span
-                                                    class="reservation-amout">{{ $data['total_day'] }} {{ Helper::plural('Day', $data['total_day']) }}</span>
+                                                    class="reservation-amout">{{ $data['total_day'] }} {{ Helper::plural('Ngày', $data['total_day']) }}</span>
                                             </div>
 
 
                                             <div class="reservation-room-seleted_total-room">
-                                                TOTAL {{$room->number}}
+                                                Tiền phòng
                                                 <span
                                                     class="reservation-amout">{{ Helper::convertToRupiah(Helper::getTotalPayment($data['total_day'], $room->price)) }}</span>
                                             </div>
@@ -193,7 +193,7 @@
                                         <!-- END / ITEM -->
                                         <!-- TOTAL -->
                                         <div class="reservation-room-seleted_total bg-blue">
-                                            <label>TOTAL</label>
+                                            <label>Tổng tiền</label>
 
                                             @if(session('coupon'))
                                                 @if(session('coupon') -> coupon_condition == 0)

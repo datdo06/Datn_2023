@@ -47,7 +47,9 @@
                 <div class="container">
                     <div class="text text-center">
                         <h2>Đặt Homestay</h2>
+
                         <p>Xác nhận thông tin</p>
+
                     </div>
                 </div>
 
@@ -88,7 +90,9 @@
                                     <!-- RESERVATION DATE -->
                                     <div class="reservation-date bg-gray">
                                         <!-- HEADING -->
+
                                         <h2 class="reservation-heading">Thời gian</h2>
+
                                         <!-- END / HEADING -->
                                         <ul>
                                             <li>
@@ -114,7 +118,9 @@
                                     <!-- ROOM SELECT -->
                                     <div class="reservation-room-selected bg-gray">
                                         <!-- HEADING -->
+
                                         <h2 class="reservation-heading">Thông tin Homestay</h2>
+
                                         <!-- END / HEADING -->
 
                                         <!-- ITEM -->
@@ -129,10 +135,12 @@
                                             </div>
 
                                             <div class="reservation-room-seleted_package">
+
                                                 <h6>Giá tiền</h6>
                                                 <ul>
                                                     <li>
-                                                        <span>Tiền/ Đêm</span>
+                                                        <span>Giá/ Đêm</span>
+
                                                         <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                     </li>
 
@@ -146,7 +154,11 @@
 
 
                                             <div class="reservation-room-seleted_total-room">
+
                                                 Tiền phòng
+
+                                                Tổng {{$room->number}}
+
                                                 <span
                                                     class="reservation-amout">{{ Helper::convertToRupiah(Helper::getTotalPayment($data['total_day'], $room->price)) }}</span>
                                             </div>
@@ -193,7 +205,9 @@
                                         <!-- END / ITEM -->
                                         <!-- TOTAL -->
                                         <div class="reservation-room-seleted_total bg-blue">
+
                                             <label>Tổng tiền</label>
+
 
                                             @if(session('coupon'))
                                                 @if(session('coupon') -> coupon_condition == 0)

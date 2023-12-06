@@ -17,6 +17,7 @@
                         <p> {{ $user->phone }} </p>
                         <p> {{ $user->location }} </p>
                         <p> {{ $user->gender }} </p>
+
                     </div>
                 </div>
             </div>

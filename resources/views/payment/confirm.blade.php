@@ -11,6 +11,7 @@
                     <div class="text text-center">
                         <h2>ĐẶT Homestay</h2>
                         <p>Thanh toán</p>
+                        <p>King The Land</p>
                     </div>
                 </div>
             </div>
@@ -32,9 +33,10 @@
                                         </div>
                                         <div class="reservation-room-seleted_package">
                                             <h6>Giá tiền</h6>
+                                        
                                             <ul>
                                                 <li>
-                                                    <span>Tiền/ Đêm</span>
+                                                    <span>Giá / Đêm</span>
                                                     <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
                                             </ul>
@@ -68,12 +70,16 @@
 
 
                                         <div class="reservation-room-seleted_total-room">
+
                                             Tổng tiền
+
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($data['sum_money']) }}</span>
                                         </div>
                                         <div class="reservation-room-seleted_total-room">
+
                                             Tiền cọc
+
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($minimumDownPayment) }}</span>
                                             <input type="hidden" id="minimum" value="{{$minimumDownPayment}}">
@@ -82,7 +88,9 @@
                                               id="formBook">
                                             @csrf
                                             <div class="reservation-room-seleted_total-room">
+
                                                Thanh toán
+
                                                 <span class="reservation-amout"><input style="margin-bottom: 70px"
                                                                                        type="text"
                                                                                        name="downPayment"

@@ -90,12 +90,17 @@ class HomeController extends Controller
         $transactions = Transaction::pluck('room_id')->toArray();
 
         $rooms = Room::whereNotIn('id', $transactions)->get();
-
+        $comment = DB::table('comments')
+        ->join('users', 'users.id', '=', 'comments.com_user_id')
+        ->select('users.id as uid', 'users.name', 'users.avatar', 'comments.com_content','comments.star', 'comments.com_subject', 'comments.star', 'comments.id as cd', 'comments.created_at')
+        ->limit(3)
+        ->orderBy('cd','DESC')
+        ->get();
         $users = User::query()
             ->where('role', '=', 'super')
             ->get();
 
-        return view('home', compact('roomImage', 'rooms', 'users', 'room_type'));
+        return view('home', compact('roomImage', 'rooms', 'users', 'room_type','comment'));
     }
     public function formComment($id)
     {

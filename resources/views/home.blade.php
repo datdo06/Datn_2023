@@ -1,6 +1,28 @@
 @extends('client.layout.master')
 @section('content')
+<style>
+    .rating {
+        font-size: 0;
+        /* Loại bỏ khoảng trắng giữa các ngôi sao */
+    }
 
+    .star {
+        width: 20px;
+        /* Kích thước của mỗi ngôi sao */
+        height: 20px;
+        display: inline-block;
+        background-color: #ccc;
+        /* Màu mặc định của ngôi sao */
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        margin-right: 5px;
+        /* Khoảng cách giữa các ngôi sao */
+    }
+
+    /* Đổi màu của ngôi sao khi được chọn */
+    .star.active {
+        background-color: gold;
+    }
+</style>
 <!-- BANNER SLIDER -->
 <section class="section-slider">
     <h1 class="element-invisible">Ảnh slider</h1>
@@ -169,17 +191,64 @@
                 </div>
                 <div class="col-md-6">
                     <div class="guestbook-content_1 owl-single">
-                        @foreach($users as $user)
+                        @foreach($comment as $c)
                             <div class="guestbook-item_1">
                                 <div class="img">
-                                    <img src="{{ $user ->getAvatar() }}" alt="">
-                                    <span><strong>{{ $user -> name }} </strong></span>
+                                    <img src="{{ asset('img/user/' . $c->name . '-' . $c->uid . '/' . $c->avatar) }}" alt="">
+                                    <span><strong>{{ $c -> name }} </strong></span>
                                 </div>
+                                @if ($c->star == 1)
+                                <div class="rating">
+                                    <div class="star active"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                            @elseif($c->star == 2)
+                                <div class="rating">
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                            @elseif($c->star == 3)
+                                <div class="rating">
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                            @elseif($c->star == 4)
+                                <div class="rating">
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star"></div>
+                                </div>
+                            @elseif($c->star == 5)
+                                <div class="rating">
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                </div>
+                            @else
+                                <div class="rating">
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                            @endif
                                 <div class="text">
-                                    <ul>
-                                        <li>{{ $user -> phone }}</li>
-                                        <li>{{ $user -> email }}</li>
-                                    </ul>
+                                        <h4>{{ $c->com_subject }}</h4>
+                                       <p>{{ $c->com_content }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -368,4 +437,27 @@
     </div>
 </section>
 <!-- END / OUR BEST -->
+<script>
+    var allstar = document.getElementById('allstar');
+
+    function rate(rating) {
+        // Đặt nội dung của phần tử hiển thị số sao
+        allstar.value = rating;
+        // Xóa trạng thái active của tất cả các ngôi sao
+        document.querySelectorAll('.star').forEach(function(star) {
+            star.classList.remove('active');
+        });
+
+        // Đặt trạng thái active cho số sao được chọn và tất cả các sao trước đó
+        for (var i = 1; i <= rating; i++) {
+            var starElement = document.querySelector('#star' + i);
+            if (i <= rating) {
+                starElement.classList.add('active');
+            } else {
+                // Đặt trạng thái active cho tất cả các sao trước đó
+                starElement.classList.add('active');
+            }
+        }
+    }
+</script>
 @endsection

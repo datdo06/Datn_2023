@@ -53,7 +53,6 @@
                                     @foreach ($comment as $c)
                                         <li>
                                             <div class="comment-body">
-
                                                 <a class="comment-avatar"><img
                                                         src="{{ asset('img/user/' . $c->name . '-' . $c->uid . '/' . $c->avatar) }}"
                                                         alt=""></a>

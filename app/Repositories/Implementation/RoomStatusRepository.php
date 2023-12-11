@@ -30,8 +30,7 @@ class RoomStatusRepository implements RoomStatusRepositoryInterface
             0 => 'room_statuses.id',
             1 => 'room_statuses.name',
             2 => 'room_statuses.code',
-            3 => 'room_statuses.information',
-            4 => 'room_statuses.id',
+            3 => 'room_statuses.id',
         );
 
         $limit          = $request->input('length');
@@ -43,7 +42,6 @@ class RoomStatusRepository implements RoomStatusRepositoryInterface
             'room_statuses.id as number',
             'room_statuses.name',
             'room_statuses.code',
-            'room_statuses.information',
             'room_statuses.id',
         );
 
@@ -80,7 +78,6 @@ class RoomStatusRepository implements RoomStatusRepositoryInterface
                     "number" => $model->id,
                     "name" => $model->name,
                     "code" => $model->code,
-                    "information" => $model->information,
                     "id" => $model->id,
                 );
             }

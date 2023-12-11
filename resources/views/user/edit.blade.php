@@ -40,6 +40,43 @@
                                 </div>
                             @enderror
                         </div>
+                        <div class="col-md-12">
+                            <label for="email" class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
+                                   name="phone" value="{{ $user->phone }}" >
+                            @error('phone')
+                            <div class="text-danger mt-1">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
+                            <label for="birthdate" class="form-label">Giới tính </label>
+                            <select name="gender" id="" class="form-control">
+                                @if($user->gender === 'Nam')
+                                    <option value="Nam" selected >Giới tính Nam</option>
+                                    <option value="Nữ" >Giới tính Nữ</option>
+                                @else
+                                    <option value="Nữ" >Giới tính Nữ</option>
+                                    <option value="Nam"selected >Giới tính Nam</option>
+                                @endif
+                            </select>
+                            @error('gender')
+                            <div class="text-danger mt-1">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
+                            <label for="address" class="form-label">Địa chỉ</label>
+                            <textarea class="form-control" id="location" name="location"
+                                      rows="3">{{ $user->location }}</textarea>
+                            @error('location')
+                            <div class="text-danger mt-1">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                         <div class=" col-md-12">
                             <label for="role" class="form-label">Vai trò</label>
                             <select id="role" name="role" class="form-select @error('password') is-invalid @enderror">
@@ -47,7 +84,6 @@
                                 @if (in_array($user->role, ['Super', 'Admin']))
                                     <option value="Super" @if ($user->role == 'Super') selected @endif>Quản lý</option>
                                     <option value="Admin" @if ($user->role == 'Admin') selected @endif>Nhân viên</option>
-
                                 @endif
                                 @if ($user->role == 'Customer')
                                     <option value="Customer" @if ($user->role == 'Customer') selected @endif>Khách hàng</option>

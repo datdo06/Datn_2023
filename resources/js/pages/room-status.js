@@ -25,10 +25,6 @@ $(function() {
                 "data": "code"
             },
             {
-                "name": "information",
-                "data": "information"
-            },
-            {
                 "name": "id",
                 "data": "id",
                 "width": "100px",

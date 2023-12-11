@@ -118,7 +118,7 @@
                         </div>
 
                         <div class="text">
-                            <h2><a href="#">{{ $room -> number }}</a></h2>
+                            <h2><a href="{{ route('homestayDetail' , $room -> id) }}">{{ $room -> number }}</a></h2>
                             <p class="desc" style="height: 150px">
                                 {{ $room -> view }}
                             </p>
@@ -318,7 +318,7 @@
                                 Đến đây bạn có thể thưởng thức những món ăn thơm ngon mang đậm hương vị Việt Nam.
                                 Các món ăn phương Tây được lựa chọn kỹ lưỡng và chế biến bởi những đầu bếp hàng đầu.
                                  KingTheLand cũng cung cấp dịch vụ phòng và tiện nghi BBQ.</p>
-                            <a href="{{ route('about') }}" class="awe-btn awe-btn-default">READ MORE</a>
+                            <a href="{{ route('about') }}" class="awe-btn awe-btn-default">Đọc thêm</a>
                             <!-- https://bloghomestay.vn/coral-bay-resort-phu-quoc/ -->
                         </div>
                     </div>

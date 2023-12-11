@@ -51,14 +51,14 @@
                             </div>
                             @enderror
                         </div>
-    
+
                         <div class="col-md-12">
                             <label for="gender" class="form-label">Giới tính</label>
                             <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender"
                                 aria-label="Default select example">
                                 {{-- <option selected hidden>Select</option> --}}
-                                <option value="Male">Giới tính Nam</option>
-                                <option value="Female">Giới tính Nữ</option>
+                                <option value="Nam">Giới tính Nam</option>
+                                <option value="Nữ">Giới tính Nữ</option>
                             </select>
                             @error('gender')
                                 <div class="text-danger mt-1">
@@ -67,10 +67,10 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
-                            <label for="address" class="form-label">Địa chỉ</label>
-                            <textarea class="form-control" id="address" name="address"
-                                rows="3">{{ old('address') }}</textarea>
-                            @error('address')
+                            <label for="location" class="form-label">Địa chỉ</label>
+                            <textarea class="form-control" id="location" name="location"
+                                rows="3">{{ old('location') }}</textarea>
+                            @error('location')
                                 <div class="text-danger mt-1">
                                     {{ $message }}
                                 </div>

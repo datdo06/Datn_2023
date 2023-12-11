@@ -120,7 +120,6 @@
                                                             </tr>
                                                             <tr>
                                                                 <td><i class="fas {{ $customer->gender == 'Nam' ? 'fa-male' : 'fa-female' }}"></i>
-
                                                                 </td>
                                                                 <td>{{$customer->gender}}</td>
                                                             </tr>

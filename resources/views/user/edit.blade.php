@@ -51,7 +51,7 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
-                            <label for="birthdate" class="form-label">Giới tính </label>
+                            <label for="gender" class="form-label">Giới tính </label>
                             <select name="gender" id="" class="form-control">
                                 @if($user->gender === 'Nam')
                                     <option value="Nam" selected >Giới tính Nam</option>
@@ -70,11 +70,21 @@
                         <div class="col-md-12">
                             <label for="address" class="form-label">Địa chỉ</label>
                             <textarea class="form-control" id="location" name="location"
-                                      rows="3">{{ $user->location }}</textarea>
+
+                                rows="3">{{ $user->location }}</textarea>
                             @error('location')
-                            <div class="text-danger mt-1">
-                                {{ $message }}
-                            </div>
+                                <div class="text-danger mt-1">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-mg-12">
+                            <label for="avatar" class="form-label">Hình đại diện</label>
+                            <input class="form-control" type="file" id="avatar" name="avatar">
+                            @error('avatar')
+                                <div class="text-danger mt-1">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
                         <div class=" col-md-12">

@@ -37,6 +37,7 @@ class PostLoginRequest extends FormRequest
         return [
             'email.required' => 'Email không được để trống',
             'email.email' => 'Email không đúng định dạng',
+            'password.required' => 'Mật khẩu không được để trống'
         ];
     }
 }

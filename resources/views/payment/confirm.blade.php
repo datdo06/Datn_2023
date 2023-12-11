@@ -10,6 +10,7 @@
                 <div class="container">
                     <div class="text text-center">
                         <h2>ĐẶT Homestay</h2>
+                        <p>Thanh toán</p>
                         <p>King The Land</p>
                     </div>
                 </div>
@@ -31,10 +32,11 @@
                                             <h2><a href="#">{{$room->type->name}}</a></h2>
                                         </div>
                                         <div class="reservation-room-seleted_package">
-                                            <h6>Giá không gian</h6>
+                                            <h6>Giá tiền</h6>
+                                        
                                             <ul>
                                                 <li>
-                                                    <span>Giá / ngày</span>
+                                                    <span>Giá / Đêm</span>
                                                     <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
                                             </ul>
@@ -63,17 +65,21 @@
                                         <div class="reservation-room-seleted_total-room">
                                             Tổng số ngày
                                             <span
-                                                class="reservation-amout">{{ $data['total_day'] }} {{ Helper::plural('Day', $data['total_day']) }}</span>
+                                                class="reservation-amout">{{ $data['total_day'] }} {{ Helper::plural('Ngày', $data['total_day']) }}</span>
                                         </div>
 
 
                                         <div class="reservation-room-seleted_total-room">
-                                            Tổng
+
+                                            Tổng tiền
+
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($data['sum_money']) }}</span>
                                         </div>
                                         <div class="reservation-room-seleted_total-room">
-                                            Khoản thanh toán nhỏ
+
+                                            Tiền cọc
+
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($minimumDownPayment) }}</span>
                                             <input type="hidden" id="minimum" value="{{$minimumDownPayment}}">
@@ -82,7 +88,9 @@
                                               id="formBook">
                                             @csrf
                                             <div class="reservation-room-seleted_total-room">
-                                                Thanh toán
+
+                                               Thanh toán
+
                                                 <span class="reservation-amout"><input style="margin-bottom: 70px"
                                                                                        type="text"
                                                                                        name="downPayment"

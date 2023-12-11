@@ -70,7 +70,7 @@
             @else
             <div class="card">
                 <div class="card-body">
-                    <h4>Currently Empty</h4>
+                    <h4>Hiện đang trống</h4>
                 </div>
             </div>
             @endif
@@ -147,7 +147,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm ảnh</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -156,7 +156,7 @@
                         @csrf
                         <div class="input-group mb-3">
                             <input type="file" class="form-control" name="image" id="inputGroupFile02">
-                            <button class="input-group-text" type="submit" for="inputGroupFile02">Upload</button>
+                            <button class="input-group-text" type="submit" for="inputGroupFile02">Thêm</button>
                         </div>
                     </form>
                 </div>

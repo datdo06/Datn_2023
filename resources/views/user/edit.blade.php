@@ -70,6 +70,7 @@
                         <div class="col-md-12">
                             <label for="address" class="form-label">Địa chỉ</label>
                             <textarea class="form-control" id="location" name="location"
+
                                 rows="3">{{ $user->location }}</textarea>
                             @error('location')
                                 <div class="text-danger mt-1">
@@ -93,7 +94,6 @@
                                 @if (in_array($user->role, ['Super', 'Admin']))
                                     <option value="Super" @if ($user->role == 'Super') selected @endif>Quản lý</option>
                                     <option value="Admin" @if ($user->role == 'Admin') selected @endif>Nhân viên</option>
-
                                 @endif
                                 @if ($user->role == 'Customer')
                                     <option value="Customer" @if ($user->role == 'Customer') selected @endif>Khách hàng</option>

@@ -51,11 +51,12 @@
                             </div>
                             @enderror
                         </div>
-    
+
                         <div class="col-md-12">
                             <label for="gender" class="form-label">Giới tính</label>
                             <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender"
                                 aria-label="Default select example">
+                                {{-- <option selected hidden>Select</option> --}}
                                 <option value="Nam">Giới tính Nam</option>
                                 <option value="Nữ">Giới tính Nữ</option>
                             </select>

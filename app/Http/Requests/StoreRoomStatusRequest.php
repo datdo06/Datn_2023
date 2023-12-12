@@ -34,4 +34,12 @@ class StoreRoomStatusRequest extends FormRequest
             'code' => 'required|unique:room_statuses,code'
         ];
     }
+    public function messages(){
+        return [
+            'name.required' => 'Tên không được để trống',
+            'name.max' => 'Tên quá dài',
+            'code.required' => 'Mã không được để trống',
+            'code.unique' => 'Mã đã tồn tại',
+        ];
+    }
 }

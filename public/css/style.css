@@ -8058,7 +8058,7 @@ blockquote p:after {
 .login-register .text .account_form .field-form .field-text {
     background-color: transparent;
     border: 2px solid #fff;
-    color: #fff;
+    color: #000;
     width: 100%;
     height: 42px;
     line-height: 42px;

@@ -27,4 +27,9 @@ class StoreImageRequest extends FormRequest
             'image' => 'required|mimes:png,jpg'
         ];
     }
+    public function messages(){
+        return [
+            'image.required' => 'Chọn ảnh', 
+        ];
+    }
 }

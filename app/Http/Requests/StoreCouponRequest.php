@@ -31,4 +31,13 @@ class StoreCouponRequest extends FormRequest
             'coupon_condition' => 'required',
         ];
     }
+    public function messages(){
+        return [
+            'coupon_name.required' => 'Tên mã giảm giá không được để trống',
+            'coupon_code.required' => 'Mã không được để trống',
+            'coupon_time.required' => 'Số mã còn lại không được để trống',
+            'coupon_number.required' => 'Số tiền giảm không được để trống',
+            'coupon_condition.required' => 'Phương thức không được để trống',
+        ];
+    }
 }

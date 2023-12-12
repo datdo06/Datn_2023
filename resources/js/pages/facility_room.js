@@ -86,7 +86,7 @@ $(function() {
         $('#main-modal .modal-body').html(`Fetching data`)
         const response = await $.get(`/facility_room/create`);
         if (!response) return
-        $('#main-modal .modal-title').text('Create new facility homestay')
+        $('#main-modal .modal-title').text('Thêm mới dịch vụ cho homestay')
         $('#main-modal .modal-body').html(response.view)
         $('.select2').select2();
     }).on('click', '#btn-modal-save', function() {

@@ -67,18 +67,16 @@
                         <div class="col-md-2 col-lg-2 ">
                         </div>
                         <div class=" col-md-8 col-lg-8">
-
                             <form action="{{ route('check-coupon') }}" method="POST">
                                 @csrf
-                                <input type="text" style="width: 500px" name="coupon" placeholder="Nhập mã giảm giá">
-                                <input type="submit" class="btn btn-success" name="check_coupon" value="Tinh ma giam gia">
+                                <input type="text" name="coupon" style="width: 500px" placeholder="Nhập mã giảm giá">
+                                <input style="margin-left: 50px" type="submit" class="btn btn-success" name="check_coupon" value="Tinh ma giam gia">
                             </form>
                             @if(session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
                                 </div>
                             @endif
-
                             @if(session('error'))
                                 <div class="alert alert-danger">
                                     {{ session('error') }}
@@ -91,7 +89,6 @@
                                     <!-- RESERVATION DATE -->
                                     <div class="reservation-date bg-gray">
                                         <!-- HEADING -->
-
 
                                         <h2 class="reservation-heading">Thời gian</h2>
 
@@ -133,8 +130,7 @@
                                         <div class="reservation-room-seleted_item">
 
 
-                                            <h6>{{ $room->number }}</h6> <span
-                                                class="reservation-option">{{ $room->capacity }} người</span>
+                                            <h6>{{ $room->number }}</h6> <span class="reservation-option">{{ $room->capacity }} người</span>
 
                                             <div class="reservation-room-seleted_name has-package">
                                                 <h2><a href="#">{{$room->type->name}}</a></h2>
@@ -208,16 +204,16 @@
                                                     </div>
                                                     @php $a +=1; @endphp
                                                 @endforeach
-                                            </div>                              
+
+                                            </div>
+
+
                                         </div>
 
                                         <!-- END / ITEM -->
                                         <!-- TOTAL -->
-                                        <div class="reservation-room-seleted_total bg-blue">
-
-
-                                            <label>Tổng tiền</label>
-
+                                    <div class="reservation-room-seleted_total bg-blue">
+                                        <label>TOTAL</label>
                                             @if(session('coupon'))
                                                 @if(session('coupon') -> coupon_condition == 0)
                                                     @php
@@ -237,7 +233,6 @@
                                         <!-- END / TOTAL -->
                                     </div>
                                     <!-- END / ROOM SELECT -->
-                                </div>
                                 <div>
                                     <input type="hidden" value="{{$data['checkin']}}" name="check_in">
                                     <input type="hidden" value="{{$data['checkout']}}" name="check_out">
@@ -256,7 +251,9 @@
                                 <button style="margin-top: 50px" type="submit" class="awe-btn awe-btn-13">THANH TOÁN
                                     VNPAY
                                 </button>
+                                </div>
                             </form>
+
 
 
                         </div>

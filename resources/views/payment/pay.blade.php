@@ -86,7 +86,22 @@
 
                         <!-- SIDEBAR -->
                         <div class=" col-md-8 col-lg-8">
+                            <form action="{{ route('check-coupon') }}" method="POST">
+                                @csrf
+                                <input type="text" name="coupon" style="width: 500px" placeholder="Nhập mã giảm giá">
+                                <input style="margin-left: 50px" type="submit" class="btn btn-success" name="check_coupon" value="Tinh ma giam gia">
+                            </form>
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
 
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <form method="POST"
                                   action="{{route('transaction.reservation.payOnlinePayment', ['user' => $user->id, 'room' => $room->id])}}">
                                 @csrf
@@ -195,22 +210,7 @@
                                                     @php $a +=1; @endphp
                                                 @endforeach
                                             </div>
-                                            <form action="{{ route('check-coupon') }}" method="POST">
-                                                @csrf
-                                                <input type="text" name="coupon" style="width: 500px" placeholder="Nhập mã giảm giá">
-                                                <input style="margin-left: 50px" type="submit" class="btn btn-success" name="check_coupon" value="Tinh ma giam gia">
-                                            </form>
-                                            @if(session('success'))
-                                                <div class="alert alert-success">
-                                                    {{ session('success') }}
-                                                </div>
-                                            @endif
 
-                                            @if(session('error'))
-                                                <div class="alert alert-danger">
-                                                    {{ session('error') }}
-                                                </div>
-                                            @endif
                                         </div>
 
                                         <!-- END / ITEM -->

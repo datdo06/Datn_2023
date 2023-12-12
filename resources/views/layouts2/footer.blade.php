@@ -12,27 +12,30 @@
                                     <div class="group-xs">
                                         <div>
                                             <dl class="list-desc">
-                                                <dt>Weekdays: </dt>
+                                                <dt>
+                                                    Các ngày trong tuần: </dt>
                                                 <dd class="text-gray-darker"><span>8:00–20:00</span></dd>
                                             </dl>
                                         </div>
                                         <div>
                                             <dl class="list-desc">
-                                                <dt>Weekends: </dt>
+                                                <dt>
+                                                    Các ngày trong tuần: </dt>
                                                 <dd class="text-gray-darker"><span>9:00–18:00</span></dd>
                                             </dl>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
-                                    <p class="rights"><span>&copy;&nbsp;</span><span>2019</span><span>&nbsp;</span><span class="copyright-year"></span>Royal Villas. All Rights Reserved. Design by <a href="https://www.templatemonster.com">TemplateMonster</a></p>
+                                    <p class="rights"><span>&copy;&nbsp;</span><span>2019</span><span>&nbsp;</span><span class="copyright-year"></span>
+                                        Biệt thự hoàng gia. Đã đăng ký Bản quyền. Thiết kế bởi<a href="https://www.templatemonster.com">King The Land</a></p>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="cell-sm-6 cell-md-5 cell-lg-4 wow fadeInUp" data-wow-delay=".2s">
                         <div class="page-footer-minimal-inner">
-                            <h4>Address</h4>
+                            <h4>Địa chỉ</h4>
                             <ul class="list-unstyled">
                                 <li>
                                     <dl class="list-desc">

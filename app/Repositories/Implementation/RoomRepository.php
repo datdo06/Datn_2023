@@ -10,20 +10,20 @@ class RoomRepository implements RoomRepositoryInterface
     public function getRooms($request)
     {
         $rooms = Room::with('type', 'roomStatus')
-            ->orderBy('number')
+            ->orderBy('created_at', 'desc')
             ->when($request->status, function ($query) use ($request) {
                 $query->where('room_status_id', $request->status);
             })
             ->when($request->type, function ($query) use ($request) {
                 $query->where('type_id', $request->type);
-            });
+            })->get();
         if (!empty($request->search)) {
             $rooms = $rooms->where('number', 'LIKE', '%' . $request->search . '%');
         }
         $rooms = $rooms->paginate(5);
         $rooms->appends($request->all());
 
-        return $rooms;
+        return DataTables::of($rooms)->make(true);
     }
 
     public function getRoomsDatatable($request)
@@ -52,7 +52,7 @@ class RoomRepository implements RoomRepositoryInterface
             'rooms.acreage',
             'rooms.price',
             'room_statuses.name as status',
-            'rooms.location'
+            'rooms.location',
         )
             ->when($request->status !== 'Tất cả', function ($query) use ($request) {
                 $query->where('room_status_id', $request->status);

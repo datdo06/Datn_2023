@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
+use App\Models\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCustomerRequest extends FormRequest
 {
@@ -25,9 +27,8 @@ class StoreCustomerRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'phone'=>['required', 'regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/', 'min:8', 'unique:users,phone'],
             'email' => ['required', 'email:rfc,dns', 'unique:users,email'],
-            'avatar' => 'mimes:png,jpg',
+            'phone' => ['required', 'regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/', 'min:10', 'unique:users,phone'],
             'password' => [
                 'required',
                 'string',
@@ -37,6 +38,7 @@ class StoreCustomerRequest extends FormRequest
                 'regex:/[0-9]/',
                 'regex:/[@$!%*#?&]/',
             ],
+            'role' => 'required'
         ];
     }
     public function messages()

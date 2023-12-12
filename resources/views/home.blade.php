@@ -1,9 +1,31 @@
 @extends('client.layout.master')
 @section('content')
+<style>
+    .rating {
+        font-size: 0;
+        /* Loại bỏ khoảng trắng giữa các ngôi sao */
+    }
 
+    .star {
+        width: 20px;
+        /* Kích thước của mỗi ngôi sao */
+        height: 20px;
+        display: inline-block;
+        background-color: #ccc;
+        /* Màu mặc định của ngôi sao */
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        margin-right: 5px;
+        /* Khoảng cách giữa các ngôi sao */
+    }
+
+    /* Đổi màu của ngôi sao khi được chọn */
+    .star.active {
+        background-color: gold;
+    }
+</style>
 <!-- BANNER SLIDER -->
 <section class="section-slider">
-    <h1 class="element-invisible">Slider</h1>
+    <h1 class="element-invisible">Ảnh slider</h1>
     <div id="slider-revolution">
         <ul>
             <li data-transition="fade">
@@ -14,17 +36,12 @@
                     data-speed="700" data-start="1500" data-easing="easeOutBack">
                     <img src="img/slider/hom1-slide1.png" alt="icons">
                 </div>
-
                 <div class="tp-caption sft fadeout slider-caption-sub slider-caption-1" data-x="center" data-y="240"
                     data-speed="700" data-start="1500" data-easing="easeOutBack">
-                    WELCOME TO
+                    Chào mừng đến với
                 </div>
-
                 <div class="tp-caption sfb fadeout slider-caption slider-caption-sub-1" data-x="center" data-y="280"
                     data-speed="700" data-easing="easeOutBack" data-start="2000">KING THE LAND</div>
-
-                <a href="#" class="tp-caption sfb fadeout awe-btn awe-btn-12 awe-btn-slider" data-x="center"
-                    data-y="380" data-easing="easeOutBack" data-speed="700" data-start="2200">ĐẶT HOMESTAY NGAY</a>
             </li>
 
             <li data-transition="fade">
@@ -123,7 +140,7 @@
                         </div>
 
                         <div class="text">
-                            <h2><a href="#">{{ $room -> number }}</a></h2>
+                            <h2><a href="{{ route('homestayDetail' , $room -> id) }}">{{ $room -> number }}</a></h2>
                             <p class="desc" style="height: 150px">
                                 {{ $room -> view }}
                             </p>
@@ -174,17 +191,64 @@
                 </div>
                 <div class="col-md-6">
                     <div class="guestbook-content_1 owl-single">
-                        @foreach($users as $user)
+                        @foreach($comment as $c)
                             <div class="guestbook-item_1">
                                 <div class="img">
-                                    <img src="{{ $user ->getAvatar() }}" alt="">
-                                    <span><strong>{{ $user -> name }} </strong></span>
+                                    <img src="{{ asset('img/user/' . $c->name . '-' . $c->uid . '/' . $c->avatar) }}" alt="">
+                                    <span><strong>{{ $c -> name }} </strong></span>
                                 </div>
+                                @if ($c->star == 1)
+                                <div class="rating">
+                                    <div class="star active"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                            @elseif($c->star == 2)
+                                <div class="rating">
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                            @elseif($c->star == 3)
+                                <div class="rating">
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                            @elseif($c->star == 4)
+                                <div class="rating">
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star"></div>
+                                </div>
+                            @elseif($c->star == 5)
+                                <div class="rating">
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                    <div class="star active"></div>
+                                </div>
+                            @else
+                                <div class="rating">
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                            @endif
                                 <div class="text">
-                                    <ul>
-                                        <li>{{ $user -> phone }}</li>
-                                        <li>{{ $user -> email }}</li>
-                                    </ul>
+                                        <h4>{{ $c->com_subject }}</h4>
+                                       <p>{{ $c->com_content }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -301,7 +365,7 @@
                             Với bề dày lịch sử lâu đời, Hà Nội có rất nhiều món ăn đặc trưng và hấp dẫn, mang đậm dấu ấn văn hóa của người dân địa phương.
                             Hãy cùng tìm hiểu những món ngon Hà Nội nổi tiếng nhất và đừng bỏ lỡ cơ hội thưởng thức khi đến thăm thủ đô nha.</p>
                             <!-- https://bloghomestay.vn/kham-pha-nhung-mon-ngon-ha-noi-dac-trung-va-hap-dan-tuyet-chieu-lua-chon-dia-diem-am-thuc-tuyet-voi-tai-ha-noi/ -->
-                        <a href="{{ route('about') }}" class="awe-btn awe-btn-default">READ MORE</a>
+                        <a href="{{ route('about') }}" class="awe-btn awe-btn-default">Đọc thêm</a>
                     </div>
                 </div>
             </div>
@@ -323,7 +387,7 @@
                                 Đến đây bạn có thể thưởng thức những món ăn thơm ngon mang đậm hương vị Việt Nam.
                                 Các món ăn phương Tây được lựa chọn kỹ lưỡng và chế biến bởi những đầu bếp hàng đầu.
                                  KingTheLand cũng cung cấp dịch vụ phòng và tiện nghi BBQ.</p>
-                            <a href="{{ route('about') }}" class="awe-btn awe-btn-default">READ MORE</a>
+                            <a href="{{ route('about') }}" class="awe-btn awe-btn-default">Đọc thêm</a>
                             <!-- https://bloghomestay.vn/coral-bay-resort-phu-quoc/ -->
                         </div>
                     </div>
@@ -351,7 +415,7 @@
 
                 <div class="col-md-6 col-md-pull-6 ">
                     <div class="text">
-                        <h2 class="heading">Our Best</h2>
+                        <h2 class="heading">Điều tốt nhất của chúng tôi</h2>
                         <p>KingTheLand sẽ mang đến cho bạn quãng thời gian lưu trú thư giãn và dễ chịu nhất có thể.
                             Đây cũng là lý do tại sao nhiều khách du lịch tiếp tục quay trở lại khách sạn sau nhiều năm..</p>
                         <ul>
@@ -373,4 +437,27 @@
     </div>
 </section>
 <!-- END / OUR BEST -->
+<script>
+    var allstar = document.getElementById('allstar');
+
+    function rate(rating) {
+        // Đặt nội dung của phần tử hiển thị số sao
+        allstar.value = rating;
+        // Xóa trạng thái active của tất cả các ngôi sao
+        document.querySelectorAll('.star').forEach(function(star) {
+            star.classList.remove('active');
+        });
+
+        // Đặt trạng thái active cho số sao được chọn và tất cả các sao trước đó
+        for (var i = 1; i <= rating; i++) {
+            var starElement = document.querySelector('#star' + i);
+            if (i <= rating) {
+                starElement.classList.add('active');
+            } else {
+                // Đặt trạng thái active cho tất cả các sao trước đó
+                starElement.classList.add('active');
+            }
+        }
+    }
+</script>
 @endsection

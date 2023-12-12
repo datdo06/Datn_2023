@@ -75,7 +75,7 @@
             <div class="container">
                 <div class="text text-center">
                     <h2>Lịch sử Đặt HomeStay</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing</p>
+                    <p>Xem lại các phòng bạn đã đặt</p>
                 </div>
             </div>
 

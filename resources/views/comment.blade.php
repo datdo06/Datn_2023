@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="text text-center">
                     <h2>Đánh giá</h2>
-                    <p>Hãy cho chúng tôi lắng nghe ý kiến của bạn</p>
+                    <p>Hãy cho chúng tôi lắng nghe ý kiến của bạn về King The Land</p>
                 </div>
             </div>
 
@@ -40,7 +40,6 @@
         <div class="container">
             <div class="blog">
                 <div class="row">
-
                     <div class="col-md-8 col-md-offset-2">
                         <div class="blog-content">
                             <div id="comments">
@@ -54,7 +53,6 @@
                                     @foreach ($comment as $c)
                                         <li>
                                             <div class="comment-body">
-
                                                 <a class="comment-avatar"><img
                                                         src="{{ asset('img/user/' . $c->name . '-' . $c->uid . '/' . $c->avatar) }}"
                                                         alt=""></a>
@@ -113,16 +111,16 @@
                                                 <span class="comment-meta">
                                                     <a href="#">{{ $c->name }}</a> - {{ $c->created_at }}
                                                 </span>
-                                              
+
                                                 <!-- COMMENT RESPOND -->
-                                             
+
                                                     @if ($c->uid == Auth()->user()->id)
                                                         @php
                                                             $check = true;
                                                         @endphp
                                                     @endif
-                                           
-                                               
+
+
                                                 @if ($check)
                                                     <div class="action">
                                                         <a href="{{ route('delComment', ['id' => $c->cd]) }}"

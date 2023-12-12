@@ -11,7 +11,6 @@
                 @else
                     <option value="{{$homestay->id}}">{{$homestay->number}}</option>
                 @endif
-
             @endforeach
         </select>
         @error('room_id')
@@ -30,7 +29,6 @@
                 @else
                     <option value="{{$facility->id}}">{{$facility->name}}</option>
                 @endif
-
             @endforeach
         </select>
         @error('facility_id')

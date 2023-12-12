@@ -26,13 +26,11 @@ class StoreRoomStatusRequest extends FormRequest
         if (!empty($this->roomstatus->id)) {
             return [
                 'name' => 'required|max:255',
-                'information' => 'required|max:1000',
                 'code' => 'required|unique:room_statuses,code,' . $this->roomstatus->id
             ];
         }
         return [
             'name' => 'required|max:255',
-            'information' => 'required|max:1000',
             'code' => 'required|unique:room_statuses,code'
         ];
     }

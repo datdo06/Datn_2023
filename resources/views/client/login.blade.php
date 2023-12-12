@@ -29,7 +29,9 @@
                         <div class="field-form field-submit">
                             <button class="awe-btn awe-btn-13" type="submit">Đăng nhập</button>
                         </div>
-                        <span class="account-desc">Tôi không có tài khoản -  <a href="{{ route('forget.password') }}">Quên mật khẩu</a></span>
+
+                        <span class="account-desc">Tôi không có tài khoản - <a href="{{ route('register') }}">Đăng kí</a></span>
+                        <span class="account-desc" style="margin-top: 10px"><a href="{{ route('forget.password') }}">Quên mật khẩu</a></span>
                     </form>
                 </div>
             </div>

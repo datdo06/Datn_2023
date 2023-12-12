@@ -35,11 +35,11 @@ $(function() {
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Facility Room">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <form class="btn btn-sm delete-facility-room" method="POST"
+                        <form class="btn btn-sm delete-facility_room" method="POST"
                             id="delete-facility-room-form-${facilityRoomId}"
                             action="/facility_room/${facilityRoomId}">
                             <input type="hidden" name="_method" value="DELETE">
-                            <a class="btn btn-light btn-sm rounded shadow-sm border delete"
+                            <a class="btn btn-light btn-sm rounded shadow-sm border delete-facility-room"
                                 href="#" facility_room_id="${facilityRoomId}" type-role="type" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Delete facility">
                                 <i class="fas fa-trash-alt"></i>
@@ -57,8 +57,9 @@ $(function() {
         keyboard: true,
         focus: true
     })
-    $(document).on('click', '.delete', function() {
+    $(document).on('click', '.delete-facility-room', function() {
         var facility_room_id = $(this).attr('facility_room_id');
+        console.log(facility_room_id);
         var facility_room_url = $(this).attr('facility_room-url');
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -140,7 +141,7 @@ $(function() {
         $('#main-modal .modal-title').text('Edit Facility Room')
         $('#main-modal .modal-body').html(response.view)
         $('.select2').select2();
-    }).on('submit', '.delete-facility-room', async function(e) {
+    }).on('submit', '.delete-facility_room', async function(e) {
         e.preventDefault()
         try {
             const response = await $.ajax({

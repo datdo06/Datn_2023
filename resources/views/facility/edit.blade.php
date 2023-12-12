@@ -2,7 +2,7 @@
     @method('PUT')
     @csrf
     <div class="col-md-12">
-        <label for="name" class="form-label">Tên khu nghỉ dưỡng</label>
+        <label for="name" class="form-label">Tên dịch vụ</label>
         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                value="{{ $facility->name }}">
         @error('name')

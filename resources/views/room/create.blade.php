@@ -32,6 +32,12 @@
         <div id="error_capacity" class="text-danger error"></div>
     </div>
     <div class="col-md-12">
+        <label for="capacity" class="form-label">Diện tích (m2)</label>
+        <input room="text" class="form-control @error('acreage') is-invalid @enderror" id="acreage"
+               name="acreage" value="{{ old('acreage') }}" placeholder="ex: 4">
+        <div id="error_capacity" class="text-danger error"></div>
+    </div>
+    <div class="col-md-12">
         <label for="price" class="form-label">Giá</label>
         <input room="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
             value="{{ old('price') }}" placeholder="ex: 500000">

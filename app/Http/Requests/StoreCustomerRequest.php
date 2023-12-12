@@ -31,11 +31,11 @@ class StoreCustomerRequest extends FormRequest
             'password' => [
                 'required',
                 'string',
-                'min:6',          
-                'regex:/[a-z]/',    
+                'min:6',
+                'regex:/[a-z]/',
                 'regex:/[A-Z]/',
-                'regex:/[0-9]/',     
-                'regex:/[@$!%*#?&]/', 
+                'regex:/[0-9]/',
+                'regex:/[@$!%*#?&]/',
             ],
         ];
     }

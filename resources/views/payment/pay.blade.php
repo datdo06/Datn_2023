@@ -86,23 +86,7 @@
 
                         <!-- SIDEBAR -->
                         <div class=" col-md-8 col-lg-8">
-                            <form action="{{ route('check-coupon') }}" method="POST">
 
-                                @csrf
-                                <input type="text" name="coupon" placeholder="Nhập mã giảm giá">
-                                <input type="submit" class="btn btn-success" name="check_coupon" value="Tinh ma giam gia">
-                            </form>
-                            @if(session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-                            @if(session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
                             <form method="POST"
                                   action="{{route('transaction.reservation.payOnlinePayment', ['user' => $user->id, 'room' => $room->id])}}">
                                 @csrf
@@ -110,23 +94,23 @@
                                     <!-- RESERVATION DATE -->
                                     <div class="reservation-date bg-gray">
                                         <!-- HEADING -->
-                                        <h2 class="reservation-heading">Dates</h2>
+                                        <h2 class="reservation-heading">Lịch trình</h2>
                                         <!-- END / HEADING -->
                                         <ul>
                                             <li>
-                                                <span>Check-In</span>
+                                                <span>Ngày đến</span>
                                                 <span>{{Helper::dateFormat($data['checkin'])}}</span>
                                             </li>
                                             <li>
-                                                <span>Check-Out</span>
+                                                <span>Ngày đi</span>
                                                 <span>{{Helper::dateFormat($data['checkout'])}}</span>
                                             </li>
                                             <li>
-                                                <span>Total Day</span>
+                                                <span>Tổng số ngày </span>
                                                 <span>{{$data['total_day']}}</span>
                                             </li>
                                             <li>
-                                                <span>Total Guests</span>
+                                                <span>Tổng số người</span>
                                                 <span>{{$data['person']}}</span>
                                             </li>
                                         </ul>
@@ -136,7 +120,7 @@
                                     <!-- ROOM SELECT -->
                                     <div class="reservation-room-selected bg-gray">
                                         <!-- HEADING -->
-                                        <h2 class="reservation-heading">Select Homestay</h2>
+                                        <h2 class="reservation-heading">Homestay đã chọn</h2>
                                         <!-- END / HEADING -->
 
                                         <!-- ITEM -->
@@ -151,24 +135,24 @@
                                             </div>
 
                                             <div class="reservation-room-seleted_package">
-                                                <h6>Space Price</h6>
+                                                <h6>Giá Thuê</h6>
                                                 <ul>
                                                     <li>
-                                                        <span>Price/Day</span>
+                                                        <span>Giá/Ngày</span>
                                                         <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                     </li>
 
                                                 </ul>
                                             </div>
                                             <div class="reservation-room-seleted_total-room">
-                                                TOTAL DAY
+                                                Tổng Ngày
                                                 <span
                                                     class="reservation-amout">{{ $data['total_day'] }} {{ Helper::plural('Day', $data['total_day']) }}</span>
                                             </div>
 
 
                                             <div class="reservation-room-seleted_total-room">
-                                                TOTAL {{$room->number}}
+                                                Tổng Tiền Ở  {{$room->number}}
                                                 <span
                                                     class="reservation-amout">{{ Helper::convertToRupiah(Helper::getTotalPayment($data['total_day'], $room->price)) }}</span>
                                             </div>
@@ -211,11 +195,28 @@
                                                     @php $a +=1; @endphp
                                                 @endforeach
                                             </div>
+                                            <form action="{{ route('check-coupon') }}" method="POST">
+                                                @csrf
+                                                <input type="text" name="coupon" style="width: 500px" placeholder="Nhập mã giảm giá">
+                                                <input style="margin-left: 50px" type="submit" class="btn btn-success" name="check_coupon" value="Tinh ma giam gia">
+                                            </form>
+                                            @if(session('success'))
+                                                <div class="alert alert-success">
+                                                    {{ session('success') }}
+                                                </div>
+                                            @endif
+
+                                            @if(session('error'))
+                                                <div class="alert alert-danger">
+                                                    {{ session('error') }}
+                                                </div>
+                                            @endif
                                         </div>
+
                                         <!-- END / ITEM -->
                                         <!-- TOTAL -->
                                         <div class="reservation-room-seleted_total bg-blue">
-                                            <label>TOTAL</label>
+                                            <label>Tổng cộng</label>
 
                                             @if(session('coupon'))
                                                 @if(session('coupon') -> coupon_condition == 0)
@@ -250,6 +251,8 @@
                                     @endif
                                     <input type="hidden" value="1" name="cus">
                                 </div>
+                                <br>
+
                                 <button style="margin-top: 50px" type="submit" class="awe-btn awe-btn-13">THANH TOÁN
                                     VNPAY
                                 </button>

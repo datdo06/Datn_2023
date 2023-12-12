@@ -68,17 +68,17 @@
                                     <!-- ITEM -->
                                     <div class="reservation-room-seleted_item">
 
-                                        <h6>{{$room->number}}</h6> <span class="reservation-option">{{$room->capacity}} people</span>
+                                        <h6>{{$room->number}}</h6> <span class="reservation-option">{{$room->capacity}} người</span>
 
                                         <div class="reservation-room-seleted_name has-package">
                                             <h2><a href="#">{{$room->type->name}}</a></h2>
                                         </div>
 
                                         <div class="reservation-room-seleted_package">
-                                            <h6>Space Price</h6>
+                                            <h6>Giá Thuê</h6>
                                             <ul>
                                                 <li>
-                                                    <span>Price/Day</span>
+                                                    <span>Giá/Ngày</span>
                                                     <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
 
@@ -86,7 +86,7 @@
                                         </div>
                                         @if(!empty($facilities))
                                             <div class="reservation-room-seleted_package">
-                                                <h6>Facility</h6>
+                                                <h6>Dịch vụ thêm</h6>
                                                 <ul>
                                                     @foreach($facilities as $key => $facility)
                                                         @if(empty($quantity[$key]))
@@ -106,19 +106,19 @@
                                             </div>
                                         @endif
                                         <div class="reservation-room-seleted_total-room">
-                                            TOTAL DAY
+                                            Tổng số ngày
                                             <span
-                                                class="reservation-amout">{{ $data['total_day'] }} {{ Helper::plural('Day', $data['total_day']) }}</span>
+                                                class="reservation-amout">{{ $data['total_day'] }} Ngày</span>
                                         </div>
 
 
                                         <div class="reservation-room-seleted_total-room">
-                                            TOTAL
+                                            Tổng tiền
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($data['sum_money']) }}</span>
                                         </div>
                                         <div class="reservation-room-seleted_total-room">
-                                            Mini DownPaymment
+                                            Số tiền tối thiểu phải trả trước
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($minimumDownPayment) }}</span>
                                             <input type="hidden" id="minimum" value="{{$minimumDownPayment}}">
@@ -127,7 +127,7 @@
                                               id="formBook">
                                             @csrf
                                             <div class="reservation-room-seleted_total-room">
-                                                PAYMENT
+                                                Số tiền bạn trả
                                                 <span class="reservation-amout"><input style="margin-bottom: 70px"
                                                                                        type="text"
                                                                                        name="downPayment"

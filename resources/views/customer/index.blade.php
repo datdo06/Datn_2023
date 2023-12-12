@@ -40,10 +40,10 @@
                 </div>
                 <div class="col-lg-6 mb-2">
                     <form class="d-flex" method="GET" action="{{ route('customer.index') }}">
-                        <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search"
+                        <input class="form-control me-2" type="search" placeholder="Tìm kiếm theo tên" aria-label="Search"
                                id="search"
                                name="search" value="{{ request()->input('search') }}">
-                        <button class="btn btn-outline-dark" type="submit">Tìm kiếm</button>
+                        <button class="btn btn-outline-dark" type="submit">Tìm</button>
                     </form>
                 </div>
             </div>

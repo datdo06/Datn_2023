@@ -32,6 +32,10 @@ $(function () {
                 data: "capacity",
             },
             {
+                name: "acreage",
+                data: "acreage",
+            },
+            {
                 name: "price",
                 data: "price",
                 render: function (price) {
@@ -144,7 +148,7 @@ $(function () {
             const response = await $.get(`/room/create`);
             if (!response) return;
 
-            $("#main-modal .modal-title").text("Create new homestay");
+            $("#main-modal .modal-title").text("Thêm mới homestay");
             $("#main-modal .modal-body").html(response.view);
             $(".select2").select2();
         })

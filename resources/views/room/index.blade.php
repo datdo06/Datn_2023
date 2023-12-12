@@ -74,6 +74,7 @@
                                         <th scope="col">Tên</th>
                                         <th scope="col">Quận /  Huyện</th>
                                         <th scope="col">Số người</th>
+                                        <th scope="col">Diện tích (m2)</th>
                                         <th scope="col">Giá / ngày</th>
                                         <th scope="col">Trạng thái</th>
                                         <th scope="col">Địa chỉ</th>

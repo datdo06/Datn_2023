@@ -95,7 +95,7 @@ $(function() {
         const response = await $.get(`/roomstatus/create`);
         if (!response) return
 
-        $('#main-modal .modal-title').text('Create new roomstatus')
+        $('#main-modal .modal-title').text('Thêm mới trạng thái homestay')
         $('#main-modal .modal-body').html(response.view)
         $('.select2').select2();
     }).on('click', '#btn-modal-save', function() {

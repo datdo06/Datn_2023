@@ -13,6 +13,7 @@ class Room extends Model
         'room_status_id',
         'number',
         'capacity',
+        'acreage',
         'price',
         'view',
         'location',

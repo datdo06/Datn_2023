@@ -32,18 +32,17 @@
                                             <h2><a href="#">{{$room->type->name}}</a></h2>
                                         </div>
                                         <div class="reservation-room-seleted_package">
-                                            <h6>Giá tiền</h6>
-                                        
+                                            <h6>Giá Thuê</h6>
                                             <ul>
                                                 <li>
-                                                    <span>Giá / Đêm</span>
-                                                    <span>{{ Helper::convertToRupiah($room->price) }}</span>
+                                                   <span>Giá/Ngày</span>                                 
+                                                   <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
                                             </ul>
                                         </div>
                                         @if(!empty($facilities))
                                             <div class="reservation-room-seleted_package">
-                                                <h6>Dịch vụ</h6>
+                                                <h6>Dịch vụ thêm</h6>
                                                 <ul>
                                                     @foreach($facilities as $key => $facility)
                                                         @if(empty($quantity[$key]))
@@ -65,7 +64,8 @@
                                         <div class="reservation-room-seleted_total-room">
                                             Tổng số ngày
                                             <span
-                                                class="reservation-amout">{{ $data['total_day'] }} {{ Helper::plural('Ngày', $data['total_day']) }}</span>
+
+                                                class="reservation-amout">{{ $data['total_day'] }} Ngày</span>
                                         </div>
 
 
@@ -88,6 +88,8 @@
                                               id="formBook">
                                             @csrf
                                             <div class="reservation-room-seleted_total-room">
+
+
 
                                                Thanh toán
 

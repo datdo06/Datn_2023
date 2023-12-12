@@ -29,7 +29,7 @@ class FacilityRoomController extends Controller
     public function create()
     {
         $homestays = Room::query()->get();
-        $facilities = Facility::query()->get();
+        $facilities = Facility::query()->where('status', 'Trong HomeStay')->get();
         $view = view('facility_room.create', compact('homestays', 'facilities'))->render();
         return response()->json([
             'view' => $view,

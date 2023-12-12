@@ -32,10 +32,11 @@ class RoomRepository implements RoomRepositoryInterface
             0 => 'rooms.number',
             1 => 'types.name',
             2 => 'rooms.capacity',
-            3 => 'rooms.price',
-            4 => 'room_statuses.name',
-            5 => 'types.id',
-            6 => 'rooms.location',
+            3 =>'rooms.acreage',
+            4 => 'rooms.price',
+            5 => 'room_statuses.name',
+            6 => 'types.id',
+            7 => 'rooms.location',
         );
 
         $limit = $request->input('length');
@@ -48,6 +49,7 @@ class RoomRepository implements RoomRepositoryInterface
             'rooms.number',
             'types.name as type',
             'rooms.capacity',
+            'rooms.acreage',
             'rooms.price',
             'room_statuses.name as status',
             'rooms.location',
@@ -102,6 +104,7 @@ class RoomRepository implements RoomRepositoryInterface
                     "type" => $model->type,
                     "price" => $model->price,
                     "capacity" => $model->capacity,
+                    "acreage" => $model->acreage,
                     "status" => $model->status,
                     'location' => $model->location,
                 );

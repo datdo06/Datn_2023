@@ -36,7 +36,7 @@
         <div id="error_name" class="text-danger error"></div>
     </div>
     <div class="col-md-12">
-        <label for="name" class="form-label">Price</label>
+        <label for="name" class="form-label">Giá</label>
         <input type="text" class="form-control @error('price') is-invalid @enderror" id="name"
                name="price" value="{{ $facility->price}}">
         @error('price')

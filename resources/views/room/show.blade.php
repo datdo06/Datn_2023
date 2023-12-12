@@ -45,7 +45,7 @@
                                                     <td><i class="fas fa-phone"></i></td>
                                                     <td>
                                                         <span>
-                                                            +6281233808395
+                                                            {{ $customer->phone }}
                                                         </span>
                                                     </td>
                                                 </tr>
@@ -70,7 +70,7 @@
             @else
             <div class="card">
                 <div class="card-body">
-                    <h4>Currently Empty</h4>
+                    <h4>Hiện đang trống</h4>
                 </div>
             </div>
             @endif
@@ -83,7 +83,7 @@
                             <h3>{{ $room->number }} </h3>
                             <button type="button" class="btn btn-sm shadow-sm myBtn border rounded" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
-                                Upload Image
+                                Thêm ảnh
                             </button>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <p>
-                                                Capacity: {{ $room->capacity }}
+                                                Số người: {{ $room->capacity }}
                                             </p>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit"
-                                                class="btn btn-sm shadow-sm myBtn border rounded">Delete</button>
+                                                class="btn btn-sm shadow-sm myBtn border rounded">Xóa</button>
                                         </form>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4>Theres no image for this room</h4>
+                            <h4>Không có hình ảnh cho homestay này</h4>
                         </div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm ảnh</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -156,7 +156,7 @@
                         @csrf
                         <div class="input-group mb-3">
                             <input type="file" class="form-control" name="image" id="inputGroupFile02">
-                            <button class="input-group-text" type="submit" for="inputGroupFile02">Upload</button>
+                            <button class="input-group-text" type="submit" for="inputGroupFile02">Thêm</button>
                         </div>
                     </form>
                 </div>

@@ -22,16 +22,31 @@ class UserRepository implements UserRepositoryInterface
     }
     public function store($userData)
     {
-        $user = new User();
-        $user->name = $userData->name;
-        $user->email = $userData->email;
-        $user->phone = $userData->phone;
-        $user->gender = $userData->gender;
-        $user->location = $userData->location;
-        $user->password = bcrypt($userData->password);
-        $user->role = $userData->role;
-        $user->random_key = Str::random(60);
-        $user->save();
+        $user = User::create([
+            'name' => $userData->name,
+            'email' => $userData->email,
+            'phone'=>$userData->phone,
+            'gender'=>$userData->gender,
+            'location'=>$userData->location,
+            'password' => bcrypt($userData->password),
+            'role' => $userData->role,
+            'random_key' => Str::random(60)
+        ]);
+        if ($userData->hasFile('avatar')) {
+            $path = 'img/user/' . $user->name . '-' . $user->id;
+            $path = public_path($path);
+            $file = $userData->file('avatar');
+
+            $imageRepository = new ImageRepository;
+
+            $imageRepository->uploadImage($path, $file);
+
+            $user->avatar = $file->getClientOriginalName();
+            $user->save();
+        } else {
+            $path = 'img/user/' . $user->name . '-' . $user->id;
+            $path = public_path($path);
+        }
         return $user;
     }
 

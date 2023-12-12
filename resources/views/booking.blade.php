@@ -8,8 +8,8 @@
         <div class="sub-banner">
             <div class="container">
                 <div class="text text-center">
-                    <h2>RESERVATION</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing</p>
+                    <h2>Đặt phòng</h2>
+                    <p>King The Land</p>
                 </div>
             </div>
 
@@ -20,12 +20,9 @@
 
     <!-- RESERVATION -->
     <section class="section-reservation-page bg-white">
-
         <div class="container">
             <div class="reservation-page">
-
                 <div class="row">
-
                     <!-- SIDEBAR -->
                     <div class="col-md-4 col-lg-3">
 
@@ -35,29 +32,29 @@
                             <div class="reservation-date bg-gray">
 
                                 <!-- HEADING -->
-                                <h2 class="reservation-heading">Dates</h2>
+                                <h2 class="reservation-heading">Ngày</h2>
                                 <!-- END / HEADING -->
 
                                 <ul>
                                     <li>
-                                        <span>Check-In</span>
-                                        <span>Thu 06/03/2015</span>
+                                        <span>Đăng ký vào</span>
+                                        <span>Thứ 5 ngày 06/03/2019</span>
                                     </li>
                                     <li>
-                                        <span>Check-Out</span>
-                                        <span>Sat 06/06/2015</span>
+                                        <span>Đăng ký ra</span>
+                                        <span>Thứ 7 06/06/2019</span>
                                     </li>
                                     <li>
-                                        <span>Total Nights</span>
+                                        <span>Tổng số đêm</span>
                                         <span>2</span>
                                     </li>
                                     <li>
-                                        <span>Total Rooms</span>
-                                        <span>2 of 2</span>
+                                        <span>Tổng số phòng</span>
+                                        <span>2 trên 2</span>
                                     </li>
                                     <li>
-                                        <span>Total Guests</span>
-                                        <span>4 Adults 1 Children</span>
+                                        <span>Tổng số khách</span>
+                                        <span>4 người lớn 1 trẻ em</span>
                                     </li>
                                 </ul>
 

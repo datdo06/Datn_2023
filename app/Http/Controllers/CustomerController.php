@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Models\Customer;
 use App\Models\User;
@@ -35,8 +36,9 @@ class CustomerController extends Controller
 
     public function store(StoreCustomerRequest $request)
     {
-
+      
         $customer = $this->customerRepository->store($request);
+        
         if(auth()->user()){
             return redirect('customer')->with('success', 'Customer ' . $customer->name . ' created');
         }else{
@@ -61,10 +63,10 @@ class CustomerController extends Controller
         return view('customer.edit', compact('user'));
     }
 
-    public function update(User $user, StoreCustomerRequest $request)
+    public function update(User $user, UpdateCustomerRequest $request)
     {
         $img = $user->avatar;
-        $img = public_path('img/user/' . $request->name . '-' . $user->id.$img);
+        $img = public_path('img/user/' . $request->name . '-' . $user->id . $img);
         if ($request->hasFile('avatar')) {
             $path = 'img/user/' . $request->name . '-' . $user->id;
             $path = public_path($path);
@@ -75,12 +77,14 @@ class CustomerController extends Controller
             $imageRepository->uploadImage($path, $file);
 
             $user->avatar = $file->getClientOriginalName();
-            DB::update('update users set name = ?, email = ?, phone = ?, location =? , avatar = ?, role = ? where id = ? ',[$request->name, $request->email,$request->phone, $request->location,$user->avatar, 'Customer', $user->id]);
+            DB::update('update users set name = ?, email = ?, phone = ?, gender =?, avatar = ?, role = ? where id = ? ', [$request->name, $request->email, $request->phone, $request->gender,$user->avatar, 'Customer', $user->id]);
             $imageRepository->destroy($img);
-        }else{
-            DB::update('update users set name = ?, email = ?,phone = ?,location =? , role = ? where id = ? ',[$request->name, $request->email, $request->phone,$request->location, 'Customer', $user->id]);
+        } elseif ($request->location) {
+            DB::update('update users set name = ?, email = ?,phone = ?,gender =?,location = ?, role = ? where id = ? ', [$request->name, $request->email, $request->phone,$request->gender, $request->location, 'Customer', $user->id]);
+        } else {
+            DB::update('update users set name = ?, email = ?,phone = ?,gender =?, role = ? where id = ? ', [$request->name, $request->email, $request->phone,$request->gender, 'Customer', $user->id]);
         }
-        return redirect()->route('customer.index')->with('success', 'customer ' . $user->name . ' udpated!');
+        return redirect()->route('customer.index', ['id' => auth()->user()->id])->with('success', 'customer ' . $user->name . ' udpated!');
     }
 
     public function destroy(User $user, ImageRepositoryInterface $imageRepository)

@@ -42,6 +42,8 @@ class CustomerRepository implements CustomerRepositoryInterface
             'name' => $request->name,
             'email' => $request->email,
             'phone'=>$request->phone,
+            'location'=>$request->location,
+            'gender'=>$request->gender,
             'password' => bcrypt($request->password),
             'role' => 'Customer',
             'random_key' => Str::random(60)

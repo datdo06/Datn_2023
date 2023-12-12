@@ -38,7 +38,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Tên khu nghỉ dưỡng</th>
                                         <th scope="col">Cơ sở</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Hành động</th>
                                     </tr>
                                     </thead>
                                     <tbody>

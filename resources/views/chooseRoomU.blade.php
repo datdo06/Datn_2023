@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="text text-center">
                     <h2>Chọn Homestay</h2>
-                    <p></p>
+                    <p>King The Land</p>
                 </div>
             </div>
 
@@ -110,84 +110,67 @@
 
                     <!-- CONTENT -->
                     <div class="col-md-8 col-lg-9">
-
+                        @forelse ($rooms as $room)
                         <div class="reservation_content">
-
                             <!-- RESERVATION ROOM -->
                             <div class="reservation-room bg-gray">
-
                                 <!-- ITEM -->
-                                @forelse ($rooms as $room)
-                                    <div class="reservation-room_item" style="padding: 25px">
-                                        @if(isset(Auth()->user()->id))
-                                            <form
-                                                action="{{route('confirm',['user' => Auth()->user()->id, 'room'=>$room->id])}}"
-                                                method="GET">
-                                                @else
-                                                    <form
-                                                        action="{{route('confirm',['user' => 0, 'room'=>$room->id])}}"
-                                                        method="GET">
+                                <div class="reservation-room_item" style="padding: 25px">
+                                    @if(isset(Auth()->user()->id))
+                                    <form action="{{route('confirm',['user' => Auth()->user()->id, 'room'=>$room->id])}}" method="GET">
+                                        @else
+                                        <form action="{{route('confirm',['user' => 0, 'room'=>$room->id])}}" method="GET">
+                                            @endif
+                                            @csrf
+                                            <h2 class="reservation-room_name">
+                                                <a href="homestay-detail/{{$room->id}}?checkin={{$stayFrom}}&checkout={{$stayUntil}}&person={{request()->input('count_person')}}">{{ $room->number }}
+                                                    ~ {{ $room->type->name }}
+                                                </a>
+                                            </h2>
+                                            <input type="hidden" value="{{ $stayFrom }}" name="checkin">
+                                            <input type="hidden" value="{{ $stayUntil }}" name="checkout">
+                                            <input type="hidden"
+                                                   value="{{ request()->input('count_person') }}"
+                                                   name="person">
+                                            <input type="hidden"
+                                                   value="{{Helper::getDateDifference($_GET['check_in'], $_GET['check_out'])}}"
+                                                   name="total_day">
+                                            <div class="reservation-room_img">
+                                                <a href="homestay-detail/{{$room->id}}?checkin={{$stayFrom}}&checkout={{$stayUntil}}&person={{request()->input('count_person')}}"><img
+                                                        src="{{ $room->firstImage() }}" alt=""></a>
+                                            </div>
+                                            <div class="reservation-room_text">
+                                                <div class="reservation-room_desc">
+                                                    <p>{{ $room->view }}</p>
+                                                    <ul>
+                                                        <li>Địa điểm: {{ $room->location }}</li>
+                                                        <li>Số người: {{$room->capacity}}</li>
+                                                        @foreach ($roomstatus as $st)
+                                                        @if ($room->room_status_id == $st->id)
+                                                        <li>{{$st->name}}</li>
                                                         @endif
-                                                        @csrf
-                                                        <h2 class="reservation-room_name"><a
-                                                                href="homestay-detail/{{$room->id}}?checkin={{$stayFrom}}&checkout={{$stayUntil}}&person={{request()->input('count_person')}}">{{ $room->number }}
-                                                                ~ {{ $room->type->name }}</a></h2>
-                                                        <input type="hidden" value="{{ $stayFrom }}" name="checkin">
-                                                        <input type="hidden" value="{{ $stayUntil }}" name="checkout">
-                                                        <input type="hidden"
-                                                               value="{{ request()->input('count_person') }}"
-                                                               name="person">
-                                                        <input type="hidden"
-                                                               value="{{Helper::getDateDifference($_GET['check_in'], $_GET['check_out'])}}"
-                                                               name="total_day">
-                                                        <div class="reservation-room_img">
-                                                            <a href="homestay-detail/{{$room->id}}?checkin={{$stayFrom}}&checkout={{$stayUntil}}&person={{request()->input('count_person')}}"><img
-                                                                    src="img/homestay/homestay-1.jpg" alt=""></a>
-                                                        </div>
-
-                                                        <div class="reservation-room_text">
-
-                                                            <div class="reservation-room_desc">
-                                                                <p>{{ $room->view }}</p>
-                                                                <ul>
-                                                                    <li>{{ $room->location }}</li>
-                                                                    <li>{{$room->capacity}} người</li>
-                                                                    @foreach ($roomstatus as $st)
-                                                                    @if ($room->room_status_id == $st->id)
-                                                                    <li>{{$st->name}}</li>
-                                                                    @endif
-                                                                    @endforeach
-                                                                </ul>
-                                                            </div>
-
-                                                            <a href="homestay-detail/{{$room->id}}?checkin={{$stayFrom}}&checkout={{$stayUntil}}&person={{request()->input('count_person')}}"
-                                                               class="reservation-room_view-more">Chi tiết</a>
-
-                                                            <div class="clear"></div>
-
-                                                            <p class="reservation-room_price">
-                                                <span
-                                                    class="reservation-room_amout">{{ Helper::convertToRupiah($room->price) }}</span>
-                                                                / ngày
-                                                            </p>
-
-                                                            <button type="submit" class="awe-btn awe-btn-default">Đặt ngay
-                                                            </button>
-                                                        </div>
-                                                    </form>
-
-                                    </div>
-
-
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                                <a href="homestay-detail/{{$room->id}}?checkin={{$stayFrom}}&checkout={{$stayUntil}}&person={{request()->input('count_person')}}"
+                                                   class="reservation-room_view-more">Chi tiết</a>
+                                                <div class="clear"></div>
+                                                <p class="reservation-room_price">
+                                                    <span class="reservation-room_amout">{{ Helper::convertToRupiah($room->price) }}</span>/ ngày
+                                                </p>
+                                                <button type="submit" class="awe-btn awe-btn-default">Đặt ngay
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </form>
+                                </div>
                             </div>
                             @empty
                                 <h3>Không có homestay trống cho {{ request()->input('count_person') }} người hoặc homestay đã hết
                                 </h3>
                             @endforelse
                             <!-- END / ITEM -->
-
                             <!-- ITEM -->
-
                         </div>
                         <!-- END / RESERVATION ROOM -->
                     </div>

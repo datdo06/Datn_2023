@@ -164,7 +164,6 @@
                                             <h6>Thông tin Homestay</h6>
                                             <ul>
                                                 <li> 2 người lớn & 1 trẻ em</li>
-                                                <li>Diện tích : 35 m2 </li>
                                                 <li>Cửa sổ, ban công</li>
                                                 <li>Giường đôi</li>
                                             </ul>

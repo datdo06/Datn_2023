@@ -24,7 +24,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <h5 class="card-title text-center">King The Land Hotel</h5>
+                                <h5 class="card-title text-center">King The Land</h5>
                             </div>
                         </div>
                         <form class="form-signin" action="/postLogin" method="post">

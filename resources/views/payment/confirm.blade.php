@@ -1,87 +1,43 @@
 @extends('client.layout.master')
 @section('content')
     <div class="container">
-        <!-- HEADER MENU -->
-
-        <!-- END / HEADER MENU -->
-
-        <!-- MENU BAR -->
         <span class="menu-bars">
                         <span></span>
                     </span>
-        <!-- END / MENU BAR -->
-
-
-        <!-- END / HEADER LOGO & MENU -->
-
-
-        <!-- END / HEADER -->
-
-        <!-- SUB BANNER -->
         <section class="section-sub-banner awe-parallax bg-16">
-
             <div class="awe-overlay"></div>
-
             <div class="sub-banner">
                 <div class="container">
                     <div class="text text-center">
                         <h2>ĐẶT Homestay</h2>
-                        <p>Page đặt homestay King The Land</p>
+                        <p>Thanh toán</p>
+                        <p>King The Land</p>
                     </div>
                 </div>
-
             </div>
-
         </section>
-        <!-- END / SUB BANNER -->
-
-        <!-- RESERVATION -->
         <section class="section-reservation-page bg-white">
-
             <div class="container">
                 <div class="reservation-page">
-
-                    <!-- STEP -->
-
-                    <!-- END / STEP -->
-
                     <div class="row">
                         <div class="col-md-2 col-lg-2 ">
                         </div>
-
-                        <!-- SIDEBAR -->
                         <div class=" col-md-8 col-lg-8">
-
-
                             <div class="reservation-sidebar">
-
-                                <!-- RESERVATION DATE -->
-                                <!-- END / RESERVATION DATE -->
-
-                                <!-- ROOM SELECT -->
                                 <div class="reservation-room-selected bg-gray">
-
-                                    <!-- HEADING -->
                                     <h2 class="reservation-heading">Xác nhận thông tin </h2>
-                                    <!-- END / HEADING -->
-
-                                    <!-- ITEM -->
                                     <div class="reservation-room-seleted_item">
-
                                         <h6>{{$room->number}}</h6> <span class="reservation-option">{{$room->capacity}} người</span>
-
                                         <div class="reservation-room-seleted_name has-package">
                                             <h2><a href="#">{{$room->type->name}}</a></h2>
                                         </div>
-
                                         <div class="reservation-room-seleted_package">
                                             <h6>Giá Thuê</h6>
                                             <ul>
                                                 <li>
-                                                    <span>Giá/Ngày</span>
-                                                    <span>{{ Helper::convertToRupiah($room->price) }}</span>
+                                                   <span>Giá/Ngày</span>                                 
+                                                   <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
-
                                             </ul>
                                         </div>
                                         @if(!empty($facilities))
@@ -108,17 +64,22 @@
                                         <div class="reservation-room-seleted_total-room">
                                             Tổng số ngày
                                             <span
+
                                                 class="reservation-amout">{{ $data['total_day'] }} Ngày</span>
                                         </div>
 
 
                                         <div class="reservation-room-seleted_total-room">
+
                                             Tổng tiền
+
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($data['sum_money']) }}</span>
                                         </div>
                                         <div class="reservation-room-seleted_total-room">
-                                            Số tiền tối thiểu phải trả trước
+
+                                            Tiền cọc
+
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($minimumDownPayment) }}</span>
                                             <input type="hidden" id="minimum" value="{{$minimumDownPayment}}">
@@ -127,7 +88,11 @@
                                               id="formBook">
                                             @csrf
                                             <div class="reservation-room-seleted_total-room">
-                                                Số tiền bạn trả
+
+
+
+                                               Thanh toán
+
                                                 <span class="reservation-amout"><input style="margin-bottom: 70px"
                                                                                        type="text"
                                                                                        name="downPayment"

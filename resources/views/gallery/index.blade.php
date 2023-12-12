@@ -131,7 +131,7 @@
         <div class="container">
             <div class="text text-center">
                 <h2>Ảnh sưu tầm</h2>
-                <p>KING THE LAND</p>
+                <p> King The Land</p>
             </div>
         </div>
 

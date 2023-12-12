@@ -17,7 +17,7 @@
                             @if( auth()->user()->role  == 'Customer')
                             <li></li>
                             @else
-                            <li><a href="{{route('dashboard.index')}}">Đăng nhập Admin</a></li>
+                            <li><a href="{{route('dashboard.index')}}">Quản lý</a></li>
                             @endif
                             @if( auth()->user()->role  == 'Customer')
                             <li><a href="{{route('userProfile', ['id'=>auth()->user()->id])}}">Hồ sơ</a></li>

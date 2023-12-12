@@ -28,4 +28,10 @@ class StoreTypeRequest extends FormRequest
             'information' => 'required',
         ];
     }
+    public function messages(){
+        return [
+            'name.required' => 'Tên không được để trống',
+            'information.required' => 'Mã không được để trống',
+        ];
+    }
 }

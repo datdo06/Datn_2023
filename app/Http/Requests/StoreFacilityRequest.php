@@ -28,4 +28,10 @@ class StoreFacilityRequest extends FormRequest
             'detail' => 'required',
         ];
     }
+    public function messages(){
+        return [
+            'name.required' => 'Tên không được để trống',
+            'detail.required' => 'Chi tiết không được để trống'
+        ];
+    }
 }

@@ -139,8 +139,8 @@
                 <div class="row">
                     <div class="col-md-3">
                         <ul class="room-detail_tab-header">
-                            <li><a href="#overview" data-toggle="tab">Tổng Quan</a></li>
-                            <li class="active"><a href="#amenities" data-toggle="tab">Tiện nghi</a></li>
+                            <li class="active"><a href="#overview" data-toggle="tab">Tổng Quan</a></li>
+                            <li ><a href="#amenities" data-toggle="tab">Tiện nghi</a></li>
                         </ul>
                     </div>
 
@@ -148,7 +148,7 @@
                         <div class="room-detail_tab-content tab-content">
 
                             <!-- OVERVIEW -->
-                            <div class="tab-pane fade" id="overview">
+                            <div class="tab-pane fade active in" id="overview">
 
                                 <div class="room-detail_overview">
                                     {{-- <h5 class='text-uppercase
@@ -163,17 +163,9 @@
                                         <div class="col-xs-6 col-md-4">
                                             <h6>Thông tin Homestay</h6>
                                             <ul>
-                                                <li> 2 người lớn & 1 trẻ em</li>
-                                                <li>Cửa sổ, ban công</li>
-                                                <li>Giường đôi</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-6 col-md-4">
-                                            <h6>Dịch vụ kèm theo</h6>
-                                            <ul>
-                                                <li>Bữa sáng</li>
-                                                <li>Dọn Homestay hàng ngày</li>
-                                                <li>Dịch vụ giặt là</li>
+                                                <li> {{$detailRoom->capacity}} người </li>
+                                                <li>Diện tích {{$detailRoom->acreage}} m<sup>2</sup></li>
+                                                <li>Phong cách {{$detailRoom->roomStatus->name}}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -184,64 +176,23 @@
                             <!-- END / OVERVIEW -->
 
                             <!-- AMENITIES -->
-                            <div class="tab-pane fade active in" id="amenities">
+                            <div class="tab-pane fade" id="amenities">
 
                                 <div class="room-detail_amenities">
                                     <p> Khách có thể dùng nhân viên hỗ trợ khách và dịch vụ Homestay khi nghỉ tại KingTheLand
                                         Homestay.</p>
 
                                     <div class="row">
-                                        <div class="col-xs-6 col-lg-4">
-                                            <h6>Phòng Khách</h6>
-                                            <ul>
-                                                <li>Bàn làm việc / ăn uống</li>
-                                                <li>TV / máy chiếu</li>
-                                                <li>Karaoke</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-4">
-                                            <h6>Phòng bếp</h6>
-                                            <ul>
-                                                <li>Dụng cụ nhà bếp</li>
-                                                <li>Bàn ăn</li>
-                                                <li>Thiết bị điện</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-4">
-                                            <h6>Ban công</h6>
-                                            <ul>
-                                                <li>Bàn ghế ngoài trời</li>
-                                                <li>Sân hiên phơi nắng</li>
-                                                <li>Nhìn ra thành phố</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-4">
-                                            <h6>Phòng ngủ</h6>
-                                            <ul>
-                                                <li>Giường đôi</li>
-                                                <li>Tủ để quần áo</li>
-                                                <li>Hệ thống cách âm</li>
-                                                <li>Đồng hồ báo thức</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-4">
-                                            <h6>Phòng tắm</h6>
-                                            <ul>
-                                                <li>Phòng tắm riêng</li>
-                                                <li>Áo choàng tắm</li>
-                                                <li>Máy sấy tóc</li>
-                                                <li>Khăn tắm</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-4">
-                                            <h6>Khác</h6>
-                                            <ul>
-                                                <li>Wi-fi có ở các khu vực công cộng</li>
-                                                <li>Lễ tân 24 giờ</li>
-                                                <li>Báo động an ninh</li>
-                                                <li>Két an toàn</li>
-                                            </ul>
-                                        </div>
+                                        <h6>Dịch vụ có sẵn</h6>
+                                        @foreach($facilityHomestay as $fH)
+                                            <div class="col-xs-6 col-lg-4">
+                                                <ul>
+                                                    <li>{{$fH->Facility->name}}</li>
+
+                                                </ul>
+                                            </div>
+                                        @endforeach
+
                                     </div>
 
                                 </div>

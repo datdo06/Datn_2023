@@ -77,7 +77,7 @@
                                         class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                                         <div class="col p-4 d-flex flex-column position-static">
                                             <strong class="d-inline-block mb-2 text-secondary">{{ $room->capacity }}
-                                                {{ Str::plural('Người', $room->capacity) }}</strong>
+                                                {{ Str::plural('', $room->capacity) }} Người</strong>
                                             <h3 class="mb-0">{{ $room->number }} ~ {{ $room->type->name }}</h3>
                                             <div class="mb-1 text-muted">{{ Helper::convertToRupiah($room->price) }} /
                                                 Đêm

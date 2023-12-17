@@ -116,15 +116,11 @@
             <p><strong>Bạn được giảm: </strong>{{\App\Helpers\Helper::convertToRupiah(($price*$transactionCoupon->Coupon->coupon_number/100))}}</p>
         @endif
     @endif
+    <p><strong>Tổng tiền phải trả:</strong> {{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</p>
     <p><strong>Tiền đã trả:</strong> {{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment())}}</p>
-    <p><strong>Tổng giá:</strong> {{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</p>
-
     <p><strong>Lưu ý: </strong>Chính sách hoàn tiền của homestay của chúng tôi</p>
-    <p>Nếu quý khách hủy trước 3 ngày sẽ được hoàn lại 100% phí đã đặt cọc</p>
-    <p>Nếu quý khách hủy từ 3 đến 7 ngày sẽ được hoàn lại 15% phí đã đặt cọc</p>
-    <p>Nếu quý khách hủy sau 7 ngày sẽ bị mất hoàn toàn phí đã đặt cọc</p>
+    <p>Nếu quý khách hủy đặt phòng sẽ mất 100% phí đã đặt cọc</p>
     <p>Nếu bạn có bất kỳ câu hỏi hoặc cần sự hỗ trợ bổ sung, vui lòng liên hệ với chúng tôi</p>
-
     <p>Chúng tôi rất mong được phục vụ bạn tại homestay của chúng tôi. Chúc bạn có một kỳ nghỉ thú vị!</p>
 
     <p>Trân trọng,</p>

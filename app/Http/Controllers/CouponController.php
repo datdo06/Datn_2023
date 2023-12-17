@@ -7,6 +7,8 @@ use App\Models\Coupon;
 use App\Repositories\Interface\CouponRepositoryInterface;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
+
 class CouponController extends Controller
 {
     private $couponRepository;
@@ -78,19 +80,25 @@ class CouponController extends Controller
         $coupon = Coupon::where('coupon_code', $data['coupon'])
             ->first();
 
-//        if (session('coupon')) {
-//            session()->forget('coupon');
-//        }
 
         if ($coupon && $coupon->coupon_time > 0 && !$coupon->expired && $currentDate->between($coupon->start_time, $coupon->end_time)) {
             // Mã giảm giá hợp lệ
             $coupon->coupon_time -= 1;
             $coupon->save();
-            session()->put('coupon', $coupon);
+            Session::put('coupon', $coupon);
+            Session::save();
             return redirect()->back()->with('success', 'Mã giảm giá đã được áp dụng.');
         } else {
             // Mã giảm giá không hợp lệ
             return redirect()->back()->with('error', 'Mã giảm giá không hợp lệ.');
+        }
+    }
+    public function del_coupon()
+    {
+        $coupon = Session::get('coupon');
+        if ($coupon == true) {
+            Session::forget('coupon');
+            return redirect()->back()->with('success', 'Xóa mã thành công');
         }
     }
 }

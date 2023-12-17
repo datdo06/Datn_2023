@@ -35,7 +35,7 @@
                                             <h6>Giá Thuê</h6>
                                             <ul>
                                                 <li>
-                                                   <span>Giá/Ngày</span>
+                                                   <span>Tiền/Ngày</span>
                                                    <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
                                             </ul>
@@ -67,7 +67,21 @@
 
                                                 class="reservation-amout">{{ $data['total_day'] }} Ngày</span>
                                         </div>
-
+                                      
+                                           
+                                            @if (session('coupon'))
+                                            <div class="reservation-room-seleted_total-room">
+                                             Mã giảm
+                                                @if (session('coupon')->coupon_condition == 0)
+                                                    <span class="reservation-amout">
+                                                        {{ session('coupon')->coupon_number }} %</span>
+                                                @elseif(session('coupon')->coupon_condition == 2)
+                                                    <span class="reservation-amout">
+                                                        {{  Helper::convertToRupiah(session('coupon')->coupon_number)  }} VND</span>
+                                                @endif
+                                            </div>
+                                            @endif
+                                      
 
                                         <div class="reservation-room-seleted_total-room">
 

@@ -137,8 +137,34 @@ $(function (){
         console.log(data);
         handleData(data);
     });
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth();
+    var year = date.getFullYear();
+    var dayinmonth = new Date(year, month, 0).getDate();
+    var x = year + '-' + month + '-' + '01';
+    var y = year + '-' + month + '-' + dayinmonth;
+    $("#tu").val(x);
+    $("#den").val(y);
     $(document).on('change', '#filter',async function (){
         var selectedType = $("#filter").val();
+        if(selectedType == 2 ){
+            var currentDate = new Date();
+            var currentDayOfWeek = currentDate.getDay();
+            var firstMondayOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDayOfWeek + 1);
+            var mondayDate = new Date(firstMondayOfWeek.getFullYear(), firstMondayOfWeek.getMonth(), firstMondayOfWeek.getDate());
+            var mondayDay = mondayDate.getDate();
+            var mondayMonth = mondayDate.getMonth() + 1;
+            var mondayYear = mondayDate.getFullYear();
+            var sundayDate = new Date(firstMondayOfWeek.getFullYear(), firstMondayOfWeek.getMonth(), firstMondayOfWeek.getDate() + 6);
+            var sundayDay = sundayDate.getDate();
+            var sundayMonth = sundayDate.getMonth() + 1;
+            var sundayYear = sundayDate.getFullYear();
+            var y = sundayYear + '-' + sundayMonth + '-' + sundayDay;
+            var x = mondayYear + '-' + mondayMonth + '-' + mondayDay;
+            $("#tu").val(x);
+            $("#den").val(y);
+        }
         const response = await $.ajax({
             url: '/money', // Điều này cần được thay thế bằng địa chỉ endpoint của bạn
             method: 'GET',
@@ -156,7 +182,6 @@ $(function (){
 
     });
     $(document).on('click','#xem', async function (){
-
         var tu  = $("#tu").val();
         var den = $("#den").val();
         // Gửi giá trị đã chọn lên server bằng AJAX

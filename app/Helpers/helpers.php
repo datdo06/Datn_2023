@@ -34,7 +34,7 @@ class Helper
 
     public static function dateFormat($date)
     {
-        return Carbon::parse($date)->isoFormat('D MMM YYYY');
+        return Carbon::parse($date)->locale('vi')->isoFormat('D MMM YYYY');
     }
 
     public static function dateFormatTime($date)
@@ -44,7 +44,7 @@ class Helper
 
     public static function dateFormatTimeNoYear($date)
     {
-        return Carbon::parse($date)->isoFormat('D MMM, hh:mm a');
+        return Carbon::parse($date)->locale('vi')->isoFormat('D MMM, hh:mm a');
     }
 
     public static function getDateDifference($check_in, $check_out)

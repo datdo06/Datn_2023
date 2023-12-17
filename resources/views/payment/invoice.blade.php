@@ -127,8 +127,8 @@
                             <tbody>
                             <tr class="add">
                                 <td>Khoản trả trước tối thiểu</td>
-                                <td>Trả hết</td>
-                                <td>Thanh toán không đủ</td>
+                                <td>Đã trả</td>
+                                <td>Số tiền cần phải trả</td>
                                 <td>Tổng thanh toán</td>
                             </tr>
                             <tr class="content">
@@ -149,7 +149,7 @@
                             </tr>
                             <tr class="content">
                                 <td>
-                                    Tên khách hàng : {{ $transaction->user->name }}
+                                    Tên khách hàng : {{ $transaction->guest_name }}
                                 </td>
                             </tr>
                             </tbody>

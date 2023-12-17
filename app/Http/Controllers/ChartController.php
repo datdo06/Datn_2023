@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Models\Payment;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -57,9 +58,7 @@ class ChartController extends Controller
     }
     public function sumMoneyPerDay($day)
     {
-        $today =  Carbon::now()->format('Y-m-d');
-        $sum_money = Transaction::where('check_in', '=', $day)->where('check_out', '<=', $today)->sum('sum_money');
-
+        $sum_money = Payment::where('created_at', '=', $day)->sum('price');
         return $sum_money;
     }
 
@@ -72,7 +71,7 @@ class ChartController extends Controller
         $yeard = Carbon::now()->format('Y');
         $timed =  strtotime($monthd . '/' . $today. '/' . $yeard);
         $dated = date('Y-m-d', $timed);
-        $sum_money = Transaction::where('check_in', '=', $date)->where('check_out', '<=', $dated)->sum('sum_money');
+        $sum_money = Payment::where('created_at', '=', $date)->sum('price');;
         return $sum_money;
     }
     public function sumMoneyPerWeek($month, $day, $year){

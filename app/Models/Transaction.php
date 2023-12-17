@@ -14,6 +14,9 @@ class Transaction extends Model
 
     protected $fillable = [
         'user_id',
+        'guest_name',
+        'guest_email',
+        'guest_phone',
         'room_id',
         'check_in',
         'check_out',
@@ -53,7 +56,7 @@ class Transaction extends Model
     public function getDateDifferenceWithPlural()
     {
         $day = Helper::getDateDifference($this->check_in, $this->check_out);
-        $plural = Str::plural('Day', $day);
+        $plural = "Ngày";
         return $day . ' ' . $plural;
     }
 

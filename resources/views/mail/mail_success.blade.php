@@ -90,11 +90,12 @@
     <div class="header">
         <h1>Đặt homestay thành công</h1>
     </div>
-    <p>Xin chào {{$user->name}},</p>
+    <p>Xin chào {{$transaction->guest_name}},</p>
     <p>Cảm ơn bạn đã đặt homestay của chúng tôi. Homestay của bạn đã đặt được xác nhận và thông tin chi tiết như
         sau:</p>
 
     <h2>Thông tin đặt homestay</h2>
+    <p><strong>Ngày đặt phòng:</strong> {{\App\Helpers\Helper::dateFormat($payment->created_at)}}</p>
     <p><strong>Ngày nhận phòng:</strong> {{\App\Helpers\Helper::dateFormat($transaction->check_in)}}</p>
     <p><strong>Ngày trả phòng:</strong> {{\App\Helpers\Helper::dateFormat($transaction->check_out)}}</p>
     <p><strong>Homestay đã đặt: </strong>{{$transaction->room->number}} - {{$transaction->room->type->name}}</p>
@@ -115,7 +116,9 @@
             <p><strong>Bạn được giảm: </strong>{{\App\Helpers\Helper::convertToRupiah(($price*$transactionCoupon->Coupon->coupon_number/100))}}</p>
         @endif
     @endif
+    <p><strong>Tiền đã trả:</strong> {{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment())}}</p>
     <p><strong>Tổng giá:</strong> {{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</p>
+
     <p><strong>Lưu ý: </strong>Chính sách hoàn tiền của homestay của chúng tôi</p>
     <p>Nếu quý khách hủy trước 3 ngày sẽ được hoàn lại 100% phí đã đặt cọc</p>
     <p>Nếu quý khách hủy từ 3 đến 7 ngày sẽ được hoàn lại 15% phí đã đặt cọc</p>

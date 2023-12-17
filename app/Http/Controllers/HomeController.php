@@ -50,6 +50,7 @@ class HomeController extends Controller
     {
         $stayFrom = $request->check_in;
         $stayUntil = $request->check_out;
+        $count_person = $request->count_person;
         $type = Type::query()->get();
         $checkin = date_create($request->check_in);
         $checkout = date_create($request->check_out);
@@ -82,7 +83,6 @@ class HomeController extends Controller
         $room_type = Type::query()->get();
         $roomImage = Image::query()
             ->get();
-
         $room_type = Type::query()->get();
 
         $rooms = Room::query()

@@ -10,14 +10,9 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'transaction_id',
         'price',
         'status',
-        'code_vnpay',
-        'vnp_response_code',
-        'code_bank',
-        'p_time'
     ];
 
     public function transaction()
@@ -25,8 +20,4 @@ class Payment extends Model
         return $this->belongsTo(Transaction::class);
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

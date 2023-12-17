@@ -12,7 +12,7 @@
                         <th scope="col">Trả hết</th>
                         <th scope="col">Trạng thái</th>
                         <th scope="col">Tại</th>
-                        <th scope="col">Phục vụ bởi</th>
+                        <th scope="col">Khách hàng</th>
                         <th scope="col">Hành động</th>
                     </tr>
                 </thead>
@@ -25,8 +25,8 @@
                             <td>{{ $payment->transaction->room->number }}</td>
                             <td>{{ Helper::convertToRupiah($payment->price) }}</td>
                             <td>{{ $payment->status }}</td>
-                            <td>{{ Helper::dateFormatTime($payment->created_at) }}</td>
-                            <td>{{ $payment->user->name }}</td>
+                            <td>{{ Helper::dateFormat($payment->created_at) }}</td>
+                            <td>{{ $payment->transaction->guest_name }}</td>
                             <td> <a href="{{ route('payment.invoice', $payment->id) }}">Invoice</a> </td>
                         </tr>
                     @empty

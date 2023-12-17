@@ -52,7 +52,7 @@ class NewRoomReservationDownPayment extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('Room '.$this->transaction->room->number . ' has been reservated by ' . $this->transaction->user->name)
+            ->line('Room '.$this->transaction->room->number . ' has been reservated by ' . $this->transaction->guest_name)
             ->line('Payment: ' . Helper::convertToRupiah($this->payment->price))
             ->line('Status: ' . $this->payment->status.' Success')
             ->action('See invoice', route('payment.invoice',['payment'=>$this->payment->id]));
@@ -67,7 +67,7 @@ class NewRoomReservationDownPayment extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'Room ' . $this->transaction->room->number . ' reservated by ' . $this->transaction->user->name . '. Payment: ' . Helper::convertToRupiah($this->payment->price),
+            'message' => 'Homestay ' . $this->transaction->room->number . ' đặt trước bởi ' . $this->transaction->guest_name . '. Đã trả: ' . Helper::convertToRupiah($this->payment->price),
             'url' => route('payment.invoice', ['transaction' => $this->transaction->id])
         ];
     }
@@ -75,7 +75,7 @@ class NewRoomReservationDownPayment extends Notification
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'message' => 'Room ' . $this->transaction->room->number . ' reservated by ' . $this->transaction->user->name,
+            'message' => 'Homestay ' . $this->transaction->room->number . ' đặt trước bởi ' . $this->transaction->guest_name,
             'url' => route('payment.invoice', ['transaction' => $this->transaction->id])
         ]);
     }

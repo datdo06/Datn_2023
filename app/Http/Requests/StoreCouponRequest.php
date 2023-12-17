@@ -28,6 +28,8 @@ class StoreCouponRequest extends FormRequest
             'coupon_code' => 'required',
             'coupon_time' => 'required',
             'coupon_number' => 'required',
+            'start_time'=>'required',
+            'end_time'=>'required',
             'coupon_condition' => 'required',
         ];
     }
@@ -38,6 +40,8 @@ class StoreCouponRequest extends FormRequest
             'coupon_time.required' => 'Số mã còn lại không được để trống',
             'coupon_number.required' => 'Số tiền giảm không được để trống',
             'coupon_condition.required' => 'Phương thức không được để trống',
+            'start_time.required' => 'Ngày bắt đầu không được để trống',
+            'end_time.required' => 'Ngày kết thúc không được để trống',
         ];
     }
 }

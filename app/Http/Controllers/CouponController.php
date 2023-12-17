@@ -38,7 +38,7 @@ class CouponController extends Controller
 
         $coupon = $this->couponRepository->store($request);
         return response()->json([
-            'message' => 'success', 'Coupon ' . $coupon->name . ' created'
+            'message' => 'Mã giảm giá ' . $coupon->name . ' tạo thành công'
         ]);
     }
 
@@ -55,7 +55,7 @@ class CouponController extends Controller
     {
         $coupon->update($request->all());
         return response()->json([
-            'message' => 'success', 'Type ' . $coupon->coupon_name . ' udpated!'
+            'message' => 'Mã giảm giá  ' . $coupon->coupon_name . ' cập nhật thành công!'
         ]);
     }
 
@@ -64,11 +64,11 @@ class CouponController extends Controller
         try {
             $coupon->delete();
             return response()->json([
-                'message' => 'Type ' . $coupon->name . ' deleted!'
+                'message' => 'Mã giảm giá ' . $coupon->name . ' đã được xóa'
             ]);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Type ' . $coupon->name . ' cannot be deleted! Error Code:' . $e->errorInfo[1]
+                'message' => 'Mã giảm giá ' . $coupon->name . ' không thể xóa! Lỗi:' . $e->errorInfo[1]
             ], 500);
         }
     }

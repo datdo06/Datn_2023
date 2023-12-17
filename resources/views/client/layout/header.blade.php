@@ -6,7 +6,7 @@
             <div class="header_left float-left">
                 <span><i class="lotus-icon-cloud"></i> 24 °C</span>
                 <span><i class="lotus-icon-location"></i> Việt Nam</span>
-                <span><i class="lotus-icon-phone"></i> (+84) 989999999</span>
+                <span><i class="lotus-icon-phone"></i> (+84) 987124921</span>
             </div>
             <div class="header_right float-right">
 

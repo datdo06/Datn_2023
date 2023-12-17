@@ -43,7 +43,7 @@
                                 <table class="table table-hover table-striped">
                                     <thead>
                                     <tr>
-                                        <th></th>
+
                                         <th>Họ tên</th>
                                         <th>Homestay</th>
                                         <th class="text-center">Thời gian ở</th>
@@ -57,14 +57,8 @@
                                     @forelse ($transactions as $transaction)
                                         <tr>
                                             <td>
-                                                <img src="{{ $transaction->user->getAvatar() }}"
-                                                     class="rounded-circle img-thumbnail" width="40" height="40"
-                                                     alt="">
-                                            </td>
-                                            <td>
-                                                <a
-                                                    href="{{ route('customer.show', ['user' => $transaction->user->id]) }}">
-                                                    {{ $transaction->user->name }}
+                                                <a>
+                                                    {{$transaction->guest_name}}
                                                 </a>
                                             </td>
                                             <td>
@@ -76,7 +70,7 @@
                                                 {{ Helper::dateFormat($transaction->check_in) }} ~
                                                 {{ Helper::dateFormat($transaction->check_out) }}
                                             </td>
-                                            <td>{{ Helper::getDateDifference(now(), $transaction->check_out) == 0 ? 'Last Day' : Helper::getDateDifference(now(), $transaction->check_out) . ' ' . Helper::plural('Day', Helper::getDateDifference(now(), $transaction->check_out)) }}
+                                            <td>{{ Helper::getDateDifference(now(), $transaction->check_out) == 0 ? 'Last Day' : Helper::getDateDifference(now(), $transaction->check_out) . ' ' . 'Ngày' }}
                                             </td>
                                             <td>
                                                 {{ $transaction->getTotalPrice() - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->getTotalPrice() - $transaction->getTotalPayment()) }}

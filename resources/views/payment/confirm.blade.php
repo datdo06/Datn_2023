@@ -35,7 +35,7 @@
                                             <h6>Giá Thuê</h6>
                                             <ul>
                                                 <li>
-                                                   <span>Giá/Ngày</span>                                 
+                                                   <span>Giá/Ngày</span>
                                                    <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
                                             </ul>
@@ -93,13 +93,15 @@
 
                                                Thanh toán
 
-                                                <span class="reservation-amout"><input style="margin-bottom: 70px"
-                                                                                       type="text"
-                                                                                       name="downPayment"
-                                                                                       id="downPayment">
+                                                <span class="reservation-amout">
+                                                    <select name="downPayment" id="downPayment" class="form-control">
+                                                        <option value="{{$minimumDownPayment}}">Thanh toán tiền cọc</option>
+                                                        <option value="{{$data['sum_money']}}">Thanh toán toàn bộ</option>
+                                                    </select>
                                                 </span>
                                             </div>
                                             <input type="hidden" id="sum_money" value="{{$data['sum_money']}}">
+
                                             <div style="margin-top: 50px">
                                                 <input type="hidden" name="redirect">
                                                 <button type="button"  class="awe-btn awe-btn-13 "

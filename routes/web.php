@@ -82,17 +82,13 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
     Route::resource('user', UserController::class)->only([
         'show'
     ]);
-    Route::get('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
+
 
     Route::post('/check-coupon', [CouponController::class,'check_coupon'])->name('check-coupon');
     Route::get('/{user}/order', [TransactionRoomReservationController::class, 'TransactionHometay'])->name('order');
     Route::get('/payment/{transaction}/invoice', [PaymentController::class, 'invoice'])->name('payment.invoice');
     Route::post('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
-    Route::name('transaction.reservation.')->group(function () {
-        Route::post('/{user}/{room}/payOnlinePayment', [TransactionRoomReservationController::class, 'payOnlinePayment'])->name('payOnlinePayment');
-        Route::get('/payOnlinePayment', [TransactionRoomReservationController::class, 'vnpay'])->name('vnpay');
-        Route::post('/pay', [TransactionRoomReservationController::class, 'pay'])->name('pay');
-    });
+
     Route::get('/formComment/{room_id}', [HomeController::class, 'formComment'])->name('formComment');
     Route::post('/comment/{id}', [HomeController::class, 'postComment'])->name('postComment');
     Route::get('/comment/del/{id}', [HomeController::class, 'delComment'])->name('delComment');
@@ -117,7 +113,12 @@ Route::get('/', [HomeController::class, 'show'])->name('home');
 
 
 Route::get('/chooseRoom', [HomeController::class, 'chooseRoomU'])->name('chooseRoomU');
-
+Route::get('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
+Route::name('transaction.reservation.')->group(function () {
+    Route::post('/{room}/payOnlinePayment', [TransactionRoomReservationController::class, 'payOnlinePayment'])->name('payOnlinePayment');
+    Route::get('/payOnlinePayment', [TransactionRoomReservationController::class, 'vnpay'])->name('vnpay');
+    Route::post('/pay', [TransactionRoomReservationController::class, 'pay'])->name('pay');
+});
 Route::view('/login', 'client.login')->name('login');
 Route::view('/register', 'client.register')->name('register');
 Route::post('/addCustomer', [UserController::class, 'store'])->name('customer.add');

@@ -19,8 +19,12 @@
         </div>
         <div class="col-lg-6 mb-2">
             <form class="d-flex" method="GET" action="{{ route('transaction.index') }}">
-                <input class="form-control me-2" type="search" placeholder="Tìm theo ID" aria-label="Search"
-                    id="search-user" name="search" value="{{ request()->input('search') }}">
+                <label style="margin: 5px 5px 0 0" for="">Từ</label>
+                <input type="date" name="from" class="form-control">
+                <label style="margin: 5px 5px 0 0" for="" for="">Đến</label>
+                <input type="date" name="to" class="form-control">
+{{--                <input class="form-control me-2" type="search" placeholder="Tìm theo ID" aria-label="Search"--}}
+{{--                    id="search-user" name="search" value="{{ request()->input('search') }}">--}}
                 <button class="btn btn-outline-dark" type="submit">Tìm</button>
             </form>
         </div>
@@ -57,7 +61,7 @@
                                         <th>{{ ($transactions->currentpage() - 1) * $transactions->perpage() + $loop->index + 1 }}
                                         </th>
                                         <td>{{ $transaction->id }}</td>
-                                        <td>{{ $transaction->user->name }}</td>
+                                        <td>{{ $transaction->guest_name }}</td>
                                         <td>{{ $transaction->room->number }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
@@ -101,7 +105,7 @@
     </div>
     <div class="row my-2 mt-4 ms-1">
         <div class="col-lg-12">
-            <h5>Hết hạn: </h5>
+            <h5>Đã ở xong: </h5>
         </div>
     </div>
     <div class="row">
@@ -127,37 +131,115 @@
                             </thead>
                             <tbody>
                                 @forelse ($transactionsExpired as $transaction)
+                                @if($transaction->getTotalPayment() == $transaction->sum_money)
+                                    <tr>
+                                        <th>{{ ($transactions->currentpage() - 1) * $transactions->perpage() + $loop->index + 1 }}
+                                        </th>
+                                        <td>{{ $transaction->id }}</td>
+                                        <td>{{ $transaction->guest_name }}</td>
+                                        <td>{{ $transaction->room->number }}</td>
+                                        <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
+                                        <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
+                                        <td>{{ $transaction->getDateDifferenceWithPlural($transaction->check_in, $transaction->check_out) }}
+                                        </td>
+                                        <td>{{ Helper::convertToRupiah($transaction->sum_money) }}
+                                        </td>
+                                        <td>
+                                            {{ Helper::convertToRupiah($transaction->getTotalPayment()) }}
+                                        </td>
+                                        <td>{{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-light btn-sm rounded shadow-sm border p-1 m-0 {{$transaction->sum_money - $transaction->getTotalPayment() <= 0 ? 'disabled' : ''}}"
+                                               href="{{ route('transaction.payment.create', ['transaction' => $transaction->id]) }}"
+                                               data-bs-toggle="tooltip" data-bs-placement="top" title="Pay">
+                                                <i class="fas fa-money-bill-wave-alt"></i>
+                                            </a>
+                                            <a class="btn btn-light btn-sm rounded shadow-sm border"
+                                               href="/payment/{{$transaction->id}}/invoice"
+                                               data-bs-toggle="tooltip" data-bs-placement="top"
+                                            >
+                                                <i class="fas fa-info-circle"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @empty
                                 <tr>
-                                    <th>{{ ($transactions->currentpage() - 1) * $transactions->perpage() + $loop->index + 1 }}
-                                    </th>
-                                    <td>{{ $transaction->id }}</td>
-                                    <td>{{ $transaction->user->name }}</td>
-                                    <td>{{ $transaction->room->number }}</td>
-                                    <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
-                                    <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
-                                    <td>{{ $transaction->getDateDifferenceWithPlural($transaction->check_in, $transaction->check_out) }}
-                                    </td>
-                                    <td>{{ Helper::convertToRupiah($transaction->sum_money) }}
-                                    </td>
-                                    <td>
-                                        {{ Helper::convertToRupiah($transaction->getTotalPayment()) }}
-                                    </td>
-                                    <td>{{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-light btn-sm rounded shadow-sm border p-1 m-0 {{$transaction->sum_money - $transaction->getTotalPayment() <= 0 ? 'disabled' : ''}}"
-                                            href="{{ route('transaction.payment.create', ['transaction' => $transaction->id]) }}"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Pay">
-                                            <i class="fas fa-money-bill-wave-alt"></i>
-                                        </a>
-                                        <a class="btn btn-light btn-sm rounded shadow-sm border"
-                                           href="/payment/{{$transaction->id}}/invoice"
-                                           data-bs-toggle="tooltip" data-bs-placement="top"
-                                           >
-                                            <i class="fas fa-info-circle"></i>
-                                        </a>
+                                    <td colspan="15" class="text-center">
+                                        Không có dữ liệu gì trong bảng
                                     </td>
                                 </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                        {{ $transactions->onEachSide(2)->links('template.paginationlinks') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-2 mt-4 ms-1">
+        <div class="col-lg-12">
+            <h5>Hết hạn: </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ID</th>
+                                <th>Tên khách hàng</th>
+                                <th>Homestay</th>
+                                <th>Ngày đến</th>
+                                <th>Ngày đi</th>
+                                <th>Số ngày</th>
+                                <th>Tổng tiền</th>
+                                <th>Đã trả</th>
+                                <th>Chưa trả</th>
+                                <th>Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse ($transactionsExpired as $transaction)
+                                @if($transaction->getTotalPayment() < $transaction->sum_money)
+                                    <tr>
+                                        <th>{{ ($transactions->currentpage() - 1) * $transactions->perpage() + $loop->index + 1 }}
+                                        </th>
+                                        <td>{{ $transaction->id }}</td>
+                                        <td>{{ $transaction->guest_name }}</td>
+                                        <td>{{ $transaction->room->number }}</td>
+                                        <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
+                                        <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
+                                        <td>{{ $transaction->getDateDifferenceWithPlural($transaction->check_in, $transaction->check_out) }}
+                                        </td>
+                                        <td>{{ Helper::convertToRupiah($transaction->sum_money) }}
+                                        </td>
+                                        <td>
+                                            {{ Helper::convertToRupiah($transaction->getTotalPayment()) }}
+                                        </td>
+                                        <td>{{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-light btn-sm rounded shadow-sm border p-1 m-0 {{$transaction->sum_money - $transaction->getTotalPayment() <= 0 ? 'disabled' : ''}}"
+                                               href="{{ route('transaction.payment.create', ['transaction' => $transaction->id]) }}"
+                                               data-bs-toggle="tooltip" data-bs-placement="top" title="Pay">
+                                                <i class="fas fa-money-bill-wave-alt"></i>
+                                            </a>
+                                            <a class="btn btn-light btn-sm rounded shadow-sm border"
+                                               href="/payment/{{$transaction->id}}/invoice"
+                                               data-bs-toggle="tooltip" data-bs-placement="top"
+                                            >
+                                                <i class="fas fa-info-circle"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endif
                             @empty
                                 <tr>
                                     <td colspan="15" class="text-center">

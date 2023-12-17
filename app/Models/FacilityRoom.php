@@ -12,4 +12,10 @@ class FacilityRoom extends Model
         'room_id',
         'facility_id'
     ];
+    public function Room(){
+        return $this->belongsTo(Room::class);
+    }
+    public function Facility(){
+        return $this->belongsTo(Facility::class);
+    }
 }

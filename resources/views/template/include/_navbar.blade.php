@@ -40,7 +40,7 @@
                                         <p>
                                             {{ $notification->data['message'] }}
                                             <a
-                                                href="{{ route('notification.routeTo', ['id' => $notification->id]) }}">here</a>
+                                                href="{{ route('notification.routeTo', ['id' => $notification->id]) }}">Xem</a>
                                             {{-- <a href="{{ $notification->data['url'] }}">here</a> --}}
                                             <span class="timeline-icon" style="margin-left: -1px; margin-top:-3px"><i
                                                     class="fa fa-cash-register"></i></span>

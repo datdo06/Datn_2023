@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 
 use App\Http\Requests\StoreRoomRequest;
+use App\Models\FacilityRoom;
 use App\Models\Room;
 use App\Models\RoomStatus;
 use App\Models\Transaction;
@@ -115,6 +116,7 @@ class RoomController extends Controller
     {
         $room_type = Type::query()->get();
         $detailRoom = Room::where('id', $id)->first();
+        $facilityHomestay = FacilityRoom::query()->where('room_id', $id)->get();
         $image = Image::where('room_id', $id)->get();
         $transactions = Transaction::pluck('room_id')->toArray();
         $results = Comment::select('com_room_id', DB::raw('COUNT(*) as comment_count'))
@@ -129,7 +131,7 @@ class RoomController extends Controller
         ->get();
         $other_locations = Room::skip(4)->take(6)
         ->whereNotIn('id', $transactions)->get();
-        return view('room.detail.index', compact('detailRoom', 'image','room_type', 'other_locations','comment','results'));
+        return view('room.detail.index', compact('detailRoom', 'image','room_type', 'other_locations','comment','results', 'facilityHomestay'));
     }
 
     public function thankYou() {

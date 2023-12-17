@@ -1,5 +1,5 @@
 @extends('template.master')
-@section('title', $transaction->user->name . ' Pay Reservation')
+@section('title', $transaction->guest_name . ' Pay Reservation')
 @section('content')
     <div class="container">
         <div class="row">
@@ -70,10 +70,9 @@
                                     action="{{ route('transaction.payment.store', ['transaction' => $transaction->id]) }}">
                                     @csrf
                                     <div class="row mb-3">
-                                        <label for="payment" class="col-sm-2 col-form-label">Thanh toán</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control @error('payment') is-invalid @enderror"
-                                                placeholder="Nhập số tiền thanh toán" value="" id="payment" name="payment">
+                                            <input type="hidden" class="form-control @error('payment') is-invalid @enderror"
+                                                placeholder="Nhập số tiền thanh toán" value="{{$transaction->sum_money - $transaction->getTotalPayment()}}" id="payment" name="payment">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -82,10 +81,10 @@
                                     </div>
                                     @error('payment')
                                         <div class="text-danger mt-1">
-                                            {{ $message }}
+{{--                                            {{ $message }}--}}
                                         </div>
                                     @enderror
-                                    <button class="btn btn-success float-end">Thanh toán</button>
+                                    <button class="btn btn-success float-end">Đã thanh toán</button>
                                 </form>
                             </div>
                         </div>
@@ -94,20 +93,19 @@
             </div>
             <div class="col-lg-3 mt-2">
                 <div class="card shadow-sm">
-                    <img src="{{ $transaction->user->getAvatar() }}"
-                        style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem">
+
                     <div class="card-body">
                         <table>
                             <tr>
                                 <td style="text-align: center; width:50px">
                                     <span>
                                         <i
-                                            class="fas {{ $transaction->user->gender == 'Male' ? 'fa-male' : 'fa-female' }}">
+                                            class="fas {{ $transaction->gender == 'Male' ? 'fa-male' : 'fa-female' }}">
                                         </i>
                                     </span>
                                 </td>
                                 <td>
-                                    {{ $transaction->user->name }}
+                                    {{ $transaction->guest_name }}
                                 </td>
                             </tr>
                             <tr>
@@ -117,7 +115,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    {{ $transaction->user->location }}
+                                    {{ $transaction->location }}
                                 </td>
                             </tr>
                         </table>

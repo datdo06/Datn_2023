@@ -56,7 +56,7 @@ class FacilityRoomController extends Controller
     {
 
         $homestays = Room::query()->get();
-        $facilities = Facility::query()->get();
+        $facilities = Facility::query()->where('status', 'Trong HomeStay')->get();
         $view = view('facility_room.edit', compact('facilityRoom', 'homestays', 'facilities'))->render();
         return response()->json([
             'view' => $view,

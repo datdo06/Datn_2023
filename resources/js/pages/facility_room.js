@@ -68,7 +68,6 @@ $(function() {
             },
             buttonsStyling: false
         })
-
         swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
             text: "District will be deleted, You won't be able to revert this!",
@@ -133,12 +132,11 @@ $(function() {
         }
     }).on('click', '[data-action="edit-facility-room"]', async function() {
         modal.show()
-        $('#main-modal .modal-body').html(`Fetching data`)
+        $('#main-modal .modal-body').html(`Tải dữ liệu`)
         var facilityRoomID = $(this).data('facility-room-id')
         const response = await $.get(`/facility_room/${facilityRoomID}/edit`);
         if (!response) return
-
-        $('#main-modal .modal-title').text('Edit Facility Room')
+        $('#main-modal .modal-title').text('Sửa dịch vụ của homestay')
         $('#main-modal .modal-body').html(response.view)
         $('.select2').select2();
     }).on('submit', '.delete-facility_room', async function(e) {
@@ -151,7 +149,6 @@ $(function() {
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             })
             console.log(response);
-
             if (!response) return
 
             Swal.fire({

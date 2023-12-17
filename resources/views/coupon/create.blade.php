@@ -15,7 +15,7 @@
         <label for="name" class="form-label">Mã</label>
         <input type="text" class="form-control @error('coupon_code') is-invalid @enderror" id="coupon_code"
                name="coupon_code" value="{{ old('coupon_code') }}">
-        @error('name')
+        @error('coupon_code')
         <div class="text-danger mt-1">
             {{ $message }}
         </div>
@@ -26,7 +26,7 @@
         <label for="name" class="form-label">Số mã còn lại</label>
         <input type="text" class="form-control @error('coupon_time') is-invalid @enderror" id="coupon_time"
                name="coupon_time" value="{{ old('coupon_time') }}">
-        @error('name')
+        @error('coupon_time')
         <div class="text-danger mt-1">
             {{ $message }}
         </div>
@@ -58,7 +58,7 @@
     <div class="col-md-12">
         <label for="name" class="form-label">Ngày hết</label>
         <input type="date" class="form-control @error('end_time') is-invalid @enderror" id="end_time"
-               name="end_time" value="{{ old('end_time') }}">
+               name="end_time" value="{{old('end_time') }}">
         @error('end_time')
         <div class="text-danger mt-1">
             {{ $message }}
@@ -69,7 +69,7 @@
     <div class="col-md-12">
         <label for="information" class="form-label">Phương thức</label>
         <select class="form-select @error('coupon_condition') is-invalid @enderror" id="coupon_condition" name="coupon_condition" aria-label="Chọn giảm theo % hoặc tiền">
-            <option selected>Chọn: </option>
+            <option selected value="">Chọn: </option>
             <option value="1">Theo phần trăm</option>
             <option value="2">Theo tiền</option>
         </select>

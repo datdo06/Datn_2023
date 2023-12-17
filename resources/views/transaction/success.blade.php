@@ -100,11 +100,12 @@
     <div class="header">
         <h1>Đặt homestay thành công</h1>
     </div>
-    <p>Xin chào {{$user->name}},</p>
+    <p>Xin chào {{$transaction->guest_name}},</p>
     <p>Cảm ơn bạn đã đặt phòng tại khách sạn chúng tôi. Đặt phòng của bạn đã được xác nhận và thông tin đặt phòng chi tiết như sau:</p>
 
     <h2>Thông tin đặt phòng</h2>
     <ul>
+        <li><strong>Ngày đặt phòng</strong>{{\App\Helpers\Helper::dateFormat($payment->created_at)}}</li>
         <li><strong>Ngày nhận phòng:</strong> {{\App\Helpers\Helper::dateFormat($transaction->check_in)}}</li>
         <li><strong>Ngày trả phòng:</strong> {{\App\Helpers\Helper::dateFormat($transaction->check_out)}}</li>
         <li><strong>Homestay đã đặt: </strong>{{$transaction->room->number}} - {{$transaction->room->type->name}}</li>
@@ -126,9 +127,10 @@
             @endif
         @endif
         <li><strong>Tổng giá:</strong> {{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</li>
+        <li><strong>Tiền đã trả trước</strong>{{\App\Helpers\Helper::convertToRupiah($payment->price)}}</li>
     </ul>
 
-    <p>Hãy kiểm tra email này để xem lại thông tin đặt phòng của bạn. Nếu bạn có bất kỳ câu hỏi hoặc cần sự hỗ trợ bổ sung, vui lòng liên hệ với chúng tôi tại kingtheland@gmail.com hoặc số điện thoại 0123456789.</p>
+    <p>Hãy kiểm tra email này để xem lại thông tin đặt phòng của bạn. Nếu bạn có bất kỳ câu hỏi hoặc cần sự hỗ trợ bổ sung, vui lòng liên hệ với chúng tôi tại kingtheland@gmail.com hoặc số điện thoại 0987124921.</p>
 
     <p>Chúng tôi rất mong được phục vụ bạn tại homestay của chúng tôi. Chúc bạn có một kỳ nghỉ thú vị!</p>
 

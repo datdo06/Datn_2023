@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\CancelHomestayMail;
 use App\Mail\SuccessHomestayMail;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -16,16 +17,16 @@ use Illuminate\Support\Facades\Mail;
 class SendSuccessMail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    private $user;
+    private $transaction;
     private $mail;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(User $user , SuccessHomestayMail $mail)
+    public function __construct(Transaction $transaction , SuccessHomestayMail $mail)
     {
-        $this->user = $user;
+        $this->transaction = $transaction;
         $this->mail = $mail;
 
     }
@@ -37,6 +38,6 @@ class SendSuccessMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send($this->mail);
+        Mail::to($this->transaction->guest_email)->send($this->mail);
     }
 }

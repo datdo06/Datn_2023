@@ -52,7 +52,7 @@ class RoomStatusController extends Controller
     {
         $roomstatus->update($request->all());
         return response()->json([
-            'message' => 'success', 'Room ' . $roomstatus->name . ' udpated'
+            'message' =>  'Thiết kế ' . $roomstatus->name . ' đã được cập nhật '
         ]);
     }
 
@@ -61,12 +61,12 @@ class RoomStatusController extends Controller
         try {
             $roomstatus->delete();
             return response()->json([
-                'message' => 'Room ' . $roomstatus->name . ' deleted!'
+                'message' => 'Homestay ' . $roomstatus->name . ' đã xóa dịch vụ!'
             ]);
             return redirect()->route('roomstatus.index')->with('success', 'Room ' . $roomstatus->name . ' deleted!');
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Type ' . $roomstatus->name . ' cannot be deleted! Error Code:' . $e->errorInfo[1]
+                'message' => 'Thiết kế ' . $roomstatus->name . ' không thể xóa! Lỗi: ' . $e->errorInfo[0]
             ], 500);
         }
     }

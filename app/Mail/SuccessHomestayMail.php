@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Payment;
 use App\Models\Transaction;
 use App\Models\TransactionFacility;
 use App\Models\User;
@@ -16,22 +17,22 @@ use Illuminate\Support\Facades\DB;
 class SuccessHomestayMail extends Mailable
 {
     use Queueable, SerializesModels;
-    private $user;
     private $transaction;
     private $transactionCoupon;
     private $transactionFacility;
+    private $payment;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, Transaction $transaction, $transactionCoupon, $transactionFacility)
+    public function __construct( Transaction $transaction, $transactionCoupon, $transactionFacility, Payment $payment)
     {
         $this->transaction = $transaction;
-        $this->user = $user;
         $this->transactionCoupon = $transactionCoupon;
         $this->transactionFacility = $transactionFacility;
+        $this->payment = $payment;
     }
 
     /**
@@ -50,10 +51,10 @@ class SuccessHomestayMail extends Mailable
         return $this->subject('Đặt homestay thành công')
             ->view('mail.mail_success')
             ->with([
-                'user'=>$this->user,
                 'transaction'=>$this->transaction,
                 'transactionCoupon'=>$this->transactionCoupon,
                 'transactionFacility'=>$this->transactionFacility,
+                'payment'=>$this->payment,
             ]);
 
     }

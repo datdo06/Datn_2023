@@ -84,7 +84,8 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
     ]);
 
 
-    Route::post('/check-coupon', [CouponController::class,'check_coupon'])->name('check-coupon');
+
+    
     Route::get('/{user}/order', [TransactionRoomReservationController::class, 'TransactionHometay'])->name('order');
     Route::get('/payment/{transaction}/invoice', [PaymentController::class, 'invoice'])->name('payment.invoice');
     Route::post('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
@@ -140,7 +141,8 @@ Route::get('/booking', function () {
 
 Route::get('/money', [ChartController::class,'dailyMoneysPerMonth']);
 Route::post('/{transaction}/mail', [TransactionRoomReservationController::class, 'CancelHomstay'])->name('cancelHomestay');
-
+Route::post('/check-coupon', [CouponController::class,'check_coupon'])->name('check-coupon');
+Route::get('/del-coupon', [CouponController::class, 'del_coupon'])->name('unset-coupon');
 Route::get('/forget-password',[\App\Http\Controllers\Auth\ResetPasswordController::class, "forgetPassword"])->name('forget.password');
 Route::post('/forget-password',[\App\Http\Controllers\Auth\ResetPasswordController::class, "forgetPasswordPost"])->name('forget.password.post');
 Route::get('/reset-password/{token}', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'resetPassword'])->name('reset.password');

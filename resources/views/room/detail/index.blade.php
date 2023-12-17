@@ -59,10 +59,10 @@
                             <div class="room-detail_total">
                                 <img src="img/icon-logo.png" alt="" class="icon-logo">
 
-                                <h6>Bắt đầu homestay từ</h6>
+                                <h6>Giá phòng</h6>
 
                                 <p class="price">
-                                    <span class="amout">{{ Helper::convertToRupiah($detailRoom->price) }}</span> /days
+                                    <span class="amout">{{ Helper::convertToRupiah($detailRoom->price) }}</span> /Đêm
                                 </p>
                             </div>
 
@@ -108,10 +108,10 @@
                                             method="GET">
                                 @endif
                                 @csrf
-                                <label>Đến</label>
+                                <label>Ngày đến</label>
                                 <input type="text" class="awe-calendar from" placeholder="Ngày đến" id="check_in"
                                     name="checkin" value="{{ old('checkin') }}" required>
-                                <label>Khởi hành</label>
+                                <label>Ngày đi</label>
 
                                 <input type="text" class="awe-calendar to" placeholder="Ngày đi" id="check_out"
                                     name="checkout" value="{{ old('checkout') }}" required>
@@ -163,9 +163,9 @@
                                         <div class="col-xs-6 col-md-4">
                                             <h6>Thông tin Homestay</h6>
                                             <ul>
-                                                <li> {{$detailRoom->capacity}} người </li>
-                                                <li>Diện tích {{$detailRoom->acreage}} m<sup>2</sup></li>
-                                                <li>Phong cách {{$detailRoom->roomStatus->name}}</li>
+                                                <li> {{$detailRoom->capacity}} người tối đa</li>
+                                                <li>Diện tích: {{$detailRoom->acreage}} m<sup>2</sup></li>
+                                                <li>Phong cách: {{$detailRoom->roomStatus->name}}</li>
                                             </ul>
                                         </div>
                                     </div>

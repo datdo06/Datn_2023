@@ -144,7 +144,7 @@
                                                     <p>{{ $room->view }}</p>
                                                     <ul>
                                                         <li>Địa điểm: {{ $room->location }}</li>
-                                                        <li>Số người: {{$room->capacity}}</li>
+                                                        <li>Số người tối đa có thể ở: {{$room->capacity}}</li>
                                                         @foreach ($roomstatus as $st)
                                                         @if ($room->room_status_id == $st->id)
                                                         <li>{{$st->name}}</li>
@@ -156,7 +156,7 @@
                                                    class="reservation-room_view-more">Chi tiết</a>
                                                 <div class="clear"></div>
                                                 <p class="reservation-room_price">
-                                                    <span class="reservation-room_amout">{{ Helper::convertToRupiah($room->price) }}</span>/ ngày
+                                                    <span class="reservation-room_amout">{{ Helper::convertToRupiah($room->price) }}</span>/ đêm
                                                 </p>
                                                 <button type="submit" class="awe-btn awe-btn-default">Đặt ngay
                                                 </button>

@@ -35,8 +35,8 @@
                                             <h6>Giá Thuê</h6>
                                             <ul>
                                                 <li>
-                                                   <span>Giá/Ngày</span>
-                                                   <span>{{ Helper::convertToRupiah($room->price) }}</span>
+                                                    <span>Giá/Ngày</span>
+                                                    <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -76,6 +76,51 @@
                                             <span
                                                 class="reservation-amout">{{ Helper::convertToRupiah($data['sum_money']) }}</span>
                                         </div>
+                                        @if(auth()->user()->id)
+                                            <div class="reservation-room-seleted_total-room">
+
+                                                Họ và tên
+
+                                                <span
+                                                    class="reservation-amout">{{auth()->user()->name}}</span>
+                                            </div>
+                                            <div class="reservation-room-seleted_total-room">
+
+                                                Email
+
+                                                <span
+                                                    class="reservation-amout">{{auth()->user()->email}}</span>
+                                            </div>
+                                            <div class="reservation-room-seleted_total-room">
+
+                                                Số điện thoại
+
+                                                <span
+                                                    class="reservation-amout">{{auth()->user()->phone}}</span>
+                                            </div>
+                                        @else
+                                            <div class="reservation-room-seleted_total-room">
+
+                                                Họ và tên
+
+                                                <span
+                                                    class="reservation-amout">{{$data['guest_name']}}</span>
+                                            </div>
+                                            <div class="reservation-room-seleted_total-room">
+
+                                                Email
+
+                                                <span
+                                                    class="reservation-amout">{{$data['guest_email']}}</span>
+                                            </div>
+                                            <div class="reservation-room-seleted_total-room">
+
+                                                Số điện thoại
+
+                                                <span
+                                                    class="reservation-amout">{{$data['guest_phone']}}</span>
+                                            </div>
+                                        @endif
                                         <div class="reservation-room-seleted_total-room">
 
                                             Tiền cọc
@@ -90,13 +135,14 @@
                                             <div class="reservation-room-seleted_total-room">
 
 
-
-                                               Thanh toán
+                                                Thanh toán
 
                                                 <span class="reservation-amout">
                                                     <select name="downPayment" id="downPayment" class="form-control">
-                                                        <option value="{{$minimumDownPayment}}">Thanh toán tiền cọc</option>
-                                                        <option value="{{$data['sum_money']}}">Thanh toán toàn bộ</option>
+                                                        <option
+                                                            value="{{$minimumDownPayment}}">Thanh toán tiền cọc</option>
+                                                        <option
+                                                            value="{{$data['sum_money']}}">Thanh toán toàn bộ</option>
                                                     </select>
                                                 </span>
                                             </div>
@@ -104,7 +150,7 @@
 
                                             <div style="margin-top: 50px">
                                                 <input type="hidden" name="redirect">
-                                                <button type="button"  class="awe-btn awe-btn-13 "
+                                                <button type="button" class="awe-btn awe-btn-13 "
                                                         id="btn">XÁC NHẬN THANH TOÁN
                                                 </button>
                                             </div>

@@ -74,10 +74,10 @@
                             <form action="{{ route('check-coupon') }}" method="POST">
                                 @csrf
                                 <input type="text" name="coupon" style="width: 500px" placeholder="Nhập mã giảm giá">
-                                <input style="margin-left: 20px" type="submit" class="awe-btn awe-btn-default btn-medium font-hind bold f12 mt30" name="check_coupon"
+                                <input style="margin-left: 20px" type="submit" class="awe-btn awe-btn-3 btn-medium font-hind bold f12 mt30" name="check_coupon"
                                     value="Tính mã giảm giá">
                                 @if (Session::get('coupon'))
-                                    <a style="color: red;" class="awe-btn awe-btn-default btn-medium font-hind bold f12 mt30"
+                                    <a class="awe-btn awe-btn-4 btn-medium font-hind bold f12 mt30"
                                         href="{{ route('unset-coupon') }}">Xóa mã đang áp dụng</a>
                                 @endif
                             </form>
@@ -176,9 +176,10 @@
                                                 <span
                                                     class="reservation-amout">{{ Helper::convertToRupiah(Helper::getTotalPayment($data['total_day'], $room->price)) }}</span>
                                             </div>
-                                            <div class="reservation-room-seleted_total-room">
-                                                Mã giảm
+                                           
                                                 @if (session('coupon'))
+                                                <div class="reservation-room-seleted_total-room">
+                                                    Mã giảm
                                                     @if (session('coupon')->coupon_condition == 0)
                                                         <span class="reservation-amout">
                                                             {{ session('coupon')->coupon_number }} %</span>
@@ -186,8 +187,9 @@
                                                         <span class="reservation-amout">
                                                             {{ Helper::convertToRupiah(session('coupon')->coupon_number) }} VND</span>
                                                     @endif
+                                                </div>
                                                 @endif
-                                            </div>
+                                           
                                             <div class="">
                                                 <div class="reservation-room-seleted_total-room">
                                                     THUÊ THÊM DỊCH VỤ

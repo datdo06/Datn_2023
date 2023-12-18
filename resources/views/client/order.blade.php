@@ -134,7 +134,6 @@
                                 <form action="{{ route('cancelHomestay', $transaction->id) }}"
                                       id="form--{{ $transaction->id }}" method="post" class="delete-cus">
                                     @csrf
-                                    <input type="hidden" value="100" name="hoan">
                                 </form>
                             </td>
                         @endif
@@ -192,7 +191,6 @@
                     showConfirmButton: false,
                     timer: 1500
                 })
-                window.location.reload();
             } catch (e) {
                 if (e && e.responseJSON && e.responseJSON.message) {
                     Swal.fire({

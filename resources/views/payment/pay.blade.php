@@ -74,11 +74,11 @@
                             <form action="{{ route('check-coupon') }}" method="POST">
                                 @csrf
                                 <input type="text" name="coupon" style="width: 500px" placeholder="Nhập mã giảm giá">
-                                <input style="margin-left: 20px" type="submit" class="awe-btn awe-btn-default btn-medium font-hind bold f12 mt30" name="check_coupon"
-                                    value="Tính mã giảm giá">
+                                <input style="margin-left: 20px" type="submit" class="awe-btn awe-btn-3 btn-medium font-hind bold f12 mt30" name="check_coupon"
+                                       value="Tính mã giảm giá">
                                 @if (Session::get('coupon'))
-                                    <a style="color: red;" class="awe-btn awe-btn-default btn-medium font-hind bold f12 mt30"
-                                        href="{{ route('unset-coupon') }}">Xóa mã đang áp dụng</a>
+                                    <a class="awe-btn awe-btn-4 btn-medium font-hind bold f12 mt30"
+                                       href="{{ route('unset-coupon') }}">Xóa mã đang áp dụng</a>
                                 @endif
                             </form>
                             @if (session('success'))
@@ -92,7 +92,7 @@
                                 </div>
                             @endif
                             <form method="POST"
-                                action="{{ route('transaction.reservation.payOnlinePayment', ['room' => $room->id]) }}" id="form">
+                                  action="{{ route('transaction.reservation.payOnlinePayment', ['room' => $room->id]) }}">
                                 @csrf
                                 <div class="reservation-sidebar">
                                     <!-- RESERVATION DATE -->
@@ -176,9 +176,10 @@
                                                 <span
                                                     class="reservation-amout">{{ Helper::convertToRupiah(Helper::getTotalPayment($data['total_day'], $room->price)) }}</span>
                                             </div>
-                                            <div class="reservation-room-seleted_total-room">
-                                                Mã giảm
-                                                @if (session('coupon'))
+
+                                            @if (session('coupon'))
+                                                <div class="reservation-room-seleted_total-room">
+                                                    Mã giảm
                                                     @if (session('coupon')->coupon_condition == 0)
                                                         <span class="reservation-amout">
                                                             {{ session('coupon')->coupon_number }} %</span>
@@ -186,8 +187,8 @@
                                                         <span class="reservation-amout">
                                                             {{ Helper::convertToRupiah(session('coupon')->coupon_number) }} VND</span>
                                                     @endif
-                                                @endif
-                                            </div>
+                                                </div>
+                                            @endif
                                             <div class="">
                                                 <div class="reservation-room-seleted_total-room">
                                                     THUÊ THÊM DỊCH VỤ
@@ -198,31 +199,31 @@
                                                         <div style="display: flex; justify-content: space-between">
                                                             <div class="col-6">
                                                                 <input hidden style="width: 15px; height: 15px"
-                                                                    class="form-check-input" name="facility[]"
-                                                                    id="check{{ $a }}" type="checkbox"
-                                                                    value="{{ $facility->id }}">
+                                                                       class="form-check-input" name="facility[]"
+                                                                       id="check{{ $a }}" type="checkbox"
+                                                                       value="{{ $facility->id }}">
                                                                 <label style="font-size: 16px" class="form-check-label"
-                                                                    for="flexCheckChecked">
+                                                                       for="flexCheckChecked">
                                                                     {{ $facility->name }} (1 lần)
                                                                     ({{ Helper::convertToRupiah($facility->price) }})
                                                                 </label>
                                                             </div>
                                                             <div class="col-6 quantity-container">
                                                                 <button style="width:30px;  height: 30px" type="button"
-                                                                    id="tru{{ $a }}">-
+                                                                        id="tru{{ $a }}">-
                                                                 </button>
                                                                 <input style="width:40px; height: 30px" type="text"
-                                                                    name="quantity[]" id="quantityInput{{ $a }}"
-                                                                    value="0" readonly>
+                                                                       name="quantity[]" id="quantityInput{{ $a }}"
+                                                                       value="0" readonly>
                                                                 <button style="width:30px; height: 30px " type="button"
-                                                                    id="cong{{ $a }}">+
+                                                                        id="cong{{ $a }}">+
                                                                 </button>
                                                             </div>
                                                         </div>
 
                                                         <input type="hidden" id="x{{ $a }}" value="0">
                                                         <input type="hidden" id="price{{ $a }}"
-                                                            value="{{ $facility->price }}">
+                                                               value="{{ $facility->price }}">
                                                     </div>
                                                     @php $a +=1; @endphp
                                                 @endforeach
@@ -264,12 +265,12 @@
 
                                         @if (session('coupon'))
                                             <input type="hidden" id="sum_money" value="{{ $total_coupon }}"
-                                                name="sum_money">
+                                                   name="sum_money">
                                             <input type="hidden" name="coupon_id" value="{{ session('coupon')->id }}">
                                         @else
                                             <input type="hidden" id="sum_money"
-                                                value="{{ Helper::getTotalPayment($data['total_day'], $room->price) }}"
-                                                name="sum_money">
+                                                   value="{{ Helper::getTotalPayment($data['total_day'], $room->price) }}"
+                                                   name="sum_money">
                                         @endif
                                         <input type="hidden" value="1" name="cus">
                                     </div>
@@ -282,18 +283,16 @@
                                             <div class="comment-form">
                                                 <div class="row">
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="field-text" name="guest_name" placeholder="Họ và tên" id="name" required><br>
-                                                        <p class="errorName" style="color: red"></p>
+
+                                                        <input type="text" class="field-text" name="guest_name" placeholder="Họ và tên" required><br>
                                                     </div>
                                                     <div class="col-sm-12">
 
-                                                        <input type="text" class="field-text" name="guest_email" placeholder="Email" id="email" required><br>
-                                                        <p class="errorEmail" style="color: red"></p>
+                                                        <input type="text" class="field-text" name="guest_email" placeholder="Email" required><br>
                                                     </div>
                                                     <div class="col-sm-12">
 
-                                                        <input type="text" class="field-text" name="guest_phone" placeholder="Số điện thoại" id="phone" required><br>
-                                                        <p class="errorPhone" style="color: red"></p>
+                                                        <input type="number" class="field-text" name="guest_phone" placeholder="Số điện thoại" required><br>
                                                     </div>
                                                 </div>
                                             </div>
@@ -301,18 +300,11 @@
                                     @endif
 
                                     <br>
-                                    @if(!empty(auth()->user()->id))
-                                        <button style="margin-top: 5px" type="submit" class="awe-btn awe-btn-13">THANH TOÁN
-                                            BẰNG
-                                            VNPAY
-                                        </button>
-                                    @else
-                                        <button style="margin-top: 5px" id="sub" type="button" class="awe-btn awe-btn-13">THANH TOÁN
-                                            BẰNG
-                                            VNPAY
-                                        </button>
-                                    @endif
 
+                                    <button style="margin-top: 5px" type="submit" class="awe-btn awe-btn-13">THANH TOÁN
+                                        BẰNG
+                                        VNPAY
+                                    </button>
                                 </div>
                             </form>
 
@@ -323,7 +315,6 @@
                         <!-- CONTENT -->
                         <div class="col-md-2 col-lg-2 ">
                         </div>
-
                         <!-- END / CONTENT -->
 
                     </div>
@@ -337,60 +328,9 @@
     </div>
 @endsection
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 <script>
     $(document).ready(function() {
-        $('#sub').click(function (){
-            var check = true;
-            var name = $('#name').val();
-            var email = $('#email').val();
-            var phone = $('#phone').val();
-            var filter = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            var filterPhone = /^[0-9-+]+$/;
-            if(name == ""){
-                $('.errorName').html('Tên của bạn không được để trống');
-                check = false;
-            }else{
-                $('.errorName').html('');
-                check = true;
-            }
-
-            if(email == ""){
-                $('.errorEmail').html('Email của bạn không được để trống');
-                check = false;
-                console.log(check);
-            }
-            else if(!(filter.test(email))){
-                $('.errorEmail').html('Email của bạn không đúng định dạng');
-                check = false;
-                console.log(check);
-            }else{
-                $('.errorEmail').html('');
-                check = true;
-                console.log(check);
-            }
-            if (phone == ""){
-                $('.errorPhone').html('Số điện thoại của bạn không được để trống');
-                check = false;
-                console.log(check);
-            }else if(!(filterPhone.test(phone))){
-                $('.errorPhone').html('Số điện thoại của bạn không đúng định dạng');
-                check = false;
-                console.log(check);
-            }else if(phone.length != 10){
-                $('.errorPhone').html('Số điện thoại của bạn phải là 10 số');
-                check = false;
-            }else{
-                $('.errorPhone').html('');
-                check = true;
-            }
-            if(check){
-                $('#form').submit();
-            }
-
-        })
-
-
         $('.form-check').each(function(index, element) {
             // $('#check'+(index+1)).change(function (){
             var check = document.getElementById('check' + (index + 1));
@@ -445,7 +385,7 @@
             //     x = Number(x);
             //     x = x * currentQuantity;
             //     sum = sum - x;
-            //     $('.reservation-total').text(new Intl.NumberFormat("de-DE").format(sum) + 'VND');
+//     $('.reservation-total').text(new Intl.NumberFormat("de-DE").format(sum) + 'VND');
             //     $('#sum_money').val(sum);
             //     $('#x'+(index+1)).val(0);
             //     quantityInput.value = 0;

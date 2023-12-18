@@ -26,11 +26,27 @@ class TransactionRepository implements TransactionRepositoryInterface
         if (empty($request->from) ) {
             return Transaction::with('user', 'room')
                 ->where('check_out', '>=', Carbon::now()->format('Y-m-d'))
+                ->whereNot('status', 'Đã hủy')
                 ->orderBy('id', 'DESC')->paginate(20)
                 ->appends($request->all());
         }else{
             return Transaction::with('user', 'room')
                 ->where('check_out', '>=', Carbon::now()->format('Y-m-d'))
+                ->where('check_in', '>=', $request->from)->where('check_in', '<=', $request->to)
+                ->orderBy('id', 'DESC')->paginate(20)
+                ->appends($request->all());
+        }
+
+    }
+    public function getTransactionCancel($request)
+    {
+        if (empty($request->from) ) {
+            return Transaction::with('user', 'room')
+                ->where('status', 'Đã hủy')
+                ->orderBy('id', 'DESC')->paginate(20)
+                ->appends($request->all());
+        }else{
+            return Transaction::with('user', 'room')
                 ->where('check_in', '>=', $request->from)->where('check_in', '<=', $request->to)
                 ->orderBy('id', 'DESC')->paginate(20)
                 ->appends($request->all());

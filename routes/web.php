@@ -88,7 +88,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
 
     Route::get('/{user}/order', [TransactionRoomReservationController::class, 'TransactionHometay'])->name('order');
     Route::get('/payment/{transaction}/invoice', [PaymentController::class, 'invoice'])->name('payment.invoice');
-
+    Route::post('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
 
     Route::get('/formComment/{room_id}', [HomeController::class, 'formComment'])->name('formComment');
     Route::post('/comment/{id}', [HomeController::class, 'postComment'])->name('postComment');
@@ -110,11 +110,11 @@ Route::get('/gallery', [\App\Http\Controllers\GalleryController::class, 'index']
 Route::get('/event', [\App\Http\Controllers\EventController::class, 'index'])->name('event');
 Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
+Route::get('/term-condition', [\App\Http\Controllers\ContactController::class, 'term'])->name('term');
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
 
 Route::get('/chooseRoom', [HomeController::class, 'chooseRoomU'])->name('chooseRoomU');
-Route::post('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
 Route::get('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
 Route::name('transaction.reservation.')->group(function () {
     Route::post('/{room}/payOnlinePayment', [TransactionRoomReservationController::class, 'payOnlinePayment'])->name('payOnlinePayment');

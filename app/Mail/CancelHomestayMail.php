@@ -15,17 +15,15 @@ use function Symfony\Component\Translation\t;
 class CancelHomestayMail extends Mailable
 {
     use Queueable, SerializesModels;
-    private $user;
     private $transaction;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, Transaction $transaction)
+    public function __construct( Transaction $transaction)
     {
         $this->transaction = $transaction;
-        $this->user = $user;
 
     }
 
@@ -34,7 +32,6 @@ class CancelHomestayMail extends Mailable
         return $this->subject('Hủy đặt homestay')
             ->view('mail.mail')
             ->with([
-                'user'=>$this->user,
                 'transaction'=>$this->transaction,
             ]);
 

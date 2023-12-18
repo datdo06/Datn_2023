@@ -85,9 +85,16 @@
                                             <a class="btn btn-light btn-sm rounded shadow-sm border"
                                                href="/payment/{{$transaction->id}}/invoice"
                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                            >
+                                               title="Chi tiết" >
                                                 <i class="fas fa-info-circle"></i>
                                             </a>
+                                            <a class="btn btn-light btn-sm rounded shadow-sm border" id="delete3"
+                                                    transaction_id={{ $transaction->id }}><i class="fas fa-trash-alt"></i>
+                                            </a>
+                                            <form action="{{ route('cancelHomestay', $transaction->id) }}"
+                                                  id="form--{{ $transaction->id }}" method="post" class="delete-cus">
+                                                @csrf
+                                            </form>
                                         </td>
                                     </tr>
                                 @empty
@@ -97,6 +104,77 @@
                                         </td>
                                     </tr>
                                 @endforelse
+                            </tbody>
+                        </table>
+                        {{ $transactions->onEachSide(2)->links('template.paginationlinks') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-2 mt-4 ms-1">
+        <div class="col-lg-12">
+            <h5>Đã hủy bởi khách hàng</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ID</th>
+                                <th>Tên khách hàng</th>
+                                <th>Homestay</th>
+                                <th>Ngày đặt</th>
+                                <th>Ngày đến</th>
+                                <th>Ngày đi</th>
+                                <th>Số ngày</th>
+                                <th>Tổng tiền</th>
+                                <th>Đã trả</th>
+                                <th>Chưa trả</th>
+                                <th>Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse ($transactionCancel as $transaction)
+                                <tr>
+                                    <th>{{ ($transactions->currentpage() - 1) * $transactions->perpage() + $loop->index + 1 }}
+                                    </th>
+                                    <td>{{ $transaction->id }}</td>
+                                    <td>{{ $transaction->guest_name }}</td>
+                                    <td>{{ $transaction->room->number }}</td>
+                                    <td>{{ Helper::dateFormat($transaction->created_at) }}</td>
+                                    <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
+                                    <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
+                                    <td>{{ $transaction->getDateDifferenceWithPlural($transaction->check_in, $transaction->check_out) }}
+                                    </td>
+                                    <td>{{ Helper::convertToRupiah($transaction->sum_money) }}
+                                    </td>
+                                    <td>
+                                        {{ Helper::convertToRupiah($transaction->getTotalPayment()) }}
+                                    </td>
+                                    <td>{{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-light btn-sm rounded shadow-sm border"
+                                           href="/payment/{{$transaction->id}}/invoice"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Chi tiết" >
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="15" class="text-center">
+                                        Không có dữ liệu gì trong bảng
+                                    </td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                         {{ $transactions->onEachSide(2)->links('template.paginationlinks') }}
@@ -286,4 +364,66 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        $(function () {
+            $(document).on('click', '#delete3', function (e) {
+                var transaction_id = $(this).attr('transaction_id');
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                })
+                e.preventDefault();
+                swalWithBootstrapButtons.fire({
+                    title: 'Bạn muốn hủy homestay',
+                    text: "Homestay bạn đặt sẽ bị hủy ",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Đúng',
+                    cancelButtonText: 'Không ',
+                    reverseButtons: true
+                }).then((result) => {
+                    console.log(result);
+                    if (result.isConfirmed) {
+                        $(`#form--${transaction_id}`).submit();
+                    }
+                })
+            }).on('submit', '.delete-cus', async function (e) {
+                try {
+                    const response = await $.ajax({
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
+                        method: $(this).attr('method'),
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    })
+
+                    if (!response) return
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    window.location.reload();
+                } catch (e) {
+                    if (e && e.responseJSON && e.responseJSON.message) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: e.responseJSON.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                }
+            })
+        });
+    </script>
+
 @endsection

@@ -91,26 +91,7 @@
         @endif
         <p><strong>Số tiền bạn đã cọc: </strong>{{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment())}}</p>
         <div>
-            @if($hoan == 0)
-                <div>
-                    <p>Quý khách đã hủy đặt homestay trước 3 ngày nên sẽ được hoàn lại 100% phí đã đặt cọc</p>
-                    <p>Quý khách được
-                        hoàn {{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment())}}</p>
-                </div>
-            @elseif($hoan == 15)
-                <div>
-                    <p>Quý khách đã hủy đặt homestay từ 3 đến 7 ngày nên sẽ được hoàn lại 15% phí đã đặt cọc</p>
-                    <p>Quý khách được
-                        hoàn {{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment() - ($transaction->getTotalPayment() * $hoan /100))}}</p>
-                </div>
-            @elseif($hoan == 100)
-                <div>
-                    <div>
-                        <p>Quý khách đã hủy đặt homestay sau 7 ngày nên sẽ bị mất 100% phí đã đặt cọc</p>
-                        <p>Quý khách được hoàn {{\App\Helpers\Helper::convertToRupiah(0)}}</p>
-                    </div>
-                </div>
-            @endif
+
         </div>
         <p><strong>Tổng số tiền: </strong>{{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</p>
     </div>

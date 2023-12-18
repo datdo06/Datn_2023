@@ -60,7 +60,6 @@ class StoreRoomRequest extends FormRequest
             'acreage.numeric' => 'Chưa đúng định dạng số',
             'capacity.numeric' => 'Chưa đúng định dạng số',
             'price.numeric' => 'Chưa đúng định dạng số',
-        
         ];
     }
 }

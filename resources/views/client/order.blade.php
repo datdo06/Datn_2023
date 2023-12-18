@@ -62,7 +62,8 @@
         table tbody tr:hover {
             background-color: #e0e0e0;
         }
-        swal2-show{
+
+        swal2-show {
             width: 500px;
         }
 
@@ -98,65 +99,45 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($transactions as $transaction)
-                        <tr>
-                            <th>{{ $transaction->id }}
-                            </th>
-                            <td>{{ $transaction->room->number }}</td>
-                            <td>{{ $transaction->room->type->name }}</td>
-                            <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
-                            <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
-                            <td>{{ Helper::convertToRupiah($transaction->sum_money) }}
-                            </td>
+                @foreach ($transactions as $transaction)
+                    <tr>
+                        <th>{{ $transaction->id }}
+                        </th>
+                        <td>{{ $transaction->room->number }}</td>
+                        <td>{{ $transaction->room->type->name }}</td>
+                        <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
+                        <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
+                        <td>{{ Helper::convertToRupiah($transaction->sum_money) }}
+                        </td>
+                        <td><a style="font-weight: bold" class="btn btn-light btn-sm rounded shadow-sm border"
+                               href="/payment/{{ $transaction->id }}/invoice" data-bs-toggle="tooltip"
+                               data-bs-placement="top">
+                                Chi tiết
+                            </a></td>
+                        @php
+                            date_default_timezone_set('Asia/Ho_Chi_Minh');
+                        @endphp
+                        @if (Helper::thisNow() > $transaction->check_out)
                             <td><a style="font-weight: bold" class="btn btn-light btn-sm rounded shadow-sm border"
-                                    href="/payment/{{ $transaction->id }}/invoice" data-bs-toggle="tooltip"
-                                    data-bs-placement="top">
-                                    Chi tiết
+                                   href="/formComment/{{ $transaction->room->id }}" data-bs-toggle="tooltip"
+                                   data-bs-placement="top">
+                                    Đánh giá
                                 </a></td>
-                            @php
-                                date_default_timezone_set('Asia/Ho_Chi_Minh');
-                            @endphp
-                            @if (Helper::thisNow() > $transaction->check_out)
-                                <td><a style="font-weight: bold" class="btn btn-light btn-sm rounded shadow-sm border"
-                                        href="/formComment/{{ $transaction->room->id }}" data-bs-toggle="tooltip"
-                                        data-bs-placement="top">
-                                        Đánh giá
-                                    </a></td>
-                            @endif
-
-
-                            @if (Helper::getDateDifference(now(), $transaction->check_in) >= 0)
-                                @if (Helper::getDateDifference(now(), $transaction->check_in) <= 3)
-                                    <td>
-                                        <button class="btn btn-danger" id="delete1"
-                                            transaction_id={{ $transaction->id }}>Hủy phòng</button>
-                                        <form action="{{ route('cancelHomestay', $transaction->id) }}"
-                                            id="form--{{ $transaction->id }}" method="post">
-                                            @csrf
-                                        </form>
-                                    </td>
-                                @elseif(Helper::getDateDifference(now(), $transaction->check_in) <= 7)
-                                    <td>
-                                        <button class="btn btn-danger" id="delete2"
-                                            transaction_id={{ $transaction->id }}>Hủy phòng</button>
-                                        <form action="{{ route('cancelHomestay', $transaction->id) }}"
-                                            id="form--{{ $transaction->id }}" method="post">
-                                            @csrf
-                                            <input type="hidden" value="15" name="hoan">
-                                        </form>
-                                    </td>
-                                @else
-                                    <td>
-                                        <button class="btn btn-danger" id="delete3"
-                                            transaction_id={{ $transaction->id }}>Hủy phòng</button>
-                                        <form action="{{ route('cancelHomestay', $transaction->id) }}"
-                                            id="form--{{ $transaction->id }}" method="post" class="delete-cus">
-                                            @csrf
-                                            <input type="hidden" value="100" name="hoan">
-                                        </form>
-                                    </td>
-                                @endif
-                            @endif
+                        @endif
+                        @if ($transaction->status == 'Đã hủy')
+                            <td><a style="font-weight: bold" class="btn btn-light btn-sm rounded shadow-sm border"> Đã hủy</a></td>
+                        @elseif(Helper::getDateDifference(now(), $transaction->check_in) >= 0)
+                            <td>
+                                <button class="btn btn-danger" id="delete3"
+                                        transaction_id={{ $transaction->id }}>Hủy phòng
+                                </button>
+                                <form action="{{ route('cancelHomestay', $transaction->id) }}"
+                                      id="form--{{ $transaction->id }}" method="post" class="delete-cus">
+                                    @csrf
+                                    <input type="hidden" value="100" name="hoan">
+                                </form>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>
@@ -169,116 +150,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
     $(function () {
-        $(document).on('click', '#delete1', function (e) {
-            var transaction_id = $(this).attr('transaction_id');
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            })
-            e.preventDefault();
-            swalWithBootstrapButtons.fire({
-                title: 'Bạn muốn hủy homestay',
-                text: "Homestay bạn đặt sẽ bị hủy và sẽ không mất phí ",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Đúng',
-                cancelButtonText: 'Không ',
-                reverseButtons: true
-            }).then((result) => {
-                console.log(result);
-                if (result.isConfirmed) {
-                    $(`#form--${transaction_id}`).submit();
-                }
-            })
-        }).on('submit', '.delete-cus', async function (e) {
-            try {
-                const response = await $.ajax({
-                    url: $(this).attr('action'),
-                    data: $(this).serialize(),
-                    method: $(this).attr('method'),
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                })
-
-                if (!response) return
-
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: response.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                window.location.reload();
-            } catch (e) {
-                if (e && e.responseJSON && e.responseJSON.message) {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: e.responseJSON.message,
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            }
-        })
-        $(document).on('click', '#delete2', function (e) {
-            var transaction_id = $(this).attr('transaction_id');
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            })
-            e.preventDefault();
-            swalWithBootstrapButtons.fire({
-                title: 'Bạn muốn hủy homestay',
-                text: "Homestay bạn đặt sẽ bị hủy và sẽ được hoàn 15% phí đã cọc",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Đúng',
-                cancelButtonText: 'Không ',
-                reverseButtons: true
-            }).then((result) => {
-                console.log(result);
-                if (result.isConfirmed) {
-                    $(`#form--${transaction_id}`).submit();
-                }
-            })
-        }).on('submit', '.delete-cus', async function (e) {
-            try {
-                const response = await $.ajax({
-                    url: $(this).attr('action'),
-                    data: $(this).serialize(),
-                    method: $(this).attr('method'),
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                })
-
-                if (!response) return
-
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: response.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                window.location.reload();
-            } catch (e) {
-                if (e && e.responseJSON && e.responseJSON.message) {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: e.responseJSON.message,
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            }
-        })
         $(document).on('click', '#delete3', function (e) {
             var transaction_id = $(this).attr('transaction_id');
             const swalWithBootstrapButtons = Swal.mixin({

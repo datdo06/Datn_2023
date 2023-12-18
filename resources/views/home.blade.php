@@ -146,7 +146,7 @@
                             </p>
                             <div class="wrap-price">
                                 <p class="price">
-                                    <span class="amout">{{ $room -> price }}</span> / Ngày
+                                    <span class="amout" style="font-size: 20px">{{ Helper::convertToRupiah($room -> price) }}</span> / Đêm
                                 </p>
                                 <a href="{{ route('homestayDetail' , $room -> id) }}" class="awe-btn awe-btn-default">CHI TIẾT </a>
                             </div>

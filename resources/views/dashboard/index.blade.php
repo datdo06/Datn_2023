@@ -167,7 +167,7 @@
                                         <option value="2">Tuần này</option>
                                     </select>
                                     <div class="d-flex justify-content-between ">
-                                        <label style="margin: 5px 5px 0 0" for=""> Từ</label>
+                                            <label style="margin: 5px 5px 0 0" for=""> Từ</label>
                                         <input type="date" style="width: 150px; height: 35px" id="tu" class="form-control" >
                                         <label style="margin: 5px 5px 0 5px" for="">Đến</label>
                                         <input type="date" id="den" style="width: 150px; height: 35px" class="form-control" >

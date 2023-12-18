@@ -52,12 +52,13 @@
 
                                 <h6 class="check_availability_title" style="padding-top: 15px;">Tùy chọn:</h6>
                                 <form action="chooseRoom" method="GET">
-                                    <input type="text" hidden name="count_person"
-                                           value="{{ request()->input('count_person') }}">
                                     <input type="text" hidden name="check_in"
                                            value="{{ request()->input('check_in') }}">
                                     <input type="text" hidden name="check_out"
                                            value="{{ request()->input('check_out') }}">
+                                    Số người <br>
+                                    <input type="text"  name="count_person"
+                                           value="{{request()->input('count_person')}}">
                                     <div class="check_availability-field">
                                         <select class="awe-select" id="sort_name" name="sort_name">
                                             <option value="Price"
@@ -144,7 +145,7 @@
                                                     <p>{{ $room->view }}</p>
                                                     <ul>
                                                         <li>Địa điểm: {{ $room->location }}</li>
-                                                        <li>Số người: {{$room->capacity}}</li>
+                                                        <li>Số người tối đa có thể ở: {{$room->capacity}}</li>
                                                         @foreach ($roomstatus as $st)
                                                         @if ($room->room_status_id == $st->id)
                                                         <li>{{$st->name}}</li>
@@ -156,7 +157,7 @@
                                                    class="reservation-room_view-more">Chi tiết</a>
                                                 <div class="clear"></div>
                                                 <p class="reservation-room_price">
-                                                    <span class="reservation-room_amout">{{ Helper::convertToRupiah($room->price) }}</span>/ ngày
+                                                    <span class="reservation-room_amout">{{ Helper::convertToRupiah($room->price) }}</span>/ đêm
                                                 </p>
                                                 <button type="submit" class="awe-btn awe-btn-default">Đặt ngay
                                                 </button>

@@ -20,9 +20,9 @@
         <div class="col-lg-6 mb-2">
             <form class="d-flex" method="GET" action="{{ route('transaction.index') }}">
                 <label style="margin: 5px 5px 0 0" for="">Từ</label>
-                <input type="date" name="from" class="form-control">
+                <input type="date" name="from" value="{{request()->input('from')}}" class="form-control">
                 <label style="margin: 5px 5px 0 0" for="" for="">Đến</label>
-                <input type="date" name="to" class="form-control">
+                <input type="date" name="to" value="{{request()->input('to')}}" class="form-control">
 {{--                <input class="form-control me-2" type="search" placeholder="Tìm theo ID" aria-label="Search"--}}
 {{--                    id="search-user" name="search" value="{{ request()->input('search') }}">--}}
                 <button class="btn btn-outline-dark" type="submit">Tìm</button>
@@ -46,6 +46,7 @@
                                     <th>ID</th>
                                     <th>Tên khách hàng</th>
                                     <th>Homestay</th>
+                                    <th>Ngày đặt</th>
                                     <th>Ngày đến</th>
                                     <th>Ngày đi</th>
                                     <th>Số ngày</th>
@@ -63,6 +64,7 @@
                                         <td>{{ $transaction->id }}</td>
                                         <td>{{ $transaction->guest_name }}</td>
                                         <td>{{ $transaction->room->number }}</td>
+                                        <td>{{ Helper::dateFormat($transaction->created_at) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
                                         <td>{{ $transaction->getDateDifferenceWithPlural($transaction->check_in, $transaction->check_out) }}
@@ -77,7 +79,7 @@
                                         <td>
                                             <a class="btn btn-light btn-sm rounded shadow-sm border p-1 m-0 {{$transaction->getTotalPrice() - $transaction->getTotalPayment() <= 0 ? 'disabled' : ''}}"
                                                 href="{{ route('transaction.payment.create', ['transaction' => $transaction->id]) }}"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Pay">
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Trả">
                                                 <i class="fas fa-money-bill-wave-alt"></i>
                                             </a>
                                             <a class="btn btn-light btn-sm rounded shadow-sm border"
@@ -105,7 +107,7 @@
     </div>
     <div class="row my-2 mt-4 ms-1">
         <div class="col-lg-12">
-            <h5>Đã ở xong: </h5>
+            <h5>Đã thanh toán hết: </h5>
         </div>
     </div>
     <div class="row">
@@ -120,6 +122,7 @@
                                     <th>ID</th>
                                     <th>Tên khách hàng</th>
                                     <th>Homestay</th>
+                                    <th>Ngày đặt</th>
                                     <th>Ngày đến</th>
                                     <th>Ngày đi</th>
                                     <th>Số ngày</th>
@@ -138,6 +141,7 @@
                                         <td>{{ $transaction->id }}</td>
                                         <td>{{ $transaction->guest_name }}</td>
                                         <td>{{ $transaction->room->number }}</td>
+                                        <td>{{ Helper::dateFormat($transaction->created_at) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
                                         <td>{{ $transaction->getDateDifferenceWithPlural($transaction->check_in, $transaction->check_out) }}
@@ -181,7 +185,7 @@
     </div>
     <div class="row my-2 mt-4 ms-1">
         <div class="col-lg-12">
-            <h5>Hết hạn: </h5>
+            <h5>Hóa đơn đã hết hạn: </h5>
         </div>
     </div>
     <div class="row">
@@ -214,6 +218,7 @@
                                         <td>{{ $transaction->id }}</td>
                                         <td>{{ $transaction->guest_name }}</td>
                                         <td>{{ $transaction->room->number }}</td>
+                                        <td>{{ Helper::dateFormat($transaction->created_at) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
                                         <td>{{ $transaction->getDateDifferenceWithPlural($transaction->check_in, $transaction->check_out) }}

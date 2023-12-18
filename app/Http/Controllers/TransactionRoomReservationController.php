@@ -310,7 +310,7 @@ class TransactionRoomReservationController extends Controller
                     return view('transaction.success', compact( 'transaction', 'transactionCoupon', 'transactionFacility', 'payment'));
                 }else{
                     $transactionCoupon = TransactionCoupon::query()->find(0);
-                    $mail = new SuccessHomestayMail($transaction, $transactionCoupon, $transactionFacility);
+                    $mail = new SuccessHomestayMail($transaction, $transactionCoupon, $transactionFacility, $payment);
                     SendSuccessMail::dispatch($transaction,$mail);
                     return view('transaction.success', compact( 'transaction', 'transactionFacility' , 'payment'));
                 }
@@ -409,13 +409,13 @@ class TransactionRoomReservationController extends Controller
 
     public function CancelHomstay(Request $request, Transaction $transaction)
     {
-        $hoan = $request->hoan;
+
         $user = User::query()->findOrFail($transaction->user_id);
-        $mail = new CancelHomestayMail($user, $transaction,$hoan);
+        $mail = new CancelHomestayMail($user, $transaction);
         $transactionFacility = TransactionFacility::query()->where('transaction_id', $transaction->id)->get();
         $transactionCoupon = TransactionCoupon::query()->where('transaction_id', $transaction->id)->first();
         SendWelcomeEmail::dispatch($user, $mail);
-        $transaction->delete();
-        return view('cancelHomestay', compact('transaction', 'hoan', 'transactionCoupon', 'transactionFacility'));
+        $transaction->update([ 'status' => 'Đã hủy']);
+        return view('cancelHomestay', compact('transaction',  'transactionCoupon', 'transactionFacility'));
     }
 }

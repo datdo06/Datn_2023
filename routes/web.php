@@ -84,10 +84,11 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
     ]);
 
 
-    Route::post('/check-coupon', [CouponController::class,'check_coupon'])->name('check-coupon');
+
+
     Route::get('/{user}/order', [TransactionRoomReservationController::class, 'TransactionHometay'])->name('order');
     Route::get('/payment/{transaction}/invoice', [PaymentController::class, 'invoice'])->name('payment.invoice');
-    Route::post('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
+
 
     Route::get('/formComment/{room_id}', [HomeController::class, 'formComment'])->name('formComment');
     Route::post('/comment/{id}', [HomeController::class, 'postComment'])->name('postComment');
@@ -113,6 +114,7 @@ Route::get('/', [HomeController::class, 'show'])->name('home');
 
 
 Route::get('/chooseRoom', [HomeController::class, 'chooseRoomU'])->name('chooseRoomU');
+Route::post('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
 Route::get('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
 Route::name('transaction.reservation.')->group(function () {
     Route::post('/{room}/payOnlinePayment', [TransactionRoomReservationController::class, 'payOnlinePayment'])->name('payOnlinePayment');
@@ -140,7 +142,8 @@ Route::get('/booking', function () {
 
 Route::get('/money', [ChartController::class,'dailyMoneysPerMonth']);
 Route::post('/{transaction}/mail', [TransactionRoomReservationController::class, 'CancelHomstay'])->name('cancelHomestay');
-
+Route::post('/check-coupon', [CouponController::class,'check_coupon'])->name('check-coupon');
+Route::get('/del-coupon', [CouponController::class, 'del_coupon'])->name('unset-coupon');
 Route::get('/forget-password',[\App\Http\Controllers\Auth\ResetPasswordController::class, "forgetPassword"])->name('forget.password');
 Route::post('/forget-password',[\App\Http\Controllers\Auth\ResetPasswordController::class, "forgetPasswordPost"])->name('forget.password.post');
 Route::get('/reset-password/{token}', [\App\Http\Controllers\Auth\ResetPasswordController::class, 'resetPassword'])->name('reset.password');

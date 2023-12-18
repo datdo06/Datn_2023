@@ -70,11 +70,16 @@ class HomeController extends Controller
             'roomstatus'
         ));
     }
+
     private function getOccupiedRoomID($stayFrom, $stayUntil)
     {
-        return Transaction::where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
-            ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
-            ->orWhere([['check_out', '>=', $stayFrom], ['check_out', '<=', $stayUntil]])
+        $canceledRoomIds = Transaction::where('status', 'Đã hủy')->pluck('room_id');
+        return Transaction::whereNotIn('room_id', $canceledRoomIds)
+            ->where(function ($query) use ($stayFrom, $stayUntil) {
+                $query->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
+                    ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
+                    ->orWhere([['check_out', '>=', $stayFrom], ['check_out', '<=', $stayUntil]]);
+            })
             ->pluck('room_id');
     }
 
@@ -91,17 +96,18 @@ class HomeController extends Controller
 
         $rooms = Room::whereNotIn('id', $transactions)->get();
         $comment = DB::table('comments')
-        ->join('users', 'users.id', '=', 'comments.com_user_id')
-        ->select('users.id as uid', 'users.name', 'users.avatar', 'comments.com_content','comments.star', 'comments.com_subject', 'comments.star', 'comments.id as cd', 'comments.created_at')
-        ->limit(3)
-        ->orderBy('cd','DESC')
-        ->get();
+            ->join('users', 'users.id', '=', 'comments.com_user_id')
+            ->select('users.id as uid', 'users.name', 'users.avatar', 'comments.com_content', 'comments.star', 'comments.com_subject', 'comments.star', 'comments.id as cd', 'comments.created_at')
+            ->limit(3)
+            ->orderBy('cd', 'DESC')
+            ->get();
         $users = User::query()
             ->where('role', '=', 'super')
             ->get();
 
-        return view('home', compact('roomImage', 'rooms', 'users', 'room_type','comment'));
+        return view('home', compact('roomImage', 'rooms', 'users', 'room_type', 'comment'));
     }
+
     public function formComment($id)
     {
         $room = Room::find($id);
@@ -122,6 +128,7 @@ class HomeController extends Controller
             ->get();
         return view('comment', compact('room', 'results', 'comment', 'checkUser'));
     }
+
     public function postComment($id, Request $request)
     {
         $idCom = $id;
@@ -134,20 +141,24 @@ class HomeController extends Controller
         $comment->save();
         return redirect()->back();
     }
+
     public function delComment($id)
     {
         Comment::where('id', $id)->delete();
         return redirect()->back();
     }
+
     public function userProfile($id)
     {
         $user = User::where('id', $id)->first();
         return view('uprofile', compact('user'));
     }
+
     public function edit(User $user)
     {
         return view('edit-profile', compact('user'));
     }
+
     public function update(User $user, UpdateProfileRequest $request)
     {
         $img = $user->avatar;
@@ -162,12 +173,12 @@ class HomeController extends Controller
             $imageRepository->uploadImage($path, $file);
 
             $user->avatar = $file->getClientOriginalName();
-            DB::update('update users set name = ?, email = ?, phone = ?, gender =?, avatar = ?, role = ? where id = ? ', [$request->name, $request->email, $request->phone, $request->gender,$user->avatar, 'Customer', $user->id]);
+            DB::update('update users set name = ?, email = ?, phone = ?, gender =?, avatar = ?, role = ? where id = ? ', [$request->name, $request->email, $request->phone, $request->gender, $user->avatar, 'Customer', $user->id]);
             $imageRepository->destroy($img);
         } elseif ($request->location) {
-            DB::update('update users set name = ?, email = ?,phone = ?,gender =?,location = ?, role = ? where id = ? ', [$request->name, $request->email, $request->phone,$request->gender, $request->location, 'Customer', $user->id]);
+            DB::update('update users set name = ?, email = ?,phone = ?,gender =?,location = ?, role = ? where id = ? ', [$request->name, $request->email, $request->phone, $request->gender, $request->location, 'Customer', $user->id]);
         } else {
-            DB::update('update users set name = ?, email = ?,phone = ?,gender =?, role = ? where id = ? ', [$request->name, $request->email, $request->phone,$request->gender, 'Customer', $user->id]);
+            DB::update('update users set name = ?, email = ?,phone = ?,gender =?, role = ? where id = ? ', [$request->name, $request->email, $request->phone, $request->gender, 'Customer', $user->id]);
         }
         return redirect()->route('userProfile', ['id' => auth()->user()->id])->with('success', 'customer ' . $user->name . ' udpated!');
     }

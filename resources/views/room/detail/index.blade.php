@@ -59,14 +59,15 @@
                             <div class="room-detail_total">
                                 <img src="img/icon-logo.png" alt="" class="icon-logo">
 
-                                <h6>Bắt đầu homestay từ</h6>
+                                <h6>Giá phòng</h6>
 
                                 <p class="price">
-                                    <span class="amout">{{ Helper::convertToRupiah($detailRoom->price) }}</span> /days
+                                    <span class="amout">{{ Helper::convertToRupiah($detailRoom->price) }}</span> /Đêm
                                 </p>
                             </div>
 
                             <div class="room-detail_form">
+                                <input type="hidden" id="count" value="{{$detailRoom->capacity}}">
                                 <?php
                                 if(isset($_GET['checkin']) && isset($_GET['checkout']) && isset($_GET['person'])){
                                 ?>
@@ -76,17 +77,20 @@
                                 <label>Ngày đi</label>
                                 <input type="text" class="awe-calendar to" disabled placeholder="Departure Date"
                                     value="{{ Helper::dateFormat($_GET['checkout']) }}" name="checkin">
-                                <label>Số người: {{ $_GET['person'] }}</label>
+                                <label>Số người</label>
+                                <input type="text" class="awe-input" placeholder="Số người" id="count_person"
+                                       value="{{ $_GET['person'] }}" required>
+                                <p style="color: red" id="loi"></p>
 
                                 <label>Địa chỉ: {{ $detailRoom->type->name }}</label>
 
                                 @if (isset(Auth()->user()->id))
                                     <form
                                         action="{{ route('confirm', ['user' => Auth()->user()->id, 'room' => $detailRoom->id]) }}"
-                                        method="POST">
+                                        method="POST" id="form">
                                     @else
                                         <form action="{{ route('confirm', ['user' => 0, 'room' => $detailRoom->id]) }}"
-                                            method="POST">
+                                            method="POST" id="form">
                                 @endif
                                 @csrf
                                 <input type="hidden" value="{{ $_GET['checkin'] }}" name="checkin">
@@ -94,24 +98,24 @@
                                 <input type="hidden"
                                     value="{{ Helper::getDateDifference($_GET['checkin'], $_GET['checkout']) }}"
                                     name="total_day">
-                                <input type="hidden" value="{{ $_GET['person'] }}" name="person">
-                                <button class="awe-btn awe-btn-13" type="submit">Đặt ngay</button>
+                                <input type="hidden" value="" name="person" id="person">
+                                <button class="awe-btn awe-btn-13" id="sub" type="button">Đặt ngay</button>
                                 </form>
 
                                 <?php } else { ?>
                                 @if (isset(Auth()->user()->id))
                                     <form
                                         action="{{ route('confirm', ['user' => Auth()->user()->id, 'room' => $detailRoom->id]) }}"
-                                        method="GET">
+                                        method="GET" id="form">
                                     @else
                                         <form action="{{ route('confirm', ['user' => 0, 'room' => $detailRoom->id]) }}"
-                                            method="GET">
+                                            method="GET" id="form">
                                 @endif
                                 @csrf
-                                <label>Đến</label>
+                                <label>Ngày đến</label>
                                 <input type="text" class="awe-calendar from" placeholder="Ngày đến" id="check_in"
                                     name="checkin" value="{{ old('checkin') }}" required>
-                                <label>Khởi hành</label>
+                                <label>Ngày đi</label>
 
                                 <input type="text" class="awe-calendar to" placeholder="Ngày đi" id="check_out"
                                     name="checkout" value="{{ old('checkout') }}" required>
@@ -119,8 +123,9 @@
                                 <label>Số người</label>
                                 <input type="text" class="awe-input" placeholder="Số người" id="count_person"
                                     name="person" value="{{ old('person') }}" required>
-                                <label>Địa chỉ: {{ $detailRoom->type->name }}</label>
-                                <button class="awe-btn awe-btn-13" type="submit">Đặt ngay</button>
+                                            <p style="color: red" id="loi"></p>
+                                            <label>Địa chỉ: {{ $detailRoom->type->name }}</label>
+                                <button class="awe-btn awe-btn-13" id="sub" type="button">Đặt ngay</button>
                                 </form>
                                 <?php }?>
                             </div>
@@ -163,9 +168,9 @@
                                         <div class="col-xs-6 col-md-4">
                                             <h6>Thông tin Homestay</h6>
                                             <ul>
-                                                <li> {{$detailRoom->capacity}} người </li>
-                                                <li>Diện tích {{$detailRoom->acreage}} m<sup>2</sup></li>
-                                                <li>Phong cách {{$detailRoom->roomStatus->name}}</li>
+                                                <li> {{$detailRoom->capacity}} người tối đa</li>
+                                                <li>Diện tích: {{$detailRoom->acreage}} m<sup>2</sup></li>
+                                                <li>Phong cách: {{$detailRoom->roomStatus->name}}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -278,4 +283,22 @@
             <!-- END / COMPARE ACCOMMODATION -->
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#sub').click(function (){
+                var x = $('#count_person').val();
+                console.log(x);
+                $('#person').val(x);
+                var count = $('#count').val();
+                if(x>count){
+                    $('#loi').html('Số người ở không được quá ' + count);
+                }else{
+                    $('#loi').html('');
+                    $('#form').submit();
+                }
+            })
+        })
+    </script>
 @endsection

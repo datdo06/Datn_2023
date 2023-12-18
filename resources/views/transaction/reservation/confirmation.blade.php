@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="room_price" class="col-sm-2 col-form-label">Giá tiền / Đêm</label>
+                                    <label for="room_price" class="col-sm-2 col-form-label">Tiền / Đêm</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="room_price" name="room_price"
                                             placeholder="col-form-label"

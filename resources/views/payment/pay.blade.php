@@ -92,7 +92,7 @@
                                 </div>
                             @endif
                             <form method="POST"
-                                  action="{{ route('transaction.reservation.payOnlinePayment', ['room' => $room->id]) }}">
+                                  action="{{ route('transaction.reservation.payOnlinePayment', ['room' => $room->id]) }}" id="form">
                                 @csrf
                                 <div class="reservation-sidebar">
                                     <!-- RESERVATION DATE -->
@@ -119,7 +119,15 @@
                                             </li>
                                             <li>
                                                 <span>Tổng số người</span>
-                                                <span>{{ $data['person'] }}</span>
+                                                <span><select name="person" id="" style="width: 60px; height: 25px">
+                                                    @for($i = 1 ; $i<= $room->capacity; $i++)
+                                                            @if($i == $data['person'] )
+                                                                <option value="{{$i}}" selected>{{$i}}</option>
+                                                            @else
+                                                                <option value="{{$i}}">{{$i}}</option>
+                                                            @endif
+                                                        @endfor
+                                                </select></span>
                                             </li>
                                         </ul>
 
@@ -189,6 +197,7 @@
                                                     @endif
                                                 </div>
                                             @endif
+
                                             <div class="">
                                                 <div class="reservation-room-seleted_total-room">
                                                     THUÊ THÊM DỊCH VỤ
@@ -198,7 +207,7 @@
                                                     <div class="form-check" style="margin-top: 10px">
                                                         <div style="display: flex; justify-content: space-between">
                                                             <div class="col-6">
-                                                                <input hidden style="width: 15px; height: 15px"
+                                                                <input style="width: 15px; height: 15px"
                                                                        class="form-check-input" name="facility[]"
                                                                        id="check{{ $a }}" type="checkbox"
                                                                        value="{{ $facility->id }}">
@@ -207,17 +216,6 @@
                                                                     {{ $facility->name }} (1 lần)
                                                                     ({{ Helper::convertToRupiah($facility->price) }})
                                                                 </label>
-                                                            </div>
-                                                            <div class="col-6 quantity-container">
-                                                                <button style="width:30px;  height: 30px" type="button"
-                                                                        id="tru{{ $a }}">-
-                                                                </button>
-                                                                <input style="width:40px; height: 30px" type="text"
-                                                                       name="quantity[]" id="quantityInput{{ $a }}"
-                                                                       value="0" readonly>
-                                                                <button style="width:30px; height: 30px " type="button"
-                                                                        id="cong{{ $a }}">+
-                                                                </button>
                                                             </div>
                                                         </div>
 
@@ -261,7 +259,6 @@
                                         <input type="hidden" value="{{ $data['checkin'] }}" name="check_in">
                                         <input type="hidden" value="{{ $data['checkout'] }}" name="check_out">
                                         <input type="hidden" value="{{ $data['total_day'] }}" name="total_day">
-                                        <input type="hidden" value="{{ $data['person'] }}" name="person">
 
                                         @if (session('coupon'))
                                             <input type="hidden" id="sum_money" value="{{ $total_coupon }}"
@@ -283,16 +280,18 @@
                                             <div class="comment-form">
                                                 <div class="row">
                                                     <div class="col-sm-12">
-
-                                                        <input type="text" class="field-text" name="guest_name" placeholder="Họ và tên" required><br>
+                                                        <input type="text" class="field-text" name="guest_name" placeholder="Họ và tên" id="name" required><br>
+                                                        <p class="errorName" style="color: red"></p>
                                                     </div>
                                                     <div class="col-sm-12">
 
-                                                        <input type="text" class="field-text" name="guest_email" placeholder="Email" required><br>
+                                                        <input type="text" class="field-text" name="guest_email" placeholder="Email" id="email" required><br>
+                                                        <p class="errorEmail" style="color: red"></p>
                                                     </div>
                                                     <div class="col-sm-12">
 
-                                                        <input type="number" class="field-text" name="guest_phone" placeholder="Số điện thoại" required><br>
+                                                        <input type="text" class="field-text" name="guest_phone" placeholder="Số điện thoại" id="phone" required><br>
+                                                        <p class="errorPhone" style="color: red"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -300,11 +299,18 @@
                                     @endif
 
                                     <br>
+                                    @if(!empty(auth()->user()->id))
+                                        <button style="margin-top: 5px" type="submit" class="awe-btn awe-btn-13">THANH TOÁN
+                                            BẰNG
+                                            VNPAY
+                                        </button>
+                                    @else
+                                        <button style="margin-top: 5px" id="sub" type="button" class="awe-btn awe-btn-13">THANH TOÁN
+                                            BẰNG
+                                            VNPAY
+                                        </button>
+                                    @endif
 
-                                    <button style="margin-top: 5px" type="submit" class="awe-btn awe-btn-13">THANH TOÁN
-                                        BẰNG
-                                        VNPAY
-                                    </button>
                                 </div>
                             </form>
 
@@ -315,6 +321,7 @@
                         <!-- CONTENT -->
                         <div class="col-md-2 col-lg-2 ">
                         </div>
+
                         <!-- END / CONTENT -->
 
                     </div>
@@ -331,34 +338,75 @@
         crossorigin="anonymous"></script>
 <script>
     $(document).ready(function() {
+        $('#sub').click(function (){
+            var check = true;
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var phone = $('#phone').val();
+            var filter = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var filterPhone = /^[0-9-+]+$/;
+            if(name == ""){
+                $('.errorName').html('Tên của bạn không được để trống');
+                check = false;
+            }else{
+                $('.errorName').html('');
+                check = true;
+            }
+
+            if(email == ""){
+                $('.errorEmail').html('Email của bạn không được để trống');
+                check = false;
+                console.log(check);
+            }
+            else if(!(filter.test(email))){
+                $('.errorEmail').html('Email của bạn không đúng định dạng');
+                check = false;
+                console.log(check);
+            }else{
+                $('.errorEmail').html('');
+                check = true;
+                console.log(check);
+            }
+            if (phone == ""){
+                $('.errorPhone').html('Số điện thoại của bạn không được để trống');
+                check = false;
+                console.log(check);
+            }else if(!(filterPhone.test(phone))){
+                $('.errorPhone').html('Số điện thoại của bạn không đúng định dạng');
+                check = false;
+                console.log(check);
+            }else if(phone.length != 10){
+                $('.errorPhone').html('Số điện thoại của bạn phải là 10 số');
+                check = false;
+            }else{
+                $('.errorPhone').html('');
+                check = true;
+            }
+            if(check){
+                $('#form').submit();
+            }
+
+        })
+
+
         $('.form-check').each(function(index, element) {
             // $('#check'+(index+1)).change(function (){
-            var check = document.getElementById('check' + (index + 1));
+
             // if(check.checked){
 
             // if($('#x'+(index+1)).val() == 0){
-            $('#cong' + (index + 1)).click(function() {
-                // if(check.checked){
-                var quantityInput = document.getElementById('quantityInput' + (index + 1));
-                var currentQuantity = parseInt(quantityInput.value, 10);
-                quantityInput.value = currentQuantity + 1;
-                var x = $('#price' + (index + 1)).val();
-                var sum = $('#sum_money').val();
-                sum = Number(sum);
-                x = Number(x);
-                sum = sum + x;
-                $('.reservation-total').text(new Intl.NumberFormat("de-DE").format(sum) +
-                    'VND');
-                $('#sum_money').val(sum);
-                $('#x' + (index + 1)).val(1);
-                check.checked = true;
-                // }
-            });
-            $('#tru' + (index + 1)).click(function() {
-                var quantityInput = document.getElementById('quantityInput' + (index + 1));
-                var currentQuantity = parseInt(quantityInput.value, 10);
-                if (currentQuantity > 0) {
-                    quantityInput.value = currentQuantity - 1;
+            $('#check' + (index + 1)).click(function() {
+                var check = document.getElementById('check' + (index + 1));
+                if(check.checked == true){
+                    var x = $('#price' + (index + 1)).val();
+                    var sum = $('#sum_money').val();
+                    sum = Number(sum);
+                    x = Number(x);
+                    sum = sum + x;
+                    $('.reservation-total').text(new Intl.NumberFormat("de-DE").format(sum) +
+                        'VND');
+                    $('#sum_money').val(sum);
+                }else{
                     var x = $('#price' + (index + 1)).val();
                     var sum = $('#sum_money').val();
                     sum = Number(sum);
@@ -367,30 +415,10 @@
                     $('.reservation-total').text(new Intl.NumberFormat("de-DE").format(sum) +
                         'VND');
                     $('#sum_money').val(sum);
-                    $('#x' + (index + 1)).val(1);
-                    if (currentQuantity - 1 == 0) {
-                        check.checked = false;
-                    }
                 }
+
             });
-            // }else if($('#x'+(index+1)).val() != 0){
-            //
-            // }
-            // }else{
-            //     var quantityInput = document.getElementById('quantityInput'+(index+1));
-            //     var currentQuantity = parseInt(quantityInput.value, 10);
-            //     var sum = $('#sum_money').val();
-            //     var x = $('#price'+(index+1)).val();
-            //     sum = Number(sum);
-            //     x = Number(x);
-            //     x = x * currentQuantity;
-            //     sum = sum - x;
-//     $('.reservation-total').text(new Intl.NumberFormat("de-DE").format(sum) + 'VND');
-            //     $('#sum_money').val(sum);
-            //     $('#x'+(index+1)).val(0);
-            //     quantityInput.value = 0;
-            // }
-            // })
+
         });
 
     });

@@ -39,7 +39,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm table-hover">
+                        <table id="room-table" class="table table-sm table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -278,6 +278,7 @@
                                 <th>ID</th>
                                 <th>Tên khách hàng</th>
                                 <th>Homestay</th>
+                                <th>Ngày đặt</th>
                                 <th>Ngày đến</th>
                                 <th>Ngày đi</th>
                                 <th>Số ngày</th>
@@ -296,6 +297,7 @@
                                         <td>{{ $transaction->id }}</td>
                                         <td>{{ $transaction->guest_name }}</td>
                                         <td>{{ $transaction->room->number }}</td>
+                                        
                                         <td>{{ Helper::dateFormat($transaction->created_at) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_out) }}</td>

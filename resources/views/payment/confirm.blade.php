@@ -46,17 +46,10 @@
                                                 <h6>Dịch vụ thêm</h6>
                                                 <ul>
                                                     @foreach($facilities as $key => $facility)
-                                                        @if(empty($quantity[$key]))
-                                                            <li>
-                                                                <span>{{$facility->name}} x {{$quantity[$key]+1}}</span>
-                                                                <span> {{ Helper::convertToRupiah($facility->price * ($quantity[$key]+1)) }}</span>
-                                                            </li>
-                                                        @else
-                                                            <li>
-                                                                <span>{{$facility->name}} x {{$quantity[$key]}}</span>
-                                                                <span> {{ Helper::convertToRupiah($facility->price * $quantity[$key]) }}</span>
-                                                            </li>
-                                                        @endif
+                                                        <li>
+                                                            <span>{{$facility->name}}</span>
+                                                            <span> {{ Helper::convertToRupiah($facility->price) }}</span>
+                                                        </li>
                                                     @endforeach
 
                                                 </ul>

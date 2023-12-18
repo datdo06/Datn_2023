@@ -15,7 +15,7 @@
                     <div class="col-lg-6">
                         <div class="card shadow-sm border" style="border-radius: 0.5rem">
                             <div class="card-body">
-                                <h5>{{ count($transactions) }} Khách hôm nay</h5>
+                                <h5>{{ count($transactions) }} khách đã đặt hôm nay</h5>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                             <div class="card-header">
                                 <div class="row ">
                                     <div class="col-lg-12 d-flex justify-content-between">
-                                        <h3>Khách đang thuê hôm nay</h3>
+                                        <h3>Khách đã đặt hôm nay</h3>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                             <td>
                                                     <span
                                                         class="justify-content-center badge {{ $transaction->getTotalPrice() - $transaction->getTotalPayment() == 0 ? 'bg-success' : 'bg-warning' }}">
-                                                        {{ $transaction->getTotalPrice() - $transaction->getTotalPayment() == 0 ? 'Success' : 'Đang ở' }}
+                                                        {{ $transaction->getTotalPrice() - $transaction->getTotalPayment() == 0 ? 'Đã trả hết' : 'Đã cọc' }}
                                                     </span>
                                                 @if (Helper::getDateDifference(now(), $transaction->check_out) < 1)
                                                     <span class="justify-content-center badge bg-danger">
@@ -160,7 +160,7 @@
                         <div class="card shadow-sm border">
                             <div class="card-header border-0">
                                 <div class="d-flex justify-content-between ">
-                                    <h3 class="card-title ">Doanh thu <của></của> homestay</h3>
+                                    <h3 class="card-title ">Doanh thu của homestay</h3>
                                     <select style="width: 500px" name="" id="filter" class="form-control">
                                         <option value="">Tháng hiện tại</option>
                                         <option value="1">Hôm nay</option>

@@ -17,7 +17,7 @@ class SendWelcomeEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private $user;
+    private $transaction;
     private $mail;
 
     /**
@@ -25,9 +25,9 @@ class SendWelcomeEmail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user , CancelHomestayMail $mail)
+    public function __construct(Transaction $transaction , CancelHomestayMail $mail)
     {
-        $this->user = $user;
+        $this->transaction = $transaction;
         $this->mail = $mail;
 
     }
@@ -39,6 +39,6 @@ class SendWelcomeEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send($this->mail);
+        Mail::to($this->transaction->guest_email)->send($this->mail);
     }
 }

@@ -75,10 +75,10 @@
                                 @csrf
                                 <input type="text" name="coupon" style="width: 500px" placeholder="Nhập mã giảm giá">
                                 <input style="margin-left: 20px" type="submit" class="awe-btn awe-btn-3 btn-medium font-hind bold f12 mt30" name="check_coupon"
-                                    value="Tính mã giảm giá">
+                                       value="Tính mã giảm giá">
                                 @if (Session::get('coupon'))
                                     <a class="awe-btn awe-btn-4 btn-medium font-hind bold f12 mt30"
-                                        href="{{ route('unset-coupon') }}">Xóa mã đang áp dụng</a>
+                                       href="{{ route('unset-coupon') }}">Xóa mã đang áp dụng</a>
                                 @endif
                             </form>
                             @if (session('success'))
@@ -92,7 +92,7 @@
                                 </div>
                             @endif
                             <form method="POST"
-                                action="{{ route('transaction.reservation.payOnlinePayment', ['room' => $room->id]) }}" id="form">
+                                  action="{{ route('transaction.reservation.payOnlinePayment', ['room' => $room->id]) }}" id="form">
                                 @csrf
                                 <div class="reservation-sidebar">
                                     <!-- RESERVATION DATE -->
@@ -119,7 +119,15 @@
                                             </li>
                                             <li>
                                                 <span>Tổng số người</span>
-                                                <span>{{ $data['person'] }}</span>
+                                                <span><select name="person" id="" style="width: 60px; height: 25px">
+                                                    @for($i = 1 ; $i<= $room->capacity; $i++)
+                                                            @if($i == $data['person'] )
+                                                                <option value="{{$i}}" selected>{{$i}}</option>
+                                                            @else
+                                                                <option value="{{$i}}">{{$i}}</option>
+                                                            @endif
+                                                        @endfor
+                                                </select></span>
                                             </li>
                                         </ul>
 
@@ -176,8 +184,8 @@
                                                 <span
                                                     class="reservation-amout">{{ Helper::convertToRupiah(Helper::getTotalPayment($data['total_day'], $room->price)) }}</span>
                                             </div>
-                                           
-                                                @if (session('coupon'))
+
+                                            @if (session('coupon'))
                                                 <div class="reservation-room-seleted_total-room">
                                                     Mã giảm
                                                     @if (session('coupon')->coupon_condition == 0)
@@ -188,8 +196,8 @@
                                                             {{ Helper::convertToRupiah(session('coupon')->coupon_number) }} VND</span>
                                                     @endif
                                                 </div>
-                                                @endif
-                                           
+                                            @endif
+
                                             <div class="">
                                                 <div class="reservation-room-seleted_total-room">
                                                     THUÊ THÊM DỊCH VỤ
@@ -199,32 +207,21 @@
                                                     <div class="form-check" style="margin-top: 10px">
                                                         <div style="display: flex; justify-content: space-between">
                                                             <div class="col-6">
-                                                                <input hidden style="width: 15px; height: 15px"
-                                                                    class="form-check-input" name="facility[]"
-                                                                    id="check{{ $a }}" type="checkbox"
-                                                                    value="{{ $facility->id }}">
+                                                                <input style="width: 15px; height: 15px"
+                                                                       class="form-check-input" name="facility[]"
+                                                                       id="check{{ $a }}" type="checkbox"
+                                                                       value="{{ $facility->id }}">
                                                                 <label style="font-size: 16px" class="form-check-label"
-                                                                    for="flexCheckChecked">
+                                                                       for="flexCheckChecked">
                                                                     {{ $facility->name }} (1 lần)
                                                                     ({{ Helper::convertToRupiah($facility->price) }})
                                                                 </label>
-                                                            </div>
-                                                            <div class="col-6 quantity-container">
-                                                                <button style="width:30px;  height: 30px" type="button"
-                                                                    id="tru{{ $a }}">-
-                                                                </button>
-                                                                <input style="width:40px; height: 30px" type="text"
-                                                                    name="quantity[]" id="quantityInput{{ $a }}"
-                                                                    value="0" readonly>
-                                                                <button style="width:30px; height: 30px " type="button"
-                                                                    id="cong{{ $a }}">+
-                                                                </button>
                                                             </div>
                                                         </div>
 
                                                         <input type="hidden" id="x{{ $a }}" value="0">
                                                         <input type="hidden" id="price{{ $a }}"
-                                                            value="{{ $facility->price }}">
+                                                               value="{{ $facility->price }}">
                                                     </div>
                                                     @php $a +=1; @endphp
                                                 @endforeach
@@ -262,16 +259,15 @@
                                         <input type="hidden" value="{{ $data['checkin'] }}" name="check_in">
                                         <input type="hidden" value="{{ $data['checkout'] }}" name="check_out">
                                         <input type="hidden" value="{{ $data['total_day'] }}" name="total_day">
-                                        <input type="hidden" value="{{ $data['person'] }}" name="person">
 
                                         @if (session('coupon'))
                                             <input type="hidden" id="sum_money" value="{{ $total_coupon }}"
-                                                name="sum_money">
+                                                   name="sum_money">
                                             <input type="hidden" name="coupon_id" value="{{ session('coupon')->id }}">
                                         @else
                                             <input type="hidden" id="sum_money"
-                                                value="{{ Helper::getTotalPayment($data['total_day'], $room->price) }}"
-                                                name="sum_money">
+                                                   value="{{ Helper::getTotalPayment($data['total_day'], $room->price) }}"
+                                                   name="sum_money">
                                         @endif
                                         <input type="hidden" value="1" name="cus">
                                     </div>
@@ -339,7 +335,7 @@
     </div>
 @endsection
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 <script>
     $(document).ready(function() {
         $('#sub').click(function (){
@@ -395,32 +391,22 @@
 
         $('.form-check').each(function(index, element) {
             // $('#check'+(index+1)).change(function (){
-            var check = document.getElementById('check' + (index + 1));
+
             // if(check.checked){
 
             // if($('#x'+(index+1)).val() == 0){
-            $('#cong' + (index + 1)).click(function() {
-                // if(check.checked){
-                var quantityInput = document.getElementById('quantityInput' + (index + 1));
-                var currentQuantity = parseInt(quantityInput.value, 10);
-                quantityInput.value = currentQuantity + 1;
-                var x = $('#price' + (index + 1)).val();
-                var sum = $('#sum_money').val();
-                sum = Number(sum);
-                x = Number(x);
-                sum = sum + x;
-                $('.reservation-total').text(new Intl.NumberFormat("de-DE").format(sum) +
-                    'VND');
-                $('#sum_money').val(sum);
-                $('#x' + (index + 1)).val(1);
-                check.checked = true;
-                // }
-            });
-            $('#tru' + (index + 1)).click(function() {
-                var quantityInput = document.getElementById('quantityInput' + (index + 1));
-                var currentQuantity = parseInt(quantityInput.value, 10);
-                if (currentQuantity > 0) {
-                    quantityInput.value = currentQuantity - 1;
+            $('#check' + (index + 1)).click(function() {
+                var check = document.getElementById('check' + (index + 1));
+                if(check.checked == true){
+                    var x = $('#price' + (index + 1)).val();
+                    var sum = $('#sum_money').val();
+                    sum = Number(sum);
+                    x = Number(x);
+                    sum = sum + x;
+                    $('.reservation-total').text(new Intl.NumberFormat("de-DE").format(sum) +
+                        'VND');
+                    $('#sum_money').val(sum);
+                }else{
                     var x = $('#price' + (index + 1)).val();
                     var sum = $('#sum_money').val();
                     sum = Number(sum);
@@ -429,30 +415,10 @@
                     $('.reservation-total').text(new Intl.NumberFormat("de-DE").format(sum) +
                         'VND');
                     $('#sum_money').val(sum);
-                    $('#x' + (index + 1)).val(1);
-                    if (currentQuantity - 1 == 0) {
-                        check.checked = false;
-                    }
                 }
+
             });
-            // }else if($('#x'+(index+1)).val() != 0){
-            //
-            // }
-            // }else{
-            //     var quantityInput = document.getElementById('quantityInput'+(index+1));
-            //     var currentQuantity = parseInt(quantityInput.value, 10);
-            //     var sum = $('#sum_money').val();
-            //     var x = $('#price'+(index+1)).val();
-            //     sum = Number(sum);
-            //     x = Number(x);
-            //     x = x * currentQuantity;
-            //     sum = sum - x;
-            //     $('.reservation-total').text(new Intl.NumberFormat("de-DE").format(sum) + 'VND');
-            //     $('#sum_money').val(sum);
-            //     $('#x'+(index+1)).val(0);
-            //     quantityInput.value = 0;
-            // }
-            // })
+
         });
 
     });

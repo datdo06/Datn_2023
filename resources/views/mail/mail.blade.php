@@ -69,7 +69,7 @@
             <div class="header">
                 <h1>Email Hủy Đặt Homestay</h1>
             </div>
-            <p><strong>Kính gửi quý khách {{$user->name}}</strong></p>
+            <p><strong>Kính gửi quý khách {{$transaction->guest_name}}</strong></p>
             <p>Cảm ơn bạn đã sử dụng dịch vụ đặt homestay của chúng tôi. Chúng tôi rất tiếc phải thông báo rằng đơn đặt
                 phòng của bạn đã bị hủy. Vui lòng xem chi tiết dưới đây:</p>
 

@@ -110,6 +110,7 @@ Route::get('/gallery', [\App\Http\Controllers\GalleryController::class, 'index']
 Route::get('/event', [\App\Http\Controllers\EventController::class, 'index'])->name('event');
 Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
+Route::get('/term-condition', [\App\Http\Controllers\ContactController::class, 'term'])->name('term');
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
 

@@ -77,6 +77,7 @@
                         <ul>
                             <li><a href="{{ route('contact') }}">Liên Hệ</a></li>
                             <li><a href="{{ route('about') }}">Thông Tin</a></li>
+                            <li><a href="{{ route('term') }}">Điều khoản và điều kiện</a></li>
                         </ul>
                     </div>
                 </div>

@@ -23,13 +23,19 @@ class TransactionRepository implements TransactionRepositoryInterface
 
     public function getTransaction($request)
     {
-        return Transaction::with('user', 'room')
-            ->where('check_out', '>=', Carbon::now()->format('Y-m-d'))
-            ->when(!empty($request->search), function ($query) use ($request) {
-                $query->where('id', '=', $request->search);
-            })
-            ->orderBy('id', 'DESC')->paginate(20)
-            ->appends($request->all());
+        if (empty($request->from) ) {
+            return Transaction::with('user', 'room')
+                ->where('check_out', '>=', Carbon::now()->format('Y-m-d'))
+                ->orderBy('id', 'DESC')->paginate(20)
+                ->appends($request->all());
+        }else{
+            return Transaction::with('user', 'room')
+                ->where('check_out', '>=', Carbon::now()->format('Y-m-d'))
+                ->where('check_in', '>=', $request->from)->where('check_in', '<=', $request->to)
+                ->orderBy('id', 'DESC')->paginate(20)
+                ->appends($request->all());
+        }
+
     }
 
     public function getTransactionExpired($request)

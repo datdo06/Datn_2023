@@ -52,12 +52,13 @@
 
                                 <h6 class="check_availability_title" style="padding-top: 15px;">Tùy chọn:</h6>
                                 <form action="chooseRoom" method="GET">
-                                    <input type="text" hidden name="count_person"
-                                           value="{{ request()->input('count_person') }}">
                                     <input type="text" hidden name="check_in"
                                            value="{{ request()->input('check_in') }}">
                                     <input type="text" hidden name="check_out"
                                            value="{{ request()->input('check_out') }}">
+                                    Số người <br>
+                                    <input type="text"  name="count_person"
+                                           value="{{request()->input('count_person')}}">
                                     <div class="check_availability-field">
                                         <select class="awe-select" id="sort_name" name="sort_name">
                                             <option value="Price"

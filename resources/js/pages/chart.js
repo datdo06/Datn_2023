@@ -139,7 +139,7 @@ $(function (){
     });
     var date = new Date();
     var day = date.getDate();
-    var month = date.getMonth();
+    var month = date.getMonth() + 1 ;
     var year = date.getFullYear();
     var dayinmonth = new Date(year, month, 0).getDate();
     var x = year + '-' + month + '-' + '01';
@@ -162,6 +162,16 @@ $(function (){
             var sundayYear = sundayDate.getFullYear();
             var y = sundayYear + '-' + sundayMonth + '-' + sundayDay;
             var x = mondayYear + '-' + mondayMonth + '-' + mondayDay;
+            $("#tu").val(x);
+            $("#den").val(y);
+        }else if (selectedType == ''){
+            var date = new Date();
+            var day = date.getDate();
+            var month = date.getMonth() + 1 ;
+            var year = date.getFullYear();
+            var dayinmonth = new Date(year, month, 0).getDate();
+            var x = year + '-' + month + '-' + '01';
+            var y = year + '-' + month + '-' + dayinmonth;
             $("#tu").val(x);
             $("#den").val(y);
         }

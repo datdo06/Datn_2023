@@ -92,7 +92,7 @@
                                 </div>
                             @endif
                             <form method="POST"
-                                action="{{ route('transaction.reservation.payOnlinePayment', ['room' => $room->id]) }}">
+                                action="{{ route('transaction.reservation.payOnlinePayment', ['room' => $room->id]) }}" id="form">
                                 @csrf
                                 <div class="reservation-sidebar">
                                     <!-- RESERVATION DATE -->
@@ -278,22 +278,24 @@
                                     @if (!empty(auth()->user()->id))
                                         <input type="hidden" value="{{ auth()->user()->id }}" name="user_id">
                                     @else
-            
+
                                         <div class="comment-respond">
                                             <h3 class="comment-reply-title">Nhập thông tin của bạn</h3>
                                             <div class="comment-form">
                                                 <div class="row">
                                                     <div class="col-sm-12">
-                                                
-                                                        <input type="text" class="field-text" name="guest_name" placeholder="Họ và tên" required><br>
+                                                        <input type="text" class="field-text" name="guest_name" placeholder="Họ và tên" id="name" required><br>
+                                                        <p class="errorName" style="color: red"></p>
                                                     </div>
                                                     <div class="col-sm-12">
-                                                     
-                                                        <input type="text" class="field-text" name="guest_email" placeholder="Email" required><br>
+
+                                                        <input type="text" class="field-text" name="guest_email" placeholder="Email" id="email" required><br>
+                                                        <p class="errorEmail" style="color: red"></p>
                                                     </div>
                                                     <div class="col-sm-12">
-                                                      
-                                                        <input type="number" class="field-text" name="guest_phone" placeholder="Số điện thoại" required><br>
+
+                                                        <input type="text" class="field-text" name="guest_phone" placeholder="Số điện thoại" id="phone" required><br>
+                                                        <p class="errorPhone" style="color: red"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -301,11 +303,18 @@
                                     @endif
 
                                     <br>
+                                    @if(!empty(auth()->user()->id))
+                                        <button style="margin-top: 5px" type="submit" class="awe-btn awe-btn-13">THANH TOÁN
+                                            BẰNG
+                                            VNPAY
+                                        </button>
+                                    @else
+                                        <button style="margin-top: 5px" id="sub" type="button" class="awe-btn awe-btn-13">THANH TOÁN
+                                            BẰNG
+                                            VNPAY
+                                        </button>
+                                    @endif
 
-                                    <button style="margin-top: 5px" type="submit" class="awe-btn awe-btn-13">THANH TOÁN
-                                        BẰNG
-                                        VNPAY
-                                    </button>
                                 </div>
                             </form>
 
@@ -333,6 +342,57 @@
     crossorigin="anonymous"></script>
 <script>
     $(document).ready(function() {
+        $('#sub').click(function (){
+            var check = true;
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var phone = $('#phone').val();
+            var filter = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var filterPhone = /^[0-9-+]+$/;
+            if(name == ""){
+                $('.errorName').html('Tên của bạn không được để trống');
+                check = false;
+            }else{
+                $('.errorName').html('');
+                check = true;
+            }
+
+            if(email == ""){
+                $('.errorEmail').html('Email của bạn không được để trống');
+                check = false;
+                console.log(check);
+            }
+            else if(!(filter.test(email))){
+                $('.errorEmail').html('Email của bạn không đúng định dạng');
+                check = false;
+                console.log(check);
+            }else{
+                $('.errorEmail').html('');
+                check = true;
+                console.log(check);
+            }
+            if (phone == ""){
+                $('.errorPhone').html('Số điện thoại của bạn không được để trống');
+                check = false;
+                console.log(check);
+            }else if(!(filterPhone.test(phone))){
+                $('.errorPhone').html('Số điện thoại của bạn không đúng định dạng');
+                check = false;
+                console.log(check);
+            }else if(phone.length != 10){
+                $('.errorPhone').html('Số điện thoại của bạn phải là 10 số');
+                check = false;
+            }else{
+                $('.errorPhone').html('');
+                check = true;
+            }
+            if(check){
+                $('#form').submit();
+            }
+
+        })
+
+
         $('.form-check').each(function(index, element) {
             // $('#check'+(index+1)).change(function (){
             var check = document.getElementById('check' + (index + 1));

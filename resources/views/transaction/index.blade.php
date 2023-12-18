@@ -20,9 +20,9 @@
         <div class="col-lg-6 mb-2">
             <form class="d-flex" method="GET" action="{{ route('transaction.index') }}">
                 <label style="margin: 5px 5px 0 0" for="">Từ</label>
-                <input type="date" name="from" class="form-control">
+                <input type="date" name="from" value="{{request()->input('from')}}" class="form-control">
                 <label style="margin: 5px 5px 0 0" for="" for="">Đến</label>
-                <input type="date" name="to" class="form-control">
+                <input type="date" name="to" value="{{request()->input('to')}}" class="form-control">
 {{--                <input class="form-control me-2" type="search" placeholder="Tìm theo ID" aria-label="Search"--}}
 {{--                    id="search-user" name="search" value="{{ request()->input('search') }}">--}}
                 <button class="btn btn-outline-dark" type="submit">Tìm</button>
@@ -79,7 +79,7 @@
                                         <td>
                                             <a class="btn btn-light btn-sm rounded shadow-sm border p-1 m-0 {{$transaction->getTotalPrice() - $transaction->getTotalPayment() <= 0 ? 'disabled' : ''}}"
                                                 href="{{ route('transaction.payment.create', ['transaction' => $transaction->id]) }}"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Pay">
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Trả">
                                                 <i class="fas fa-money-bill-wave-alt"></i>
                                             </a>
                                             <a class="btn btn-light btn-sm rounded shadow-sm border"

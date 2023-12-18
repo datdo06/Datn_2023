@@ -105,7 +105,7 @@
 
     <h2>Thông tin đặt phòng</h2>
     <ul>
-        <li><strong>Ngày đặt phòng</strong>{{\App\Helpers\Helper::dateFormat($payment->created_at)}}</li>
+        <li><strong>Ngày đặt phòng:</strong> {{\App\Helpers\Helper::dateFormat($payment->created_at)}}</li>
         <li><strong>Ngày nhận phòng:</strong> {{\App\Helpers\Helper::dateFormat($transaction->check_in)}}</li>
         <li><strong>Ngày trả phòng:</strong> {{\App\Helpers\Helper::dateFormat($transaction->check_out)}}</li>
         <li><strong>Homestay đã đặt: </strong>{{$transaction->room->number}} - {{$transaction->room->type->name}}</li>
@@ -127,7 +127,7 @@
             @endif
         @endif
         <li><strong>Tổng giá:</strong> {{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</li>
-        <li><strong>Tiền đã trả trước</strong>{{\App\Helpers\Helper::convertToRupiah($payment->price)}}</li>
+        <li><strong>Tiền đã trả trước: </strong>{{\App\Helpers\Helper::convertToRupiah($payment->price)}}</li>
     </ul>
 
     <p>Hãy kiểm tra email này để xem lại thông tin đặt phòng của bạn. Nếu bạn có bất kỳ câu hỏi hoặc cần sự hỗ trợ bổ sung, vui lòng liên hệ với chúng tôi tại kingtheland@gmail.com hoặc số điện thoại 0987124921.</p>

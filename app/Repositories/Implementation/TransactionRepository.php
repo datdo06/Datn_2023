@@ -32,6 +32,7 @@ class TransactionRepository implements TransactionRepositoryInterface
         }else{
             return Transaction::with('user', 'room')
                 ->where('check_out', '>=', Carbon::now()->format('Y-m-d'))
+                ->whereNot('status', 'Đã hủy')
                 ->where('check_in', '>=', $request->from)->where('check_in', '<=', $request->to)
                 ->orderBy('id', 'DESC')->paginate(20)
                 ->appends($request->all());

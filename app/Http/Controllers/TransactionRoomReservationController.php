@@ -267,16 +267,11 @@ class TransactionRoomReservationController extends Controller
             ]);
             if (isset($request['facility'])) {
                 $facility = $request['facility'];
-                $quantities = $request['quantity'];
                 foreach ($facility as $key => $value) {
-                    $quantity = $quantities[$key];
-                    if (empty($quantity)) {
-                        $quantity = $quantities[$key + 1];
-                    }
                     $facility_room = TransactionFacility::create([
                         'transaction_id' => $transaction->id,
                         'facility_id' => $value,
-                        'quantity' => $quantity,
+                        'quantity' => 1,
                     ]);
                 }
             }
@@ -306,7 +301,7 @@ class TransactionRoomReservationController extends Controller
                         'transaction_id' => $transaction->id,
                         'coupon_id' => $request['coupon_id'],
                     ]);
-                    $mail = new SuccessHomestayMail($transaction, $transactionCoupon, $transactionFacility);
+                    $mail = new SuccessHomestayMail($transaction, $transactionCoupon, $transactionFacility,$payment);
                     SendSuccessMail::dispatch($transaction, $mail);
                     return view('transaction.success', compact('transaction', 'transactionCoupon', 'transactionFacility', 'payment'));
                 } else {

@@ -11,11 +11,13 @@ class Coupon extends Model
     use HasFactory;
 
     protected $fillable = [
-      'coupon_name',
-      'coupon_time',
-      'coupon_code',
-      'coupon_number',
-      'coupon_condition'
+        'coupon_name',
+        'coupon_time',
+        'coupon_code',
+        'coupon_number',
+        'coupon_condition',
+        'end_time',
+        'start_time',
     ];
 
     public function setExpirationDateAttribute($value)

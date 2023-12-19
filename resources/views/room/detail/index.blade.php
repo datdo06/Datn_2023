@@ -29,7 +29,7 @@
                             @foreach ($image as $item)
                                 <div class="room_img-item">
                                     <img src="{{ asset('img/room/') . '/' . $detailRoom->number . '/' . $item->url }}"
-                                        alt="">
+                                         alt="">
                                 </div>
                             @endforeach
 
@@ -68,234 +68,269 @@
 
                             <div class="room-detail_form">
                                 <input type="hidden" id="count" value="{{$detailRoom->capacity}}">
-                                <?php
-                                if(isset($_GET['checkin']) && isset($_GET['checkout']) && isset($_GET['person'])){
-                                ?>
-                                <label>Ngày đến</label>
-                                <input type="text" class="awe-calendar from" disabled placeholder="Arrive Date"
-                                    value="{{ Helper::dateFormat($_GET['checkin']) }}" name="checkin">
-                                <label>Ngày đi</label>
-                                <input type="text" class="awe-calendar to" disabled placeholder="Departure Date"
-                                    value="{{ Helper::dateFormat($_GET['checkout']) }}" name="checkin">
-                                <label>Số người</label>
-                                <input type="text" class="awe-input" placeholder="Số người" id="count_person"
-                                       value="{{ $_GET['person'] }}" required>
-                                <p style="color: red" id="loi"></p>
+                                @if(isset($_GET['checkin']) && isset($_GET['checkout']) && isset($_GET['person']))
+                                    <label>Ngày đến</label>
+                                    <input type="text" class="awe-calendar from" disabled placeholder="Arrive Date"
+                                           value="{{ Helper::dateFormat($_GET['checkin']) }}" name="checkin">
+                                    <label>Ngày đi</label>
+                                    <input type="text" class="awe-calendar to" disabled placeholder="Departure Date"
+                                           value="{{ Helper::dateFormat($_GET['checkout']) }}" name="checkin">
+                                    <label>Số người</label>
 
-                                <label>Địa chỉ: {{ $detailRoom->type->name }}</label>
-
-                                @if (isset(Auth()->user()->id))
-                                    <form
-                                        action="{{ route('confirm', ['user' => Auth()->user()->id, 'room' => $detailRoom->id]) }}"
-                                        method="POST" id="form">
-                                    @else
-                                        <form action="{{ route('confirm', ['user' => 0, 'room' => $detailRoom->id]) }}"
-                                            method="POST" id="form">
-                                @endif
-                                @csrf
-                                <input type="hidden" value="{{ $_GET['checkin'] }}" name="checkin">
-                                <input type="hidden" value="{{ $_GET['checkout'] }}" name="checkout">
-                                <input type="hidden"
-                                    value="{{ Helper::getDateDifference($_GET['checkin'], $_GET['checkout']) }}"
-                                    name="total_day">
-                                <input type="hidden" value="" name="person" id="person">
-                                <button class="awe-btn awe-btn-13" id="sub" type="button">Đặt ngay</button>
-                                </form>
-
-                                <?php } else { ?>
-                                @if (isset(Auth()->user()->id))
-                                    <form
-                                        action="{{ route('confirm', ['user' => Auth()->user()->id, 'room' => $detailRoom->id]) }}"
-                                        method="GET" id="form">
-                                    @else
-                                        <form action="{{ route('confirm', ['user' => 0, 'room' => $detailRoom->id]) }}"
+                                    @if(isset(Auth()->user()->id))
+                                        <form action="{{ route('confirm', ['user' => Auth()->user()->id, 'room' => $detailRoom->id]) }}" method="POST" id="form">
+                                            @else
+                                                <form action="{{ route('confirm', ['user' => 0, 'room' => $detailRoom->id]) }}" method="POST" id="form">
+                                                    @endif
+                                                    @csrf
+                                                    <input type="hidden" value="{{ $_GET['checkin'] }}" name="checkin">
+                                                    <input type="hidden" value="{{ $_GET['checkout'] }}"
+                                                           name="checkout">
+                                                    <input type="hidden"
+                                                           value="{{ Helper::getDateDifference($_GET['checkin'], $_GET['checkout']) }}"
+                                                           name="total_day">
+                                                    <input type="text" class="awe-input" placeholder="Số người" id="count_person"
+                                                           value="{{ $_GET['person'] }}" required>
+                                                    <p style="color: red" id="loi"></p>
+                                                    <label>Địa chỉ: {{ $detailRoom->type->name }}</label>
+                                                    <button class="awe-btn awe-btn-13" id="sub" type="button">Đặt ngay
+                                                    </button>
+                                                </form>
+                                @else
+                                    @if (isset(Auth()->user()->id))
+                                        <form
+                                            action="{{ route('confirm', ['user' => Auth()->user()->id, 'room' => $detailRoom->id]) }}"
                                             method="GET" id="form">
-                                @endif
-                                @csrf
-                                <label>Ngày đến</label>
-                                <input type="text" class="awe-calendar from" placeholder="Ngày đến" id="check_in"
-                                    name="checkin" value="{{ old('checkin') }}" required>
-                                <label>Ngày đi</label>
+                                            @else
+                                                <form
+                                                    action="{{ route('confirm', ['user' => 0, 'room' => $detailRoom->id]) }}"
+                                                    method="GET" id="form">
+                                                    @endif
+                                                    @csrf
+                                                    <label>Ngày đến</label>
+                                                    <input type="text" class="awe-calendar from"
+                                                           placeholder="Ngày đến" id="check_in"
+                                                           name="checkin" value="{{ old('checkin') }}"
+                                                           required>
+                                                    <p style="color: red" id="loiCheckIn"></p>
+                                                    <label>Ngày đi</label>
 
-                                <input type="text" class="awe-calendar to" placeholder="Ngày đi" id="check_out"
-                                    name="checkout" value="{{ old('checkout') }}" required>
-                                <input type="hidden" value="0" name="total_day">
-                                <label>Số người</label>
-                                <input type="text" class="awe-input" placeholder="Số người" id="count_person"
-                                    name="person" value="{{ old('person') }}" required>
-                                            <p style="color: red" id="loi"></p>
-                                            <label>Địa chỉ: {{ $detailRoom->type->name }}</label>
-                                <button class="awe-btn awe-btn-13" id="sub" type="button">Đặt ngay</button>
-                                </form>
-                                <?php }?>
+                                                    <input type="text" class="awe-calendar to"
+                                                           placeholder="Ngày đi" id="check_out"
+                                                           name="checkout" value="{{ old('checkout') }}"
+                                                           >
+                                                    <p style="color: red" id="loi"></p>
+                                                    <input type="hidden" value="0" name="total_day">
+                                                    <label>Số người</label>
+                                                    <input type="text" class="awe-input"
+                                                           placeholder="Số người" id="count_person"
+                                                           name="person" value="{{ old('person') }}"
+                                                           required>
+                                                    <p style="color: red" id="loiCheckOut"></p>
+                                                    <label>Địa
+                                                        chỉ: {{ $detailRoom->type->name }}</label>
+                                                    <button class="awe-btn awe-btn-13" id="sub"
+                                                            type="button">Đặt ngay
+                                                    </button>
+                                                </form>
+                                    @endif
                             </div>
+                            <!-- END / FORM BOOK -->
 
                         </div>
-                        <!-- END / FORM BOOK -->
-
                     </div>
                 </div>
-            </div>
-            <!-- END / DETAIL -->
+                <!-- END / DETAIL -->
 
-            <!-- TAB -->
-            <div class="room-detail_tab">
+                <!-- TAB -->
+                <div class="room-detail_tab">
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <ul class="room-detail_tab-header">
-                            <li class="active"><a href="#overview" data-toggle="tab">Tổng Quan</a></li>
-                            <li ><a href="#amenities" data-toggle="tab">Tiện nghi</a></li>
-                        </ul>
-                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <ul class="room-detail_tab-header">
+                                <li class="active"><a href="#overview" data-toggle="tab">Tổng Quan</a></li>
+                                <li><a href="#amenities" data-toggle="tab">Tiện nghi</a></li>
+                            </ul>
+                        </div>
 
-                    <div class="col-md-9">
-                        <div class="room-detail_tab-content tab-content">
+                        <div class="col-md-9">
+                            <div class="room-detail_tab-content tab-content">
 
-                            <!-- OVERVIEW -->
-                            <div class="tab-pane fade active in" id="overview">
+                                <!-- OVERVIEW -->
+                                <div class="tab-pane fade active in" id="overview">
 
-                                <div class="room-detail_overview">
-                                    {{-- <h5 class='text-uppercase
-                                '>de Finibus Bonorum et
-                                        Malorum", written by Cicero in 45 BC</h5> --}}
-                                    <p>KingTheLand Homestay là một lựa chọn tuyệt vời cho khách du lịch khi đến Hà
-                                        Nội, cung cấp không khí dành cho gia đình cùng với nhiều tiện nghi hữu ích cho kì
-                                        nghỉ của bạn.
-                                        KingTheLand Homestay trở thành lựa chọn lý tưởng khi khi đến Hà Nội.</p>
+                                    <div class="room-detail_overview">
+                                        {{-- <h5 class='text-uppercase
+                                    '>de Finibus Bonorum et
+                                            Malorum", written by Cicero in 45 BC</h5> --}}
+                                        <p>KingTheLand Homestay là một lựa chọn tuyệt vời cho khách du lịch khi đến Hà
+                                            Nội, cung cấp không khí dành cho gia đình cùng với nhiều tiện nghi hữu ích
+                                            cho
+                                            kì
+                                            nghỉ của bạn.
+                                            KingTheLand Homestay trở thành lựa chọn lý tưởng khi khi đến Hà Nội.</p>
 
-                                    <div class="row">
-                                        <div class="col-xs-6 col-md-4">
-                                            <h6>Thông tin Homestay</h6>
-                                            <ul>
-                                                <li> {{$detailRoom->capacity}} người tối đa</li>
-                                                <li>Diện tích: {{$detailRoom->acreage}} m<sup>2</sup></li>
-                                                <li>Phong cách: {{$detailRoom->roomStatus->name}}</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <!-- END / OVERVIEW -->
-
-                            <!-- AMENITIES -->
-                            <div class="tab-pane fade" id="amenities">
-
-                                <div class="room-detail_amenities">
-                                    <p> Khách có thể dùng nhân viên hỗ trợ khách và dịch vụ Homestay khi nghỉ tại KingTheLand
-                                        Homestay.</p>
-
-                                    <div class="row">
-                                        <h6>Dịch vụ có sẵn</h6>
-                                        @foreach($facilityHomestay as $fH)
-                                            <div class="col-xs-6 col-lg-4">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-4">
+                                                <h6>Thông tin Homestay</h6>
                                                 <ul>
-                                                    <li>{{$fH->Facility->name}}</li>
-
+                                                    <li> {{$detailRoom->capacity}} người tối đa</li>
+                                                    <li>Diện tích: {{$detailRoom->acreage}} m<sup>2</sup></li>
+                                                    <li>Phong cách: {{$detailRoom->roomStatus->name}}</li>
                                                 </ul>
                                             </div>
-                                        @endforeach
+                                        </div>
 
                                     </div>
 
                                 </div>
+                                <!-- END / OVERVIEW -->
+
+                                <!-- AMENITIES -->
+                                <div class="tab-pane fade" id="amenities">
+
+                                    <div class="room-detail_amenities">
+                                        <p> Khách có thể dùng nhân viên hỗ trợ khách và dịch vụ Homestay khi nghỉ tại
+                                            KingTheLand
+                                            Homestay.</p>
+
+                                        <div class="row">
+                                            <h6>Dịch vụ có sẵn</h6>
+                                            @foreach($facilityHomestay as $fH)
+                                                <div class="col-xs-6 col-lg-4">
+                                                    <ul>
+                                                        <li>{{$fH->Facility->name}}</li>
+
+                                                    </ul>
+                                                </div>
+                                            @endforeach
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- END / AMENITIES -->
+
 
                             </div>
-                            <!-- END / AMENITIES -->
-
-
-
                         </div>
+
                     </div>
 
                 </div>
+                <!-- END / TAB -->
+                <section class="section-blog bg-white">
+                    <div class="container">
+                        <div class="blog">
+                            <div class="row">
 
-            </div>
-            <!-- END / TAB -->
-            <section class="section-blog bg-white">
-                <div class="container">
-                    <div class="blog">
-                        <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="blog-content">
+                                        <div id="comments">
+                                            @foreach ($results as $r)
+                                                <h4 class="comment-title">Đánh giá ({{ $r->comment_count }})</h4>
+                                            @endforeach
+                                            <ul class="commentlist">
+                                                @foreach ($comment as $c)
+                                                    <li>
+                                                        <div class="comment-body">
 
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="blog-content">
-                                    <div id="comments">
-                                        @foreach ($results as $r)
-                                            <h4 class="comment-title">Đánh giá ({{ $r->comment_count }})</h4>
-                                        @endforeach
-                                        <ul class="commentlist">
-                                            @foreach ($comment as $c)
-                                                <li>
-                                                    <div class="comment-body">
+                                                            <a class="comment-avatar"><img
+                                                                    src="{{ asset('img/user/' . $c->name . '-' . $c->uid . '/' . $c->avatar) }}"
+                                                                    alt=""></a>
 
-                                                        <a class="comment-avatar"><img
-                                                                src="{{ asset('img/user/' . $c->name . '-' . $c->uid . '/' . $c->avatar) }}"
-                                                                alt=""></a>
+                                                            <h4 class="comment-subject">{{ $c->com_subject }}</h4>
+                                                            <p>{{ $c->com_content }}.</p>
 
-                                                        <h4 class="comment-subject">{{ $c->com_subject }}</h4>
-                                                        <p>{{ $c->com_content }}.</p>
-
-                                                        <span class="comment-meta">
+                                                            <span class="comment-meta">
                                                             <a href="#">{{ $c->name }}</a> -
                                                             {{ $c->created_at }}
                                                         </span>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ul>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- COMPARE ACCOMMODATION -->
+                <div class="room-detail_compare">
+                    <h2 class="room-compare_title">Địa điểm khác</h2>
+                    <div class="room-compare_content">
+                        <div class="row">
+                            @foreach ($other_locations as $other_location)
+                                <!-- ITEM -->
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="room-compare_item">
+                                        <div class="img">
+                                            <a href="{{ route('homestayDetail', $other_location->id) }}"><img
+                                                    src="{{ $other_location->firstImage() }}" alt=""></a>
+                                        </div>
+                                        <div class="text">
+                                            <h2><a href="#">{{ $other_location->number }}</a></h2>
+                                            <ul>
+                                                <li><i class="lotus-icon-location"></i> {{ $other_location->location }}
+                                                </li>
+                                            </ul>
+                                            <a href="{{ route('homestayDetail', $other_location->id) }}"
+                                               class="awe-btn awe-btn-default">Xem chi tiết</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- COMPARE ACCOMMODATION -->
-            <div class="room-detail_compare">
-                <h2 class="room-compare_title">Địa điểm khác</h2>
-                <div class="room-compare_content">
-                    <div class="row">
-                        @foreach ($other_locations as $other_location)
-                            <!-- ITEM -->
-                            <div class="col-md-4 col-sm-6">
-                                <div class="room-compare_item">
-                                    <div class="img">
-                                        <a href="{{ route('homestayDetail', $other_location->id) }}"><img
-                                                src="{{ $other_location->firstImage() }}" alt=""></a>
-                                    </div>
-                                    <div class="text">
-                                        <h2><a href="#">{{ $other_location->number }}</a></h2>
-                                        <ul>
-                                            <li><i class="lotus-icon-location"></i> {{ $other_location->location }}</li>
-                                        </ul>
-                                        <a href="{{ route('homestayDetail', $other_location->id) }}"
-                                            class="awe-btn awe-btn-default">Xem chi tiết</a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
+                <!-- END / COMPARE ACCOMMODATION -->
             </div>
-            <!-- END / COMPARE ACCOMMODATION -->
-        </div>
     </section>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
             crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function() {
-            $('#sub').click(function (){
+        $(document).ready(function () {
+            $('#sub').click(function () {
                 var x = $('#count_person').val();
-                console.log(x);
                 $('#person').val(x);
+                var chekIn = $('#check_in').val();
+                var chekOut = $('#check_out').val();
                 var count = $('#count').val();
-                if(x>count){
-                    $('#loi').html('Số người ở không được quá ' + count);
+                var check = true;
+                x = Number(x);
+                count = Number(count);
+                console.log(count);
+                if(chekIn == ""){
+                    $('#loiCheckIn').html('Ngày đi không để trống');
+                    check = false;
                 }else{
+                    $('#loiCheckIn').html('');
+                    check = true;
+                }
+                if(chekOut == ""){
+                    $('#loiCheckOut').html('Ngày đến không để trống');
+                    check = false;
+                }else{
+                    $('#loiCheckOut').html('');
+                    check = true;
+                }
+                if(x == ""){
+                    $('#loi').html('Số người ở không được trống ');
+                    check = false;
+                }
+                else if (x > count) {
+                    $('#loi').html('Số người ở không được quá ' + count);
+                    check = false;
+                } else {
                     $('#loi').html('');
+                    check = true;
+                }
+                if(check){
                     $('#form').submit();
                 }
             })

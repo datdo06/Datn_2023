@@ -66,16 +66,16 @@
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="how_long" name="how_long"
                                                 placeholder="col-form-label"
-                                                value="{{ $dayDifference }} {{ Helper::plural('Day', $dayDifference) }} "
+                                                value="{{ $dayDifference }} Ngày"
                                                 readonly>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="how_long" class="col-sm-2 col-form-label">Tổng số người ở</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="how_long" name="how_long"
+                                            <input type="text" class="form-control" id="how_long" name="person"
                                                    placeholder="col-form-label"
-                                                   value="{{ $person }} người "
+                                                   value="{{ $person }} người"
                                                    readonly>
                                         </div>
                                     </div>

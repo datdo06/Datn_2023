@@ -188,7 +188,7 @@
                                             @if (session('coupon'))
                                                 <div class="reservation-room-seleted_total-room">
                                                     Mã giảm
-                                                    @if (session('coupon')->coupon_condition == 0)
+                                                    @if (session('coupon')->coupon_condition == 1)
                                                         <span class="reservation-amout">
                                                             {{ session('coupon')->coupon_number }} %</span>
                                                     @elseif(session('coupon')->coupon_condition == 2)
@@ -236,9 +236,9 @@
                                         <div class="reservation-room-seleted_total bg-blue">
                                             <label>Tổng tiền</label>
                                             @if (session('coupon'))
-                                                @if (session('coupon')->coupon_condition == 0)
+                                                @if (session('coupon')->coupon_condition == 1)
                                                     @php
-                                                        $total_coupon = (Helper::getTotalPayment($data['total_day'], $room->price) * session('coupon')->coupon_number) / 100;
+                                                        $total_coupon = (Helper::getTotalPayment($data['total_day'], $room->price)) - ((Helper::getTotalPayment($data['total_day'], $room->price) * session('coupon')->coupon_number) / 100);
                                                         echo '<span class="reservation-total">' . Helper::convertToRupiah($total_coupon) . '</span>';
                                                     @endphp
                                                 @elseif(session('coupon')->coupon_condition == 2)

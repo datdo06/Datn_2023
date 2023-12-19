@@ -27,13 +27,20 @@ class TransactionRepository implements TransactionRepositoryInterface
             return Transaction::with('user', 'room')
                 ->where('check_out', '>=', Carbon::now()->format('Y-m-d'))
                 ->whereNot('status', 'Đã hủy')
+                ->when($request->search, function ($query) use ($request) {
+                    $query->where('guest_name', 'LIKE', '%' . $request->search . '%');
+                })
                 ->orderBy('id', 'DESC')->paginate(20)
+                
                 ->appends($request->all());
         }else{
             return Transaction::with('user', 'room')
                 ->where('check_out', '>=', Carbon::now()->format('Y-m-d'))
                 ->whereNot('status', 'Đã hủy')
                 ->where('check_in', '>=', $request->from)->where('check_in', '<=', $request->to)
+                ->when($request->search, function ($query) use ($request) {
+                    $query->where('guest_name', 'LIKE', '%' . $request->search . '%');
+                })
                 ->orderBy('id', 'DESC')->paginate(20)
                 ->appends($request->all());
         }
@@ -44,11 +51,18 @@ class TransactionRepository implements TransactionRepositoryInterface
         if (empty($request->from) ) {
             return Transaction::with('user', 'room')
                 ->where('status', 'Đã hủy')
+                ->when($request->search, function ($query) use ($request) {
+                    $query->where('guest_name', 'LIKE', '%' . $request->search . '%');
+                })
                 ->orderBy('id', 'DESC')->paginate(20)
+               
                 ->appends($request->all());
         }else{
             return Transaction::with('user', 'room')
                 ->where('check_in', '>=', $request->from)->where('check_in', '<=', $request->to)
+                ->when($request->search, function ($query) use ($request) {
+                    $query->where('guest_name', 'LIKE', '%' . $request->search . '%');
+                })
                 ->orderBy('id', 'DESC')->paginate(20)
                 ->appends($request->all());
         }
@@ -59,11 +73,17 @@ class TransactionRepository implements TransactionRepositoryInterface
     {
         if (empty($request->from) ) {
             return Transaction::with('user', 'room')->where('check_out', '<', Carbon::now()->format('Y-m-d'))
+            ->when($request->search, function ($query) use ($request) {
+                $query->where('guest_name', 'LIKE', '%' . $request->search . '%');
+            })
                 ->orderBy('id', 'DESC')->paginate(20)
                 ->appends($request->all());
         }else{
             return Transaction::with('user', 'room')->where('check_out', '<', Carbon::now()->format('Y-m-d'))
                 ->where('check_in', '>=', $request->from)->where('check_in', '<=', $request->to)
+                ->when($request->search, function ($query) use ($request) {
+                    $query->where('guest_name', 'LIKE', '%' . $request->search . '%');
+                })
                 ->orderBy('check_in', 'ASC')->paginate(20)
                 ->appends($request->all());
         }

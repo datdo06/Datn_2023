@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-12">
         <label for="name" class="form-label">Ngày bắt đầu</label>
-        <input type="date" class="form-control @error('start_time') is-invalid @enderror" id="start_time"
+        <input type="datetime-local" class="form-control @error('start_time') is-invalid @enderror" id="start_time"
                name="start_time" value="{{$coupon->start_time}}">
         @error('start_time')
         <div class="text-danger mt-1">
@@ -59,7 +59,7 @@
     </div>
     <div class="col-md-12">
         <label for="name" class="form-label">Ngày hết</label>
-        <input type="date" class="form-control @error('end_time') is-invalid @enderror" id="end_time"
+        <input type="datetime-local" class="form-control @error('end_time') is-invalid @enderror" id="end_time"
                name="end_time" value="{{$coupon->end_time}}">
         @error('end_time')
         <div class="text-danger mt-1">

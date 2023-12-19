@@ -36,8 +36,7 @@
                                             <h6>Giá Thuê</h6>
                                             <ul>
                                                 <li>
-
-                                                    <span>Tiền/Ngày</span>
+                                                    <span>Tiền/Đêm</span>
                                                     <span>{{ Helper::convertToRupiah($room->price) }}</span>
                                                 </li>
                                             </ul>

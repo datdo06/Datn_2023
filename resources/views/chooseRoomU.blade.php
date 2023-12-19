@@ -57,7 +57,8 @@
                                     <input type="text" hidden name="check_out"
                                            value="{{ request()->input('check_out') }}">
                                     Số người <br>
-                                    <input type="text"  name="count_person"
+                                    
+                                    <input type="text"  name="count_person" class="awe-input"
                                            value="{{request()->input('count_person')}}">
                                     <div class="check_availability-field">
                                         <select class="awe-select" id="sort_name" name="sort_name">

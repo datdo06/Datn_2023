@@ -239,7 +239,7 @@
                                                             <a class="comment-avatar"><img
                                                                     src="{{ asset('img/user/' . $c->name . '-' . $c->uid . '/' . $c->avatar) }}"
                                                                     alt=""></a>
-
+                                                                
                                                             <h4 class="comment-subject">{{ $c->com_subject }}</h4>
                                                             <p>{{ $c->com_content }}.</p>
 

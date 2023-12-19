@@ -27,7 +27,7 @@
                                 <div class="reservation-room-selected bg-gray">
                                     <h2 class="reservation-heading">Xác nhận thông tin </h2>
                                     <div class="reservation-room-seleted_item">
-                                        <h6>{{ $room->number }}</h6> <span class="reservation-option">{{ $room->capacity }}
+                                        <h6>{{ $room->number }}</h6> <span class="reservation-option">{{ $data['person'] }}
                                             người</span>
                                         <div class="reservation-room-seleted_name has-package">
                                             <h2><a href="#">{{ $room->type->name }}</a></h2>
@@ -55,9 +55,19 @@
                                                 </ul>
                                             </div>
                                         @endif
-                                        <div class="reservation-room-seleted_total-room">
-                                            Tổng số ngày
+                                        <div class="reservation-room-seleted_package">
+                                            Tổng số ngày:
                                             <span class="reservation-amout">{{ $data['total_day'] }} Ngày</span>
+                                            <ul>
+                                                <li>
+                                                    <span>Ngày đến</span>
+                                                    <span class="reservation-amout">{{ Helper::dateFormat($data['check_in']) }}</span>
+                                                </li>
+                                                <li>
+                                                    <span>Ngày đi</span>
+                                                    <span class="reservation-amout">{{ Helper::dateFormat($data['check_out']) }}</span>
+                                                </li>
+                                            </ul>
                                         </div>
 
 

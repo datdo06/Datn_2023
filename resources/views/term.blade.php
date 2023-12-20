@@ -32,8 +32,8 @@
                     <li>Trẻ em từ 6 tuổi đến dưới 10 tuổi: phụ thu 80.000 VNĐ/ người / phòng / đêm.</li>
                     <li>Trẻ em từ 10 tuổi hoặc thêm cho người lớn: phụ thu 150.000 VNĐ / người / phòng / đêm</li>
                 </ul>
-                <h3 class="text-uppercase">3. Hủy đặt cọc</h3>
-                <p> King The Land <strong>KHÔNG</strong> hoàn lại tiền cọc khi khách hàng huỷ đặt phòng.</p>
+                <h3 class="text-uppercase">3. Hủy đặt Homestay</h3>
+                <p> Nếu quý khách hủy đặt phòng trước 2 ngày so với ngày checkin sẽ được hoàn 100% phí đã đặt cọc. Sau khoảng thời gian đó nếu quý khách hủy phòng, Homestay sẽ <strong>KHÔNG</strong> hoàn lại phí đã đặt cọc.</p>
                 
                 <h3 class="text-uppercase">4. Thời gian nhận và trả phòng</h3>
                 <p>Quý khách nhận phòng (check in) lúc 14h và trả phòng (check out) trước 12h.</p>

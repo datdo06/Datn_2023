@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Hủy Đặt Phòng Thành Công</title>
     <style>
@@ -66,38 +67,60 @@
         }
     </style>
 </head>
-<body>
-<div class="container">
-    <div class="header">
-        <h1>Hủy Đặt Phòng Thành Công</h1>
-    </div>
-    <div class="success-message">
-        <p>Cảm ơn bạn đã hủy đặt homestay!</p>
-    </div>
-    <div class="details">
-        <p><strong>Tên homestay: </strong> {{$transaction->room->number}} </p>
-        <p><strong>Ngày nhận phòng:</strong> {{\App\Helpers\Helper::dateFormat($transaction->check_in)}}</p>
-        <p><strong>Ngày trả phòng:</strong> {{\App\Helpers\Helper::dateFormat($transaction->check_out)}}</p>
-        @foreach($transactionFacility as $tF)
-            <p><strong>Tiền dich vụ {{$tF->Facility->name}} x {{$tF->quantity}}: </strong>{{\App\Helpers\Helper::convertToRupiah($tF->Facility->price * $tF->quantity)}}</p>
-        @endforeach
-        @if(!empty($transactionCoupon))
-            <p><strong>Bạn đã sử dụng mã giảm giá: </strong>{{$transactionCoupon->Coupon->coupon_name}}</p>
-            @if($transactionCoupon->Coupon->coupon_condition == 2)
-                <p><strong>Bạn được giảm: </strong>{{\App\Helpers\Helper::convertToRupiah($transactionCoupon->Coupon->coupon_number)}}</p>
-            @else
-                <p><strong>Bạn được giảm: </strong>{{\App\Helpers\Helper::convertToRupiah(($price*$transactionCoupon->Coupon->coupon_number/100))}}</p>
-            @endif
-        @endif
-        <p><strong>Số tiền bạn đã cọc: </strong>{{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment())}}</p>
-        <div>
 
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Hủy Đặt Phòng Thành Công</h1>
         </div>
-        <p><strong>Tổng số tiền: </strong>{{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</p>
-    </div>
-    <div class="button-container">
-        <a href="{{route('home')}}" class="button">Quay lại trang chủ</a>
-    </div>
-</div>
+        <div class="success-message">
+            <p>Cảm ơn bạn đã hủy đặt homestay!</p>
+        </div>
+        <div class="details">
+            <p>Ngày đặt phòng: {{ \App\Helpers\Helper::dateFormat($payment->created_at) }}</p>
+            <p>Ngày nhận phòng: {{ \App\Helpers\Helper::dateFormat($transaction->check_in) }}</p>
+            <p>Ngày trả phòng: {{ \App\Helpers\Helper::dateFormat($transaction->check_out) }}</p>
+            <p>Homestay đã đặt: {{ $transaction->room->number }} - {{ $transaction->room->type->name }}</p>
+            <p>Số người: {{ $transaction->sum_people }}</p>
+            @php
+                $dayDifference = Helper::getDateDifference($transaction->check_in, $transaction->check_out);
+                $price = $transaction->room->price * $dayDifference;
+            @endphp
+            <p style="font-size: 20px"><strong>Tiền homestay: </strong>{{ App\Helpers\Helper::convertToRupiah($price) }}
+            </p>
+            @foreach ($transactionFacility as $tF)
+                <p>Tiền dịch vụ {{ $tF->Facility->name }}:
+                    {{ \App\Helpers\Helper::convertToRupiah($tF->Facility->price * $tF->quantity) }}</p>
+            @endforeach
+            @php
+                $dayDifference = Helper::getDateDifference($transaction->check_in, $transaction->check_out);
+                $price = $transaction->room->price * $dayDifference;
+            @endphp
+            @if (!empty($transactionCoupon))
+                <p>Bạn đã sử dụng mã giảm giá: {{ $transactionCoupon->Coupon->coupon_name }}</p>
+                @if ($transactionCoupon->Coupon->coupon_condition == 2)
+                    <p><strong>Bạn được giảm:
+                        </strong>{{ \App\Helpers\Helper::convertToRupiah($transactionCoupon->Coupon->coupon_number) }}
+                    </p>
+                @else
+                    <p><strong>Bạn được giảm:
+                        </strong>{{ \App\Helpers\Helper::convertToRupiah(($price * $transactionCoupon->Coupon->coupon_number) / 100) }}
+                    </p>
+                @endif
+            @endif
+            <p><strong>Tổng tiền phải trả: </strong>{{ \App\Helpers\Helper::convertToRupiah($transaction->sum_money) }}
+            </p>
+            <p><strong style="font-size: 20px; color: #e1bd85">Số tiền đã trả:
+                {{ \App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment()) }}</strong></p>
+            <p><strong style="font-size: 20px; color: #DB073D">Số tiền chưa trả:
+                    {{ \App\Helpers\Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}</strong>
+            </p>
+
+
+            <div class="button-container">
+                <a href="{{ route('home') }}" class="button">Quay lại trang chủ</a>
+            </div>
+        </div>
 </body>
+
 </html>

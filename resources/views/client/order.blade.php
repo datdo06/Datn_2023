@@ -125,7 +125,18 @@
                                    data-bs-placement="top">
                                     Đánh giá
                                 </a></td>
-                        @elseif(Helper::getDateDifference(now(), $transaction->check_in) >= 1)
+                        @elseif(Helper::getDateDifference(now(), $transaction->check_in) >= 2)
+                            <td>
+                                <button class="btn btn-danger" id="delete2"
+                                        transaction_id={{ $transaction->id }}>Hủy phòng
+                                </button>
+                                <form action="{{ route('cancelHomestay', $transaction->id) }}"
+                                      id="form--{{ $transaction->id }}" method="post" class="delete-cus">
+                                    <input type="hidden" name="hoan" value="hoan">
+                                    @csrf
+                                </form>
+                            </td>
+                        @elseif(Helper::getDateDifference(now(), $transaction->check_in) >= 0)
                             <td>
                                 <button class="btn btn-danger" id="delete3"
                                         transaction_id={{ $transaction->id }}>Hủy phòng
@@ -135,6 +146,7 @@
                                     @csrf
                                 </form>
                             </td>
+
                         @endif
                     </tr>
                 @endforeach
@@ -148,6 +160,58 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
     $(function () {
+        $(document).on('click', '#delete2', function (e) {
+            var transaction_id = $(this).attr('transaction_id');
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+            e.preventDefault();
+            swalWithBootstrapButtons.fire({
+                title: 'Bạn muốn hủy homestay',
+                text: "Homestay bạn đặt sẽ bị hủy và sẽ được hoàn trả phí cọc ",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Đúng',
+                cancelButtonText: 'Không ',
+                reverseButtons: true
+            }).then((result) => {
+                console.log(result);
+                if (result.isConfirmed) {
+                    $(`#form--${transaction_id}`).submit();
+                }
+            })
+        }).on('submit', '.delete-cus', async function (e) {
+            try {
+                const response = await $.ajax({
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    method: $(this).attr('method'),
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                })
+                if (!response) return
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } catch (e) {
+                if (e && e.responseJSON && e.responseJSON.message) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: e.responseJSON.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            }
+        })
         $(document).on('click', '#delete3', function (e) {
             var transaction_id = $(this).attr('transaction_id');
             const swalWithBootstrapButtons = Swal.mixin({

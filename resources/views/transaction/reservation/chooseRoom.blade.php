@@ -28,8 +28,14 @@
                             {{ Helper::dateFormat(request()->input('check_in')) }} đến ngày
                             {{ Helper::dateFormat(request()->input('check_out')) }}</p>
                         <hr>
-                        <form method="GET"
-                            action="{{ route('transaction.reservation.chooseRoom', ['user' => $user->id]) }}">
+
+                        @if(!empty($user))
+                            <form method="GET"
+                                  action="{{ route('transaction.reservation.chooseRoom', ['user' => $user->id]) }}">
+                                @else
+                                    <form method="GET"
+                                          action="{{ route('transaction.reservation.chooseRoom', ['user' => 0]) }}">
+                        @endif
                             <div class="row mb-2">
                                 <input type="text" hidden name="count_person"
                                     value="{{ request()->input('count_person') }}">
@@ -85,8 +91,13 @@
                                             <div class="wrapper">
                                                 <p class="card-text mb-auto demo-1">{{ $room->view }}</p>
                                             </div>
-                                            <a href="{{ route('transaction.reservation.confirmation', ['user' => $user->id, 'room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out'), 'person'=>request()->input('count_person')]) }}"
-                                                class="btn myBtn shadow-sm border w-100 m-2">Chọn</a>
+                                            @if(!empty($user))
+                                                <a href="{{ route('transaction.reservation.confirmation', ['user' => $user->id, 'room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out'), 'person'=>request()->input('count_person')]) }}"
+                                                   class="btn myBtn shadow-sm border w-100 m-2">Chọn</a>
+                                            @else
+                                                <a href="{{ route('transaction.reservation.confirmation', ['user' => 0, 'room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out'), 'person'=>request()->input('count_person')]) }}"
+                                                   class="btn myBtn shadow-sm border w-100 m-2">Chọn</a>
+                                            @endif
                                         </div>
                                         <div class="col-auto d-none d-lg-block">
                                             <img src="{{ $room->firstImage() }}" width="200" height="250"
@@ -114,21 +125,23 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-2">
-                <div class="card shadow-sm">
-                    <img src="{{ $user->getAvatar() }}"
-                        style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem">
-                    <div class="card-body">
-                        <table>
-                            <tr>
-                                <td>
-                                    {{ $user->name }}
-                                </td>
-                            </tr>
-                        </table>
+            @if(!empty($user))
+                <div class="col-md-4 mt-2">
+                    <div class="card shadow-sm">
+                        <img src="{{ $user->getAvatar() }}"
+                             style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem">
+                        <div class="card-body">
+                            <table>
+                                <tr>
+                                    <td>
+                                        {{ $user->name }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection

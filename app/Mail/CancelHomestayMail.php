@@ -16,14 +16,20 @@ class CancelHomestayMail extends Mailable
 {
     use Queueable, SerializesModels;
     private $transaction;
+    private $transactionFacility;
+    private $transactionCoupon;
+    private $hoan;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct( Transaction $transaction)
+    public function __construct( Transaction $transaction, $transactionFacility, $transactionCoupon,$hoan)
     {
         $this->transaction = $transaction;
+        $this->transactionFacility = $transactionFacility;
+        $this->transactionCoupon = $transactionCoupon;
+        $this->hoan = $hoan;
 
     }
 
@@ -33,6 +39,9 @@ class CancelHomestayMail extends Mailable
             ->view('mail.mail')
             ->with([
                 'transaction'=>$this->transaction,
+                'transactionFacility'=>$this->transactionFacility,
+                'transactionCoupon'=>$this->transactionCoupon,
+                'hoan'=>$this->hoan,
             ]);
 
     }

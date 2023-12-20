@@ -75,8 +75,8 @@ class HomeController extends Controller
     private function getOccupiedRoomID($stayFrom, $stayUntil)
     {
         return Transaction::whereNot('status', 'Đã hủy')
-            ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
-            ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
+            ->where([['check_in', '<=', $stayFrom],['check_out', '>=', $stayUntil]])
+            ->orWhere([['check_in', '<', $stayUntil],['check_out', '>', $stayFrom]])
             ->pluck('room_id');
     }
 

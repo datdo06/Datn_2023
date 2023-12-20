@@ -12,8 +12,13 @@
                     <div class="card-body p-3">
                         <div class="card">
                             <div class="card-body">
-                                <form class="row g-3" method="GET"
-                                    action="{{ route('transaction.reservation.chooseRoom', ['user'=> $user->id]) }}">
+                                @if(!empty($user))
+                                    <form class="row g-3" method="GET"
+                                          action="{{ route('transaction.reservation.chooseRoom', ['user'=> $user->id]) }}">
+                                        @else
+                                            <form method="GET"
+                                                  action="{{ route('transaction.reservation.chooseRoom', ['user' => 0]) }}">
+                                                @endif
                                     <div class="col-md-12">
                                         <label for="count_person" class="form-label">
                                             Nhập số người ở
@@ -66,6 +71,41 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                        @if(empty($user))
+                                            <label for="count_person" class="form-label">
+                                                Họ và tên
+                                            </label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="guest_name" value="">
+                                            @error('guest_name')
+                                            <div class="text-danger mt-1">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                            <label for="count_person" class="form-label">
+                                                Email
+                                            </label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="guest_email" value="">
+                                            @error('guest_email')
+                                            <div class="text-danger mt-1">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                            <label for="count_person" class="form-label">
+                                                Số điện thoại
+                                            </label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="guest_phone" value="">
+                                            @error('guest_phone')
+                                            <div class="text-danger mt-1">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        @endif
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn myBtn shadow-sm border float-end">Tiếp tục</button>
@@ -76,22 +116,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-2">
-                <div class="card shadow-sm">
-                    <img src="{{ $user->getAvatar() }}"
-                        style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem"; height="330px">
-                    <div class="card-body">
-                        <table>
-                            <tr>
-                                <td>
-                                    {{ $user->name }}
-                                </td>
-                            </tr>
+            @if(!empty($user))
+                <div class="col-md-4 mt-2">
+                    <div class="card shadow-sm">
+                        <img src="{{ $user->getAvatar() }}"
+                             style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem"; height="330px">
+                        <div class="card-body">
+                            <table>
+                                <tr>
+                                    <td>
+                                        {{ $user->name }}
+                                    </td>
+                                </tr>
 
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection

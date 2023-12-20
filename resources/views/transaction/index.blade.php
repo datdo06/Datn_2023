@@ -77,7 +77,7 @@
                                         <td>{{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}
                                         </td>
                                         <td>
-                                            <a class="btn btn-light btn-sm rounded shadow-sm border p-1 m-0 {{$transaction->getTotalPrice() - $transaction->getTotalPayment() <= 0 ? 'disabled' : ''}}"
+                                            <a class="btn btn-light btn-sm rounded shadow-sm border p-1 m-0 {{$transaction->sum_money - $transaction->getTotalPayment() <= 0 ? 'disabled' : ''}}"
                                                 href="{{ route('transaction.payment.create', ['transaction' => $transaction->id]) }}"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Trả">
                                                 <i class="fas fa-money-bill-wave-alt"></i>
@@ -88,7 +88,7 @@
                                                title="Chi tiết" >
                                                 <i class="fas fa-info-circle"></i>
                                             </a>
-                                            <a class="btn btn-light btn-sm rounded shadow-sm border" id="delete3"
+                                            <a class="btn btn-light btn-sm rounded shadow-sm border {{$transaction->sum_money - $transaction->getTotalPayment() <= 0 ? 'disabled' : ''}}" id="delete3"
                                                     transaction_id={{ $transaction->id }}><i class="fas fa-trash-alt"></i>
                                             </a>
                                             <form action="{{ route('cancelHomestay', $transaction->id) }}"
@@ -297,7 +297,7 @@
                                         <td>{{ $transaction->id }}</td>
                                         <td>{{ $transaction->guest_name }}</td>
                                         <td>{{ $transaction->room->number }}</td>
-                                        
+
                                         <td>{{ Helper::dateFormat($transaction->created_at) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
                                         <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
@@ -355,7 +355,7 @@
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
                         <a class="btn btn-sm btn-primary m-1"
-                            href="{{ route('transaction.reservation.createIdentity') }}">Chưa, tạo tài khoản mới!</a>
+                            href="{{ route('transaction.reservation.viewCountPerson', ['user'=> 0]) }}">Chưa</a>
                         <a class="btn btn-sm btn-success m-1"
                             href="{{ route('transaction.reservation.pickFromCustomer') }}">Đã có!</a>
                     </div>

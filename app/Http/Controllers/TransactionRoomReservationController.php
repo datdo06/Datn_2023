@@ -65,14 +65,16 @@ class TransactionRoomReservationController extends Controller
             ->with('success', 'Tài khoản người dùng ' . $user->name . ' đã được tạo!');
     }
 
-    public function viewCountPerson(User $user)
+    public function viewCountPerson($id)
     {
+        $user = User::query()->where('id', $id)->first();
         $room_type = Type::query()->get();
         return view('transaction.reservation.viewCountPerson', compact('user', 'room_type'));
     }
 
-    public function chooseRoom(ChooseRoomRequest $request, User $user)
+    public function chooseRoom(ChooseRoomRequest $request, $id)
     {
+        $user = User::query()->where('id', $id)->first();
         $stayFrom = $request->check_in;
         $stayUntil = $request->check_out;
         $type = Type::query()->get();
@@ -92,8 +94,8 @@ class TransactionRoomReservationController extends Controller
                 ]);
         })->whereNot('status', 'Đã hủy')->pluck('room_id');
         $t = Transaction::whereNot('status', 'Đã hủy')
-       ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
-            ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
+            ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
+            ->where([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
 //            ->orWhere([['check_out', '>=', $stayFrom], ['check_out', '<=', $stayUntil]])
             ->pluck('room_id');
 
@@ -112,9 +114,9 @@ class TransactionRoomReservationController extends Controller
         ));
     }
 
-    public function confirmation(User $user, Room $room, $stayFrom, $stayUntil, $person)
+    public function confirmation( $id, Room $room, $stayFrom, $stayUntil, $person)
     {
-
+        $user = User::query()->where('id', $id)->first();
         $price = $room->price;
         $dayDifference = Helper::getDateDifference($stayFrom, $stayUntil);
         $downPayment = ($price * $dayDifference) * 0.15;
@@ -148,7 +150,6 @@ class TransactionRoomReservationController extends Controller
         if (in_array($room->id, $occupiedRoomIdInArray)) {
             return redirect()->back()->with('failed', 'Sorry, room ' . $room->number . ' already occupied');
         }
-
         session(['room' => $room]);
         session(['request' => $request->all()]);
         $data = $request->all();
@@ -331,7 +332,7 @@ class TransactionRoomReservationController extends Controller
 
             } else {
                 return redirect()->route('transaction.index')
-                    ->with('success', 'Room ' . $room->number . ' has been reservated by ' . $transaction->guest_name);
+                    ->with('Homestay ' . $room->number . ' đã được đặt cho ' . $transaction->guest_name);
             }
         } else {
             return 'Giao dịch không thành công';
@@ -382,7 +383,7 @@ class TransactionRoomReservationController extends Controller
     {
         return Transaction::whereNot('status', 'Đã hủy')
             ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
-            ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
+            ->where([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
             ->pluck('room_id');
     }
 
@@ -422,9 +423,18 @@ class TransactionRoomReservationController extends Controller
 
     public function CancelHomstay(Request $request, Transaction $transaction)
     {
-        $mail = new CancelHomestayMail($transaction);
         $transactionFacility = TransactionFacility::query()->where('transaction_id', $transaction->id)->get();
         $transactionCoupon = TransactionCoupon::query()->where('transaction_id', $transaction->id)->first();
+        if(!empty($request->hoan)){
+            $hoan = $request->hoan;
+            $payment = Payment::query()->where('transaction_id', $transaction->id)->first();
+            $payment->update(['price' => 0]);
+            $mail = new CancelHomestayMail($transaction,$transactionFacility, $transactionCoupon, $hoan);
+        }else{
+            $hoan = 0;
+            $mail = new CancelHomestayMail($transaction,$transactionFacility, $transactionCoupon, $hoan);
+
+        }
         SendWelcomeEmail::dispatch($transaction, $mail);
         $transaction->update(['status' => 'Đã hủy']);
         return view('cancelHomestay', compact('transaction', 'transactionCoupon', 'transactionFacility'));

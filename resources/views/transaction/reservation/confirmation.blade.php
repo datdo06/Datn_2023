@@ -117,7 +117,9 @@
                                     <input type="hidden" value="{{Helper::getTotalPayment($dayDifference, $room->price)}}" name="sum_money">
                                     <input type="hidden" value="{{$person}}" name="person" >
                                     <input type="hidden" value="{{$dayDifference}}" name="total_day">
-                                    <input type="hidden" value="{{$user->id}}" name="user_id">
+                                    @if(!empty($user))
+                                        <input type="hidden" value="{{$user->id}}" name="user_id">
+                                    @endif
                                     <button type="submit" class="btn btn-primary float-end" >Thanh toán</button>
                                 </form>
                             </div>
@@ -125,23 +127,26 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-2">
-                <div class="card shadow-sm">
-                    <img src="{{ $user->getAvatar() }}"
-                        style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem">
-                    <div class="card-body">
-                        <table>
-                            <tr>
-                                <td>
-                                    {{ $user->name }}
-                                </td>
-                            </tr>
+            @if(!empty($user))
+                <div class="col-md-4 mt-2">
+                    <div class="card shadow-sm">
+                        <img src="{{ $user->getAvatar() }}"
+                             style="border-top-right-radius: 0.5rem; border-top-left-radius: 0.5rem">
+                        <div class="card-body">
+                            <table>
+                                <tr>
+                                    <td>
+                                        {{ $user->name }}
+                                    </td>
+                                </tr>
 
 
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
+
         </div>
     </div>
 @endsection

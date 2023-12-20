@@ -90,7 +90,7 @@
                                                            value="{{ Helper::getDateDifference($_GET['checkin'], $_GET['checkout']) }}"
                                                            name="total_day">
                                                     <input type="text" class="awe-input" placeholder="Số người" id="count_person"
-                                                           value="{{ $_GET['person'] }}" required>
+                                                           value="{{ $_GET['person'] }} " name="person" required>
                                                     <p style="color: red" id="loi"></p>
                                                     <label>Địa chỉ: {{ $detailRoom->type->name }}</label>
                                                     <button class="awe-btn awe-btn-13" id="sub" type="button">Đặt ngay

@@ -57,7 +57,7 @@ class RoomController extends Controller
         $room = Room::create($request->all());
 
         return response()->json([
-            'message' => 'Room ' . $room->number . ' created'
+            'message' => 'Homestay ' . $room->number . ' đã được thêm'
         ]);
     }
 
@@ -87,29 +87,43 @@ class RoomController extends Controller
         $room->update($request->all());
 
         return response()->json([
-            'message' => 'Room ' . $room->number . ' udpated!'
+            'message' => 'Homestay ' . $room->number . ' được cập nhật!'
         ]);
     }
 
     public function destroy(Room $room, ImageRepositoryInterface $imageRepository)
     {
         try {
-            $room->delete();
-
-            $path = 'img/room/' . $room->number;
-            $path = public_path($path);
-
-            if (is_dir($path)) {
-                $imageRepository->destroy($path);
+            $tran  = Transaction::with('user', 'room')
+                ->where('check_out', '>=', Carbon::now()->format('Y-m-d'))
+                ->whereNot('status', 'Đã hủy')
+                ->get();
+            $check = true;
+            foreach ($tran as $t){
+                if($t->room_id == $room->id){
+                    $check = false;
+                }
+            }
+            if($check == true){
+                $room->delete();
+                $path = 'img/room/' . $room->number;
+                $path = public_path($path);
+                if (is_dir($path)) {
+                    $imageRepository->destroy($path);
+                }
+                return response()->json([
+                    'message' => 'Homestay ' . $room->number . ' đã được xóa'
+                ]);
+            }else{
+                return response()->json([
+                    'message' => 'Homestay ' . $room->number . ' không thể xóa'
+                ], 422);
             }
 
-            return response()->json([
-                'message' => 'Room number ' . $room->number . ' deleted!'
-            ]);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Customer ' . $room->number . ' cannot be deleted! Error Code:' . $e->errorInfo[1]
-            ], 500);
+            ], 422);
         }
     }
     public function homestayDetail($id)

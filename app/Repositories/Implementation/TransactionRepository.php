@@ -48,6 +48,7 @@ class TransactionRepository implements TransactionRepositoryInterface
                 ->appends($request->all());
         }else{
             return Transaction::with('user', 'room')
+                ->where('status', 'Đã hủy')
                 ->where('check_in', '>=', $request->from)->where('check_in', '<=', $request->to)
                 ->orderBy('id', 'DESC')->paginate(20)
                 ->appends($request->all());

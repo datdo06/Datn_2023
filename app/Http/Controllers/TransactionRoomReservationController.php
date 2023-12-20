@@ -80,6 +80,23 @@ class TransactionRoomReservationController extends Controller
         $checkout = date_create($request->check_out);
         $stayFrom = date_format($checkin, "Y-m-d");
         $stayUntil = date_format($checkout, "Y-m-d");
+        $canceledRoomIds = Transaction::where('status', 'Đã hủy')->pluck('room_id');
+        $room = Transaction::where(function ($query) use ($stayFrom, $stayUntil) {
+            $query->where([
+                ['check_in', '>', $stayUntil],
+                ['check_out', '>', $stayUntil]
+            ])
+                ->orWhere([
+                    ['check_in', '<', $stayFrom],
+                    ['check_out', '<', $stayFrom]
+                ]);
+        })->whereNot('status', 'Đã hủy')->pluck('room_id');
+        $t = Transaction::whereNot('status', 'Đã hủy')
+       ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
+            ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
+//            ->orWhere([['check_out', '>=', $stayFrom], ['check_out', '<=', $stayUntil]])
+            ->pluck('room_id');
+
         $occupiedRoomId = $this->getOccupiedRoomID($stayFrom, $stayUntil);
 
         $rooms = $this->reservationRepository->getUnocuppiedroom($request, $occupiedRoomId);
@@ -363,13 +380,9 @@ class TransactionRoomReservationController extends Controller
 
     private function getOccupiedRoomID($stayFrom, $stayUntil)
     {
-        $canceledRoomIds = Transaction::where('status', 'Đã hủy')->pluck('room_id');
-        return Transaction::whereNotIn('room_id', $canceledRoomIds)
-            ->where(function ($query) use ($stayFrom, $stayUntil) {
-                $query->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
-                    ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
-                    ->orWhere([['check_out', '>=', $stayFrom], ['check_out', '<=', $stayUntil]]);
-            })
+        return Transaction::whereNot('status', 'Đã hủy')
+            ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
+            ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
             ->pluck('room_id');
     }
 

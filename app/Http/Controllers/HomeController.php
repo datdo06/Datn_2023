@@ -48,6 +48,7 @@ class HomeController extends Controller
 
     public function chooseRoomU(ChooseRoomRequest $request)
     {
+
         $stayFrom = $request->check_in;
         $stayUntil = $request->check_out;
         $count_person = $request->count_person;
@@ -73,13 +74,9 @@ class HomeController extends Controller
 
     private function getOccupiedRoomID($stayFrom, $stayUntil)
     {
-        $canceledRoomIds = Transaction::where('status', 'Đã hủy')->pluck('room_id');
-        return Transaction::whereNotIn('room_id', $canceledRoomIds)
-            ->where(function ($query) use ($stayFrom, $stayUntil) {
-                $query->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
-                    ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
-                    ->orWhere([['check_out', '>=', $stayFrom], ['check_out', '<=', $stayUntil]]);
-            })
+        return Transaction::whereNot('status', 'Đã hủy')
+            ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
+            ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
             ->pluck('room_id');
     }
 

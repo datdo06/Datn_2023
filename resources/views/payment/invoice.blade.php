@@ -83,9 +83,10 @@
                                 <tbody>
                                 <tr class="add">
                                     <td>Mã giảm giá sử dụng</td>
-                                    <td>Bạn đươc giảm</td>
+                                    <td>Bạn được giảm</td>
                                 </tr>
                                 <tr>
+                                    <td>{{ $transactionCoupon->Coupon->coupon_name }}</td>
                                     @if($transactionCoupon->Coupon->coupon_condition == 2)
                                         <td>{{\App\Helpers\Helper::convertToRupiah($transactionCoupon->Coupon->coupon_number)}}</td>
                                     @else
@@ -157,15 +158,7 @@
                     </div>
                     <div class="address p-2">
                         @if (Helper::getDateDifference(now(), $transaction->check_in) > 0)
-                            <form action="{{ route('cancelHomestay', $transaction->id) }}" id="form" method="post">
-                                @csrf
-                                <button style="color: #fff;background-color: #d9534f;border-color: #d43f3a;"
-                                        onclick="if(confirm('Bạn có muốn hủy')){
-                                document.getElementById('#form').submit();
-                            }">Hủy
-                                    Homestay
-                                </button>
-                            </form>
+                          
                         @elseif(Helper::getDateDifference($transaction->check_in, now()) > 0 &&
                                 Helper::getDateDifference(now(), $transaction->out) > 0)
                             <p>Khách đang trải nghiệm tại homestay</p>

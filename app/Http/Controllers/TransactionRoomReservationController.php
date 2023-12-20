@@ -65,14 +65,16 @@ class TransactionRoomReservationController extends Controller
             ->with('success', 'Tài khoản người dùng ' . $user->name . ' đã được tạo!');
     }
 
-    public function viewCountPerson(User $user)
+    public function viewCountPerson($id)
     {
+        $user = User::query()->where('id', $id)->first();
         $room_type = Type::query()->get();
         return view('transaction.reservation.viewCountPerson', compact('user', 'room_type'));
     }
 
-    public function chooseRoom(ChooseRoomRequest $request, User $user)
+    public function chooseRoom(ChooseRoomRequest $request, $id)
     {
+        $user = User::query()->where('id', $id)->first();
         $stayFrom = $request->check_in;
         $stayUntil = $request->check_out;
         $type = Type::query()->get();
@@ -92,9 +94,9 @@ class TransactionRoomReservationController extends Controller
                 ]);
         })->whereNot('status', 'Đã hủy')->pluck('room_id');
         $t = Transaction::whereNot('status', 'Đã hủy')
-       ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
-            ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
-//            ->orWhere([['check_out', '>=', $stayFrom], ['check_out', '<=', $stayUntil]])
+            ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
+            ->where([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
+            //            ->orWhere([['check_out', '>=', $stayFrom], ['check_out', '<=', $stayUntil]])
             ->pluck('room_id');
 
         $occupiedRoomId = $this->getOccupiedRoomID($stayFrom, $stayUntil);
@@ -112,9 +114,9 @@ class TransactionRoomReservationController extends Controller
         ));
     }
 
-    public function confirmation(User $user, Room $room, $stayFrom, $stayUntil, $person)
+    public function confirmation($id, Room $room, $stayFrom, $stayUntil, $person)
     {
-
+        $user = User::query()->where('id', $id)->first();
         $price = $room->price;
         $dayDifference = Helper::getDateDifference($stayFrom, $stayUntil);
         $downPayment = ($price * $dayDifference) * 0.15;
@@ -132,8 +134,7 @@ class TransactionRoomReservationController extends Controller
     public function payOnlinePayment(
         Room    $room,
         Request $request,
-    )
-    {
+    ) {
 
         $dayDifference = Helper::getDateDifference($request->check_in, $request->check_out);
         $minimumDownPayment = $request->sum_money * 0.15;
@@ -158,13 +159,12 @@ class TransactionRoomReservationController extends Controller
                 $facility_id = $request->facility;
                 $quantity = $request->quantity;
                 foreach ($facility_id as $key => $value) {
-                    $facilities [] = Facility::where('id', $value)->first();
+                    $facilities[] = Facility::where('id', $value)->first();
                 }
                 return view('payment.confirm', compact('data', 'room', 'minimumDownPayment', 'facilities', 'quantity'));
             } else {
                 return view('payment.confirm', compact('data', 'room', 'minimumDownPayment'));
             }
-
         } else {
             return view('transaction.css', compact('data', 'room'));
         }
@@ -185,7 +185,7 @@ class TransactionRoomReservationController extends Controller
         }
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_TmnCode = "LLWJITYZ";//Mã website tại VNPAY
+        $vnp_TmnCode = "LLWJITYZ"; //Mã website tại VNPAY
         $vnp_HashSecret = "EZNGMRKORWXAHBPAJWRNZIMHXIVQQOAF"; //Chuỗi bí mật
         $vnp_TxnRef = rand(1, 10000); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_Locale = "vn";
@@ -228,22 +228,19 @@ class TransactionRoomReservationController extends Controller
 
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
-            $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
+            $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret); //
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
-
         }
-        $returnData = array('code' => '00'
-        , 'message' => 'success'
-        , 'data' => $vnp_Url);
+        $returnData = array(
+            'code' => '00', 'message' => 'success', 'data' => $vnp_Url
+        );
 
         if (isset($_POST['redirect'])) {
             header('Location: ' . $vnp_Url);
 
             die();
-
         } else {
             echo json_encode($returnData);
-
         }
         // vui lòng tham khảo thêm tại code demo
     }
@@ -318,7 +315,7 @@ class TransactionRoomReservationController extends Controller
                         'transaction_id' => $transaction->id,
                         'coupon_id' => $request['coupon_id'],
                     ]);
-                    $mail = new SuccessHomestayMail($transaction, $transactionCoupon, $transactionFacility,$payment);
+                    $mail = new SuccessHomestayMail($transaction, $transactionCoupon, $transactionFacility, $payment);
                     SendSuccessMail::dispatch($transaction, $mail);
                     return view('transaction.success', compact('transaction', 'transactionCoupon', 'transactionFacility', 'payment'));
                 } else {
@@ -327,8 +324,6 @@ class TransactionRoomReservationController extends Controller
                     SendSuccessMail::dispatch($transaction, $mail);
                     return view('transaction.success', compact('transaction', 'transactionFacility', 'payment'));
                 }
-
-
             } else {
                 return redirect()->route('transaction.index')
                     ->with('success', 'Room ' . $room->number . ' has been reservated by ' . $transaction->guest_name);
@@ -344,8 +339,7 @@ class TransactionRoomReservationController extends Controller
         Request                        $request,
         TransactionRepositoryInterface $transactionRepository,
         PaymentRepositoryInterface     $paymentRepository
-    )
-    {
+    ) {
         $dayDifference = Helper::getDateDifference($request->check_in, $request->check_out);
         $minimumDownPayment = ($room->price * $dayDifference) * 0.15;
 
@@ -382,7 +376,7 @@ class TransactionRoomReservationController extends Controller
     {
         return Transaction::whereNot('status', 'Đã hủy')
             ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
-            ->orWhere([['check_in', '>=', $stayFrom], ['check_in', '<=', $stayUntil]])
+            ->orWhere([['check_in', '<', $stayUntil], ['check_out', '>', $stayFrom]])
             ->pluck('room_id');
     }
 
@@ -410,7 +404,6 @@ class TransactionRoomReservationController extends Controller
         } else {
             return view('payment.pay', compact('data', 'user', 'room', 'facilities'));
         }
-
     }
 
     public function TransactionHometay(User $user)
@@ -422,11 +415,13 @@ class TransactionRoomReservationController extends Controller
 
     public function CancelHomstay(Request $request, Transaction $transaction)
     {
-        $mail = new CancelHomestayMail($transaction);
+      
         $transactionFacility = TransactionFacility::query()->where('transaction_id', $transaction->id)->get();
         $transactionCoupon = TransactionCoupon::query()->where('transaction_id', $transaction->id)->first();
+        $payment = Payment::query()->where('transaction_id', $transaction->id)->first();
+        $mail = new CancelHomestayMail($transaction,$transactionFacility,$transactionCoupon,$payment);
         SendWelcomeEmail::dispatch($transaction, $mail);
         $transaction->update(['status' => 'Đã hủy']);
-        return view('cancelHomestay', compact('transaction', 'transactionCoupon', 'transactionFacility'));
+        return view('cancelHomestay', compact('transaction', 'transactionCoupon', 'transactionFacility','payment'));
     }
 }

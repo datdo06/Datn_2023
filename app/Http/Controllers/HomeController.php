@@ -76,7 +76,7 @@ class HomeController extends Controller
     {
         return Transaction::whereNot('status', 'Đã hủy')
             ->where([['check_in', '<=', $stayFrom],['check_out', '>=', $stayUntil]])
-            ->orWhere([['check_in', '<', $stayUntil],['check_out', '>', $stayFrom]])
+            ->orWhere([['status','!=','Đã hủy'],['check_in', '<', $stayUntil],['check_out', '>', $stayFrom]])
             ->pluck('room_id');
     }
 

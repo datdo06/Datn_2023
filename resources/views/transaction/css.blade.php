@@ -82,7 +82,7 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="downPayment" class="col-sm-2 col-form-label">Nhập số tiền muốn thanh toán</label>
+                                        <label for="downPayment" class="col-sm-2 col-form-label">Số tiền thanh toán</label>
                                         <div class="col-sm-10">
                                             <input type="text"
                                                    class="form-control @error('downPayment') is-invalid @enderror"

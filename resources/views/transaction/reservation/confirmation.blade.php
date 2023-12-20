@@ -112,7 +112,7 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="minimum_dp" class="col-sm-2 col-form-label">Số tiền tối thiểu phải trả</label>
+                                        <label for="minimum_dp" class="col-sm-2 col-form-label">Tiền cọc</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="minimum_dp" name="minimum_dp"
                                                 placeholder="col-form-label"
@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="downPayment" class="col-sm-2 col-form-label">Thanh toán</label>
+                                        <label for="downPayment" class="col-sm-2 col-form-label">Thanh toán tiền cọc</label>
                                         <div class="col-sm-10">
                                             <input type="text"
                                                 class="form-control @error('downPayment') is-invalid @enderror"

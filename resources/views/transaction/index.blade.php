@@ -26,7 +26,7 @@
                 {{--                <input class="form-control me-2" type="search" placeholder="Tìm theo ID" aria-label="Search" --}}
                 {{--                    id="search-user" name="search" value="{{ request()->input('search') }}"> --}}
                 <input class="form-control me-2" type="search" placeholder="Tìm theo tên" aria-label="Search"
-                id="search-user" name="search" value="{{ request()->input('search') }}">
+                    id="search-user" name="search" value="{{ request()->input('search') }}">
                 <button class="btn btn-outline-dark" type="submit">Tìm</button>
             </form>
         </div>
@@ -79,7 +79,7 @@
                                         <td>{{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}
                                         </td>
                                         <td>
-                                            <a class="btn btn-light btn-sm rounded shadow-sm border p-1 m-0 {{$transaction->sum_money - $transaction->getTotalPayment() <= 0 ? 'disabled' : ''}}"
+                                            <a class="btn btn-light btn-sm rounded shadow-sm border p-1 m-0 {{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? 'disabled' : '' }}"
                                                 href="{{ route('transaction.payment.create', ['transaction' => $transaction->id]) }}"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Trả">
                                                 <i class="fas fa-money-bill-wave-alt"></i>
@@ -89,13 +89,26 @@
                                                 data-bs-placement="top" title="Chi tiết">
                                                 <i class="fas fa-info-circle"></i>
                                             </a>
-                                            <a class="btn btn-light btn-sm rounded shadow-sm border {{$transaction->sum_money - $transaction->getTotalPayment() <= 0 ? 'disabled' : ''}}" id="delete3"
-                                                    transaction_id={{ $transaction->id }}><i class="fas fa-trash-alt"></i>
-                                            </a>
-                                            <form action="{{ route('cancelHomestay', $transaction->id) }}"
-                                                id="form--{{ $transaction->id }}" method="post" class="delete-cus">
-                                                @csrf
-                                            </form>
+                                            @if (Helper::getDateDifference(now(), $transaction->check_in) >= 2)
+                                                <a class="btn btn-light btn-sm rounded shadow-sm border {{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? 'disabled' : '' }}"
+                                                    id="delete2" transaction_id={{ $transaction->id }}><i
+                                                        class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <form action="{{ route('cancelHomestay', $transaction->id) }}"
+                                                    id="form--{{ $transaction->id }}" method="post" class="delete-cus">
+                                                    <input type="hidden" name="hoan" value="hoan">
+                                                    @csrf
+                                                </form>
+                                            @elseif(Helper::getDateDifference(now(), $transaction->check_in) >= 0)
+                                                <a class="btn btn-light btn-sm rounded shadow-sm border {{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? 'disabled' : '' }}"
+                                                    id="delete3" transaction_id={{ $transaction->id }}><i
+                                                        class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <form action="{{ route('cancelHomestay', $transaction->id) }}"
+                                                    id="form--{{ $transaction->id }}" method="post" class="delete-cus">
+                                                    @csrf
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty
@@ -115,7 +128,7 @@
     </div>
     <div class="row my-2 mt-4 ms-1">
         <div class="col-lg-12">
-            <h5>Đã hủy bởi khách hàng</h5>
+            <h5>Đã hủy</h5>
         </div>
     </div>
     <div class="row">
@@ -137,6 +150,7 @@
                                     <th>Tổng tiền</th>
                                     <th>Đã trả</th>
                                     <th>Chưa trả</th>
+                                    <th>Được hoàn</th>
                                     <th>Hành động</th>
                                 </tr>
                             </thead>
@@ -156,9 +170,16 @@
                                         <td>{{ Helper::convertToRupiah($transaction->sum_money) }}
                                         </td>
                                         <td>
-                                            {{ Helper::convertToRupiah($transaction->getTotalPayment()) }}
+                                            {{ Helper::convertToRupiah($transaction->sum_money * 15 /100) }}
                                         </td>
                                         <td>{{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}
+                                        </td>
+                                        <td>
+                                            @if($transaction->getTotalPayment()==0)
+                                            {{ Helper::convertToRupiah($transaction->sum_money * 15 /100) }}
+                                            @else
+                                            0 VNĐ
+                                            @endif
                                         </td>
                                         <td>
                                             <a class="btn btn-light btn-sm rounded shadow-sm border"
@@ -238,8 +259,8 @@
                                                     <i class="fas fa-money-bill-wave-alt"></i>
                                                 </a>
                                                 <a class="btn btn-light btn-sm rounded shadow-sm border"
-                                                    href="/payment/{{ $transaction->id }}/invoice" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top">
+                                                    href="/payment/{{ $transaction->id }}/invoice"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top">
                                                     <i class="fas fa-info-circle"></i>
                                                 </a>
                                             </td>
@@ -371,6 +392,60 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script>
         $(function() {
+            $(document).on('click', '#delete2', function(e) {
+                var transaction_id = $(this).attr('transaction_id');
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                })
+                e.preventDefault();
+                swalWithBootstrapButtons.fire({
+                    title: 'Bạn muốn hủy homestay',
+                    text: "Homestay bạn đặt sẽ bị hủy và sẽ được hoàn trả phí cọc ",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Đúng',
+                    cancelButtonText: 'Không ',
+                    reverseButtons: true
+                }).then((result) => {
+                    console.log(result);
+                    if (result.isConfirmed) {
+                        $(`#form--${transaction_id}`).submit();
+                    }
+                })
+            }).on('submit', '.delete-cus', async function(e) {
+                try {
+                    const response = await $.ajax({
+                        url: $(this).attr('action'),
+                        data: $(this).serialize(),
+                        method: $(this).attr('method'),
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                    })
+                    if (!response) return
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                } catch (e) {
+                    if (e && e.responseJSON && e.responseJSON.message) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: e.responseJSON.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                }
+            })
             $(document).on('click', '#delete3', function(e) {
                 var transaction_id = $(this).attr('transaction_id');
                 const swalWithBootstrapButtons = Swal.mixin({
@@ -415,7 +490,7 @@
                         showConfirmButton: false,
                         timer: 1500
                     })
-                
+
                 } catch (e) {
                     if (e && e.responseJSON && e.responseJSON.message) {
                         Swal.fire({

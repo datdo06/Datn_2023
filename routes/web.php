@@ -82,13 +82,8 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
     Route::resource('user', UserController::class)->only([
         'show'
     ]);
-
-
-
-
     Route::get('/{user}/order', [TransactionRoomReservationController::class, 'TransactionHometay'])->name('order');
     Route::get('/payment/{transaction}/invoice', [PaymentController::class, 'invoice'])->name('payment.invoice');
-    Route::post('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
 
     Route::get('/formComment/{room_id}', [HomeController::class, 'formComment'])->name('formComment');
     Route::post('/comment/{id}', [HomeController::class, 'postComment'])->name('postComment');
@@ -98,6 +93,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
     Route::get('/mark-all-as-read', [NotificationsController::class, 'markAllAsRead'])->name('notification.markAllAsRead');
     Route::get('/notification-to/{id}', [NotificationsController::class, 'routeTo'])->name('notification.routeTo');
 });
+Route::post('/{user}/{room}/confirm', [TransactionRoomReservationController::class, 'confirm'])->name('confirm');
 
 Route::view('/admin/login', 'auth.login')->name('admin.login');
 Route::post('/postLogin', [AuthController::class, 'postLogin'])->name('postlogin');

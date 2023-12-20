@@ -138,12 +138,12 @@
 
                                     <input type="text" class="awe-calendar to" placeholder="Ngày đi" id="check_out"
                                         name="checkout" value="{{ old('checkout') }}">
-                                    <p style="color: red" id="loi"></p>
+                                    <p style="color: red" id="loiCheckOut"></p>
                                     <input type="hidden" value="0" name="total_day">
                                     <label>Số người</label>
                                     <input type="text" class="awe-input" placeholder="Số người" id="count_person"
                                         name="person" value="{{ old('person') }}" required>
-                                    <p style="color: red" id="loiCheckOut"></p>
+                                    <p style="color: red" id="loi"></p>
                                     <label>Địa
                                         chỉ: {{ $detailRoom->type->name }}</label>
                                     <button class="awe-btn awe-btn-13" id="sub" type="button">Đặt ngay

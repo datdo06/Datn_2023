@@ -110,15 +110,17 @@
             @endif
             <p><strong>Tổng tiền phải trả: </strong>{{ \App\Helpers\Helper::convertToRupiah($transaction->sum_money) }}
             </p>
-            <p><strong style="font-size: 20px; color: #e1bd85">Số tiền đã trả:
-                {{ \App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment()) }}</strong></p>
-            <p><strong style="font-size: 20px; color: #DB073D">Số tiền chưa trả:
-                    {{ \App\Helpers\Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}</strong>
+            <p style="font-size: 20px;"><strong style=" color: #e1bd85">Số tiền đã trả: {{ \App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment()) }}</strong>
             </p>
             @if(!empty($hoan))
-                <p>Bạn đã hủy trước 2 ngày nên bạn sẽ được hoàn lại tiền cọc. Chúng tôi sẽ gửi lại bạn sau 1 - 2 ngày</p>
+            <p><strong style="font-size: 20px; color: #e1bd85">Số tiền được hoàn lại:
+                {{ \App\Helpers\Helper::convertToRupiah(($transaction->sum_money) * 15 / 100) }}</strong></p>
+                <p>Bạn đã hủy trước 2 ngày nên bạn sẽ được hoàn lại tiền cọc. Chúng tôi sẽ gửi lại bạn sau 1 - 2 ngày.</p>
+              
             @else
-                <p>Bạn đã không hủy trước 2 ngày so với ngày đến nên không được hoàn lại tiền cọc</p>
+            <p><strong style="font-size: 20px; color: #e1bd85">Số tiền được hoàn lại:
+               0 VNĐ</strong></p>
+                <p>Bạn đã không hủy trước 2 ngày so với ngày đến nên không được hoàn lại tiền cọc.</p>
             @endif
 
 

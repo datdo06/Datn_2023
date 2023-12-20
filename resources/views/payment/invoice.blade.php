@@ -134,7 +134,7 @@
                             </tr>
                             <tr class="content">
                                 <td>{{ Helper::convertToRupiah($transaction->getMinimumDownPayment()) }}</td>
-                                <td>{{ Helper::convertToRupiah($transaction->getTotalPayment()) }}</td>
+                                <td>{{ Helper::convertToRupiah($transaction->sum_money * 15 /100) }}</td>
                                 <td>{{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}</td>
                                 <td>{{ Helper::convertToRupiah($transaction->sum_money) }} </td>
                             </tr>

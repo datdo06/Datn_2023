@@ -20,7 +20,7 @@
             <div class="term-condition">
                 <h3 class="text-uppercase">1. Hình thức thanh toán</h3>
                 <h6>Tại Sao Bạn Cần Đặt Cọc Trước?</h6>
-                <p>Chúng tôi chấp nhận hình thức đặt cọc trước để dễ dàng quản lý đặt phòng hơn cho những khách hàng sau.
+                <p>Chúng tôi chỉ chấp nhận hình thức đặt cọc trước (15% tổng tiền phải trả) để dễ dàng quản lý đặt phòng hơn cho những khách hàng sau.
                     Việc đặt cọc trước là điều chúng tôi yêu cầu khách hàng thực hiện.</p>
                 <h6>Việc Đặt Cọc Như Thế Nào?</h6>
                 <p>King The Land chỉ nhận chuyển khoản qua VNPay. Mọi số tiền khách hàng chuyển khoản cho cá nhân không

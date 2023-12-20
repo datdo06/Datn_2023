@@ -313,7 +313,9 @@ class TransactionRoomReservationController extends Controller
 
             event(new RefreshDashboardEvent("Someone reserved a room"));
             $transactionFacility = TransactionFacility::query()->where('transaction_id', $transaction->id)->get();
-
+            if(session('coupon')){
+                Session::forget('coupon');
+            }
             if (isset($request['cus'])) {
                 if (!empty($request['coupon_id'])) {
                     $transactionCoupon = TransactionCoupon::create([
@@ -381,7 +383,7 @@ class TransactionRoomReservationController extends Controller
     {
         return Transaction::whereNot('status', 'Đã hủy')
             ->where([['check_in', '<=', $stayFrom], ['check_out', '>=', $stayUntil]])
-            ->orWhere([['check_in', '<', $stayUntil], ['check_out', '>', $stayFrom]])
+            ->orWhere([['status','!=','Đã hủy'],['check_in', '<', $stayUntil],['check_out', '>', $stayFrom]])
             ->pluck('room_id');
     }
 

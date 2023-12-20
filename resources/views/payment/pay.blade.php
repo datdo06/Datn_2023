@@ -213,8 +213,8 @@
                                                                        value="{{ $facility->id }}">
                                                                 <label style="font-size: 16px" class="form-check-label"
                                                                        for="flexCheckChecked">
-                                                                    {{ $facility->name }} (1 lần)
-                                                                    ({{ Helper::convertToRupiah($facility->price) }})
+                                                                    {{ $facility->name }} 
+                                                                    ({{ Helper::convertToRupiah($facility->price) }}/1 lần)
                                                                 </label>
                                                             </div>
                                                         </div>

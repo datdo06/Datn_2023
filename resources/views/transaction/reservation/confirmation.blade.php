@@ -47,6 +47,29 @@
                                 <form method="POST"
                                     action="{{ route('transaction.reservation.payOnlinePayment', ['room' => $room->id]) }}">
                                     @csrf
+                                    @if(empty($user))
+                                        <div class="row mb-3">
+                                            <label for="check_in" class="col-sm-2 col-form-label">Họ và tên</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="guest_name"
+                                                       placeholder="col-form-label" value="{{$data['guest_name']}}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="check_out" class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="guest_email"
+                                                       placeholder="col-form-label" value="{{$data['guest_email']}}">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="how_long" class="col-sm-2 col-form-label">Số diện thoại</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="guest_phone"
+                                                       placeholder="col-form-label" value="{{$data['guest_phone']}}">
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="row mb-3">
                                         <label for="check_in" class="col-sm-2 col-form-label">Ngày đến</label>
                                         <div class="col-sm-10">

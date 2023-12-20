@@ -29,12 +29,12 @@
                             {{ Helper::dateFormat(request()->input('check_out')) }}</p>
                         <hr>
 
-                        @if(!empty($user))
+                        @if(empty($user))
                             <form method="GET"
-                                  action="{{ route('transaction.reservation.chooseRoom', ['user' => $user->id]) }}">
+                                  action="{{ route('transaction.reservation.chooseRoom', ['user' => 0]) }}">
                                 @else
                                     <form method="GET"
-                                          action="{{ route('transaction.reservation.chooseRoom', ['user' => 0]) }}">
+                                          action="{{ route('transaction.reservation.chooseRoom', ['user' => $user->id]) }}">
                         @endif
                             <div class="row mb-2">
                                 <input type="text" hidden name="count_person"
@@ -91,13 +91,22 @@
                                             <div class="wrapper">
                                                 <p class="card-text mb-auto demo-1">{{ $room->view }}</p>
                                             </div>
-                                            @if(!empty($user))
-                                                <a href="{{ route('transaction.reservation.confirmation', ['user' => $user->id, 'room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out'), 'person'=>request()->input('count_person')]) }}"
-                                                   class="btn myBtn shadow-sm border w-100 m-2">Chọn</a>
+                                            @if(empty($user))
+                                            <form action="{{ route('transaction.reservation.confirmation', ['user' => 0, 'room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out'), 'person'=>request()->input('count_person')]) }}">
+
+                                                    <input type="hidden" class="form-control" name="guest_name"
+                                                           placeholder="col-form-label" value="{{$data['guest_name']}}">
+                                                    <input type="hidden" class="form-control" name="guest_email"
+                                                           placeholder="col-form-label" value="{{$data['guest_email']}}">
+                                                    <input type="hidden" class="form-control" name="guest_phone"
+                                                           placeholder="col-form-label" value="{{$data['guest_phone']}}">
+                                                <button type="submit"
+                                                   class="btn myBtn shadow-sm border w-100 m-2">Chọn</button>
                                             @else
-                                                <a href="{{ route('transaction.reservation.confirmation', ['user' => 0, 'room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out'), 'person'=>request()->input('count_person')]) }}"
-                                                   class="btn myBtn shadow-sm border w-100 m-2">Chọn</a>
+                                                    <form action="{{ route('transaction.reservation.confirmation', ['user' => $user->id, 'room' => $room->id, 'from' => request()->input('check_in'), 'to' => request()->input('check_out'), 'person'=>request()->input('count_person')]) }}">
+                                                    <button type="submit" class="btn myBtn shadow-sm border w-100 m-2">Chọn</button>
                                             @endif
+                                            </form>
                                         </div>
                                         <div class="col-auto d-none d-lg-block">
                                             <img src="{{ $room->firstImage() }}" width="200" height="250"

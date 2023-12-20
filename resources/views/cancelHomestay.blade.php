@@ -115,6 +115,11 @@
             <p><strong style="font-size: 20px; color: #DB073D">Số tiền chưa trả:
                     {{ \App\Helpers\Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}</strong>
             </p>
+            @if(!empty($hoan))
+                <p>Bạn đã hủy trước 2 ngày nên bạn sẽ được hoàn lại tiền cọc. Chúng tôi sẽ gửi lại bạn sau 1 - 2 ngày</p>
+            @else
+                <p>Bạn đã không hủy trước 2 ngày so với ngày đến nên không được hoàn lại tiền cọc</p>
+            @endif
 
 
             <div class="button-container">

@@ -89,7 +89,7 @@
             <table class="table">
                 <thead>
                 <tr>
-                    
+
                     <th>HomeStay</th>
                     <th>Quận</th>
                     <th>Ngày đặt</th>
@@ -104,8 +104,6 @@
                 <tbody>
                 @foreach ($transactions as $transaction)
                     <tr>
-                       
-                        </th>
                         <td>{{ $transaction->room->number }}</td>
                         <td>{{ $transaction->room->type->name }}</td>
                         <td>{{ Helper::dateFormat($transaction->created_at) }}</td>
@@ -151,7 +149,8 @@
                                     @csrf
                                 </form>
                             </td>
-
+                        @elseif($transaction->sum_money - $transaction->getgetTotalPayment() == 0)
+                            <td><a style="font-weight: bold" class="btn btn-light btn-sm rounded shadow-sm border"> Đang ở</a></td>
                         @endif
                     </tr>
                 @endforeach

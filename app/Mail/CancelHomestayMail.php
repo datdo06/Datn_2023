@@ -25,7 +25,7 @@ class CancelHomestayMail extends Mailable
      *
      * @return void
      */
-    public function __construct( Transaction $transaction,$transactionFacility,$transactionCoupon,$payment,$hoan)
+    public function __construct( Transaction $transaction,$transactionFacility,$transactionCoupon,$hoan,$payment)
 
     {
         $this->transaction = $transaction;
@@ -45,7 +45,7 @@ class CancelHomestayMail extends Mailable
                 'transactionFacility'=>$this->transactionFacility,
                 'transactionCoupon'=>$this->transactionCoupon,
                 'hoan'=>$this->hoan,
-                'payment'=>$this->payment,
+                'payment'=>$this->payment ,
             ]);
 
     }

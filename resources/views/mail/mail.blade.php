@@ -75,7 +75,7 @@
 
             <table width="100%">
                 <tr>
-                    <td>>Ngày đặt phòng: {{ \App\Helpers\Helper::dateFormat($payment->created_at) }}</td>
+                    <td>Ngày đặt phòng: {{ \App\Helpers\Helper::dateFormat($payment->created_at) }}</td>
                 </tr>
                 <tr>
                     <td><strong>Homestay đã đặt: {{$transaction->room->number}}</strong></td>
@@ -95,10 +95,10 @@
                 </tr>
                 <tr>
                     <td><strong>Tiền homestay: {{\App\Helpers\Helper::convertToRupiah($price)}}</strong></td>
-                   
+
                 </tr>
                 <tr>
-              
+
                     @if(!empty($transactionCoupon))
                     <td>Bạn đã sử dụng mã giảm giá: {{ $transactionCoupon->Coupon->coupon_name }}</td>
                     @if($transactionCoupon->Coupon->coupon_condition == 2)
@@ -119,18 +119,23 @@
                             </strong>{{ \App\Helpers\Helper::convertToRupiah($tF->Facility->price * $tF->quantity) }}</p>
                     @endforeach
                     </td>
-                    
+
                 </tr>
                 <tr>
                     <td><strong>Tổng tiền phải trả: {{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</strong></td>
                     <td><strong style="font-size: 16px; color: #e1bd85">Số tiền đã trả: {{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment())}}</strong></td>
-                  
+
                 </tr>
                 <tr>
                     <td><strong style="font-size: 16px; color: #DB073D">Số tiền chưa trả: {{ \App\Helpers\Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}</strong></td>
                 </tr>
 
             </table>
+            @if(!empty($hoan))
+                <p>Bạn đã hủy trước 2 ngày nên bạn sẽ được hoàn lại tiền cọc. Chúng tôi sẽ gửi lại bạn sau 1 - 2 ngày</p>
+            @else
+                <p>Bạn đã không hủy trước 2 ngày so với ngày đến nên không được hoàn lại tiền cọc</p>
+            @endif
             <div>
             </div>
 

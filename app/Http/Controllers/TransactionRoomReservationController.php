@@ -82,6 +82,7 @@ class TransactionRoomReservationController extends Controller
         $checkout = date_create($request->check_out);
         $stayFrom = date_format($checkin, "Y-m-d");
         $stayUntil = date_format($checkout, "Y-m-d");
+        $data = $request->all();
         $canceledRoomIds = Transaction::where('status', 'Đã hủy')->pluck('room_id');
         $room = Transaction::where(function ($query) use ($stayFrom, $stayUntil) {
             $query->where([
@@ -112,16 +113,18 @@ class TransactionRoomReservationController extends Controller
             'stayUntil',
             'roomsCount',
             'type',
+            'data'
         ));
     }
 
 
-    public function confirmation($id, Room $room, $stayFrom, $stayUntil, $person)
+    public function confirmation($id, Room $room, $stayFrom, $stayUntil, $person, Request $request)
     {
         $user = User::query()->where('id', $id)->first();
         $price = $room->price;
         $dayDifference = Helper::getDateDifference($stayFrom, $stayUntil);
         $downPayment = ($price * $dayDifference) * 0.15;
+        $data = $request->all();
         return view('transaction.reservation.confirmation', compact(
             'user',
             'room',
@@ -129,7 +132,8 @@ class TransactionRoomReservationController extends Controller
             'stayUntil',
             'person',
             'downPayment',
-            'dayDifference'
+            'dayDifference',
+            'data'
         ));
     }
 
@@ -422,16 +426,15 @@ class TransactionRoomReservationController extends Controller
         $payment = Payment::query()->where('transaction_id', $transaction->id)->first();
         if(!empty($request->hoan)){
             $hoan = $request->hoan;
-            $payment = Payment::query()->where('transaction_id', $transaction->id)->first();
             $payment->update(['price' => 0]);
             $mail = new CancelHomestayMail($transaction,$transactionFacility, $transactionCoupon, $hoan, $payment);
         }else{
             $hoan = 0;
             $mail = new CancelHomestayMail($transaction,$transactionFacility, $transactionCoupon, $hoan, $payment);
 
-        }  
+        }
         SendWelcomeEmail::dispatch($transaction, $mail);
         $transaction->update(['status' => 'Đã hủy']);
-        return view('cancelHomestay', compact('transaction', 'transactionCoupon', 'transactionFacility','payment'));
+        return view('cancelHomestay', compact('transaction', 'transactionCoupon', 'transactionFacility','payment','hoan'));
     }
 }

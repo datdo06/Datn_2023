@@ -45,7 +45,7 @@
                             <hr>
                             <div class="col-sm-12 mt-2">
                                 <form method="POST"
-                                    action="{{ route('transaction.reservation.payOnlinePayment', ['user' => $user->id, 'room' => $room->id]) }}">
+                                    action="{{ route('transaction.reservation.payOnlinePayment', ['room' => $room->id]) }}">
                                     @csrf
                                     <div class="row mb-3">
                                         <label for="check_in" class="col-sm-2 col-form-label">Ngày đến</label>
@@ -117,6 +117,7 @@
                                     <input type="hidden" value="{{Helper::getTotalPayment($dayDifference, $room->price)}}" name="sum_money">
                                     <input type="hidden" value="{{$person}}" name="person" >
                                     <input type="hidden" value="{{$dayDifference}}" name="total_day">
+                                    <input type="hidden" value="{{$user->id}}" name="user_id">
                                     <button type="submit" class="btn btn-primary float-end" >Thanh toán</button>
                                 </form>
                             </div>

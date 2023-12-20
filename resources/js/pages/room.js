@@ -238,7 +238,17 @@ $(function () {
                 });
 
                 datatable.ajax.reload();
-            } catch (e) {}
+            } catch (e) {
+                if (e.status === 422) {
+                    console.log(e);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Lỗi",
+                        text: e.responseJSON.message,
+                    });
+                    CustomHelper.errorHandlerForm(e);
+                }
+            }
         })
         .on("change", "#status", function () {
             datatable.ajax.reload();

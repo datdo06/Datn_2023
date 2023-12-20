@@ -117,16 +117,15 @@
                         @php
                             date_default_timezone_set('Asia/Ho_Chi_Minh');
                         @endphp
-                        @if (Helper::thisNow() > $transaction->check_out)
+                        @if ($transaction->status == 'Đã hủy')
+                            <td><a style="font-weight: bold" class="btn btn-light btn-sm rounded shadow-sm border"> Đã hủy</a></td>
+                        @elseif (Helper::thisNow() > $transaction->check_out)
                             <td><a style="font-weight: bold" class="btn btn-light btn-sm rounded shadow-sm border"
                                    href="/formComment/{{ $transaction->room->id }}" data-bs-toggle="tooltip"
                                    data-bs-placement="top">
                                     Đánh giá
                                 </a></td>
-                        @endif
-                        @if ($transaction->status == 'Đã hủy')
-                            <td><a style="font-weight: bold" class="btn btn-light btn-sm rounded shadow-sm border"> Đã hủy</a></td>
-                        @elseif(Helper::getDateDifference(now(), $transaction->check_in) >= 0)
+                        @elseif(Helper::getDateDifference(now(), $transaction->check_in) >= 1)
                             <td>
                                 <button class="btn btn-danger" id="delete3"
                                         transaction_id={{ $transaction->id }}>Hủy phòng
@@ -181,9 +180,7 @@
                     method: $(this).attr('method'),
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 })
-
                 if (!response) return
-
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',

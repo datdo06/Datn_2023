@@ -124,7 +124,7 @@
                 King The Land
                 <div class="contact-info">
                     Email: kingtheland@gmail.com<br>
-                    Phone: (123) 456-7890
+                    Phone: 0987124921
                 </div>
             </div>
         </td>

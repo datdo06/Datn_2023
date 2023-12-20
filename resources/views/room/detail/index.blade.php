@@ -100,27 +100,26 @@
                                         value="{{ Helper::dateFormat($_GET['checkout']) }}" name="checkin">
                                     <label>Số người</label>
 
-                                    @if (isset(Auth()->user()->id))
-                                        <form
-                                            action="{{ route('confirm', ['user' => Auth()->user()->id, 'room' => $detailRoom->id]) }}"
-                                            method="POST" id="form">
-                                        @else
-                                            <form action="{{ route('confirm', ['user' => 0, 'room' => $detailRoom->id]) }}"
-                                                method="POST" id="form">
-                                    @endif
-                                    @csrf
-                                    <input type="hidden" value="{{ $_GET['checkin'] }}" name="checkin">
-                                    <input type="hidden" value="{{ $_GET['checkout'] }}" name="checkout">
-                                    <input type="hidden"
-                                        value="{{ Helper::getDateDifference($_GET['checkin'], $_GET['checkout']) }}"
-                                        name="total_day">
-                                    <input type="text" class="awe-input" placeholder="Số người" id="count_person"
-                                        value="{{ $_GET['person'] }}" required>
-                                    <p style="color: red" id="loi"></p>
-                                    <label>Địa chỉ: {{ $detailRoom->type->name }}</label>
-                                    <button class="awe-btn awe-btn-13" id="sub" type="button">Đặt ngay
-                                    </button>
-                                    </form>
+                                    @if(isset(Auth()->user()->id))
+                                        <form action="{{ route('confirm', ['user' => Auth()->user()->id, 'room' => $detailRoom->id]) }}" method="POST" id="form">
+                                            @else
+                                                <form action="{{ route('confirm', ['user' => 0, 'room' => $detailRoom->id]) }}" method="POST" id="form">
+                                                    @endif
+                                                    @csrf
+                                                    <input type="hidden" value="{{ $_GET['checkin'] }}" name="checkin">
+                                                    <input type="hidden" value="{{ $_GET['checkout'] }}"
+                                                           name="checkout">
+                                                    <input type="hidden"
+                                                           value="{{ Helper::getDateDifference($_GET['checkin'], $_GET['checkout']) }}"
+                                                           name="total_day">
+                                                    <input type="text" class="awe-input" placeholder="Số người" id="count_person"
+                                                           value="{{ $_GET['person'] }} " name="person" required>
+                                                    <p style="color: red" id="loi"></p>
+                                                    <label>Địa chỉ: {{ $detailRoom->type->name }}</label>
+                                                    <button class="awe-btn awe-btn-13" id="sub" type="button">Đặt ngay
+                                                    </button>
+                                                </form>
+
                                 @else
                                     @if (isset(Auth()->user()->id))
                                         <form

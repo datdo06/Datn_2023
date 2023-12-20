@@ -11,7 +11,7 @@
                         <th scope="col">Homestay</th>
                         <th scope="col">Trả hết</th>
                         <th scope="col">Trạng thái</th>
-                        <th scope="col">Tại</th>
+                        <th scope="col">Ngày đặt</th>
                         <th scope="col">Khách hàng</th>
                         <th scope="col">Hành động</th>
                     </tr>

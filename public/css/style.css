@@ -8755,7 +8755,7 @@ blockquote p:after {
 .reservation-room-selected .reservation-room-seleted_item .reservation-room-seleted_package ul li span:last-child {
     float: right;
     font-weight: bold;
-    text-transform: uppercase
+  
 }
 
 .reservation-room-selected .reservation-room-seleted_item .reservation-room-seleted_package ul+ul {

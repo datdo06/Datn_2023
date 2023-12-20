@@ -89,26 +89,31 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>STT</th>
+                    
                     <th>HomeStay</th>
                     <th>Quận</th>
+                    <th>Ngày đặt</th>
                     <th>Ngày đến</th>
                     <th>Ngày đi</th>
                     <th>Tổng tiền</th>
+                    <th>Đã trả</th>
+                    <th>Chưa trả</th>
                     <th colspan="2">Thao tác</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($transactions as $transaction)
                     <tr>
-                        <th>{{ $transaction->id }}
+                       
                         </th>
                         <td>{{ $transaction->room->number }}</td>
                         <td>{{ $transaction->room->type->name }}</td>
+                        <td>{{ Helper::dateFormat($transaction->created_at) }}</td>
                         <td>{{ Helper::dateFormat($transaction->check_in) }}</td>
                         <td>{{ Helper::dateFormat($transaction->check_out) }}</td>
-                        <td>{{ Helper::convertToRupiah($transaction->sum_money) }}
-                        </td>
+                        <td>{{ Helper::convertToRupiah($transaction->sum_money) }}</td>
+                        <td>{{ Helper::convertToRupiah($transaction->getTotalPayment()) }}</td>
+                        <td>{{ $transaction->sum_money - $transaction->getTotalPayment() <= 0 ? '-' : Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}</td>
                         <td><a style="font-weight: bold" class="btn btn-light btn-sm rounded shadow-sm border"
                                href="/payment/{{ $transaction->id }}/invoice" data-bs-toggle="tooltip"
                                data-bs-placement="top">

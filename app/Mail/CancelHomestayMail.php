@@ -19,17 +19,20 @@ class CancelHomestayMail extends Mailable
     private $transactionFacility;
     private $transactionCoupon;
     private $hoan;
+    private $payment;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct( Transaction $transaction, $transactionFacility, $transactionCoupon,$hoan)
+    public function __construct( Transaction $transaction,$transactionFacility,$transactionCoupon,$payment,$hoan)
+
     {
         $this->transaction = $transaction;
         $this->transactionFacility = $transactionFacility;
         $this->transactionCoupon = $transactionCoupon;
         $this->hoan = $hoan;
+        $this->payment = $payment;
 
     }
 
@@ -42,6 +45,7 @@ class CancelHomestayMail extends Mailable
                 'transactionFacility'=>$this->transactionFacility,
                 'transactionCoupon'=>$this->transactionCoupon,
                 'hoan'=>$this->hoan,
+                'payment'=>$this->payment,
             ]);
 
     }

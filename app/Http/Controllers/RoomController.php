@@ -140,10 +140,10 @@ class RoomController extends Controller
         $comment = DB::table('comments')
         ->join('rooms', 'rooms.id', '=', 'comments.com_room_id')
         ->join('users', 'users.id', '=', 'comments.com_user_id')
-        ->select('rooms.id','users.id as uid', 'users.name', 'users.avatar', 'comments.com_content','comments.com_subject', 'comments.created_at')
+        ->select('rooms.id','users.id as uid', 'users.name', 'users.avatar', 'comments.com_content','comments.com_subject','comments.star','comments.id as cd', 'comments.created_at')
         ->where('rooms.id', $id)
         ->get();
-        $other_locations = Room::skip(4)->take(6)
+        $other_locations = Room::skip(4)->take(3)
         ->whereNotIn('id', $transactions)->get();
         return view('room.detail.index', compact('detailRoom', 'image','room_type', 'other_locations','comment','results', 'facilityHomestay'));
     }

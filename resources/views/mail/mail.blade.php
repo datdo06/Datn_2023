@@ -75,8 +75,11 @@
 
             <table width="100%">
                 <tr>
+                    <td>>Ngày đặt phòng: {{ \App\Helpers\Helper::dateFormat($payment->created_at) }}</td>
+                </tr>
+                <tr>
                     <td><strong>Homestay đã đặt: {{$transaction->room->number}}</strong></td>
-                    <td><strong>{{$transaction->room->type->name}}</strong></td>
+                    <td>{{$transaction->room->type->name}}</td>
 
                 </tr>
                 @php
@@ -85,30 +88,46 @@
                 @endphp
 
                 <tr>
-                    <td><strong>Ngày nhận phòng: {{\App\Helpers\Helper::dateFormat($transaction->check_in)}}</strong>
+                    <td>Ngày nhận phòng: {{\App\Helpers\Helper::dateFormat($transaction->check_in)}}
                     </td>
-                    <td><strong>Ngày trả phòng: {{\App\Helpers\Helper::dateFormat($transaction->check_out)}}</strong>
+                    <td>Ngày trả phòng: {{\App\Helpers\Helper::dateFormat($transaction->check_out)}}
                     </td>
                 </tr>
                 <tr>
                     <td><strong>Tiền homestay: {{\App\Helpers\Helper::convertToRupiah($price)}}</strong></td>
-                    @if(!empty($transactionCoupon))
-                        @if($transactionCoupon->Coupon->coupon_condition == 2)
-                            <td><strong>Bạn được
-                                    giảm: {{\App\Helpers\Helper::convertToRupiah($transactionCoupon->Coupon->coupon_number)}}</strong>
-                            </td>
-                        @else
-                            <td><strong>Bạn được
-                                    giảm: {{\App\Helpers\Helper::convertToRupiah(($price*$transactionCoupon->Coupon->coupon_number/100))}}</strong>
-                            </td>
-                        @endif
-                    @endif
+                   
                 </tr>
                 <tr>
-                    <td><strong>Tiền bạn đã
-                            cọc: {{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment())}}</strong></td>
-                    <td><strong>Tổng tiền: {{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</strong>
+              
+                    @if(!empty($transactionCoupon))
+                    <td>Bạn đã sử dụng mã giảm giá: {{ $transactionCoupon->Coupon->coupon_name }}</td>
+                    @if($transactionCoupon->Coupon->coupon_condition == 2)
+                        <td><strong>Bạn được
+                                giảm: {{\App\Helpers\Helper::convertToRupiah($transactionCoupon->Coupon->coupon_number)}}</strong>
+                        </td>
+                    @else
+                        <td><strong>Bạn được
+                                giảm: {{\App\Helpers\Helper::convertToRupiah(($price*$transactionCoupon->Coupon->coupon_number/100))}}</strong>
+                        </td>
+                    @endif
+                @endif
+                </tr>
+                <tr>
+                    <td>
+                        @foreach ($transactionFacility as $tF)
+                        <p><strong>Tiền dịch vụ {{ $tF->Facility->name }}:
+                            </strong>{{ \App\Helpers\Helper::convertToRupiah($tF->Facility->price * $tF->quantity) }}</p>
+                    @endforeach
                     </td>
+                    
+                </tr>
+                <tr>
+                    <td><strong>Tổng tiền phải trả: {{\App\Helpers\Helper::convertToRupiah($transaction->sum_money)}}</strong></td>
+                    <td><strong style="font-size: 16px; color: #e1bd85">Số tiền đã trả: {{\App\Helpers\Helper::convertToRupiah($transaction->getTotalPayment())}}</strong></td>
+                  
+                </tr>
+                <tr>
+                    <td><strong style="font-size: 16px; color: #DB073D">Số tiền chưa trả: {{ \App\Helpers\Helper::convertToRupiah($transaction->sum_money - $transaction->getTotalPayment()) }}</strong></td>
                 </tr>
 
             </table>
